@@ -1,0 +1,23 @@
+{
+    "name": "alex-tsarkov/eternium-pulse",
+    "description": "Eternium leaderboards and stats",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "symfony/console": "^5.1",
+        "symfony/http-client": "^5.1",
+        "symfony/http-client-contracts": "^2.1",
+        "symfony/string": "^5.1"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.16"
+    },
+    "autoload": {
+        "psr-4": {
+            "Eternium\\": "src/"
+        }
+    },
+    "bin": [
+        "bin"
+    ]
+}
