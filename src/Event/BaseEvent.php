@@ -35,10 +35,15 @@ abstract class BaseEvent implements EventInterface, \IteratorAggregate
         yield from $this->events;
     }
 
-    public function fetch(callable $fetcher, string $prefix): void
+    public function fetch(callable $fetcher, string $prefix = ''): void
     {
+        if ('' !== $prefix) {
+            $prefix .= '.';
+        }
+        $prefix .= $this;
+
         foreach ($this as $event) {
-            $event->fetch($fetcher, '' === $prefix ? "{$this}" : "{$prefix}.{$this}");
+            $event->fetch($fetcher, $prefix);
         }
     }
 }

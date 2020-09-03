@@ -3,6 +3,7 @@
 namespace Eternium\Command;
 
 use Eternium\Event\EventInterface;
+use Eternium\Event\Leaderboard;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\InvalidOptionException;
 use Symfony\Component\Console\Helper\ProgressBar;
@@ -64,7 +65,7 @@ class FetchCommand extends Command
         $dir = $input->getOption('data-dir');
         $update = $input->getOption('update');
 
-        $fetcher = function (string $prefix, string $id) use ($output, $filter, $dir, $update): void {
+        $fetcher = function (Leaderboard $leaderboard, string $prefix) use ($output, $filter, $dir, $update): void {
             $formatter = $this->getHelper('formatter');
 
             if (!$filter($prefix)) {
@@ -76,7 +77,7 @@ class FetchCommand extends Command
                 return;
             }
 
-            $file = "{$dir}/{$prefix}.csv";
+            $file = $dir.DIRECTORY_SEPARATOR."{$prefix}.csv";
             if (!$update && is_file($file)) {
                 $output->writeln(
                     $formatter->formatSection('SKIP', "{$prefix} entries already dumped", 'comment'),
@@ -91,7 +92,7 @@ class FetchCommand extends Command
             );
 
             $progressBar = new ProgressBar($output);
-            $count = $this->dump($file, $progressBar->iterate($this->fetch($id)));
+            $count = $this->dump($file, $progressBar->iterate($this->fetch($leaderboard->id())));
             $progressBar->clear();
 
             $output->writeln(
@@ -100,7 +101,7 @@ class FetchCommand extends Command
         };
 
         foreach ($this->events as $event) {
-            $event->fetch($fetcher, '');
+            $event->fetch($fetcher);
         }
 
         return self::SUCCESS;
@@ -119,14 +120,14 @@ class FetchCommand extends Command
     {
         $count = 0;
 
-        $mem = fopen('php://memory', 'r+');
+        $memory = fopen('php://memory', 'r+');
         foreach ($data as $entry) {
-            fputcsv($mem, $entry);
+            fputcsv($memory, $entry);
             ++$count;
         }
-        rewind($mem);
+        rewind($memory);
 
-        if (false === @file_put_contents($file, $mem, LOCK_EX)) {
+        if (false === @file_put_contents($file, $memory, LOCK_EX)) {
             $error = error_get_last();
             error_clear_last();
 

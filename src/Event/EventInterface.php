@@ -6,5 +6,8 @@ interface EventInterface
 {
     public function __toString(): string;
 
-    public function fetch(callable $fetcher, string $prefix): void;
+    /**
+     * @param callable(Leaderboard, string): void $fetcher
+     */
+    public function fetch(callable $fetcher, string $prefix = ''): void;
 }
