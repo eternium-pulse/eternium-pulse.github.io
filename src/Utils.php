@@ -2,6 +2,9 @@
 
 namespace Eternium;
 
+use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
+
 abstract class Utils
 {
     public static function getLastError(bool $clear = true): ?\ErrorException
@@ -78,5 +81,51 @@ abstract class Utils
         }
 
         return $bytes;
+    }
+
+    public static function createHttpClient(string $apiKey): HttpClientInterface
+    {
+        assert('' !== $apiKey);
+
+        return HttpClient::createForBaseUri('https://mfp.makingfun.com/api/', [
+            'http_version' => '1.1',
+            'max_redirects' => 0,
+            'headers' => [
+                'Accept' => 'application/json',
+                'X-API-Key' => $apiKey,
+            ],
+        ]);
+    }
+
+    public static function createLeaderboardReader(HttpClientInterface $client, string $id): \Generator
+    {
+        assert(24 === strlen($id) && ctype_xdigit($id));
+
+        $uri = "leaderboards/{$id}/rankings";
+        $query = [
+            'page' => 1,
+            'pageSize' => 1000,
+            'payload' => 'name,champion_level,hero.selectedPlayerNameID,trialStats.heroDeaths',
+        ];
+
+        $entries = 0;
+        do {
+            $pageSize = 0;
+            $response = $client->request('GET', $uri, ['query' => $query]);
+            foreach ($response->toArray() as $entry) {
+                yield [
+                    $entry['payload']['name'],
+                    ucwords(strtr($entry['payload']['hero']['selectedPlayerNameID'] ?? '', '_', ' ')),
+                    $entry['payload']['champion_level'],
+                    $entry['score'],
+                    $entry['payload']['trialStats']['heroDeaths'],
+                ];
+                ++$entries;
+                ++$pageSize;
+            }
+            ++$query['page'];
+        } while ($pageSize === $query['pageSize']);
+
+        return $entries;
     }
 }
