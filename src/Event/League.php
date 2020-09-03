@@ -18,4 +18,9 @@ final class League extends BaseEvent
     {
         return new self(__FUNCTION__, ...$leaderboards);
     }
+
+    public function getType(): string
+    {
+        return 'league';
+    }
 }

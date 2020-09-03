@@ -3,35 +3,35 @@
 namespace Eternium\Event;
 
 return [
-    Season::n(
+    Event::season(
         1,
         Leaderboard::mage('5d24a1b4ec2a60555c62addb'),
         Leaderboard::warrior('5d24a1b5ec2a60555c62ade0'),
         Leaderboard::bountyhunter('5d24a1b7ec2a60555c62ade3'),
     ),
 
-    Season::n(
+    Event::season(
         2,
         Leaderboard::mage('5dc1bd9aec2a605db2e06bcc'),
         Leaderboard::warrior('5dc1bd9bec2a605db2e06bd0'),
         Leaderboard::bountyhunter('5dc1bd9cec2a605db2e06bd1'),
     ),
 
-    Season::n(
+    Event::season(
         3,
         Leaderboard::mage('5e6cf9abec2a6078be51c20c'),
         Leaderboard::warrior('5e6cf9acec2a6078be51c20d'),
         Leaderboard::bountyhunter('5e6cf9ad76f55b6deb838e40'),
     ),
 
-    Season::n(
+    Event::season(
         4,
         Leaderboard::mage('5f12cfa04d28152e930c68b1'),
         Leaderboard::warrior('5f12cfa14d28152e930c68b2'),
         Leaderboard::bountyhunter('5f12cfa24d28152e930c68b3'),
     ),
 
-    Anb::n(
+    Event::anb(
         1,
         League::bronze(
             Leaderboard::mage('5c66b27276f55b70c12c0859'),
@@ -50,7 +50,7 @@ return [
         ),
     ),
 
-    Anb::n(
+    Event::anb(
         2,
         League::bronze(
             Leaderboard::mage('5cd43d63ec2a607f5e725769'),
@@ -69,7 +69,7 @@ return [
         ),
     ),
 
-    Anb::n(
+    Event::anb(
         3,
         League::bronze(
             Leaderboard::mage('5d56e3f8ec2a600b30edfab4'),
@@ -88,7 +88,7 @@ return [
         ),
     ),
 
-    Anb::n(
+    Event::anb(
         4,
         League::bronze(
             Leaderboard::mage('5e87555376f55b1a5ab4630a'),
@@ -107,7 +107,7 @@ return [
         ),
     ),
 
-    Anb::n(
+    Event::anb(
         5,
         League::bronze(
             Leaderboard::mage('5ed2680f4d281531c99d4b61'),
@@ -126,7 +126,7 @@ return [
         ),
     ),
 
-    Anb::n(
+    Event::anb(
         6,
         League::bronze(
             Leaderboard::mage('5f35a1894d28155b896d7c6a'),

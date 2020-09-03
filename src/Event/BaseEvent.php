@@ -24,6 +24,16 @@ abstract class BaseEvent implements EventInterface, \IteratorAggregate
 
     final public function __toString(): string
     {
+        return $this->toString();
+    }
+
+    public function toString(): string
+    {
+        return $this->name;
+    }
+
+    final public function getName(): string
+    {
         return $this->name;
     }
 
@@ -35,15 +45,19 @@ abstract class BaseEvent implements EventInterface, \IteratorAggregate
         yield from $this->events;
     }
 
-    public function fetch(callable $fetcher, string $prefix = ''): void
+    public function apply(callable $handler, string ...$prefix): array
     {
-        if ('' !== $prefix) {
-            $prefix .= '.';
-        }
-        $prefix .= $this;
-
+        array_push($prefix, ...$this->getPrefix());
+        $data = [];
         foreach ($this as $event) {
-            $event->fetch($fetcher, $prefix);
+            $data[(string) $event] = $event->apply($handler, ...$prefix);
         }
+
+        return $data;
+    }
+
+    protected function getPrefix(): array
+    {
+        return [$this->name];
     }
 }

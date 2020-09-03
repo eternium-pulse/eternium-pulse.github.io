@@ -2,21 +2,11 @@
 
 namespace Eternium\Event;
 
-use Eternium\Event\Leaderboard\Entry;
-
-/**
- * @implements \IteratorAggregate<int, Entry>
- */
-final class Leaderboard implements EventInterface, \Countable, \IteratorAggregate
+final class Leaderboard implements EventInterface
 {
     private string $name;
 
     private string $id;
-
-    /**
-     * @var array<int, Entry>
-     */
-    private array $entries = [];
 
     private function __construct(string $name, string $id)
     {
@@ -26,7 +16,7 @@ final class Leaderboard implements EventInterface, \Countable, \IteratorAggregat
 
     public function __toString(): string
     {
-        return $this->name;
+        return $this->toString();
     }
 
     public static function mage(string $id): self
@@ -44,45 +34,28 @@ final class Leaderboard implements EventInterface, \Countable, \IteratorAggregat
         return new self(__FUNCTION__, $id);
     }
 
-    public function count(): int
-    {
-        return count($this->entries);
-    }
-
-    /**
-     * @return \Iterator<int, Entry>
-     */
-    public function getIterator(): \Iterator
-    {
-        yield from $this->entries;
-    }
-
-    public function id(): string
+    public function getId(): string
     {
         return $this->id;
     }
 
-    public function rank(int $n): ?Entry
+    public function getName(): string
     {
-        assert(0 < $n);
-
-        return $this->entries[$n - 1] ?? null;
+        return $this->name;
     }
 
-    public function add(Entry ...$entries): void
+    public function getType(): string
     {
-        assert(0 !== count($entries));
-
-        array_push($this->entries, ...$entries);
+        return 'leaderboard';
     }
 
-    public function fetch(callable $fetcher, string $prefix = ''): void
+    public function toString(): string
     {
-        if ('' !== $prefix) {
-            $prefix .= '.';
-        }
-        $prefix .= $this;
+        return $this->name;
+    }
 
-        $fetcher($this, $prefix);
+    public function apply(callable $handler, string ...$prefix): array
+    {
+        return $handler($this, ...[...$prefix, $this->name]);
     }
 }

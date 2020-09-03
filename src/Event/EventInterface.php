@@ -4,10 +4,14 @@ namespace Eternium\Event;
 
 interface EventInterface
 {
-    public function __toString(): string;
+    public function toString(): string;
+
+    public function getName(): string;
+
+    public function getType(): string;
 
     /**
-     * @param callable(Leaderboard, string): void $fetcher
+     * @param callable(Leaderboard, array<int, string>): array $handler
      */
-    public function fetch(callable $fetcher, string $prefix = ''): void;
+    public function apply(callable $handler, string ...$prefix): array;
 }
