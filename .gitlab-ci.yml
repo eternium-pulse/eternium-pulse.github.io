@@ -1,0 +1,23 @@
+image: alpine:edge
+
+cache:
+  paths:
+    - vendor
+    - .php_cs.cache
+
+before_script:
+  - apk upgrade -U --no-progress
+  - apk add --no-progress php7
+  - wget -q -O - https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --quiet
+  - composer install --no-dev --no-interaction --no-progress
+
+pages:
+  stage: deploy
+  script:
+    - bin/lb.php fetch
+    - bin/lb.php generate
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
