@@ -121,6 +121,8 @@ class GenerateCommand extends Command
     private function generate(array $params): void
     {
         $this->renderTo('index.html', 'index', $params);
+        $this->renderTo('403.html', '403', $params);
+        $this->renderTo('404.html', '404', $params);
 
         foreach ($params as $type => $events) {
             $params['event'] = compact('type');
