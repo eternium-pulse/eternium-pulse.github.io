@@ -9,6 +9,10 @@ use Symfony\Component\Console\Application;
 use Twig\Environment as Twig;
 use Twig\Loader\FilesystemLoader;
 
+define('ETERNIUM_API_KEY', (string) getenv('ETERNIUM_API_KEY'));
+define('ETERNIUM_DATA_PATH', dirname(__DIR__).DIRECTORY_SEPARATOR.'data');
+define('ETERNIUM_HTML_PATH', dirname(__DIR__).DIRECTORY_SEPARATOR.'public');
+
 $events = require dirname(__DIR__).'/config/events.php';
 
 $twig = new Twig(new FilesystemLoader([''], dirname(__DIR__).'/templates'));

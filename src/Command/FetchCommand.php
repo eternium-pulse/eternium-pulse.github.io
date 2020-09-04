@@ -6,7 +6,6 @@ use Eternium\Event\Event;
 use Eternium\Event\Leaderboard;
 use Eternium\Utils;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Exception\InvalidOptionException;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -30,40 +29,29 @@ class FetchCommand extends Command
     public function __construct(Event ...$events)
     {
         $this->events = $events;
-        $this->client = Utils::createHttpClient((string) getenv('ETERNIUM_API_KEY'));
+        $this->client = Utils::createHttpClient();
 
         parent::__construct();
     }
 
     protected function configure(): void
     {
-        $this->setDescription('Fetches LB entries from game server');
-        $this->addArgument('prefix', InputArgument::OPTIONAL, 'The LB prefix', '');
-        $this->addOption('data-dir', 'd', InputOption::VALUE_REQUIRED, 'Dump data to this directory', 'data');
+        $this->setDescription('Fetches leaderboards from game server');
+        $this->addArgument('prefix', InputArgument::OPTIONAL, 'The leaderboards prefix', '');
         $this->addOption('update', 'u', InputOption::VALUE_NONE, 'Update existing data');
         $this->addOption('no-progress', '', InputOption::VALUE_NONE, 'Do not output download progress');
-    }
-
-    protected function initialize(InputInterface $input, OutputInterface $output): void
-    {
-        $path = $input->getOption('data-dir');
-        if (!is_dir($path)) {
-            throw new InvalidOptionException('The option "--data-dir" requires an existing directory.');
-        }
-        $input->setOption('data-dir', realpath($path));
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $prefix = $input->getArgument('prefix');
-        $path = $input->getOption('data-dir');
         $update = $input->getOption('update');
         $progressOutput = $output;
         if ($input->getOption('no-progress')) {
             $progressOutput = new NullOutput();
         }
 
-        $fetcher = function (Leaderboard $leaderboard, string ...$names) use ($prefix, $path, $update, $output, $progressOutput): array {
+        $fetcher = function (Leaderboard $leaderboard, string ...$names) use ($prefix, $update, $output, $progressOutput): array {
             $formatter = $this->getHelper('formatter');
 
             $name = join('.', $names);
@@ -76,7 +64,7 @@ class FetchCommand extends Command
                 return [];
             }
 
-            $file = $path.DIRECTORY_SEPARATOR."{$name}.csv";
+            $file = ETERNIUM_DATA_PATH.DIRECTORY_SEPARATOR."{$name}.csv";
             if (!$update && is_file($file)) {
                 $output->writeln(
                     $formatter->formatSection('SKIP', "{$name} entries already dumped", 'comment'),

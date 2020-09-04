@@ -83,7 +83,7 @@ abstract class Utils
         return $bytes;
     }
 
-    public static function createHttpClient(string $apiKey): HttpClientInterface
+    public static function createHttpClient(string $apiKey = ETERNIUM_API_KEY): HttpClientInterface
     {
         assert('' !== $apiKey);
 
