@@ -5,12 +5,12 @@ namespace Eternium\Event;
 /**
  * @implements \IteratorAggregate<int, EventInterface>
  */
-abstract class BaseEvent implements EventInterface, \IteratorAggregate
+abstract class BaseEvent implements EventInterface, \ArrayAccess, \IteratorAggregate
 {
     private string $name;
 
     /**
-     * @var array<int, EventInterface>
+     * @var array<string, EventInterface>
      */
     private array $events;
 
@@ -19,12 +19,49 @@ abstract class BaseEvent implements EventInterface, \IteratorAggregate
         \assert(0 !== count($events));
 
         $this->name = $name;
-        $this->events = $events;
+        foreach ($events as $event) {
+            $this->events[$event->getName()] = $event;
+        }
     }
 
     final public function __toString(): string
     {
         return $this->toString();
+    }
+
+    /**
+     * @param string $name
+     */
+    public function offsetExists($name): bool
+    {
+        return isset($this->events[$name]);
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return ?EventInterface
+     */
+    public function offsetGet($name)
+    {
+        return $this->events[$name] ?? null;
+    }
+
+    /**
+     * @param string         $name
+     * @param EventInterface $event
+     */
+    public function offsetSet($name, $event)
+    {
+        throw new \BadMethodCallException();
+    }
+
+    /**
+     * @param string $name
+     */
+    public function offsetUnset($name)
+    {
+        throw new \BadMethodCallException();
     }
 
     public function toString(): string
@@ -47,17 +84,12 @@ abstract class BaseEvent implements EventInterface, \IteratorAggregate
 
     public function apply(callable $handler, string ...$prefix): array
     {
-        array_push($prefix, ...$this->getPrefix());
+        array_push($prefix, $this->getName());
         $data = [];
         foreach ($this as $event) {
-            $data[(string) $event] = $event->apply($handler, ...$prefix);
+            $data[$event->getName()] = $event->apply($handler, ...$prefix);
         }
 
         return $data;
-    }
-
-    protected function getPrefix(): array
-    {
-        return [$this->name];
     }
 }

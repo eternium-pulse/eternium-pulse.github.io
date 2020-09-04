@@ -21,17 +21,17 @@ final class Leaderboard implements EventInterface
 
     public static function mage(string $id): self
     {
-        return new self(__FUNCTION__, $id);
+        return new self('mage', $id);
     }
 
     public static function warrior(string $id): self
     {
-        return new self(__FUNCTION__, $id);
+        return new self('warrior', $id);
     }
 
-    public static function bountyhunter(string $id): self
+    public static function bountyHunter(string $id): self
     {
-        return new self(__FUNCTION__, $id);
+        return new self('bounty-hunter', $id);
     }
 
     public function getId(): string
