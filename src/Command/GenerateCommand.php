@@ -9,6 +9,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Twig\Environment as Twig;
 
@@ -45,7 +46,12 @@ class GenerateCommand extends Command
             $params[$event->getType()][$event->getName()] = $event->apply(static fn () => []);
         }
 
-        $generator = function (Leaderboard $leaderboard, string ...$names) use ($params, $output): array {
+        $progressOutput = $output;
+        if ($input->getOption('no-progress')) {
+            $progressOutput = new NullOutput();
+        }
+
+        $generator = function (Leaderboard $leaderboard, string ...$names) use ($params, $output, $progressOutput): array {
             $formatter = $this->getHelper('formatter');
             $name = join('.', $names);
 
@@ -56,7 +62,7 @@ class GenerateCommand extends Command
             $entries = [];
 
             try {
-                $progressBar = new ProgressBar($output);
+                $progressBar = new ProgressBar($progressOutput);
                 foreach ($progressBar->iterate($reader) as $entry) {
                     $entry = [
                         'name' => $entry[0],
