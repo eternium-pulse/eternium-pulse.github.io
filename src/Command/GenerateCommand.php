@@ -6,7 +6,6 @@ use Eternium\Event\Event;
 use Eternium\Event\Leaderboard;
 use Eternium\Utils;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Exception\InvalidOptionException;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -16,8 +15,6 @@ use Twig\Environment as Twig;
 class GenerateCommand extends Command
 {
     protected static $defaultName = 'generate';
-
-    private string $publicDir;
 
     private Twig $twig;
 
@@ -29,7 +26,6 @@ class GenerateCommand extends Command
     public function __construct(Twig $twig, Event ...$events)
     {
         $this->events = $events;
-        $this->publicDir = dirname(__DIR__, 2).DIRECTORY_SEPARATOR.'public';
         $this->twig = $twig;
 
         parent::__construct();
@@ -38,16 +34,7 @@ class GenerateCommand extends Command
     protected function configure(): void
     {
         $this->setDescription('Generates HTML content');
-        $this->addOption('data-dir', 'd', InputOption::VALUE_REQUIRED, 'Load data from this directory', 'data');
-    }
-
-    protected function initialize(InputInterface $input, OutputInterface $output): void
-    {
-        $dir = $input->getOption('data-dir');
-        if (!is_dir($dir)) {
-            throw new InvalidOptionException('The option "--data-dir" requires an existing directory.');
-        }
-        $input->setOption('data-dir', realpath($dir));
+        $this->addOption('no-progress', '', InputOption::VALUE_NONE, 'Do not output load progress');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -58,15 +45,13 @@ class GenerateCommand extends Command
             $params[$event->getType()][$event->getName()] = $event->apply(static fn () => []);
         }
 
-        $path = $input->getOption('data-dir');
-
-        $generator = function (Leaderboard $leaderboard, string ...$names) use ($params, $path, $output): array {
+        $generator = function (Leaderboard $leaderboard, string ...$names) use ($params, $output): array {
             $formatter = $this->getHelper('formatter');
             $name = join('.', $names);
 
             $output->writeln($formatter->formatSection('LOAD', "loading {$name} entries..."));
 
-            $reader = Utils::createCsvReader($path.DIRECTORY_SEPARATOR."{$name}.csv");
+            $reader = Utils::createCsvReader(ETERNIUM_DATA_PATH."{$name}.csv");
             $maxChampionLevel = 0;
             $entries = [];
 
@@ -166,6 +151,6 @@ class GenerateCommand extends Command
             'bountyhunter' => 'Bounty Hunter',
         ];
 
-        Utils::dump("{$this->publicDir}/{$file}", $this->twig->render("{$template}.html", $context));
+        Utils::dump(ETERNIUM_HTML_PATH.$file, $this->twig->render("{$template}.html", $context));
     }
 }

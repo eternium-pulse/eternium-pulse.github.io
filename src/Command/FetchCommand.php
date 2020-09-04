@@ -64,7 +64,7 @@ class FetchCommand extends Command
                 return [];
             }
 
-            $file = ETERNIUM_DATA_PATH.DIRECTORY_SEPARATOR."{$name}.csv";
+            $file = ETERNIUM_DATA_PATH."{$name}.csv";
             if (!$update && is_file($file)) {
                 $output->writeln(
                     $formatter->formatSection('SKIP', "{$name} entries already dumped", 'comment'),
