@@ -14,7 +14,7 @@ before_script:
 pages:
   stage: deploy
   script:
-    - bin/lb.php fetch
+    - bin/lb.php fetch --no-progress
     - bin/lb.php generate
     - find public -type f -regex '.*\.\(html\|js\|css\)$' -exec gzip -f -k {} \;
   artifacts:
