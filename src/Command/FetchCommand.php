@@ -11,6 +11,7 @@ use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\Output;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -40,15 +41,16 @@ class FetchCommand extends Command
         $this->addArgument('prefix', InputArgument::OPTIONAL, 'The LB prefix', '');
         $this->addOption('data-dir', 'd', InputOption::VALUE_REQUIRED, 'Dump data to this directory', 'data');
         $this->addOption('update', 'u', InputOption::VALUE_NONE, 'Update existing data');
+        $this->addOption('no-progress', '', InputOption::VALUE_NONE, 'Do not output download progress');
     }
 
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
-        $dir = $input->getOption('data-dir');
-        if (!is_dir($dir)) {
+        $path = $input->getOption('data-dir');
+        if (!is_dir($path)) {
             throw new InvalidOptionException('The option "--data-dir" requires an existing directory.');
         }
-        $input->setOption('data-dir', realpath($dir));
+        $input->setOption('data-dir', realpath($path));
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -56,8 +58,12 @@ class FetchCommand extends Command
         $prefix = $input->getArgument('prefix');
         $path = $input->getOption('data-dir');
         $update = $input->getOption('update');
+        $progressOutput = $output;
+        if ($input->getOption('no-progress')) {
+            $progressOutput = new NullOutput();
+        }
 
-        $fetcher = function (Leaderboard $leaderboard, string ...$names) use ($prefix, $path, $update, $output): array {
+        $fetcher = function (Leaderboard $leaderboard, string ...$names) use ($prefix, $path, $update, $output, $progressOutput): array {
             $formatter = $this->getHelper('formatter');
 
             $name = join('.', $names);
@@ -86,7 +92,7 @@ class FetchCommand extends Command
             $writer = Utils::createCsvWriter($file);
 
             try {
-                $progressBar = new ProgressBar($output);
+                $progressBar = new ProgressBar($progressOutput);
                 foreach ($progressBar->iterate($reader) as $entry) {
                     $writer->send($entry);
                 }
