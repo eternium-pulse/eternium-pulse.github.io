@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="{{ _charset }}"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>{% block title %}Eternium Pulse{% endblock %}</title>
+        <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+              integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+              crossorigin="anonymous"/>
+    </head>
+    <body class="container-md">
+        <header class="container-fluid">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">Eternium Pulse</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="/season" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Seasons
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {% for id in season|keys %}
+                                    <li><a class="dropdown-item" href="/season/{{ id }}">Season #{{ id }}</a></li>
+                                {% endfor %}
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="/anb" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    ANBs
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {% for id in anb|keys %}
+                                    <li><a class="dropdown-item" href="/anb/{{ id }}">ANB #{{ id }}</a></li>
+                                {% endfor %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main class="container-fluid">
+            {% block breadcrumbs %}
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">Home</li>
+                </ol>
+            </nav>
+            {% endblock %}
+            {% block content %}{% endblock %}
+        </main>
+        <footer class="container-fluid">
+            <p class="text-center text-muted">© 2020 Eternium Pulse</p>
+        </footer>
+    </body>
+</html>

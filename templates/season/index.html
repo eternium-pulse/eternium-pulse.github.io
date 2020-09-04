@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block breadcrumbs %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active">{{ strings.season }}s</li>
+    </ol>
+</nav>
+{% endblock %}
+
+{% block content %}
+<h1>{{ strings.season }}s</h1>
+<div class="row">
+    <div class="col-md">
+        <ul>
+            {% for id in season|keys %}
+            <li><a href="/season/{{ id }}">{{ strings.season }} #{{ id }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

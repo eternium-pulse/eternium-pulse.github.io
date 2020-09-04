@@ -1,0 +1,23 @@
+<table class="table table-sm table-striped">
+    <caption>List 1-100 of {{ entries|length }} entries</caption>
+    <thead>
+        <th scope="col">#</th>
+        <th scope="col">Hero</th>
+        <th scope="col">CL</th>
+        <th scope="col">TL</th>
+        <th scope="col">Time</th>
+        <th scope="col">Deaths</th>
+    </thead>
+    <tbody>
+    {% for entry in entries[:100] %}
+        <tr>
+            <th scope="row">{{ loop.index }}</th>
+            <td>{% apply spaceless %}{% if entry.title %}<span class="badge bg-secondary">{{ entry.title|e }}</span>{% endif %} {{ entry.name|e }}{% endapply %}</td>
+            <td>{{ entry.champion_level }}</td>
+            <td>{{ entry.score // 10000 }}</td>
+            <td>{{ (9999 - entry.score % 10000)|date("i:s") }}</td>
+            <td>{{ entry.deaths }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

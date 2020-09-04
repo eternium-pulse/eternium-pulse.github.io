@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ strings.season }} #{{ event.id }} {{ strings[event.class] }}s - {{ parent() }}{% endblock %}
+
+{% block breadcrumbs %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/season">{{ strings.season }}s</a></li>
+        <li class="breadcrumb-item"><a href="/season/{{ event.id }}">#{{ event.id }}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ strings[event.class] }}s</li>
+    </ol>
+</nav>
+{% endblock %}
+
+{% block content %}
+<h1>{{ strings[event.class] }}s Leaderboard</h1>
+{{ include("blocks/leaderboard.html", {"entries": entries}) }}
+{% endblock %}

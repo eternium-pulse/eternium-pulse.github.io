@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>Hello, Player!</h1>
+    <p>For gold and glory!</p>
+
+    <div class="row">
+        <div class="col-md">
+            <h2>{{ strings.season }}s</h2>
+            <ul>
+            {% for id in season|keys %}
+                <li><a href="/season/{{ id }}">{{ strings.season }} #{{ id }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+
+        <div class="col-md">
+            <h2>{{ strings.anb }}s</h2>
+            <ul>
+            {% for id in anb|keys %}
+                <li><a href="/anb/{{ id }}">{{ strings.anb }} #{{ id }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
