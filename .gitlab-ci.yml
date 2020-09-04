@@ -16,6 +16,7 @@ pages:
   script:
     - bin/lb.php fetch
     - bin/lb.php generate
+    - find public -type f -regex '.*\.\(html\|js\|css\)$' -exec gzip -f -k {} \;
   artifacts:
     paths:
       - public
