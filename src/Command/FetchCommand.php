@@ -3,7 +3,6 @@
 namespace Eternium\Command;
 
 use Eternium\Event\Event;
-use Eternium\Event\Leaderboard;
 use Eternium\Utils;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
@@ -46,22 +45,34 @@ class FetchCommand extends Command
     {
         $prefix = $input->getArgument('prefix');
         $update = $input->getOption('update');
-        $progressOutput = $output;
-        if ($input->getOption('no-progress')) {
-            $progressOutput = new NullOutput();
+        $progressOutput = $input->getOption('no-progress') ? new NullOutput() : $output;
+
+        $fetcher = $this->createFetcher($prefix, $update, $output, $progressOutput);
+        foreach ($this->events as $event) {
+            $event->walk($fetcher);
         }
+        $fetcher->send(null);
 
-        $fetcher = function (Leaderboard $leaderboard, string ...$names) use ($prefix, $update, $output, $progressOutput): array {
-            $formatter = $this->getHelper('formatter');
+        return self::SUCCESS;
+    }
 
-            $name = join('.', $names);
+    private function createFetcher(string $prefix, bool $update, OutputInterface $output, OutputInterface $progressOutput): \Generator
+    {
+        $formatter = $this->getHelper('formatter');
+
+        while (is_array($chain = yield)) {
+            if ('leaderboard' !== ($leaderboard = $chain[0])->getType()) {
+                continue;
+            }
+
+            $name = join('.', array_reverse($chain));
             if (!str_starts_with($name, $prefix)) {
                 $output->writeln(
                     $formatter->formatSection('SKIP', "{$name} not matched prefix", 'comment'),
                     Output::VERBOSITY_VERBOSE
                 );
 
-                return [];
+                continue;
             }
 
             $file = ETERNIUM_DATA_PATH."{$name}.csv";
@@ -71,7 +82,7 @@ class FetchCommand extends Command
                     Output::VERBOSITY_VERBOSE
                 );
 
-                return [];
+                continue;
             }
 
             $output->writeln($formatter->formatSection('DUMP', "fetching {$name} entries..."));
@@ -81,6 +92,7 @@ class FetchCommand extends Command
 
             try {
                 $progressBar = new ProgressBar($progressOutput);
+                $progressBar->setFormat($formatter->formatSection('DUMP', '%current% [%bar%] %elapsed%'));
                 foreach ($progressBar->iterate($reader) as $entry) {
                     $writer->send($entry);
                 }
@@ -90,14 +102,6 @@ class FetchCommand extends Command
             $writer->send(null);
 
             $output->writeln($formatter->formatSection('DUMP', "{$writer->getReturn()} entries dumped"));
-
-            return [];
-        };
-
-        foreach ($this->events as $event) {
-            $event->apply($fetcher);
         }
-
-        return self::SUCCESS;
     }
 }

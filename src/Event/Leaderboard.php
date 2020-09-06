@@ -58,4 +58,9 @@ final class Leaderboard implements EventInterface
     {
         return $handler($this, ...[...$prefix, $this->name]);
     }
+
+    public function walk(\Generator $handler, EventInterface ...$chain): void
+    {
+        $handler->send([$this, ...$chain]);
+    }
 }

@@ -3,7 +3,7 @@
 namespace Eternium\Event;
 
 /**
- * @implements \IteratorAggregate<int, EventInterface>
+ * @implements \IteratorAggregate<string, EventInterface>
  */
 abstract class BaseEvent implements EventInterface, \ArrayAccess, \IteratorAggregate
 {
@@ -75,7 +75,7 @@ abstract class BaseEvent implements EventInterface, \ArrayAccess, \IteratorAggre
     }
 
     /**
-     * @return \Iterator<int, EventInterface>
+     * @return \Iterator<string, EventInterface>
      */
     final public function getIterator(): \Iterator
     {
@@ -91,5 +91,13 @@ abstract class BaseEvent implements EventInterface, \ArrayAccess, \IteratorAggre
         }
 
         return $data;
+    }
+
+    public function walk(\Generator $handler, EventInterface ...$chain): void
+    {
+        foreach ($this->getIterator() as $event) {
+            $event->walk($handler, $this, ...$chain);
+        }
+        $handler->send([$this, ...$chain]);
     }
 }

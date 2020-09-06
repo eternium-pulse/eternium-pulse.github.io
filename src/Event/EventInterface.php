@@ -14,4 +14,6 @@ interface EventInterface
      * @param callable(Leaderboard, array<int, string>): array $handler
      */
     public function apply(callable $handler, string ...$prefix): array;
+
+    public function walk(\Generator $handler, EventInterface ...$chain): void;
 }
