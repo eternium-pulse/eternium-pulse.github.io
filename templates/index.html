@@ -4,23 +4,17 @@
     <h1>Hello, Player!</h1>
     <p>For gold and glory!</p>
 
-    <div class="row">
-        <div class="col-md">
-            <h2>{{ strings.season }}s</h2>
-            <ul>
-            {% for id in season|keys %}
-                <li><a href="/season/{{ id }}">{{ strings.season }} #{{ id }}</a></li>
-            {% endfor %}
-            </ul>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        {% for event in events %}
+        <div class="col">
+            <div class="card">
+                <div class="card-header">Event</div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ event|title }}</h5>
+                    <a href="{{ base_url }}{{ event }}" class="btn btn-primary">More</a>
+                </div>
+            </div>
         </div>
-
-        <div class="col-md">
-            <h2>{{ strings.anb }}s</h2>
-            <ul>
-            {% for id in anb|keys %}
-                <li><a href="/anb/{{ id }}">{{ strings.anb }} #{{ id }}</a></li>
-            {% endfor %}
-            </ul>
-        </div>
+        {% endfor %}
     </div>
 {% endblock %}

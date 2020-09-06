@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>{{ event|title }} League</h1>
+<div class="row cols-3 g-4">
+    {% for board in event %}
+    <div class="col">
+        <div class="card">
+            <div class="card-header">LB</div>
+            <div class="card-body">
+                <h5 class="card-title">{{ board|title }}</h5>
+                <a class="btn btn-primary" href="{{ base_url }}{{ path[0] }}/{{ event }}/{{ board }}">More</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
