@@ -8,8 +8,8 @@
         <div class="card">
             <div class="card-header">League</div>
             <div class="card-body">
-                <h5 class="card-title">{{ league|title }}</h5>
-                <a class="btn btn-primary" href="{{ base_url }}{{ event }}/{{ league }}">More</a>
+                <h5 class="card-title">{{ league|title }} <span class="badge bg-secondary">{{ stats[[event, league]|join('.')].count|default(0) }}</span></h5>
+                <a class="btn btn-primary" href="{{ base_url }}{{ [event, league]|join('/') }}">More</a>
             </div>
         </div>
     </div>

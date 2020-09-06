@@ -6,6 +6,7 @@ use Eternium\Event\Event;
 use Eternium\Event\Leaderboard;
 use Eternium\Utils;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Exception\InvalidOptionException;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -24,6 +25,8 @@ class GenerateCommand extends Command
      */
     private array $events;
 
+    private array $defaultContext = [];
+
     public function __construct(Twig $twig, Event ...$events)
     {
         $this->events = $events;
@@ -35,25 +38,75 @@ class GenerateCommand extends Command
     protected function configure(): void
     {
         $this->setDescription('Generates HTML content');
+        $this->addOption('base-url', '', InputOption::VALUE_REQUIRED, 'Expand relative links using this URL', '/');
         $this->addOption('no-progress', '', InputOption::VALUE_NONE, 'Do not output load progress');
+    }
+
+    protected function initialize(InputInterface $input, OutputInterface $output): void
+    {
+        $url = $input->getOption('base-url');
+        if (!($parts = @parse_url($url)) || isset($parts['query']) || isset($parts['fragment'])) {
+            throw new InvalidOptionException('The option "--base-url" requires valid URL without query or fragment parts.');
+        }
+        if (!str_ends_with($url, '/')) {
+            $url .= '/';
+        }
+
+        $this->defaultContext['base_url'] = $url;
+        $this->defaultContext['events'] = $this->events;
+        $this->defaultContext['stats'] = [];
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        // Generate events structure
-        $params = [];
+        $progressOutput = $input->getOption('no-progress') ? new NullOutput() : $output;
+
+        $render = function (string $file, string $template, array $context = []) use ($output) {
+            Utils::dump(ETERNIUM_HTML_PATH.$file, $this->twig->render(
+                "{$template}.html",
+                $context + $this->defaultContext,
+            ));
+
+            $output->writeln(
+                $this->getHelper('formatter')->formatSection('HTML', "{$file} generated using {$template}", 'comment'),
+                OutputInterface::VERBOSITY_VERBOSE,
+            );
+        };
+
+        $generator = $this->createGenerator($render, $output, $progressOutput);
         foreach ($this->events as $event) {
-            $params[$event->getType()][$event->getName()] = $event->apply(static fn () => []);
+            $event->walk($generator);
         }
+        $generator->send(null);
 
-        $progressOutput = $output;
-        if ($input->getOption('no-progress')) {
-            $progressOutput = new NullOutput();
-        }
+        $render('index.html', 'index');
+        $render('403.html', '403');
+        $render('404.html', '404');
 
-        $generator = function (Leaderboard $leaderboard, string ...$names) use ($params, $output, $progressOutput): array {
-            $formatter = $this->getHelper('formatter');
-            $name = join('.', $names);
+        return self::SUCCESS;
+    }
+
+    private function createGenerator(callable $render, OutputInterface $output, OutputInterface $progressOutput): \Generator
+    {
+        $formatter = $this->getHelper('formatter');
+
+        while (is_array($chain = yield)) {
+            $event = $chain[0];
+            $path = array_reverse($chain);
+            $name = join('.', $path);
+            $stats = &$this->defaultContext['stats'];
+
+            if (!($event instanceof Leaderboard)) {
+                $file = join(DIRECTORY_SEPARATOR, [...$path, 'index.html']);
+                $render($file, $event->getType(), compact('event', 'path'));
+
+                $stats[$name] = ['count' => 0];
+                foreach ($event as $e) {
+                    $stats[$name]['count'] += $stats["{$name}.{$e}"]['count'] ?? 0;
+                }
+
+                continue;
+            }
 
             $output->writeln($formatter->formatSection('LOAD', "loading {$name} entries..."));
 
@@ -63,6 +116,7 @@ class GenerateCommand extends Command
 
             try {
                 $progressBar = new ProgressBar($progressOutput);
+                $progressBar->setFormat($formatter->formatSection('LOAD', '%current% [%bar%] %elapsed%'));
                 foreach ($progressBar->iterate($reader) as $entry) {
                     $entry = [
                         'name' => $entry[0],
@@ -80,12 +134,10 @@ class GenerateCommand extends Command
 
             $output->writeln($formatter->formatSection('LOAD', "{$reader->getReturn()} entries loaded"));
 
-            $params['entries'] = $entries;
-            $this->generateLeaderboard($names, $params);
+            $file = join(DIRECTORY_SEPARATOR, [...$path, 'index.html']);
+            $render($file, $event->getType(), compact('event', 'path', 'entries'));
 
-            return [
-                'id' => $leaderboard->getId(),
-                'class' => $leaderboard->getName(),
+            $stats[$name] = [
                 'count' => count($entries),
                 'max_champion_level' => $maxChampionLevel,
                 'top_1' => $entries[0]['score'] ?? 0,
@@ -97,66 +149,7 @@ class GenerateCommand extends Command
                 'top_500' => $entries[499]['score'] ?? 0,
                 'top_1000' => $entries[999]['score'] ?? 0,
             ];
-        };
-
-        // Generate leaderboards and calc stats
-        foreach ($this->events as $event) {
-            $params[$event->getType()][$event->getName()] = $event->apply($generator);
+            unset($entries);
         }
-
-        $this->generate($params);
-
-        return self::SUCCESS;
-    }
-
-    private function generate(array $params): void
-    {
-        $this->renderTo('index.html', 'index', $params);
-        $this->renderTo('403.html', '403', $params);
-        $this->renderTo('404.html', '404', $params);
-
-        foreach ($params as $type => $events) {
-            $params['event'] = compact('type');
-            $this->renderTo("{$type}/index.html", "{$type}/index", $params);
-            foreach ($events as $id => $event) {
-                $params['event'] = compact('type', 'id');
-                $this->renderTo("{$type}/{$id}/index.html", "{$type}/event", $params);
-                if ('anb' === $type) {
-                    foreach (array_keys($event) as $league) {
-                        $params['event'] = compact('type', 'id', 'league');
-                        $this->renderTo("{$type}/{$id}/{$league}/index.html", "{$type}/league", $params);
-                    }
-                }
-            }
-        }
-    }
-
-    private function generateLeaderboard(array $names, array $params): void
-    {
-        $keys = ['type', 'id'];
-        if ('anb' === $names[0]) {
-            $keys[] = 'league';
-        }
-        $keys[] = 'class';
-        $params['event'] = array_combine($keys, $names);
-
-        $path = join('/', $names);
-        $this->renderTo("{$path}/index.html", "{$names[0]}/leaderboard", $params);
-    }
-
-    private function renderTo(string $file, string $template, array $context = []): void
-    {
-        $context['strings'] = [
-            'season' => 'Season',
-            'anb' => 'ANB',
-            'bronze' => 'Bronze',
-            'silver' => 'Silver',
-            'gold' => 'Gold',
-            'mage' => 'Mage',
-            'warrior' => 'Warrior',
-            'bountyhunter' => 'Bounty Hunter',
-        ];
-
-        Utils::dump(ETERNIUM_HTML_PATH.$file, $this->twig->render("{$template}.html", $context));
     }
 }

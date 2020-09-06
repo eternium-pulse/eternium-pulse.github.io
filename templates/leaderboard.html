@@ -1,3 +1,7 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>{{ event|title }}s Leaderboard</h1>
 <table class="table table-sm table-striped">
     <caption>List 1-100 of {{ entries|length }} entries</caption>
     <thead>
@@ -9,15 +13,18 @@
         <th scope="col">Deaths</th>
     </thead>
     <tbody>
-    {% for entry in entries[:100] %}
+        {% for entry in entries[:100] %}
         <tr>
             <th scope="row">{{ loop.index }}</th>
-            <td>{% apply spaceless %}{% if entry.title %}<span class="badge bg-secondary">{{ entry.title|e }}</span>{% endif %} {{ entry.name|e }}{% endapply %}</td>
+            <td>{% apply spaceless %}{% if entry.title %}<span
+                    class="badge bg-secondary">{{ entry.title|e }}</span>{% endif %} {{ entry.name|e }}{% endapply %}
+            </td>
             <td>{{ entry.champion_level }}</td>
             <td>{{ entry.score // 10000 }}</td>
             <td>{{ (9999 - entry.score % 10000)|date("i:s") }}</td>
             <td>{{ entry.deaths }}</td>
         </tr>
-    {% endfor %}
+        {% endfor %}
     </tbody>
 </table>
+{% endblock %}
