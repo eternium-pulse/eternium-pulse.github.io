@@ -133,5 +133,10 @@ return [
             Leaderboard::warrior('5f35a18a4d28155b896d7c73'),
             Leaderboard::bountyHunter('5f35a18b8c7cf73d2d553e71'),
         ),
+        League::silver(
+            Leaderboard::mage('5f52609f4d28152c2bacbd43'),
+            Leaderboard::warrior('5f5260a14d28152c2bacbd48'),
+            Leaderboard::bountyHunter('5f5260a24d28152c2bacbd4b'),
+        )
     ),
 ];
