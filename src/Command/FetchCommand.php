@@ -3,6 +3,7 @@
 namespace Eternium\Command;
 
 use Eternium\Event\Event;
+use Eternium\Event\Leaderboard;
 use Eternium\Utils;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
@@ -61,7 +62,8 @@ class FetchCommand extends Command
         $formatter = $this->getHelper('formatter');
 
         while (is_array($chain = yield)) {
-            if ('leaderboard' !== ($leaderboard = $chain[0])->getType()) {
+            $event = $chain[0];
+            if (!($event instanceof Leaderboard)) {
                 continue;
             }
 
@@ -87,7 +89,7 @@ class FetchCommand extends Command
 
             $output->writeln($formatter->formatSection('DUMP', "fetching {$name} entries..."));
 
-            $reader = Utils::createLeaderboardReader($this->client, $leaderboard->getId());
+            $reader = Utils::createLeaderboardReader($this->client, $event->getId());
             $writer = Utils::createCsvWriter($file);
 
             try {
