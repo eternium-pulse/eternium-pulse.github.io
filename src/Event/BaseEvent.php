@@ -82,17 +82,6 @@ abstract class BaseEvent implements EventInterface, \ArrayAccess, \IteratorAggre
         yield from $this->events;
     }
 
-    public function apply(callable $handler, string ...$prefix): array
-    {
-        array_push($prefix, $this->getName());
-        $data = [];
-        foreach ($this as $event) {
-            $data[$event->getName()] = $event->apply($handler, ...$prefix);
-        }
-
-        return $data;
-    }
-
     public function walk(\Generator $handler, EventInterface ...$chain): void
     {
         foreach ($this->getIterator() as $event) {
