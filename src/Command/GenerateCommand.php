@@ -48,11 +48,8 @@ class GenerateCommand extends Command
         if (!($parts = @parse_url($url)) || isset($parts['query']) || isset($parts['fragment'])) {
             throw new InvalidOptionException('The option "--base-url" requires valid URL without query or fragment parts.');
         }
-        if (!str_ends_with($url, '/')) {
-            $url .= '/';
-        }
 
-        $this->defaultContext['base_url'] = $url;
+        $this->defaultContext['base_url'] = rtrim($url, '/');
         $this->defaultContext['events'] = $this->events;
         $this->defaultContext['stats'] = [];
     }
@@ -63,7 +60,7 @@ class GenerateCommand extends Command
 
         $render = function (string $file, string $template, array $context = []) use ($output) {
             Utils::dump(ETERNIUM_HTML_PATH.$file, $this->twig->render(
-                "{$template}.html",
+                $template,
                 $context + $this->defaultContext,
             ));
 
@@ -79,15 +76,18 @@ class GenerateCommand extends Command
         }
         $generator->send(null);
 
-        $render('index.html', 'index');
-        $render('403.html', '403');
-        $render('404.html', '404');
+        $render('index.html', 'index.html');
+        $render('403.html', '403.html');
+        $render('404.html', '404.html');
+        $render('sitemap.txt', 'sitemap.txt', ['urls' => $generator->getReturn()]);
+        $render('robots.txt', 'robots.txt');
 
         return self::SUCCESS;
     }
 
     private function createGenerator(callable $render, OutputInterface $output, OutputInterface $progressOutput): \Generator
     {
+        $sitemap = [];
         $formatter = $this->getHelper('formatter');
 
         while (is_array($chain = yield)) {
@@ -95,10 +95,12 @@ class GenerateCommand extends Command
             $path = array_reverse($chain);
             $name = join('.', $path);
             $stats = &$this->defaultContext['stats'];
+            $file = join('/', [...$path, 'index.html']);
+            $template = "{$event->getType()}.html";
+            $sitemap[] = join('/', $path);
 
             if (!($event instanceof Leaderboard)) {
-                $file = join(DIRECTORY_SEPARATOR, [...$path, 'index.html']);
-                $render($file, $event->getType(), compact('event', 'path'));
+                $render($file, $template, compact('event', 'path'));
 
                 $stats[$name] = ['count' => 0, 'max_clevel' => 0, 'max_tlevel' => 0];
                 foreach ($event as $e) {
@@ -129,8 +131,7 @@ class GenerateCommand extends Command
 
             $output->writeln($formatter->formatSection('LOAD', "{$reader->getReturn()} entries loaded"));
 
-            $file = join(DIRECTORY_SEPARATOR, [...$path, 'index.html']);
-            $render($file, $event->getType(), compact('event', 'path', 'entries'));
+            $render($file, $template, compact('event', 'path', 'entries'));
 
             $stats[$name] += [
                 'max_tlevel' => $entries[0]['tlevel'] ?? 0,
@@ -146,5 +147,7 @@ class GenerateCommand extends Command
             ];
             unset($entries);
         }
+
+        return $sitemap;
     }
 }

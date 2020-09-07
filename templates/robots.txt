@@ -1,0 +1,4 @@
+User-Agent: *
+Disallow: /403
+Disallow: /404
+Sitemap: {{ base_url }}/sitemap.txt
