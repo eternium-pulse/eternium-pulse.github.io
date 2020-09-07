@@ -1,8 +1,8 @@
 {% extends 'layout.twig' %}
 
-{% block title %}
+{% block title -%}
 {{ event|title }}s Leaderboard - {{ parent() }}
-{% endblock %}
+{%- endblock %}
 
 {% block content %}
 <h1>{{ event|title }}s Leaderboard</h1>
@@ -17,19 +17,19 @@
     <th scope="col">Deaths</th>
   </thead>
   <tbody>
-    {% for entry in entries[:100] %}
+    {%~ for entry in entries[:100] %}
     <tr>
       <th scope="row">{{ loop.index }}</th>
       <td>
-        {% if entry.title %}<span class="badge bg-secondary">{{ entry.title|e }}</span>{% endif %}
-        {{ entry.name|e }}
+        {%- if entry.title %}<span class="badge bg-secondary">{{ entry.title|e }}</span> {% endif -%}
+        {{- entry.name|e -}}
       </td>
       <td>{{ entry.clevel }}</td>
       <td>{{ entry.tlevel }}</td>
       <td>{{ entry.time|date("i:s") }}</td>
       <td>{{ entry.deaths }}</td>
     </tr>
-    {% endfor %}
+    {%~ endfor %}
   </tbody>
 </table>
 {% endblock %}

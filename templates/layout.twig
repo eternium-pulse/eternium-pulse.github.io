@@ -5,7 +5,7 @@
   <meta charset="{{ _charset }}" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="yandex-verification" content="982ad97c6cc60dca" />
-  <title>{% block title %}Eternium Pulse{% endblock %}</title>
+  <title>{% block title %}Eternium Pulse{% endblock%}</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
     integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous" />
 </head>
@@ -29,23 +29,23 @@
     </nav>
   </header>
   <main class="container-fluid">
-    {% block breadcrumbs %}
+    {%~ block breadcrumbs %}
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ base_url }}/">Home</a></li>
-        {% for event in path %}
-        {% if loop.last %}
+        {%~ for event in path %}
+        {%~ if loop.last %}
         <li class="breadcrumb-item active" aria-current="page">{{ event|title }}</li>
-        {% else %}
-        <li class="breadcrumb-item">
+        {%~ else %}
+        <li class="breadcrumb-item">{% apply spaceless %}
           <a href="{{ base_url }}/{{ path[:loop.index]|join('/') }}">{{ event|title }}</a>
-        </li>
-        {% endif %}
-        {% endfor %}
+        {% endapply %}</li>
+        {%~ endif %}
+        {%~ endfor %}
       </ol>
     </nav>
-    {% endblock %}
-    {% block content %}{% endblock %}
+    {%~ endblock %}
+    {%~ block content %}{% endblock %}
   </main>
   <footer class="container-fluid mt-4">
     <p class="text-center text-muted">© 2020 Eternium Pulse</p>

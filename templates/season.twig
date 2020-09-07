@@ -1,13 +1,13 @@
 {% extends 'layout.twig' %}
 
-{% block title %}
+{% block title -%}
 {{ event|title }} - {{ parent() }}
-{% endblock %}
+{%- endblock %}
 
 {% block content %}
 <h1>{{ event|title }}</h1>
 <div class="row cols-3 g-4">
-  {% for board in event %}
+  {%~ for board in event %}
   <div class="col">
     <div class="card">
       <div class="card-header">LB</div>
@@ -20,6 +20,6 @@
       </div>
     </div>
   </div>
-  {% endfor %}
+  {%~ endfor %}
 </div>
 {% endblock %}
