@@ -44,7 +44,7 @@ final class Leaderboard implements EventInterface
      */
     public static function parseScore(int $score): array
     {
-        return [$score / 10000, 9999 - $score % 10000];
+        return [(int) ($score / 10000), 9999 - $score % 10000];
     }
 
     /**
