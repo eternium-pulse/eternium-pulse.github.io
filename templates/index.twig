@@ -20,7 +20,7 @@ Leaderboards - {{ parent() }}
           {{ event|title }}
           <span class="badge bg-secondary">{{ stats[[event]|join('.')].count|default(0) }}</span>
         </h5>
-        <a href="{{ base_url }}/{{ [event]|join('/') }}" class="btn btn-primary">More</a>
+        <a class="btn btn-primary stretched-link" href="{{ base_url }}/{{ [event]|join('/') }}">More</a>
       </div>
     </div>
   </div>
