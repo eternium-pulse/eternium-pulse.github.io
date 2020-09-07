@@ -1,8 +1,20 @@
 {
-    "name": "alex-tsarkov/eternium-pulse",
+    "name": "eternium-pulse/eternium-pulse",
     "description": "Eternium leaderboards and stats",
     "type": "project",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Alex Tsarkov",
+            "homepage": "https://gitlab.com/alex-tsarkov",
+            "email": "alex.tsarkov@gmail.com"
+        }
+    ],
+    "homepage": "https://eternium-pulse.gitlab.io",
+    "support": {
+        "source": "https://gitlab.com/eternium-pulse/eternium-pulse.gitlab.io",
+        "issues": "https://gitlab.com/eternium-pulse/eternium-pulse.gitlab.io/-/issues"
+    },
     "require": {
         "symfony/console": "^5.1",
         "symfony/http-client": "^5.1",
