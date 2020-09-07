@@ -1,0 +1,29 @@
+{% extends 'layout.twig' %}
+
+{% block title %}
+Leaderboards - {{ parent() }}
+{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+<h1>Hello, Player!</h1>
+<p>For gold and glory!</p>
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+  {% for event in events %}
+  <div class="col">
+    <div class="card">
+      <div class="card-header">Event</div>
+      <div class="card-body">
+        <h5 class="card-title">
+          {{ event|title }}
+          <span class="badge bg-secondary">{{ stats[[event]|join('.')].count|default(0) }}</span>
+        </h5>
+        <a href="{{ base_url }}/{{ [event]|join('/') }}" class="btn btn-primary">More</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

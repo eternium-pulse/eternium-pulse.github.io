@@ -1,0 +1,11 @@
+{% extends 'layout.twig' %}
+
+{% block title %}
+Error {{ code }} - {{ parent() }}
+{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+<h1>{{ code }}</h1>
+{% endblock %}

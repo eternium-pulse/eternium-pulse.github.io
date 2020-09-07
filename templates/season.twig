@@ -1,0 +1,25 @@
+{% extends 'layout.twig' %}
+
+{% block title %}
+{{ event|title }} - {{ parent() }}
+{% endblock %}
+
+{% block content %}
+<h1>{{ event|title }}</h1>
+<div class="row cols-3 g-4">
+  {% for board in event %}
+  <div class="col">
+    <div class="card">
+      <div class="card-header">LB</div>
+      <div class="card-body">
+        <h5 class="card-title">
+          {{ board|title }}
+          <span class="badge bg-secondary">{{ stats[[event, board]|join('.')].count|default(0) }}</span>
+        </h5>
+        <a class="btn btn-primary" href="{{ base_url }}/{{ [event, board]|join('/') }}">More</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

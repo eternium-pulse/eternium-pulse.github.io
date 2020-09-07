@@ -15,7 +15,7 @@ define('ETERNIUM_HTML_PATH', dirname(__DIR__).DIRECTORY_SEPARATOR.'public'.DIREC
 
 $events = require dirname(__DIR__).'/config/events.php';
 
-$twig = new Twig(new FilesystemLoader([''], dirname(__DIR__).'/templates'));
+$twig = new Twig(new FilesystemLoader('templates', dirname(__DIR__)));
 
 $application = new Application('Eternium Pulse');
 $application->add(new FetchCommand(...$events));

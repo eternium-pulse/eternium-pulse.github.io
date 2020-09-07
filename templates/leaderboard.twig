@@ -1,0 +1,35 @@
+{% extends 'layout.twig' %}
+
+{% block title %}
+{{ event|title }}s Leaderboard - {{ parent() }}
+{% endblock %}
+
+{% block content %}
+<h1>{{ event|title }}s Leaderboard</h1>
+<table class="table table-sm table-striped">
+  <caption>List 1-100 of {{ entries|length }} entries</caption>
+  <thead>
+    <th scope="col">#</th>
+    <th scope="col">Hero</th>
+    <th scope="col">CL</th>
+    <th scope="col">TL</th>
+    <th scope="col">Time</th>
+    <th scope="col">Deaths</th>
+  </thead>
+  <tbody>
+    {% for entry in entries[:100] %}
+    <tr>
+      <th scope="row">{{ loop.index }}</th>
+      <td>
+        {% if entry.title %}<span class="badge bg-secondary">{{ entry.title|e }}</span>{% endif %}
+        {{ entry.name|e }}
+      </td>
+      <td>{{ entry.clevel }}</td>
+      <td>{{ entry.tlevel }}</td>
+      <td>{{ entry.time|date("i:s") }}</td>
+      <td>{{ entry.deaths }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
