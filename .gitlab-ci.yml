@@ -15,8 +15,8 @@ pages:
   stage: deploy
   script:
     - bin/lb.php fetch --no-progress
-    - bin/lb.php generate --no-progress
-    - find public -type f -regex '.*\.\(html\|js\|css\)$' -exec gzip -f -k {} \;
+    - bin/lb.php generate --base-url=$CI_PAGES_URL --no-progress
+    - find public -type f -regex '.*\.\(html\|js\|css\|txt\)$' -exec gzip -f -k {} \;
   artifacts:
     paths:
       - public
