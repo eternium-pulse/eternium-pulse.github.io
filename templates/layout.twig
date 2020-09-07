@@ -10,7 +10,7 @@
     integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous" />
 </head>
 
-<body class="container-md">
+<body class="container-md d-flex flex-column vh-100">
   <script type="text/javascript">
     window.ym = window.ym || function () { (ym.a = ym.a || []).push(arguments); };
     ym.l = +new Date();
@@ -28,7 +28,7 @@
       </div>
     </nav>
   </header>
-  <main class="container-fluid">
+  <main class="container-fluid flex-grow-1">
     {%~ block breadcrumbs %}
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
@@ -39,7 +39,7 @@
         {%~ else %}
         <li class="breadcrumb-item">{% apply spaceless %}
           <a href="{{ base_url }}/{{ path[:loop.index]|join('/') }}">{{ event|title }}</a>
-        {% endapply %}</li>
+          {% endapply %}</li>
         {%~ endif %}
         {%~ endfor %}
       </ol>

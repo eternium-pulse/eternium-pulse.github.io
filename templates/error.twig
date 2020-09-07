@@ -7,5 +7,8 @@ Error {{ code }} - {{ parent() }}
 {% block breadcrumbs %}{% endblock %}
 
 {% block content %}
-<h1>{{ code }}</h1>
+<div class="d-flex justify-content-center align-items-center h-100">
+  <h1 class="display-1">{{ code }}</h1>
+  <p class="lead">{{ message|e }}</p>
+</div>
 {% endblock %}
