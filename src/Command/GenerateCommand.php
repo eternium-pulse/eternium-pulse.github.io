@@ -100,9 +100,11 @@ class GenerateCommand extends Command
                 $file = join(DIRECTORY_SEPARATOR, [...$path, 'index.html']);
                 $render($file, $event->getType(), compact('event', 'path'));
 
-                $stats[$name] = ['count' => 0];
+                $stats[$name] = ['count' => 0, 'max_clevel' => 0, 'max_tlevel' => 0];
                 foreach ($event as $e) {
                     $stats[$name]['count'] += $stats["{$name}.{$e}"]['count'] ?? 0;
+                    $stats[$name]['max_clevel'] = max($stats["{$name}.{$e}"]['max_clevel'] ?? 0, $stats[$name]['max_clevel']);
+                    $stats[$name]['max_tlevel'] = max($stats["{$name}.{$e}"]['max_tlevel'] ?? 0, $stats[$name]['max_tlevel']);
                 }
 
                 continue;
@@ -110,22 +112,15 @@ class GenerateCommand extends Command
 
             $output->writeln($formatter->formatSection('LOAD', "loading {$name} entries..."));
 
-            $reader = Utils::createCsvReader(ETERNIUM_DATA_PATH."{$name}.csv");
-            $maxChampionLevel = 0;
+            $reader = $event->read(ETERNIUM_DATA_PATH."{$name}.csv");
+            $stats[$name] = ['max_clevel' => 0];
             $entries = [];
 
             try {
                 $progressBar = new ProgressBar($progressOutput);
                 $progressBar->setFormat($formatter->formatSection('LOAD', '%current% [%bar%] %elapsed%'));
                 foreach ($progressBar->iterate($reader) as $entry) {
-                    $entry = [
-                        'name' => $entry[0],
-                        'title' => $entry[1],
-                        'champion_level' => (int) $entry[2],
-                        'score' => (int) $entry[3],
-                        'deaths' => (int) $entry[4],
-                    ];
-                    $maxChampionLevel = max($entry['champion_level'], $maxChampionLevel);
+                    $max_clevel = max($entry['clevel'], $stats[$name]['max_clevel']);
                     $entries[] = $entry;
                 }
             } finally {
@@ -137,17 +132,17 @@ class GenerateCommand extends Command
             $file = join(DIRECTORY_SEPARATOR, [...$path, 'index.html']);
             $render($file, $event->getType(), compact('event', 'path', 'entries'));
 
-            $stats[$name] = [
+            $stats[$name] += [
+                'max_tlevel' => $entries[0]['tlevel'] ?? 0,
                 'count' => count($entries),
-                'max_champion_level' => $maxChampionLevel,
-                'top_1' => $entries[0]['score'] ?? 0,
-                'top_10' => $entries[9]['score'] ?? 0,
-                'top_25' => $entries[24]['score'] ?? 0,
-                'top_50' => $entries[49]['score'] ?? 0,
-                'top_100' => $entries[99]['score'] ?? 0,
-                'top_250' => $entries[249]['score'] ?? 0,
-                'top_500' => $entries[499]['score'] ?? 0,
-                'top_1000' => $entries[999]['score'] ?? 0,
+                'top_1' => $entries[0]['tlevel'] ?? 0,
+                'top_10' => $entries[9]['tlevel'] ?? 0,
+                'top_25' => $entries[24]['tlevel'] ?? 0,
+                'top_50' => $entries[49]['tlevel'] ?? 0,
+                'top_100' => $entries[99]['tlevel'] ?? 0,
+                'top_250' => $entries[249]['tlevel'] ?? 0,
+                'top_500' => $entries[499]['tlevel'] ?? 0,
+                'top_1000' => $entries[999]['tlevel'] ?? 0,
             ];
             unset($entries);
         }

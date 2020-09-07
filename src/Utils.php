@@ -96,36 +96,4 @@ abstract class Utils
             ],
         ]);
     }
-
-    public static function createLeaderboardReader(HttpClientInterface $client, string $id): \Generator
-    {
-        assert(24 === strlen($id) && ctype_xdigit($id));
-
-        $uri = "leaderboards/{$id}/rankings";
-        $query = [
-            'page' => 1,
-            'pageSize' => 1000,
-            'payload' => 'name,champion_level,hero.selectedPlayerNameID,trialStats.heroDeaths',
-        ];
-
-        $entries = 0;
-        do {
-            $pageSize = 0;
-            $response = $client->request('GET', $uri, ['query' => $query]);
-            foreach ($response->toArray() as $entry) {
-                yield [
-                    $entry['payload']['name'],
-                    ucwords(strtr($entry['payload']['hero']['selectedPlayerNameID'] ?? '', '_', ' ')),
-                    $entry['payload']['champion_level'],
-                    $entry['score'],
-                    $entry['payload']['trialStats']['heroDeaths'],
-                ];
-                ++$entries;
-                ++$pageSize;
-            }
-            ++$query['page'];
-        } while ($pageSize === $query['pageSize']);
-
-        return $entries;
-    }
 }

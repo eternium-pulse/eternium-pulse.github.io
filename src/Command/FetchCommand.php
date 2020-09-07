@@ -4,7 +4,6 @@ namespace Eternium\Command;
 
 use Eternium\Event\Event;
 use Eternium\Event\Leaderboard;
-use Eternium\Utils;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputArgument;
@@ -13,13 +12,10 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\Output;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class FetchCommand extends Command
 {
     protected static $defaultName = 'fetch';
-
-    private HttpClientInterface $client;
 
     /**
      * @var array<int, Event>
@@ -29,7 +25,6 @@ class FetchCommand extends Command
     public function __construct(Event ...$events)
     {
         $this->events = $events;
-        $this->client = Utils::createHttpClient();
 
         parent::__construct();
     }
@@ -89,13 +84,12 @@ class FetchCommand extends Command
 
             $output->writeln($formatter->formatSection('DUMP', "fetching {$name} entries..."));
 
-            $reader = Utils::createLeaderboardReader($this->client, $event->getId());
-            $writer = Utils::createCsvWriter($file);
+            $writer = $event->write($file);
 
             try {
                 $progressBar = new ProgressBar($progressOutput);
                 $progressBar->setFormat($formatter->formatSection('DUMP', '%current% [%bar%] %elapsed%'));
-                foreach ($progressBar->iterate($reader) as $entry) {
+                foreach ($progressBar->iterate($event->fetch()) as $entry) {
                     $writer->send($entry);
                 }
             } finally {
