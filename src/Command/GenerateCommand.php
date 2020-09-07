@@ -148,6 +148,9 @@ class GenerateCommand extends Command
                 'top_500' => $entries[499]['tlevel'] ?? 0,
                 'top_1000' => $entries[999]['tlevel'] ?? 0,
             ];
+
+            $entries = array_slice($entries, 0, 1000);
+            Utils::dump(ETERNIUM_HTML_PATH.join('/', [...$path, 'data.json']), json_encode($entries));
             unset($entries);
         }
 

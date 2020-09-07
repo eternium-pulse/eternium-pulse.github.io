@@ -16,7 +16,7 @@ pages:
   script:
     - bin/lb.php fetch --no-progress
     - bin/lb.php generate --base-url=$CI_PAGES_URL --no-progress
-    - find public -type f -regex '.*\.\(html\|js\|css\|txt\)$' -exec gzip -f -k {} \;
+    - find public -type f -regex '.*\.\(html\|js\|json\|css\|txt\)$' -exec gzip -f -k {} \;
   artifacts:
     paths:
       - public
