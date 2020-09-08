@@ -2,6 +2,7 @@
 
 namespace Eternium;
 
+use Eternium\Utils\Page;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -21,6 +22,9 @@ abstract class Utils
         return new \ErrorException($error['message'], 0, $error['type'], $error['file'], $error['line']);
     }
 
+    /**
+     * @return \Generator<int, array, void, int>
+     */
     public static function createCsvReader(string $file): \Generator
     {
         $stream = @fopen($file, 'r');
@@ -44,6 +48,9 @@ abstract class Utils
         return $rows;
     }
 
+    /**
+     * @return \Generator<int, void, ?array, int>
+     */
     public static function createCsvWriter(string $file): \Generator
     {
         $memory = @fopen('php://memory', 'r+');
@@ -95,5 +102,20 @@ abstract class Utils
                 'X-API-Key' => $apiKey,
             ],
         ]);
+    }
+
+    /**
+     * @return \Generator<int, Page, void, int>
+     */
+    public static function paginate(int $n, int $pageSize): \Generator
+    {
+        $page = new Page(1, Page::getPagesCount($n, $pageSize));
+        while (!$page->last) {
+            yield $page;
+            $page = new Page($page->index + 1, $page->length);
+        }
+        yield $page;
+
+        return $page->length;
     }
 }

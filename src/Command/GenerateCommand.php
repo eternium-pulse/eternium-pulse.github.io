@@ -39,6 +39,7 @@ class GenerateCommand extends Command
     {
         $this->setDescription('Generates HTML content');
         $this->addOption('base-url', '', InputOption::VALUE_REQUIRED, 'Expand relative links using this URL', '/');
+        $this->addOption('page-size', '', InputOption::VALUE_REQUIRED, 'Set LB page size', 100);
         $this->addOption('no-progress', '', InputOption::VALUE_NONE, 'Do not output load progress');
     }
 
@@ -49,7 +50,13 @@ class GenerateCommand extends Command
             throw new InvalidOptionException('The option "--base-url" requires valid URL without query or fragment parts.');
         }
 
+        $pageSize = (int) $input->getOption('page-size');
+        if (100 > $pageSize) {
+            throw new InvalidOptionException('The option "--page-size" requires an integer at least 100.');
+        }
+
         $this->defaultContext['base_url'] = rtrim($url, '/');
+        $this->defaultContext['page_size'] = $pageSize;
         $this->defaultContext['events'] = $this->events;
         $this->defaultContext['stats'] = [];
     }
@@ -134,7 +141,13 @@ class GenerateCommand extends Command
 
             $output->writeln($formatter->formatSection('LOAD', "{$reader->getReturn()} entries loaded"));
 
-            $render($file, $event->getType(), compact('event', 'path', 'entries'));
+            foreach (Utils::paginate(count($entries), $this->defaultContext['page_size']) as $page) {
+                if ($page->first) {
+                    $render($file, $event->getType(), compact('event', 'path', 'page', 'entries'));
+                }
+                $file = join('/', [...$path, "{$page->index}.html"]);
+                $render($file, $event->getType(), compact('event', 'path', 'page', 'entries'));
+            }
 
             $stats[$name] += [
                 'max_tlevel' => $entries[0]['tlevel'] ?? 0,
