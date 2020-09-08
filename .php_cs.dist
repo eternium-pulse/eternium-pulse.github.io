@@ -1,0 +1,13 @@
+<?php
+
+return \PhpCsFixer\Config::create()
+    ->setRules([
+        '@PhpCsFixer' => true,
+    ])
+    ->setFinder(
+        \PhpCsFixer\Finder::create()
+            ->files()
+            ->in(['bin', 'config', 'src'])
+            ->append(['.php_cs.dist'])
+    )
+;
