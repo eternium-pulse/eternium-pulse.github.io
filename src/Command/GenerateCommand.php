@@ -81,8 +81,8 @@ class GenerateCommand extends Command
         $generator->send(null);
 
         $render('index.html', 'index');
-        $render('403.html', 'error', ['code' => 403, 'message' => '']);
-        $render('404.html', 'error', ['code' => 404, 'message' => '']);
+        $render('403.html', 'error', ['code' => 403, 'message' => 'Forbidden']);
+        $render('404.html', 'error', ['code' => 404, 'message' => 'Not found']);
         $render('sitemap.txt', 'sitemap', ['urls' => $generator->getReturn()]);
         $render('robots.txt', 'robots');
 

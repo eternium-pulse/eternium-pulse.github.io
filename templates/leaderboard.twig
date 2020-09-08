@@ -21,7 +21,7 @@
     <tr>
       <th scope="row">{{ loop.index }}</th>
       <td>
-        {%- if entry.title %}<span class="badge bg-secondary">{{ entry.title|e }}</span> {% endif -%}
+        {%- if entry.title %}<span class="badge bg-secondary d-none d-sm-inline-block">{{ entry.title|e }}</span> {% endif -%}
         {{- entry.name|e -}}
       </td>
       <td>{{ entry.clevel }}</td>
