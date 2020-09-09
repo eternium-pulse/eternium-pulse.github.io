@@ -18,6 +18,8 @@ pages:
     - bin/lb.php generate --base-url=$CI_PAGES_URL --no-progress
     - find public -type f -regex '.*\.\(html\|js\|json\|css\|txt\)$' -exec gzip -f -k {} \;
   artifacts:
+    name: "$CI_JOB_NAME-$CI_COMMIT_SHORT_SHA"
+    expire_in: 1 day
     paths:
       - public
   only:
