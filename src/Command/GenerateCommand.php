@@ -126,7 +126,7 @@ class GenerateCommand extends Command
             $output->writeln($formatter->formatSection('LOAD', "loading {$name} entries..."));
 
             $reader = $event->read(ETERNIUM_DATA_PATH."{$name}.csv");
-            $stats[$name] = ['max_clevel' => 0];
+            $stats[$name] = ['max_clevel' => 0, 'modified' => filemtime(ETERNIUM_DATA_PATH."{$name}.csv")];
             $entries = [];
 
             try {

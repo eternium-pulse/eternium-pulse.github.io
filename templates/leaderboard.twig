@@ -15,7 +15,9 @@
 {% set page_size = entries[page_offset:page_size]|length %}
 <h1>{{ event|title }}s Leaderboard</h1>
 <table class="table table-sm table-striped">
-  <caption>List {{ page_offset + 1 }}-{{ page_offset + page_size }} of {{ entries|length }} entries</caption>
+  <caption>List {{ page_offset + 1 }}-{{ page_offset + page_size }} of {{ entries|length }} entries. Updated at <time>
+    {{- stats[path|join('.')].modified|date('Y-m-d\\TH:i:sP') -}}
+  </time>.</caption>
   <thead>
     <th scope="col">Rank</th>
     <th scope="col">Hero</th>
