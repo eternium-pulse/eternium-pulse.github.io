@@ -45,29 +45,29 @@
   <ul class="pagination justify-content-center">
     {%~ if page.first %}
     <li class="page-item disabled">
-      <a class="page-link" tabindex="-1" aria-disabled="true">Previous</a>
+      <a class="page-link" tabindex="-1" aria-disabled="true" aria-label="Go previous page">Prev</a>
     </li>
     {%~ else %}
     <li class="page-item">
-      <a class="page-link" href="{{ base_url }}/{{ path|join('/') }}/{{ page.index - 1 }}.html">Previous</a>
+      <a class="page-link" href="{{ base_url }}/{{ path|join('/') }}/{{ page.index - 1 }}.html" aria-label="Go to previous page">Prev</a>
     </li>
     {%~ endif %}
     {%~ for p in range(1, min(page.length, 10)) %}
     {%~ if p == page.index %}
     <li class="page-item active d-none d-sm-block" aria-current="page">
-      <a class="page-link" href="{{ base_url }}/{{ path|join('/') }}/{{ p }}.html">{{ p }} <span class="sr-only">(current)</span></a>
+      <a class="page-link" href="{{ base_url }}/{{ path|join('/') }}/{{ p }}.html" aria-label="Go to page {{ p }}">{{ p }} <span class="sr-only">(current)</span></a>
     </li>
     {%~ else %}
-    <li class="page-item d-none d-sm-block"><a class="page-link" href="{{ base_url }}/{{ path|join('/') }}/{{ p }}.html">{{ p }}</a></li>
+    <li class="page-item d-none d-sm-block"><a class="page-link" href="{{ base_url }}/{{ path|join('/') }}/{{ p }}.html" aria-label="Go to page {{ p }}">{{ p }}</a></li>
     {%~ endif %}
     {%~ endfor %}
     {%~ if page.last %}
     <li class="page-item disabled">
-      <a class="page-link" tabindex="-1" aria-disabled="true">Next</a>
+      <a class="page-link" tabindex="-1" aria-disabled="true" aria-label="Go to next page">Next</a>
     </li>
     {%~ else %}
     <li class="page-item">
-      <a class="page-link" href="{{ base_url }}/{{ path|join('/') }}/{{ page.index + 1 }}.html">Next</a>
+      <a class="page-link" href="{{ base_url }}/{{ path|join('/') }}/{{ page.index + 1 }}.html" aria-label="Go to next page">Next</a>
     </li>
     {%~ endif %}
   </ul>
