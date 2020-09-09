@@ -35,7 +35,7 @@
   </tbody>
 </table>
 <nav aria-label="Entries pagination">
-  <ul class="pagination">
+  <ul class="pagination justify-content-center">
     {%~ if page.first %}
     <li class="page-item disabled">
       <a class="page-link" tabindex="-1" aria-disabled="true">Previous</a>
@@ -47,11 +47,11 @@
     {%~ endif %}
     {%~ for p in range(1, min(page.length, 10)) %}
     {%~ if p == page.index %}
-    <li class="page-item active" aria-current="page">
+    <li class="page-item active d-none d-sm-block" aria-current="page">
       <a class="page-link" href="{{ base_url }}/{{ path|join('/') }}/{{ p }}.html">{{ p }} <span class="sr-only">(current)</span></a>
     </li>
     {%~ else %}
-    <li class="page-item"><a class="page-link" href="{{ base_url }}/{{ path|join('/') }}/{{ p }}.html">{{ p }}</a></li>
+    <li class="page-item d-none d-sm-block"><a class="page-link" href="{{ base_url }}/{{ path|join('/') }}/{{ p }}.html">{{ p }}</a></li>
     {%~ endif %}
     {%~ endfor %}
     {%~ if page.last %}
