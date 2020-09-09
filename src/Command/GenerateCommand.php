@@ -55,6 +55,7 @@ class GenerateCommand extends Command
             throw new InvalidOptionException('The option "--page-size" requires an integer at least 100.');
         }
 
+        $this->defaultContext['site_name'] = 'Eternium Pulse';
         $this->defaultContext['base_url'] = rtrim($url, '/');
         $this->defaultContext['page_size'] = $pageSize;
         $this->defaultContext['events'] = $this->events;

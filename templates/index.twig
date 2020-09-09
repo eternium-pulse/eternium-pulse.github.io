@@ -4,6 +4,12 @@
 Leaderboards - {{ parent() }}
 {%- endblock %}
 
+{% block opengraph %}
+<meta property="og:title" content="{{ site_name|e }}" />
+<meta property="og:url" content="{{ base_url }}/" />
+{{ parent() }}
+{% endblock %}
+
 {% block breadcrumbs %}{% endblock %}
 
 {% block content %}
@@ -12,18 +18,7 @@ Leaderboards - {{ parent() }}
 
 <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
   {%~ for event in events %}
-  <div class="col">
-    <div class="card">
-      <div class="card-header">Event</div>
-      <div class="card-body">
-        <h5 class="card-title">
-          {{ event|title }}
-          <span class="badge bg-secondary">{{ stats[[event]|join('.')].count|default(0) }}</span>
-        </h5>
-        <a class="btn btn-primary stretched-link" href="{{ base_url }}/{{ [event]|join('/') }}">More</a>
-      </div>
-    </div>
-  </div>
+  {%~ include "event_card.twig" with {'event': event} %}
   {%~ endfor %}
 </div>
 {% endblock %}

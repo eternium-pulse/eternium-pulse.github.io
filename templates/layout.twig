@@ -1,30 +1,25 @@
 {% apply spaceless %}
 <!DOCTYPE html>
-<html class="h-100" lang="en">
+<html class="h-100" lang="en" prefix="og: https://ogp.me/ns#">
 
 <head>
   <meta charset="{{ _charset }}" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="yandex-verification" content="982ad97c6cc60dca" />
-  <title>{% block title %}Eternium Pulse{% endblock%}</title>
+  <title>{% block title %}{{ site_name|e }}{% endblock %}</title>
+  {%~ block opengraph %}
+  <meta property="og:site_name" content="{{ site_name|e }}" />
+  {%~ endblock %}
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous" />
 </head>
 
 <body class="container-lg d-flex flex-column h-100">
-  <script type="text/javascript">
-    window.ym = window.ym || function () { (ym.a = ym.a || []).push(arguments); };
-    ym.l = +new Date();
-    ym(67080547, "init", {
-      clickmap: true,
-      trackLinks: true,
-      accurateTrackBounce: true
-    });
-  </script>
+  <script type="text/javascript">window.ym=window.ym||function(){(ym.a=ym.a||[]).push(arguments)};ym.l=+new Date();ym(67080547,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true})</script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/yandex-metrica-watch/tag.js" async></script>
   <header class="container-fluid">
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
-        <a class="navbar-brand" href="{{ base_url }}/">Eternium Pulse</a>
+        <a class="navbar-brand" href="{{ base_url }}/">{{ site_name|e }}</a>
       </div>
     </nav>
   </header>
@@ -48,7 +43,7 @@
     {%~ block content %}{% endblock %}
   </main>
   <footer class="container-fluid mt-4">
-    <p class="text-center text-muted">© 2020 Eternium Pulse</p>
+    <p class="text-center text-muted">© 2020 {{ site_name|e }}</p>
   </footer>
 </body>
 

@@ -4,22 +4,17 @@
 {{ event|title }} League - {{ parent() }}
 {%- endblock %}
 
+{% block opengraph %}
+<meta property="og:title" content="{{ event|title }} League" />
+<meta property="og:url" content="{{ base_url }}/{{ path|join('/') }}" />
+{{ parent() }}
+{% endblock %}
+
 {% block content %}
 <h1>{{ event|title }} League</h1>
 <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
   {%~ for board in event %}
-  <div class="col">
-    <div class="card">
-      <div class="card-header">LB</div>
-      <div class="card-body">
-        <h5 class="card-title">
-          {{ board|title }}s
-          <span class="badge bg-secondary">{{ stats[[path[0], event, board]|join('.')].count|default(0) }}</span>
-        </h5>
-        <a class="btn btn-primary stretched-link" href="{{ base_url }}/{{ [path[0], event, board]|join('/') }}">More</a>
-      </div>
-    </div>
-  </div>
+  {%~ include "event_card.twig" with {'event': board} %}
   {%~ endfor %}
 </div>
 {% endblock %}

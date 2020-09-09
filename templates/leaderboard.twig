@@ -4,6 +4,12 @@
 {{ event|title }}s Leaderboard - {{ parent() }}
 {%- endblock %}
 
+{% block opengraph %}
+<meta property="og:title" content="{{ event|title }}s Leaderboard" />
+<meta property="og:url" content="{{ base_url }}/{{ path|join('/') }}{% if not page.first %}/{{ page.index }}.html{% endif %}" />
+{{ parent() }}
+{% endblock %}
+
 {% block content %}
 {% set page_offset = page.index0 * page_size %}
 {% set page_size = entries[page_offset:page_size]|length %}
@@ -22,10 +28,9 @@
     {%~ for entry in entries[page.index0 * page_size:page_size] %}
     <tr>
       <th scope="row">{{ loop.index + page_offset }}</th>
-      <td>
-        {%- if entry.title %}<span class="badge bg-secondary d-none d-sm-inline-block">{{ entry.title|e }}</span> {% endif -%}
-        {{- entry.name|e -}}
-      </td>
+      <td>{% if entry.title %}<span class="badge bg-secondary d-none d-sm-inline-block">
+        {{- entry.title|e -}}
+      </span> {% endif %}{{ entry.name|e }}</td>
       <td>{{ entry.clevel }}</td>
       <td>{{ entry.tlevel }}</td>
       <td>{{ entry.time|date("i:s") }}</td>
