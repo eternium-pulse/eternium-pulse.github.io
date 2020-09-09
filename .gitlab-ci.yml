@@ -22,6 +22,5 @@ pages:
     expire_in: 1 day
     paths:
       - public
-  only:
-    - master
-    - schedules
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "schedule"'
