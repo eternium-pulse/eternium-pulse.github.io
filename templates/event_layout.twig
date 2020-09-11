@@ -2,7 +2,7 @@
 
 {% block title -%}
 {% if page and not page.first %}Page {{ page.index }} of {% endif %}
-{% for event in path|reverse %}{{ event.getTitle(true)|e }} - {% endfor %}{{ parent() }}
+{{ path|map(e => e.getTitle(true))|reverse|join(' - ') }} - {{ parent() }}
 {%- endblock %}
 
 {% block opengraph %}

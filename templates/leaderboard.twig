@@ -4,6 +4,7 @@
 {% set page_offset = page.index0 * page_size %}
 {% set page_size = entries[page_offset:page_size]|length %}
 <h1>{{ event.getTitle(true)|e }}</h1>
+<h2 class="lead mb-4">{{ path[:-1]|map(e => e.getTitle(true))|join(' ')|e }}</h2>
 <table class="table table-sm table-striped">
   <caption>List {{ page_offset + 1 }}-{{ page_offset + page_size }} of {{ entries|length }} entries</caption>
   <thead>
