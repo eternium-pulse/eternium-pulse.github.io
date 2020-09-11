@@ -15,16 +15,14 @@
 {% set page_size = entries[page_offset:page_size]|length %}
 <h1>{{ event|title }}s Leaderboard</h1>
 <table class="table table-sm table-striped">
-  <caption>List {{ page_offset + 1 }}-{{ page_offset + page_size }} of {{ entries|length }} entries. Updated at <time>
-    {{- stats[path|join('.')].modified|date('Y-m-d\\TH:i:sP') -}}
-  </time>.</caption>
+  <caption>List {{ page_offset + 1 }}-{{ page_offset + page_size }} of {{ entries|length }} entries</caption>
   <thead>
     <th scope="col">Rank</th>
     <th scope="col">Hero</th>
     <th scope="col">CL</th>
     <th scope="col">TL</th>
     <th scope="col">Time</th>
-    <th scope="col">Deaths</th>
+    <th class="d-none d-sm-table-cell" scope="col">Deaths</th>
   </thead>
   <tbody>
     {%~ for entry in entries[page.index0 * page_size:page_size] %}
@@ -36,7 +34,7 @@
       <td>{{ entry.clevel }}</td>
       <td>{{ entry.tlevel }}</td>
       <td>{{ entry.time|date("i:s") }}</td>
-      <td>{{ entry.deaths }}</td>
+      <td class="d-none d-sm-table-cell">{{ entry.deaths }}</td>
     </tr>
     {%~ endfor %}
   </tbody>
@@ -54,11 +52,11 @@
     {%~ endif %}
     {%~ for p in range(1, min(page.length, 10)) %}
     {%~ if p == page.index %}
-    <li class="page-item active d-none d-sm-block" aria-current="page">
+    <li class="page-item active {%~ if p > 3 %} d-none d-sm-block{% endif %}" aria-current="page">
       <a class="page-link" href="{{ base_url }}/{{ path|join('/') }}/{{ p }}.html" aria-label="Go to page {{ p }}">{{ p }} <span class="sr-only">(current)</span></a>
     </li>
     {%~ else %}
-    <li class="page-item d-none d-sm-block"><a class="page-link" href="{{ base_url }}/{{ path|join('/') }}/{{ p }}.html" aria-label="Go to page {{ p }}">{{ p }}</a></li>
+    <li class="page-item {%~ if p > 3 %} d-none d-sm-block{% endif %}"><a class="page-link" href="{{ base_url }}/{{ path|join('/') }}/{{ p }}.html" aria-label="Go to page {{ p }}">{{ p }}</a></li>
     {%~ endif %}
     {%~ endfor %}
     {%~ if page.last %}
