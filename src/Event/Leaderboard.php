@@ -72,6 +72,16 @@ final class Leaderboard implements EventInterface
         return $this->name;
     }
 
+    public function getTitle(bool $long = false): string
+    {
+        $title = "{$this->name}s";
+        if ($long) {
+            $title = "{$title} {$this->getType()}";
+        }
+
+        return ucwords(strtr($title, '-', ' '));
+    }
+
     public function getType(): string
     {
         return 'leaderboard';

@@ -21,8 +21,35 @@ final class Event extends BaseEvent
         return new self('anb', $id, ...$leagues);
     }
 
+    public function getTitle(bool $long = false): string
+    {
+        [$type, $id] = $this->parseName();
+        if ('anb' === $type) {
+            if ($long) {
+                $name = 'A New Beginning';
+            } else {
+                $name = 'ANB';
+            }
+        } else {
+            $name = ucwords(strtr($type, '-', ' '));
+        }
+
+        return "{$name} {$id}";
+    }
+
     public function getType(): string
     {
-        return strstr($this->getName(), '-', true);
+        return $this->parseName()[0];
+    }
+
+    /**
+     * @return array{string, int}
+     */
+    protected function parseName(): array
+    {
+        $name = $this->getName();
+        $pos = strrpos($name, '-', -1);
+
+        return [substr($name, 0, $pos), (int) substr($name, $pos + 1)];
     }
 }

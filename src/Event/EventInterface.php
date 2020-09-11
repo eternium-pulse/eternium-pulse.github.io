@@ -8,6 +8,8 @@ interface EventInterface
 
     public function getName(): string;
 
+    public function getTitle(bool $long = false): string;
+
     public function getType(): string;
 
     public function walk(\Generator $handler, EventInterface ...$chain): void;
