@@ -1,19 +1,9 @@
-{% extends 'layout.twig' %}
-
-{% block title -%}
-{{ event|title }}s Leaderboard - {{ parent() }}
-{%- endblock %}
-
-{% block opengraph %}
-<meta property="og:title" content="{{ event|title }}s Leaderboard" />
-<meta property="og:url" content="{{ base_url }}/{{ path|join('/') }}{% if not page.first %}/{{ page.index }}.html{% endif %}" />
-{{ parent() }}
-{% endblock %}
+{% extends 'event_layout.twig' %}
 
 {% block content %}
 {% set page_offset = page.index0 * page_size %}
 {% set page_size = entries[page_offset:page_size]|length %}
-<h1>{{ event|title }}s Leaderboard</h1>
+<h1>{{ event.getTitle(true)|e }}</h1>
 <table class="table table-sm table-striped">
   <caption>List {{ page_offset + 1 }}-{{ page_offset + page_size }} of {{ entries|length }} entries</caption>
   <thead>

@@ -1,17 +1,7 @@
-{% extends 'layout.twig' %}
-
-{% block title -%}
-{{ event|title }} - {{ parent() }}
-{%- endblock %}
-
-{% block opengraph %}
-<meta property="og:title" content="{{ event|title }}" />
-<meta property="og:url" content="{{ base_url }}/{{ path|join('/') }}" />
-{{ parent() }}
-{% endblock %}
+{% extends 'event_layout.twig' %}
 
 {% block content %}
-<h1>{{ event|title }}</h1>
+<h1>{{ event.getTitle(true)|e }}</h1>
 <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
   {%~ for league in event %}
   {%~ include "event_card.twig" with {'event': league} %}

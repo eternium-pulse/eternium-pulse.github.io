@@ -5,12 +5,10 @@ Leaderboards - {{ parent() }}
 {%- endblock %}
 
 {% block opengraph %}
-<meta property="og:title" content="{{ site_name|e }}" />
+<meta property="og:title" content="{{ site_name|e('html_attr') }}" />
 <meta property="og:url" content="{{ base_url }}/" />
 {{ parent() }}
 {% endblock %}
-
-{% block breadcrumbs %}{% endblock %}
 
 {% block content %}
 <h1>Hi, Adventurer!</h1>

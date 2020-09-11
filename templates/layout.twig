@@ -25,22 +25,7 @@
     </nav>
   </header>
   <main class="flex-grow-1">
-    {%~ block breadcrumbs %}
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ base_url }}/">Home</a></li>
-        {%~ for event in path %}
-        {%~ if loop.last %}
-        <li class="breadcrumb-item active" aria-current="page">{{ event|title }}</li>
-        {%~ else %}
-        <li class="breadcrumb-item">{% apply spaceless %}
-          <a href="{{ base_url }}/{{ path[:loop.index]|join('/') }}">{{ event|title }}</a>
-          {% endapply %}</li>
-        {%~ endif %}
-        {%~ endfor %}
-      </ol>
-    </nav>
-    {%~ endblock %}
+    {%~ block breadcrumbs %}{% endblock %}
     {%~ block content %}{% endblock %}
   </main>
   <footer class="mt-5">

@@ -4,7 +4,7 @@
   <div class="card">
     <div class="card-header">{{ event.getType()|title|e }}</div>
     <div class="card-body">
-      <h5 class="card-title">{{ event|title|e }} <span class="badge bg-secondary">
+      <h5 class="card-title">{{ event.getTitle()|e }} <span class="badge bg-secondary">
         {{- event_stats.count|default(0) -}}
       </span></h5>
       <a class="btn btn-primary stretched-link" href="{{ base_url }}/{{ event_path|join('/') }}">More</a>
