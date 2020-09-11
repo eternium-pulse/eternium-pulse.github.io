@@ -17,14 +17,14 @@
 <body class="container-lg d-flex flex-column h-100">
   <script type="text/javascript">window.ym=window.ym||function(){(ym.a=ym.a||[]).push(arguments)};ym.l=+new Date();ym(67080547,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true})</script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/yandex-metrica-watch/tag.js" async></script>
-  <header class="container-fluid">
+  <header>
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
         <a class="navbar-brand" href="{{ base_url }}/">{{ site_name|e }}</a>
       </div>
     </nav>
   </header>
-  <main class="container-fluid flex-grow-1">
+  <main class="flex-grow-1">
     {%~ block breadcrumbs %}
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
@@ -43,7 +43,7 @@
     {%~ endblock %}
     {%~ block content %}{% endblock %}
   </main>
-  <footer class="container-fluid mt-5">
+  <footer class="mt-5">
     <p class="text-center text-muted">© 2020 {{ site_name|e }}</p>
   </footer>
 </body>
