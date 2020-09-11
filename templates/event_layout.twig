@@ -1,25 +1,25 @@
 {% extends 'layout.twig' %}
 
 {% block title -%}
-{% if page and not page.first %}Page {{ page.index }} of {% endif %}
-{{ path|map(e => e.getTitle(true))|reverse|join(' - ') }} - {{ parent() }}
+{% if page and not page.first %}Page {{ page.index|e }} of {% endif %}
+{{ path|map(e => e.getTitle(true))|reverse|join(' - ')|e }} - {{ parent() }}
 {%- endblock %}
 
 {% block opengraph %}
-<meta property="og:title" content="{% if page and not page.first %}Page {{ page.index }} of {% endif %}{{ event.getTitle(true)|e }}" />
-<meta property="og:url" content="{{ base_url }}/{{ path|join('/')|e }}{% if page and not page.first %}/{{ page.index }}.html{% endif %}" />
+<meta property="og:title" content="{% if page and not page.first %}Page {{ page.index }} of {% endif %}{{ event.getTitle(true)|e }}"/>
+<meta property="og:url" content="{{ base_url|e }}/{{ path|join('/')|e }}{% if page and not page.first %}/{{ page.index|e }}.html{% endif %}"/>
 {{ parent() }}
 {% endblock %}
 
 {% block breadcrumbs %}
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{ base_url }}/">Home</a></li>
+    <li class="breadcrumb-item"><a href="{{ base_url|e }}/">Home</a></li>
     {%~ for event in path %}
     {%~ if loop.last %}
     <li class="breadcrumb-item active" aria-current="page">{{ event.getTitle()|e }}</li>
     {%~ else %}
-    <li class="breadcrumb-item"><a href="{{ base_url }}/{{ path[:loop.index]|join('/')|e }}">
+    <li class="breadcrumb-item"><a href="{{ base_url|e }}/{{ path[:loop.index]|join('/')|e }}">
       {{- event.getTitle()|e -}}
     </a></li>
     {%~ endif %}

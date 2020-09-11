@@ -5,8 +5,8 @@ Leaderboards - {{ parent() }}
 {%- endblock %}
 
 {% block opengraph %}
-<meta property="og:title" content="{{ site_name|e('html_attr') }}" />
-<meta property="og:url" content="{{ base_url }}/" />
+<meta property="og:title" content="{{ site_name|e }}"/>
+<meta property="og:url" content="{{ base_url|e }}/"/>
 {{ parent() }}
 {% endblock %}
 

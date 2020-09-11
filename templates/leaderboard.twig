@@ -38,16 +38,16 @@
     </li>
     {%~ else %}
     <li class="page-item">
-      <a class="page-link" href="{{ base_url }}/{{ path|join('/') }}/{{ page.index - 1 }}.html" aria-label="Go to previous page">Prev</a>
+      <a class="page-link" href="{{ base_url|e }}/{{ path|join('/')|e }}/{{ page.index - 1 }}.html" aria-label="Go to previous page">Prev</a>
     </li>
     {%~ endif %}
     {%~ for p in range(1, min(page.length, 10)) %}
     {%~ if p == page.index %}
     <li class="page-item active {%~ if p > 3 %} d-none d-sm-block{% endif %}" aria-current="page">
-      <a class="page-link" href="{{ base_url }}/{{ path|join('/') }}/{{ p }}.html" aria-label="Go to page {{ p }}">{{ p }} <span class="sr-only">(current)</span></a>
+      <a class="page-link" href="{{ base_url|e }}/{{ path|join('/')|e }}/{{ p }}.html" aria-label="Go to page {{ p }}">{{ p }} <span class="sr-only">(current)</span></a>
     </li>
     {%~ else %}
-    <li class="page-item {%~ if p > 3 %} d-none d-sm-block{% endif %}"><a class="page-link" href="{{ base_url }}/{{ path|join('/') }}/{{ p }}.html" aria-label="Go to page {{ p }}">{{ p }}</a></li>
+    <li class="page-item {%~ if p > 3 %} d-none d-sm-block{% endif %}"><a class="page-link" href="{{ base_url|e }}/{{ path|join('/')|e }}/{{ p }}.html" aria-label="Go to page {{ p }}">{{ p }}</a></li>
     {%~ endif %}
     {%~ endfor %}
     {%~ if page.last %}
@@ -56,7 +56,7 @@
     </li>
     {%~ else %}
     <li class="page-item">
-      <a class="page-link" href="{{ base_url }}/{{ path|join('/') }}/{{ page.index + 1 }}.html" aria-label="Go to next page">Next</a>
+      <a class="page-link" href="{{ base_url|e }}/{{ path|join('/')|e }}/{{ page.index + 1 }}.html" aria-label="Go to next page">Next</a>
     </li>
     {%~ endif %}
   </ul>

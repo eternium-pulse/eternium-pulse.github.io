@@ -3,14 +3,14 @@
 <html class="h-100" lang="en" prefix="og: https://ogp.me/ns#">
 
 <head>
-  <meta charset="{{ _charset }}" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="{{ _charset|e }}"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>{% block title %}{{ site_name|e }}{% endblock %}</title>
   {%~ block opengraph %}
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="{{ site_name|e }}" />
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="{{ site_name|e }}"/>
   {%~ endblock %}
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous"/>
 </head>
 
 <body class="d-flex flex-column bg-light h-100">
@@ -19,7 +19,7 @@
   <header class="bg-dark bg-gradient sticky-top">
     <nav class="navbar navbar-expand navbar-dark">
       <div class="container-lg">
-        <a class="navbar-brand" href="{{ base_url }}/">{{ site_name|e }}</a>
+        <a class="navbar-brand" href="{{ base_url|e }}/">{{ site_name|e }}</a>
       </div>
     </nav>
   </header>
