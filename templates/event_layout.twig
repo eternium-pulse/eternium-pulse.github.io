@@ -13,15 +13,21 @@
 
 {% block breadcrumb %}
 <nav aria-label="Breadcrumb">
-  <ol class="breadcrumb">
+  <ol class="breadcrumb" vocab="https://schema.org/" typeof="BreadcrumbList">
     <li class="breadcrumb-item"><a href="{{ base_url|e }}/">Home</a></li>
     {%~ for event in path %}
     {%~ if loop.last %}
-    <li class="breadcrumb-item active" aria-current="page">{{ event.getTitle()|e }}</li>
+    <li class="breadcrumb-item active" aria-current="page" property="itemListElement" typeof="ListItem">
+      <span property="name">{{ event.getTitle()|e }}</span>
+      <meta property="position" content="{{ loop.index }}"/>
+    </li>
     {%~ else %}
-    <li class="breadcrumb-item"><a href="{{ base_url|e }}/{{ path[:loop.index]|join('/')|e }}">
-      {{- event.getTitle()|e -}}
-    </a></li>
+    <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
+      <a href="{{ base_url|e }}/{{ path[:loop.index]|join('/')|e }}" property="item" typeof="WebPage">
+        <span property="name">{{ event.getTitle()|e }}</span>
+      </a>
+      <meta property="position" content="{{ loop.index }}"/>
+    </li>
     {%~ endif %}
     {%~ endfor %}
   </ol>
