@@ -1,4 +1,5 @@
 {% extends 'event_layout.twig' %}
+{% set event_url = base_url ~ '/' ~ path|join('/') %}
 
 {% block content %}
 {% set page_offset = page.index0 * page_size %}
@@ -16,14 +17,14 @@
     <th class="d-none d-sm-table-cell" scope="col">Deaths</th>
   </thead>
   <tbody>
-    {%~ for entry in entries[page.index0 * page_size:page_size] %}
+    {%~ for entry in entries|slice(page.index0 * page_size, page_size) %}
     <tr>
       <th scope="row">{{ loop.index + page_offset }}</th>
       <td>{% if entry.title %}<span class="badge bg-secondary d-none d-sm-inline-block">
         {{- entry.title|e -}}
       </span> {% endif %}{{ entry.name|e }}</td>
-      <td>{{ entry.clevel|e }}</td>
-      <td>{{ entry.tlevel|e }}</td>
+      <td>{{ entry.level|e }}</td>
+      <td>{{ entry.trial|e }}</td>
       <td><time>{{ entry.time|date("i:s")|e }}</time></td>
       <td class="d-none d-sm-table-cell">{{ entry.deaths|e }}</td>
     </tr>
@@ -38,16 +39,18 @@
     </li>
     {%~ else %}
     <li class="page-item">
-      <a class="page-link" href="{{ base_url|e }}/{{ path|join('/')|e }}/{{ page.index - 1 }}.html" aria-label="Go to previous page">Prev</a>
+      <a class="page-link" href="{{ event_url|e }}/{{ page.index - 1 }}.html" aria-label="Go to previous page">Prev</a>
     </li>
     {%~ endif %}
     {%~ for p in range(1, min(page.length, 10)) %}
     {%~ if p == page.index %}
     <li class="page-item active {%~ if p > 3 %} d-none d-sm-block{% endif %}" aria-current="page">
-      <a class="page-link" href="{{ base_url|e }}/{{ path|join('/')|e }}/{{ p }}.html" aria-label="Go to page {{ p }}">{{ p }} <span class="sr-only">(current)</span></a>
+      <a class="page-link" href="{{ event_url|e }}/{{ p }}.html" aria-label="Go to page {{ p }}">{{ p }} <span class="sr-only">(current)</span></a>
     </li>
     {%~ else %}
-    <li class="page-item {%~ if p > 3 %} d-none d-sm-block{% endif %}"><a class="page-link" href="{{ base_url|e }}/{{ path|join('/')|e }}/{{ p }}.html" aria-label="Go to page {{ p }}">{{ p }}</a></li>
+    <li class="page-item {%~ if p > 3 %} d-none d-sm-block{% endif %}">
+      <a class="page-link" href="{{ event_url|e }}/{{ p }}.html" aria-label="Go to page {{ p }}">{{ p }}</a>
+    </li>
     {%~ endif %}
     {%~ endfor %}
     {%~ if page.last %}
@@ -56,7 +59,7 @@
     </li>
     {%~ else %}
     <li class="page-item">
-      <a class="page-link" href="{{ base_url|e }}/{{ path|join('/')|e }}/{{ page.index + 1 }}.html" aria-label="Go to next page">Next</a>
+      <a class="page-link" href="{{ event_url|e }}/{{ page.index + 1 }}.html" aria-label="Go to next page">Next</a>
     </li>
     {%~ endif %}
   </ul>

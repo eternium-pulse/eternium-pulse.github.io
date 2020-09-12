@@ -1,13 +1,12 @@
-{% set event_path = path|default([])|merge([event]) %}
-{% set event_stats = stats[event_path|join('.')] %}
+{% set event_url = base_url ~ '/' ~ path|default([])|merge([event])|join('/') %}
 <div class="col">
   <div class="card">
     <div class="card-header">{{ event.getType()|title|e }}</div>
     <div class="card-body">
       <h5 class="card-title">{{ event.getTitle()|e }} <span class="badge bg-secondary">
-        {{- event_stats.count|default(0)|e -}}
+        {{- event.getStats().length|e -}}
       </span></h5>
-      <a class="btn btn-primary stretched-link" href="{{ base_url|e }}/{{ event_path|join('/')|e }}">More</a>
+      <a class="btn btn-primary stretched-link" href="{{ event_url|e }}">More</a>
     </div>
   </div>
 </div>

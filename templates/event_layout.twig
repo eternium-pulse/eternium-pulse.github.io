@@ -23,7 +23,7 @@
     </li>
     {%~ else %}
     <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
-      <a href="{{ base_url|e }}/{{ path[:loop.index]|join('/')|e }}" property="item" typeof="WebPage">
+      <a href="{{ base_url|e }}/{{ path|slice(0, loop.index)|join('/')|e }}" property="item" typeof="WebPage">
         <span property="name">{{ event.getTitle()|e }}</span>
       </a>
       <meta property="position" content="{{ loop.index }}"/>
