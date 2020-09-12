@@ -9,6 +9,8 @@ abstract class BaseEvent implements EventInterface, \ArrayAccess, \IteratorAggre
 {
     private string $name;
 
+    private Stats $stats;
+
     /**
      * @var array<string, EventInterface>
      */
@@ -22,6 +24,7 @@ abstract class BaseEvent implements EventInterface, \ArrayAccess, \IteratorAggre
         foreach ($events as $event) {
             $this->events[$event->getName()] = $event;
         }
+        $this->stats = new Stats();
     }
 
     final public function __toString(): string
@@ -82,10 +85,16 @@ abstract class BaseEvent implements EventInterface, \ArrayAccess, \IteratorAggre
         yield from $this->events;
     }
 
+    final public function getStats(): Stats
+    {
+        return $this->stats;
+    }
+
     public function walk(\Generator $handler, EventInterface ...$chain): void
     {
         foreach ($this->getIterator() as $event) {
             $event->walk($handler, $this, ...$chain);
+            $this->stats->aggregate($event->getStats());
         }
         $handler->send([$this, ...$chain]);
     }

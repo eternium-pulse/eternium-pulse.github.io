@@ -12,12 +12,15 @@ final class Leaderboard implements EventInterface
 
     private string $id;
 
+    private Stats $stats;
+
     private function __construct(string $name, string $id)
     {
         assert(24 === strlen($id) && ctype_xdigit($id));
 
         $this->name = $name;
         $this->id = $id;
+        $this->stats = new Stats();
     }
 
     public function __toString(): string
@@ -70,6 +73,11 @@ final class Leaderboard implements EventInterface
         return $this->name;
     }
 
+    public function getStats(): Stats
+    {
+        return $this->stats;
+    }
+
     public function walk(\Generator $handler, EventInterface ...$chain): void
     {
         $handler->send([$this, ...$chain]);
@@ -82,7 +90,9 @@ final class Leaderboard implements EventInterface
     {
         $reader = Utils::createCsvReader($file);
         foreach ($reader as $data) {
-            yield new Entry(...$data);
+            $entry = new Entry(...$data);
+            $this->stats->add(1, $entry->level, $entry->trial);
+            yield $entry;
         }
 
         return $reader->getReturn();
@@ -122,15 +132,17 @@ final class Leaderboard implements EventInterface
             $pageEntries = 0;
             $response = $client->request('GET', $uri, ['query' => $query]);
             foreach ($response->toArray() as $data) {
-                yield new Entry(
+                $entry = new Entry(
                     $data['payload']['name'],
                     ucwords(strtr($data['payload']['hero']['selectedPlayerNameID'] ?? '', '_', ' ')),
                     $data['payload']['champion_level'],
                     $data['score'],
                     $data['payload']['trialStats']['heroDeaths'],
                 );
+                $this->stats->add(1, $entry->level, $entry->trial);
                 ++$entries;
                 ++$pageEntries;
+                yield $entry;
             }
             ++$query['page'];
         } while ($pageEntries === $query['pageSize']);

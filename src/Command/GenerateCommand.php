@@ -59,7 +59,6 @@ class GenerateCommand extends Command
         $this->defaultContext['base_url'] = rtrim($url, '/');
         $this->defaultContext['page_size'] = $pageSize;
         $this->defaultContext['events'] = $this->events;
-        $this->defaultContext['stats'] = [];
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -106,19 +105,11 @@ class GenerateCommand extends Command
             $event = $chain[0];
             $path = array_reverse($chain);
             $name = join('.', $path);
-            $stats = &$this->defaultContext['stats'];
             $file = join('/', [...$path, 'index.html']);
             $sitemap[] = join('/', $path);
 
             if (!($event instanceof Leaderboard)) {
                 $render($file, $event->getType(), compact('event', 'path'));
-
-                $stats[$name] = ['count' => 0, 'max_clevel' => 0, 'max_tlevel' => 0];
-                foreach ($event as $e) {
-                    $stats[$name]['count'] += $stats["{$name}.{$e}"]['count'] ?? 0;
-                    $stats[$name]['max_clevel'] = max($stats["{$name}.{$e}"]['max_clevel'] ?? 0, $stats[$name]['max_clevel']);
-                    $stats[$name]['max_tlevel'] = max($stats["{$name}.{$e}"]['max_tlevel'] ?? 0, $stats[$name]['max_tlevel']);
-                }
 
                 continue;
             }
@@ -126,16 +117,11 @@ class GenerateCommand extends Command
             $output->writeln($formatter->formatSection('LOAD', "loading {$name} entries..."));
 
             $reader = $event->read(ETERNIUM_DATA_PATH."{$name}.csv");
-            $stats[$name] = ['max_clevel' => 0];
-            $entries = [];
 
             try {
                 $progressBar = new ProgressBar($progressOutput);
                 $progressBar->setFormat($formatter->formatSection('LOAD', '%current% [%bar%] %elapsed%'));
-                foreach ($progressBar->iterate($reader) as $entry) {
-                    $max_clevel = max($entry['clevel'], $stats[$name]['max_clevel']);
-                    $entries[] = $entry;
-                }
+                $entries = iterator_to_array($progressBar->iterate($reader), false);
             } finally {
                 $progressBar->clear();
             }
@@ -149,19 +135,6 @@ class GenerateCommand extends Command
                 $file = join('/', [...$path, "{$page->index}.html"]);
                 $render($file, $event->getType(), compact('event', 'path', 'page', 'entries'));
             }
-
-            $stats[$name] += [
-                'max_tlevel' => $entries[0]['tlevel'] ?? 0,
-                'count' => count($entries),
-                'top_1' => $entries[0]['tlevel'] ?? 0,
-                'top_10' => $entries[9]['tlevel'] ?? 0,
-                'top_25' => $entries[24]['tlevel'] ?? 0,
-                'top_50' => $entries[49]['tlevel'] ?? 0,
-                'top_100' => $entries[99]['tlevel'] ?? 0,
-                'top_250' => $entries[249]['tlevel'] ?? 0,
-                'top_500' => $entries[499]['tlevel'] ?? 0,
-                'top_1000' => $entries[999]['tlevel'] ?? 0,
-            ];
 
             $entries = array_slice($entries, 0, 1000);
             Utils::dump(ETERNIUM_HTML_PATH.join('/', [...$path, 'data.json']), json_encode($entries));

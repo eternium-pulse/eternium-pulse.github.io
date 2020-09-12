@@ -12,5 +12,7 @@ interface EventInterface
 
     public function getType(): string;
 
+    public function getStats(): Stats;
+
     public function walk(\Generator $handler, EventInterface ...$chain): void;
 }
