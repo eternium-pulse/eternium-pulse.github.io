@@ -2,6 +2,7 @@
 
 namespace Eternium\Event;
 
+use Eternium\Event\Leaderboard\Entry;
 use Eternium\Utils;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -39,29 +40,6 @@ final class Leaderboard implements EventInterface
         return new self('bounty-hunter', $id);
     }
 
-    /**
-     * @return array{int, int}
-     */
-    public static function parseScore(int $score): array
-    {
-        return [(int) ($score / 10000), 9999 - $score % 10000];
-    }
-
-    /**
-     * @return array{name: string, title: string, clevel: int, score: int, tlevel: int, time: int, deaths: int}
-     */
-    public static function createEntry(string $name, string $title, int $clevel, int $score, int $deaths): array
-    {
-        $entry['name'] = $name;
-        $entry['title'] = $title;
-        $entry['clevel'] = $clevel;
-        $entry['score'] = $score;
-        [$entry['tlevel'], $entry['time']] = self::parseScore($score);
-        $entry['deaths'] = $deaths;
-
-        return $entry;
-    }
-
     public function getId(): string
     {
         return $this->id;
@@ -97,33 +75,38 @@ final class Leaderboard implements EventInterface
         $handler->send([$this, ...$chain]);
     }
 
+    /**
+     * @return \Generator<int, Entry, void, int>
+     */
     public function read(string $file): \Generator
     {
         $reader = Utils::createCsvReader($file);
         foreach ($reader as $data) {
-            yield self::createEntry(...$data);
+            yield new Entry(...$data);
         }
 
         return $reader->getReturn();
     }
 
+    /**
+     * @return \Generator<void, void, ?Entry, int>
+     */
     public function write(string $file): \Generator
     {
         $writer = Utils::createCsvWriter($file);
-        while (is_array($entry = yield)) {
-            $writer->send([
-                $entry['name'],
-                $entry['title'],
-                $entry['clevel'],
-                $entry['score'],
-                $entry['deaths'],
-            ]);
+        while (null !== ($entry = yield)) {
+            if ($entry instanceof Entry) {
+                $writer->send($entry->toArray());
+            }
         }
         $writer->send($entry);
 
         return $writer->getReturn();
     }
 
+    /**
+     * @return \Generator<int, Entry, void, int>
+     */
     public function fetch(HttpClientInterface $client = null): \Generator
     {
         $client = $client ?? Utils::createHttpClient();
@@ -139,7 +122,7 @@ final class Leaderboard implements EventInterface
             $pageEntries = 0;
             $response = $client->request('GET', $uri, ['query' => $query]);
             foreach ($response->toArray() as $data) {
-                yield self::createEntry(
+                yield new Entry(
                     $data['payload']['name'],
                     ucwords(strtr($data['payload']['hero']['selectedPlayerNameID'] ?? '', '_', ' ')),
                     $data['payload']['champion_level'],

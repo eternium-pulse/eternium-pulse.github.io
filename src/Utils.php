@@ -49,7 +49,7 @@ abstract class Utils
     }
 
     /**
-     * @return \Generator<int, void, ?array, int>
+     * @return \Generator<void, void, ?array, int>
      */
     public static function createCsvWriter(string $file): \Generator
     {
@@ -59,9 +59,11 @@ abstract class Utils
         }
 
         $rows = 0;
-        while (is_array($data = yield)) {
-            fputcsv($memory, $data);
-            ++$rows;
+        while (null !== ($data = yield)) {
+            if (is_array($data)) {
+                fputcsv($memory, $data);
+                ++$rows;
+            }
         }
 
         rewind($memory);
