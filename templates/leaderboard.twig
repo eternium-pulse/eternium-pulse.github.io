@@ -22,10 +22,10 @@
       <td>{% if entry.title %}<span class="badge bg-secondary d-none d-sm-inline-block">
         {{- entry.title|e -}}
       </span> {% endif %}{{ entry.name|e }}</td>
-      <td>{{ entry.clevel }}</td>
-      <td>{{ entry.tlevel }}</td>
-      <td>{{ entry.time|date("i:s") }}</td>
-      <td class="d-none d-sm-table-cell">{{ entry.deaths }}</td>
+      <td>{{ entry.clevel|e }}</td>
+      <td>{{ entry.tlevel|e }}</td>
+      <td><time>{{ entry.time|date("i:s")|e }}</time></td>
+      <td class="d-none d-sm-table-cell">{{ entry.deaths|e }}</td>
     </tr>
     {%~ endfor %}
   </tbody>
