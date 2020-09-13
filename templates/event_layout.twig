@@ -2,38 +2,38 @@
 
 {% block title -%}
 {% if page and not page.first %}Page {{ page.index|e }} of {% endif %}
-{{ path|map(e => e.getTitle(true))|reverse|join(' - ')|e }} - {{ parent() }}
+{{ event.getTitle(true)|e }} - {% for e in event.getAncestors()|reverse %}
+{{ e.getTitle(true)|e }} - {% endfor %}
+{{ parent() }}
 {%- endblock %}
 
 {% block description -%}
-{{ path|slice(0, -1)|map(e => e.getTitle(true))|join(' ')|e }}
+{{ event.getAncestors()|map(e => e.getTitle(true))|join(' ')|e }}
 {%- endblock %}
 
 {% block opengraph %}
 <meta property="og:title" content="{% if page and not page.first %}Page {{ page.index }} of {% endif %}{{ event.getTitle(true)|e }}"/>
-<meta property="og:url" content="{{ base_url|e }}/{{ path|join('/')|e }}{% if page and not page.first %}/{{ page.index|e }}.html{% endif %}"/>
+<meta property="og:url" content="{{ base_url|e }}/{{ event.getPath('/')|e }}{% if page and not page.first %}/{{ page.index|e }}.html{% endif %}"/>
 {{ parent() }}
 {% endblock %}
 
 {% block breadcrumb %}
+{% set breadcrumbs = event.getAncestors() %}
 <nav aria-label="Breadcrumb">
   <ol class="breadcrumb" vocab="https://schema.org/" typeof="BreadcrumbList">
     <li class="breadcrumb-item"><a href="{{ base_url|e }}/">Home</a></li>
-    {%~ for event in path %}
-    {%~ if loop.last %}
+    {%~ for e in breadcrumbs %}
+    <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
+      <a href="{{ base_url|e }}/{{ e.getPath('/')|e }}" property="item" typeof="WebPage">
+        <span property="name">{{ e.getTitle()|e }}</span>
+      </a>
+      <meta property="position" content="{{ loop.index }}" />
+    </li>
+    {%~ endfor %}
     <li class="breadcrumb-item active" aria-current="page" property="itemListElement" typeof="ListItem">
       <span property="name">{{ event.getTitle()|e }}</span>
-      <meta property="position" content="{{ loop.index }}"/>
+      <meta property="position" content="{{ breadcrumbs|length + 1 }}"/>
     </li>
-    {%~ else %}
-    <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
-      <a href="{{ base_url|e }}/{{ path|slice(0, loop.index)|join('/')|e }}" property="item" typeof="WebPage">
-        <span property="name">{{ event.getTitle()|e }}</span>
-      </a>
-      <meta property="position" content="{{ loop.index }}"/>
-    </li>
-    {%~ endif %}
-    {%~ endfor %}
   </ol>
 </nav>
 {% endblock %}
