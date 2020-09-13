@@ -1,11 +1,5 @@
 {% extends 'event_layout.twig' %}
 
-{% block content %}
-<h1>{{ event.getTitle(true)|e }}</h1>
-<h2 class="lead mb-4">{{ path|first.getTitle(true)|e }}</h2>
-<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
-  {%~ for board in event %}
-  {%~ include "event_card.twig" with {'event': board} %}
-  {%~ endfor %}
-</div>
-{% endblock %}
+{% block description -%}
+{{ event.getTitle(true)|e }} leaderboards of {{ path|first.getTitle()|e }} event
+{%- endblock %}

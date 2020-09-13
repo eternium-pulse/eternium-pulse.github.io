@@ -1,10 +1,5 @@
 {% extends 'event_layout.twig' %}
 
-{% block content %}
-<h1 class="mb-4">{{ event.getTitle(true)|e }}</h1>
-<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
-  {%~ for league in event %}
-  {%~ include "event_card.twig" with {'event': league} %}
-  {%~ endfor %}
-</div>
-{% endblock %}
+{% block description -%}
+Leagues of {{ event.getTitle()|e }} event
+{%- endblock %}
