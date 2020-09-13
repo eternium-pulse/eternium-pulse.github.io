@@ -7,9 +7,7 @@ namespace Eternium\Event;
  */
 abstract class BaseEvent implements EventInterface, \ArrayAccess, \IteratorAggregate
 {
-    private string $name;
-
-    private Stats $stats;
+    use EventTrait;
 
     /**
      * @var array<string, EventInterface>
@@ -21,15 +19,11 @@ abstract class BaseEvent implements EventInterface, \ArrayAccess, \IteratorAggre
         \assert(0 !== count($events));
 
         $this->name = $name;
-        foreach ($events as $event) {
-            $this->events[$event->getName()] = $event;
-        }
         $this->stats = new Stats();
-    }
-
-    final public function __toString(): string
-    {
-        return $this->toString();
+        foreach ($events as $event) {
+            $event->setParent($this);
+            $this->events[$event->toString()] = $event;
+        }
     }
 
     /**
@@ -67,16 +61,6 @@ abstract class BaseEvent implements EventInterface, \ArrayAccess, \IteratorAggre
         throw new \BadMethodCallException();
     }
 
-    public function toString(): string
-    {
-        return $this->name;
-    }
-
-    final public function getName(): string
-    {
-        return $this->name;
-    }
-
     /**
      * @return \Iterator<string, EventInterface>
      */
@@ -85,17 +69,12 @@ abstract class BaseEvent implements EventInterface, \ArrayAccess, \IteratorAggre
         yield from $this->events;
     }
 
-    final public function getStats(): Stats
+    public function walk(\Generator $handler): void
     {
-        return $this->stats;
-    }
-
-    public function walk(\Generator $handler, EventInterface ...$chain): void
-    {
-        foreach ($this->getIterator() as $event) {
-            $event->walk($handler, $this, ...$chain);
-            $this->stats->aggregate($event->getStats());
+        foreach ($this as $event) {
+            $event->walk($handler);
+            $this->stats->aggregate($event->stats);
         }
-        $handler->send([$this, ...$chain]);
+        $handler->send($this);
     }
 }

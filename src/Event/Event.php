@@ -4,52 +4,40 @@ namespace Eternium\Event;
 
 final class Event extends BaseEvent
 {
-    protected function __construct(string $type, int $id, EventInterface ...$events)
-    {
-        assert(0 < $id);
+    public int $index;
 
-        parent::__construct("{$type}-{$id}", ...$events);
+    protected function __construct(string $type, int $index, EventInterface ...$events)
+    {
+        assert(0 < $index);
+
+        $this->index = $index;
+        $this->type = $type;
+
+        parent::__construct("{$type}-{$index}", ...$events);
     }
 
-    public static function season(int $id, Leaderboard ...$leaderboards): self
+    public static function season(int $index, Leaderboard ...$leaderboards): self
     {
-        return new self('season', $id, ...$leaderboards);
+        return new self('season', $index, ...$leaderboards);
     }
 
-    public static function anb(int $id, League ...$leagues): self
+    public static function anb(int $index, League ...$leagues): self
     {
-        return new self('anb', $id, ...$leagues);
+        return new self('anb', $index, ...$leagues);
     }
 
     public function getTitle(bool $long = false): string
     {
-        [$type, $id] = $this->parseName();
-        if ('anb' === $type) {
+        if ('anb' === $this->type) {
             if ($long) {
                 $name = 'A New Beginning';
             } else {
                 $name = 'ANB';
             }
         } else {
-            $name = ucwords(strtr($type, '-', ' '));
+            $name = ucwords(strtr($this->type, '-', ' '));
         }
 
-        return "{$name} {$id}";
-    }
-
-    public function getType(): string
-    {
-        return $this->parseName()[0];
-    }
-
-    /**
-     * @return array{string, int}
-     */
-    protected function parseName(): array
-    {
-        $name = $this->getName();
-        $pos = strrpos($name, '-', -1);
-
-        return [substr($name, 0, $pos), (int) substr($name, $pos + 1)];
+        return "{$name} {$this->index}";
     }
 }

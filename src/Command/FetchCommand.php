@@ -56,13 +56,12 @@ class FetchCommand extends Command
     {
         $formatter = $this->getHelper('formatter');
 
-        while (is_array($chain = yield)) {
-            $event = $chain[0];
+        while (null !== ($event = yield)) {
             if (!($event instanceof Leaderboard)) {
                 continue;
             }
 
-            $name = join('.', array_reverse($chain));
+            $name = $event->getPath('.');
             if (!str_starts_with($name, $prefix)) {
                 $output->writeln(
                     $formatter->formatSection('SKIP', "{$name} not matched prefix", 'comment'),

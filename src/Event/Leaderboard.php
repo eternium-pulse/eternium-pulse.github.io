@@ -8,24 +8,18 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 final class Leaderboard implements EventInterface
 {
-    private string $name;
+    use EventTrait;
 
-    private string $id;
-
-    private Stats $stats;
+    public string $id;
 
     private function __construct(string $name, string $id)
     {
         assert(24 === strlen($id) && ctype_xdigit($id));
 
         $this->name = $name;
-        $this->id = $id;
+        $this->type = 'leaderboard';
         $this->stats = new Stats();
-    }
-
-    public function __toString(): string
-    {
-        return $this->toString();
+        $this->id = $id;
     }
 
     public static function mage(string $id): self
@@ -43,44 +37,19 @@ final class Leaderboard implements EventInterface
         return new self('bounty-hunter', $id);
     }
 
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
     public function getTitle(bool $long = false): string
     {
         $title = "{$this->name}s";
         if ($long) {
-            $title = "{$title} {$this->getType()}";
+            $title = "{$title} {$this->type}";
         }
 
         return ucwords(strtr($title, '-', ' '));
     }
 
-    public function getType(): string
+    public function walk(\Generator $handler): void
     {
-        return 'leaderboard';
-    }
-
-    public function toString(): string
-    {
-        return $this->name;
-    }
-
-    public function getStats(): Stats
-    {
-        return $this->stats;
-    }
-
-    public function walk(\Generator $handler, EventInterface ...$chain): void
-    {
-        $handler->send([$this, ...$chain]);
+        $handler->send($this);
     }
 
     /**

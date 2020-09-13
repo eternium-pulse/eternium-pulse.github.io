@@ -6,13 +6,21 @@ interface EventInterface
 {
     public function toString(): string;
 
-    public function getName(): string;
-
     public function getTitle(bool $long = false): string;
 
-    public function getType(): string;
+    public function setParent(self $parent): self;
 
-    public function getStats(): Stats;
+    /**
+     * @return array<int, self>
+     */
+    public function getAncestors(): array;
 
-    public function walk(\Generator $handler, EventInterface ...$chain): void;
+    public function getPath(string $separator): string;
+
+    /**
+     * @template TReturn
+     *
+     * @param \Generator<void, void, ?self, TReturn> $handler
+     */
+    public function walk(\Generator $handler): void;
 }

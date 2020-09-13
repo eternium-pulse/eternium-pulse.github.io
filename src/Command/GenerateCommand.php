@@ -101,15 +101,13 @@ class GenerateCommand extends Command
         $sitemap = [];
         $formatter = $this->getHelper('formatter');
 
-        while (is_array($chain = yield)) {
-            $event = $chain[0];
-            $path = array_reverse($chain);
-            $name = join('.', $path);
-            $file = join('/', [...$path, 'index.html']);
-            $sitemap[] = join('/', $path);
+        while (null !== ($event = yield)) {
+            $name = $event->getPath('.');
+            $path = $event->getPath('/');
+            $sitemap[] = $path;
 
             if (!($event instanceof Leaderboard)) {
-                $render($file, $event->getType(), compact('event', 'path'));
+                $render("{$path}/index.html", $event->type, compact('event'));
 
                 continue;
             }
@@ -130,14 +128,13 @@ class GenerateCommand extends Command
 
             foreach (Utils::paginate(count($entries), $this->defaultContext['page_size']) as $page) {
                 if ($page->first) {
-                    $render($file, $event->getType(), compact('event', 'path', 'page', 'entries'));
+                    $render("{$path}/index.html", $event->type, compact('event', 'page', 'entries'));
                 }
-                $file = join('/', [...$path, "{$page->index}.html"]);
-                $render($file, $event->getType(), compact('event', 'path', 'page', 'entries'));
+                $render("{$path}/{$page->index}.html", $event->type, compact('event', 'page', 'entries'));
             }
 
             $entries = array_slice($entries, 0, 1000);
-            Utils::dump(ETERNIUM_HTML_PATH.join('/', [...$path, 'data.json']), json_encode($entries));
+            Utils::dump(ETERNIUM_HTML_PATH.$path.'/data.json', json_encode($entries));
             unset($entries);
         }
 

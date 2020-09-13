@@ -4,6 +4,12 @@ namespace Eternium\Event;
 
 final class League extends BaseEvent
 {
+    protected function __construct(string $name, Leaderboard ...$leaderboards)
+    {
+        $this->type = 'league';
+        parent::__construct($name, ...$leaderboards);
+    }
+
     public static function bronze(Leaderboard ...$leaderboards): self
     {
         return new self('bronze', ...$leaderboards);
@@ -21,16 +27,11 @@ final class League extends BaseEvent
 
     public function getTitle(bool $long = false): string
     {
-        $title = $this->getName();
+        $title = $this->name;
         if ($long) {
-            $title = "{$title} {$this->getType()}";
+            $title = "{$title} {$this->type}";
         }
 
         return ucwords(strtr($title, '-', ' '));
-    }
-
-    public function getType(): string
-    {
-        return 'league';
     }
 }
