@@ -73,9 +73,7 @@ abstract class Utils
     }
 
     /**
-     * @var resource|string
-     *
-     * @param mixed $content
+     * @param resource|string $content
      */
     public static function dump(string $file, $content): int
     {
