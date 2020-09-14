@@ -2,7 +2,11 @@
 
 namespace Eternium\Event;
 
+use Eternium\Event\Leaderboard\Champion;
 use Eternium\Event\Leaderboard\Entry;
+use Eternium\Event\Leaderboard\Gear;
+use Eternium\Event\Leaderboard\Hero;
+use Eternium\Event\Leaderboard\Trial;
 use Eternium\Utils;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -59,8 +63,8 @@ final class Leaderboard implements EventInterface
     {
         $reader = Utils::createCsvReader($file);
         foreach ($reader as $data) {
-            $entry = new Entry(...$data);
-            $this->stats->add(1, $entry->level, $entry->trial);
+            $entry = Entry::fromArray($data);
+            $this->stats->add(1, $entry->champion->level, $entry->trial->level);
             yield $entry;
         }
 
@@ -93,7 +97,15 @@ final class Leaderboard implements EventInterface
         $query = [
             'page' => 1,
             'pageSize' => 1000,
-            'payload' => 'name,champion_level,hero.selectedPlayerNameID,trialStats.heroDeaths',
+            'payload' => join(',', [
+                'name',
+                'champion_level',
+                'cheater',
+                'hero.selectedPlayerNameID',
+                'hero.equipped.itemLevel',
+                'hero.equipped.equippedSlot',
+                'trialStats.heroDeaths',
+            ]),
         ];
 
         $entries = 0;
@@ -102,13 +114,15 @@ final class Leaderboard implements EventInterface
             $response = $client->request('GET', $uri, ['query' => $query]);
             foreach ($response->toArray() as $data) {
                 $entry = new Entry(
-                    $data['payload']['name'],
-                    ucwords(strtr($data['payload']['hero']['selectedPlayerNameID'] ?? '', '_', ' ')),
-                    $data['payload']['champion_level'],
-                    $data['score'],
-                    $data['payload']['trialStats']['heroDeaths'],
+                    new Hero(
+                        $data['payload']['name'],
+                        ucwords(strtr($data['payload']['hero']['selectedPlayerNameID'] ?? '', '_', ' ')),
+                    ),
+                    new Champion($data['payload']['champion_level']),
+                    Gear::fromEquipment($data['payload']['hero']['equipped'] ?? []),
+                    Trial::fromScore($data['score'], $data['payload']['trialStats']['heroDeaths']),
                 );
-                $this->stats->add(1, $entry->level, $entry->trial);
+                $this->stats->add(1, $entry->champion->level, $entry->trial->level);
                 ++$entries;
                 ++$pageEntries;
                 yield $entry;
