@@ -16,6 +16,7 @@ Top {{ event.getTitle()|lower|e }} of {{ parent() }} event
       <th scope="col">Rank</th>
       <th scope="col">Hero</th>
       <th scope="col">CL</th>
+      <th class="d-none d-sm-table-cell" scope="col">AvgGL</th>
       <th scope="col">TL</th>
       <th scope="col">Time</th>
       <th class="d-none d-sm-table-cell" scope="col">Deaths</th>
@@ -25,13 +26,14 @@ Top {{ event.getTitle()|lower|e }} of {{ parent() }} event
     {%~ for entry in entries|slice(page.index0 * page_size, page_size) %}
     <tr>
       <th scope="row">{{ loop.index + page_offset }}</th>
-      <td>{% if entry.title %}<span class="badge bg-secondary d-none d-sm-inline-block">
-        {{- entry.title|e -}}
-      </span> {% endif %}{{ entry.name|e }}</td>
-      <td>{{ entry.level|e }}</td>
-      <td>{{ entry.trial|e }}</td>
-      <td><time>{{ entry.time|date("i:s")|e }}</time></td>
-      <td class="d-none d-sm-table-cell">{{ entry.deaths|e }}</td>
+      <td>{% if entry.hero.title %}<span class="badge bg-secondary d-none d-sm-inline-block">
+        {{- entry.hero.title|e -}}
+      </span> {% endif %}{{ entry.hero|e }}</td>
+      <td>{{ entry.champion.level }}</td>
+      <td class="d-none d-sm-table-cell">{{ '%.1f'|format(entry.gear.averageLevel) }}</td>
+      <td>{{ entry.trial.level }}</td>
+      <td><time>{{ entry.trial.time|date("i:s") }}</time></td>
+      <td class="d-none d-sm-table-cell">{{ entry.trial.deaths }}</td>
     </tr>
     {%~ endfor %}
   </tbody>
