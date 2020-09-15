@@ -1,4 +1,5 @@
 {% extends 'layout.twig' %}
+{% set event_url = base_url ~ '/' ~ event.getPath('/') %}
 
 {% block title -%}
 {% if page and not page.first %}Page {{ page.index|e }} of {% endif %}
@@ -12,8 +13,17 @@
 {%- endblock %}
 
 {% block opengraph %}
+<link rel="canonical" href="{{ event_url|e }}{% if page and not page.first %}/{{ page.index }}.html{% endif %}"/>
+{% if page %}
+{% if not page.first %}
+<link rel="prev" href="{{ event_url|e }}{% if page.index > 2 %}/{{ page.index - 1 }}.html{% endif %}"/>
+{% endif %}
+{% if not page.last %}
+<link rel="next" href="{{ event_url|e }}/{{ page.index + 1 }}.html"/>
+{% endif %}
+{% endif %}
 <meta property="og:title" content="{% if page and not page.first %}Page {{ page.index }} of {% endif %}{{ event.getTitle(true)|e }}"/>
-<meta property="og:url" content="{{ base_url|e }}/{{ event.getPath('/')|e }}{% if page and not page.first %}/{{ page.index|e }}.html{% endif %}"/>
+<meta property="og:url" content="{{ event_url|e }}{% if page and not page.first %}/{{ page.index|e }}.html{% endif %}"/>
 {{ parent() }}
 {% endblock %}
 

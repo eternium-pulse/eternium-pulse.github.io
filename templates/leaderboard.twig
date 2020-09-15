@@ -10,7 +10,7 @@ Top {{ event.getTitle()|lower|e }} of {{ parent() }} event
 <h1>{{ event.getTitle(true)|e }}</h1>
 <p class="lead">{{ block('description') }}.</p>
 <table class="table table-sm table-striped my-4">
-  <caption>Rankings {{ page_offset + 1 }}-{{ page_offset + page_size }} of {{ entries|length }}</caption>
+  <caption>Rankings {{ page_offset + 1 }}-{{ page_offset + page_size }} out of {{ entries|length }}</caption>
   <thead>
     <tr>
       <th scope="col">Rank</th>
