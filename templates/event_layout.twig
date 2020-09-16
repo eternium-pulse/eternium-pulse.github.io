@@ -13,17 +13,17 @@
 {%- endblock %}
 
 {% block opengraph %}
-<link rel="canonical" href="{{ event_url|e }}{% if page and not page.first %}/{{ page.index }}.html{% endif %}"/>
+<link rel="canonical" href="{{ event_url|e }}/{% if page and not page.first %}{{ page.index }}.html{% endif %}"/>
 {% if page %}
 {% if not page.first %}
-<link rel="prev" href="{{ event_url|e }}{% if page.index > 2 %}/{{ page.index - 1 }}.html{% endif %}"/>
+<link rel="prev" href="{{ event_url|e }}/{% if page.index > 2 %}{{ page.index - 1 }}.html{% endif %}"/>
 {% endif %}
 {% if not page.last %}
 <link rel="next" href="{{ event_url|e }}/{{ page.index + 1 }}.html"/>
 {% endif %}
 {% endif %}
 <meta property="og:title" content="{% if page and not page.first %}Page {{ page.index }} of {% endif %}{{ event.getTitle(true)|e }}"/>
-<meta property="og:url" content="{{ event_url|e }}{% if page and not page.first %}/{{ page.index|e }}.html{% endif %}"/>
+<meta property="og:url" content="{{ event_url|e }}/{% if page and not page.first %}{{ page.index }}.html{% endif %}"/>
 {{ parent() }}
 {% endblock %}
 
@@ -34,7 +34,7 @@
     <li class="breadcrumb-item"><a href="{{ base_url|e }}/">Home</a></li>
     {%~ for e in breadcrumbs %}
     <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
-      <a href="{{ base_url|e }}/{{ e.getPath('/')|e }}" property="item" typeof="WebPage">
+      <a href="{{ base_url|e }}/{{ e.getPath('/')|e }}/" property="item" typeof="WebPage">
         <span property="name">{{ e.getTitle()|e }}</span>
       </a>
       <meta property="position" content="{{ loop.index }}" />
