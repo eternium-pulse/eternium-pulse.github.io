@@ -25,7 +25,7 @@ class GenerateCommand extends Command
      */
     private array $events;
 
-    private array $defaultContext = [];
+    private int $pageSize;
 
     public function __construct(Twig $twig, Event ...$events)
     {
@@ -38,7 +38,7 @@ class GenerateCommand extends Command
     protected function configure(): void
     {
         $this->setDescription('Generates HTML content');
-        $this->addOption('base-url', '', InputOption::VALUE_REQUIRED, 'Expand relative links using this URL', '/');
+        $this->addOption('base-url', '', InputOption::VALUE_REQUIRED, 'Expand relative links using this URL', 'http://localhost:8080');
         $this->addOption('page-size', '', InputOption::VALUE_REQUIRED, 'Set LB page size', 100);
         $this->addOption('no-progress', '', InputOption::VALUE_NONE, 'Do not output load progress');
     }
@@ -49,16 +49,15 @@ class GenerateCommand extends Command
         if (!($parts = @parse_url($url)) || isset($parts['query']) || isset($parts['fragment'])) {
             throw new InvalidOptionException('The option "--base-url" requires valid URL without query or fragment parts.');
         }
+        $this->twig->addGlobal('base_url', $url);
 
-        $pageSize = (int) $input->getOption('page-size');
-        if (100 > $pageSize) {
+        $this->pageSize = (int) $input->getOption('page-size');
+        if (100 > $this->pageSize) {
             throw new InvalidOptionException('The option "--page-size" requires an integer at least 100.');
         }
 
-        $this->defaultContext['site_name'] = 'Eternium Pulse';
-        $this->defaultContext['base_url'] = rtrim($url, '/');
-        $this->defaultContext['page_size'] = $pageSize;
-        $this->defaultContext['events'] = $this->events;
+        $this->twig->addGlobal('events', $this->events);
+        $this->twig->addGlobal('site_name', $this->getApplication()->getName());
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -70,10 +69,7 @@ class GenerateCommand extends Command
                 $template .= '.twig';
             }
 
-            Utils::dump(ETERNIUM_HTML_PATH.$file, $this->twig->render(
-                $template,
-                $context + $this->defaultContext,
-            ));
+            Utils::dump(ETERNIUM_HTML_PATH.$file, $this->twig->render($template, $context));
 
             $output->writeln(
                 $this->getHelper('formatter')->formatSection('HTML', "{$file} generated using {$template}", 'comment'),
@@ -126,14 +122,15 @@ class GenerateCommand extends Command
 
             $output->writeln($formatter->formatSection('LOAD', "{$reader->getReturn()} entries loaded"));
 
-            foreach (Utils::paginate(count($entries), $this->defaultContext['page_size']) as $page) {
+            $page_size = $this->pageSize;
+            foreach (Utils::paginate(count($entries), $page_size) as $page) {
                 if ($page->first) {
-                    $render("{$path}/index.html", $event->type, compact('event', 'page', 'entries'));
+                    $render("{$path}/index.html", $event->type, compact('event', 'page', 'page_size', 'entries'));
                 }
-                $render("{$path}/{$page->index}.html", $event->type, compact('event', 'page', 'entries'));
+                $render("{$path}/{$page->index}.html", $event->type, compact('event', 'page', 'page_size', 'entries'));
             }
 
-            $entries = array_slice($entries, 0, 1000);
+            $entries = array_slice($entries, 0, $page_size);
             Utils::dump(ETERNIUM_HTML_PATH.$path.'/data.json', json_encode($entries));
             unset($entries);
         }
