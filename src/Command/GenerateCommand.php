@@ -25,7 +25,9 @@ class GenerateCommand extends Command
      */
     private array $events;
 
-    private int $pageSize;
+    private int $pageSize = 100;
+
+    private bool $hideProgress = false;
 
     public function __construct(Twig $twig, Event ...$events)
     {
@@ -39,7 +41,7 @@ class GenerateCommand extends Command
     {
         $this->setDescription('Generates HTML content');
         $this->addOption('base-url', '', InputOption::VALUE_REQUIRED, 'Expand relative links using this URL', 'http://localhost:8080');
-        $this->addOption('page-size', '', InputOption::VALUE_REQUIRED, 'Set LB page size', 100);
+        $this->addOption('page-size', '', InputOption::VALUE_REQUIRED, 'Set LB page size', $this->pageSize);
         $this->addOption('no-progress', '', InputOption::VALUE_NONE, 'Do not output load progress');
     }
 
@@ -49,21 +51,21 @@ class GenerateCommand extends Command
         if (!($parts = @parse_url($url)) || isset($parts['query']) || isset($parts['fragment'])) {
             throw new InvalidOptionException('The option "--base-url" requires valid URL without query or fragment parts.');
         }
-        $this->twig->addGlobal('base_url', $url);
 
         $this->pageSize = (int) $input->getOption('page-size');
         if (100 > $this->pageSize) {
             throw new InvalidOptionException('The option "--page-size" requires an integer at least 100.');
         }
 
+        $this->hideProgress = $input->getOption('no-progress');
+
+        $this->twig->addGlobal('base_url', $url);
         $this->twig->addGlobal('events', $this->events);
         $this->twig->addGlobal('site_name', $this->getApplication()->getName());
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $progressOutput = $input->getOption('no-progress') ? new NullOutput() : $output;
-
         $render = function (string $file, string $template, array $context = []) use ($output) {
             if (!str_ends_with($template, '.twig')) {
                 $template .= '.twig';
@@ -77,7 +79,7 @@ class GenerateCommand extends Command
             );
         };
 
-        $generator = $this->createGenerator($render, $output, $progressOutput);
+        $generator = $this->createGenerator($render, $output);
         foreach ($this->events as $event) {
             $event->walk($generator);
         }
@@ -92,10 +94,12 @@ class GenerateCommand extends Command
         return self::SUCCESS;
     }
 
-    private function createGenerator(callable $render, OutputInterface $output, OutputInterface $progressOutput): \Generator
+    private function createGenerator(callable $render, OutputInterface $output): \Generator
     {
         $sitemap = [];
         $formatter = $this->getHelper('formatter');
+        $progressBar = new ProgressBar($this->hideProgress ? new NullOutput() : $output);
+        $progressBar->setFormat($formatter->formatSection('LOAD', '%current% [%bar%] %elapsed%'));
 
         while (null !== ($event = yield)) {
             $name = $event->getPath('.');
@@ -113,8 +117,7 @@ class GenerateCommand extends Command
             $reader = $event->read(ETERNIUM_DATA_PATH."{$name}.csv");
 
             try {
-                $progressBar = new ProgressBar($progressOutput);
-                $progressBar->setFormat($formatter->formatSection('LOAD', '%current% [%bar%] %elapsed%'));
+                $progressBar->display();
                 $entries = iterator_to_array($progressBar->iterate($reader), false);
             } finally {
                 $progressBar->clear();
