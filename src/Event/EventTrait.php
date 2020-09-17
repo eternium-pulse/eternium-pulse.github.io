@@ -12,12 +12,7 @@ trait EventTrait
 
     public Stats $stats;
 
-    final public function __toString(): string
-    {
-        return $this->toString();
-    }
-
-    public function toString(): string
+    public function __toString(): string
     {
         return $this->name;
     }

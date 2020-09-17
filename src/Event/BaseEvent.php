@@ -22,7 +22,7 @@ abstract class BaseEvent implements EventInterface, \ArrayAccess, \IteratorAggre
         $this->stats = new Stats();
         foreach ($events as $event) {
             $event->setParent($this);
-            $this->events[$event->toString()] = $event;
+            $this->events[$event->__toString()] = $event;
         }
     }
 
