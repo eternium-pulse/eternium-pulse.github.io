@@ -22,6 +22,12 @@ class FetchCommand extends Command
      */
     private array $events;
 
+    private string $prefix = '';
+
+    private bool $update = false;
+
+    private bool $hideProgress = false;
+
     public function __construct(Event ...$events)
     {
         $this->events = $events;
@@ -32,18 +38,21 @@ class FetchCommand extends Command
     protected function configure(): void
     {
         $this->setDescription('Fetches leaderboards from game server');
-        $this->addArgument('prefix', InputArgument::OPTIONAL, 'The leaderboards prefix', '');
+        $this->addArgument('prefix', InputArgument::OPTIONAL, 'The leaderboards prefix', $this->prefix);
         $this->addOption('update', 'u', InputOption::VALUE_NONE, 'Update existing data');
         $this->addOption('no-progress', '', InputOption::VALUE_NONE, 'Do not output download progress');
     }
 
+    protected function initialize(InputInterface $input, OutputInterface $output): void
+    {
+        $this->prefix = $input->getArgument('prefix');
+        $this->update = $input->getOption('update');
+        $this->hideProgress = $input->getOption('no-progress');
+    }
+
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $prefix = $input->getArgument('prefix');
-        $update = $input->getOption('update');
-        $progressOutput = $input->getOption('no-progress') ? new NullOutput() : $output;
-
-        $fetcher = $this->createFetcher($prefix, $update, $output, $progressOutput);
+        $fetcher = $this->createFetcher($output);
         foreach ($this->events as $event) {
             $event->walk($fetcher);
         }
@@ -52,9 +61,11 @@ class FetchCommand extends Command
         return self::SUCCESS;
     }
 
-    private function createFetcher(string $prefix, bool $update, OutputInterface $output, OutputInterface $progressOutput): \Generator
+    private function createFetcher(OutputInterface $output): \Generator
     {
         $formatter = $this->getHelper('formatter');
+        $progressBar = new ProgressBar($this->hideProgress ? new NullOutput() : $output);
+        $progressBar->setFormat($formatter->formatSection('DUMP', '%current% [%bar%] %elapsed%'));
 
         while (null !== ($event = yield)) {
             if (!($event instanceof Leaderboard)) {
@@ -62,7 +73,7 @@ class FetchCommand extends Command
             }
 
             $name = $event->getPath('.');
-            if (!str_starts_with($name, $prefix)) {
+            if (!str_starts_with($name, $this->prefix)) {
                 $output->writeln(
                     $formatter->formatSection('SKIP', "{$name} not matched prefix", 'comment'),
                     Output::VERBOSITY_VERBOSE
@@ -72,7 +83,7 @@ class FetchCommand extends Command
             }
 
             $file = ETERNIUM_DATA_PATH."{$name}.csv";
-            if (!$update && is_file($file)) {
+            if (!$this->update && is_file($file)) {
                 $output->writeln(
                     $formatter->formatSection('SKIP', "{$name} entries already dumped", 'comment'),
                     Output::VERBOSITY_VERBOSE
@@ -86,8 +97,7 @@ class FetchCommand extends Command
             $writer = $event->write($file);
 
             try {
-                $progressBar = new ProgressBar($progressOutput);
-                $progressBar->setFormat($formatter->formatSection('DUMP', '%current% [%bar%] %elapsed%'));
+                $progressBar->display();
                 foreach ($progressBar->iterate($event->fetch()) as $entry) {
                     $writer->send($entry);
                 }
