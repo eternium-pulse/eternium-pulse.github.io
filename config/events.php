@@ -137,6 +137,11 @@ return [
             Leaderboard::mage('5f52609f4d28152c2bacbd43'),
             Leaderboard::warrior('5f5260a14d28152c2bacbd48'),
             Leaderboard::bountyHunter('5f5260a24d28152c2bacbd4b'),
-        )
+        ),
+        League::gold(
+            Leaderboard::mage('5f64c6934d28153ae45a252f'),
+            Leaderboard::warrior('5f64c6944d28153ae45a253c'),
+            Leaderboard::bountyHunter('5f64c6968c7cf76d90955324'),
+        ),
     ),
 ];
