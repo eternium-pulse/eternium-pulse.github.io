@@ -12,6 +12,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\HttpClient\HttpClient;
 use Twig\Environment as Twig;
 
 class GenerateCommand extends Command
@@ -25,7 +26,11 @@ class GenerateCommand extends Command
      */
     private array $events;
 
+    private string $baseUri = 'http://localhost:8080';
+
     private int $pageSize = 100;
+
+    private bool $pingSitemap = false;
 
     private bool $hideProgress = false;
 
@@ -40,26 +45,29 @@ class GenerateCommand extends Command
     protected function configure(): void
     {
         $this->setDescription('Generates HTML content');
-        $this->addOption('base-url', '', InputOption::VALUE_REQUIRED, 'Expand relative links using this URL', 'http://localhost:8080');
+        $this->addOption('base-url', '', InputOption::VALUE_REQUIRED, 'Expand relative links using this URL', $this->baseUri);
         $this->addOption('page-size', '', InputOption::VALUE_REQUIRED, 'Set LB page size', $this->pageSize);
+        $this->addOption('ping-sitemap', '', InputOption::VALUE_NONE, 'Submit sitemap to search engines');
         $this->addOption('no-progress', '', InputOption::VALUE_NONE, 'Do not output load progress');
     }
 
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
-        $url = $input->getOption('base-url');
-        if (!($parts = @parse_url($url)) || isset($parts['query']) || isset($parts['fragment'])) {
+        $this->baseUri = $input->getOption('base-url');
+        if (!($parts = @parse_url($this->baseUri)) || isset($parts['query']) || isset($parts['fragment'])) {
             throw new InvalidOptionException('The option "--base-url" requires valid URL without query or fragment parts.');
         }
+        $this->baseUri = rtrim($this->baseUri, '/');
 
         $this->pageSize = (int) $input->getOption('page-size');
         if (100 > $this->pageSize) {
             throw new InvalidOptionException('The option "--page-size" requires an integer at least 100.');
         }
 
+        $this->pingSitemap = $input->getOption('ping-sitemap');
         $this->hideProgress = $input->getOption('no-progress');
 
-        $this->twig->addGlobal('base_url', $url);
+        $this->twig->addGlobal('base_url', $this->baseUri);
         $this->twig->addGlobal('events', $this->events);
         $this->twig->addGlobal('site_name', $this->getApplication()->getName());
     }
@@ -90,6 +98,13 @@ class GenerateCommand extends Command
         $render('404.html', 'error', ['code' => 404, 'message' => 'Not found']);
         $render('sitemap.txt', 'sitemap', ['urls' => $generator->getReturn()]);
         $render('robots.txt', 'robots');
+
+        if ($this->pingSitemap) {
+            $this->ping('sitemap.txt');
+            $output->writeln(
+                $this->getHelper('formatter')->formatSection('PING', 'sitemap.txt submitted'),
+            );
+        }
 
         return self::SUCCESS;
     }
@@ -139,5 +154,18 @@ class GenerateCommand extends Command
         }
 
         return $sitemap;
+    }
+
+    private function ping(string $sitemap): void
+    {
+        $http = HttpClient::create();
+        $options = [
+            'http_version' => '1.1',
+            'max_redirects' => 0,
+            'query' => ['sitemap' => "{$this->baseUri}/{$sitemap}"],
+        ];
+
+        $http->request('GET', 'http://www.google.com/ping', $options)->getContent();
+        $http->request('GET', 'http://www.bing.com/ping', $options)->getContent();
     }
 }
