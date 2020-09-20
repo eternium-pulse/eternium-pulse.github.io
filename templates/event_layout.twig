@@ -2,10 +2,7 @@
 {% set event_url = base_url ~ '/' ~ event.getPath('/') %}
 
 {% block title -%}
-{% if page and not page.first %}Page {{ page.index|e }} of {% endif %}
-{{ event.getTitle(true)|e }} - {% for e in event.getAncestors()|reverse %}
-{{ e.getTitle(true)|e }} - {% endfor %}
-{{ parent() }}
+Eternium - {{ event.getTitle(true) }} Leaderboards
 {%- endblock %}
 
 {% block description -%}
@@ -35,13 +32,13 @@
     {%~ for e in breadcrumbs %}
     <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
       <a href="{{ base_url|e }}/{{ e.getPath('/')|e }}/" property="item" typeof="WebPage">
-        <span property="name">{{ e.getTitle()|e }}</span>
+        <span property="name">{{ e.getName() }}</span>
       </a>
       <meta property="position" content="{{ loop.index }}" />
     </li>
     {%~ endfor %}
     <li class="breadcrumb-item active" aria-current="page" property="itemListElement" typeof="ListItem">
-      <span property="name">{{ event.getTitle()|e }}</span>
+      <span property="name">{{ event.getName() }}</span>
       <meta property="position" content="{{ breadcrumbs|length + 1 }}"/>
     </li>
   </ol>

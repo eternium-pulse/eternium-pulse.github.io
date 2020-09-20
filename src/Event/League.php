@@ -25,13 +25,22 @@ final class League extends BaseEvent
         return new self('gold', ...$leaderboards);
     }
 
+    public function getName(bool $long = false): string
+    {
+        return ucfirst($this->name);
+    }
+
+    public function getType(bool $long = false): string
+    {
+        return ucfirst($this->type);
+    }
+
     public function getTitle(bool $long = false): string
     {
-        $title = $this->name;
-        if ($long) {
-            $title = "{$title} {$this->type}";
+        if ($long && isset($this->parent)) {
+            return "{$this->parent->getName()} {$this->getName()} {$this->getType()}";
         }
 
-        return ucwords(strtr($title, '-', ' '));
+        return "{$this->getName($long)} {$this->getType($long)}";
     }
 }

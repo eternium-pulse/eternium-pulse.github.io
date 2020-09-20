@@ -1,7 +1,7 @@
 {% extends 'layout.twig' %}
 
 {% block title -%}
-Leaderboards - {{ parent() }}
+Eternium - Leaderboards on {{ site_name }}
 {%- endblock %}
 
 {% block description -%}
@@ -9,14 +9,14 @@ Leaderboards of Eternium game events
 {%- endblock %}
 
 {% block opengraph %}
-<meta property="og:title" content="{{ site_name|e }}"/>
-<meta property="og:url" content="{{ base_url|e }}/"/>
+<meta property="og:title" content="{{ site_name }}"/>
+<meta property="og:url" content="{{ base_url }}/"/>
 {{ parent() }}
 {% endblock %}
 
 {% block content %}
 <h1>Hi, Adventurer!</h1>
-<p class="lead">Here you can find leaderboards of Eternium events.</p>
+<p class="lead">Here you can find Eternium leaderboards. <a href="https://www.eterniumgame.com/" target="_blank">Play Eternium</a> and watch your progress.</p>
 
 <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
   {%~ for event in events %}

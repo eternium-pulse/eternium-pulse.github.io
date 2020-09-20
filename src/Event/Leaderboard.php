@@ -41,14 +41,19 @@ final class Leaderboard implements EventInterface
         return new self('bounty-hunter', $id);
     }
 
+    public function getName(bool $long = false): string
+    {
+        return ucwords(strtr("{$this->name}s", '-', ' '));
+    }
+
+    public function getType(bool $long = false): string
+    {
+        return ucfirst($this->type);
+    }
+
     public function getTitle(bool $long = false): string
     {
-        $title = "{$this->name}s";
-        if ($long) {
-            $title = "{$title} {$this->type}";
-        }
-
-        return ucwords(strtr($title, '-', ' '));
+        return "{$this->getName($long)} {$this->getType($long)}";
     }
 
     public function walk(\Generator $handler): void

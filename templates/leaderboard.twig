@@ -1,5 +1,9 @@
 {% extends 'event_layout.twig' %}
 
+{% block title -%}
+Eternium - {{ event.parent.getTitle(true) }} - {{ event.getTitle() }}{% if not page.first %} - Page {{ page.index }}{% endif %}
+{%- endblock %}
+
 {% block description -%}
 Top {{ event.getTitle()|lower|e }} of {{ parent() }} event
 {%- endblock %}
@@ -7,7 +11,7 @@ Top {{ event.getTitle()|lower|e }} of {{ parent() }} event
 {% block content %}
 {% set page_offset = page.index0 * page_size %}
 {% set page_size = entries[page_offset:page_size]|length %}
-<h1>{{ event.getTitle(true)|e }}</h1>
+<h1>{{ event.getTitle(true) }}</h1>
 <p class="lead">{{ block('description') }}.</p>
 <table class="table table-sm table-striped my-4">
   <caption>Rankings {{ page_offset + 1 }}-{{ page_offset + page_size }} out of {{ entries|length }}</caption>

@@ -26,18 +26,26 @@ final class Event extends BaseEvent
         return new self('anb', $index, ...$leagues);
     }
 
-    public function getTitle(bool $long = false): string
+    public function getName(bool $long = false): string
+    {
+        return "{$this->getType()} {$this->index}";
+    }
+
+    public function getType(bool $long = false): string
     {
         if ('anb' === $this->type) {
             if ($long) {
-                $name = 'A New Beginning';
-            } else {
-                $name = 'ANB';
+                return 'A New Beginning';
             }
-        } else {
-            $name = ucwords(strtr($this->type, '-', ' '));
+
+            return 'ANB';
         }
 
-        return "{$name} {$this->index}";
+        return ucfirst($this->type);
+    }
+
+    public function getTitle(bool $long = false): string
+    {
+        return "{$this->getType($long)} {$this->index}";
     }
 }

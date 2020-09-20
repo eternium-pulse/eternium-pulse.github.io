@@ -6,6 +6,10 @@ interface EventInterface
 {
     public function __toString(): string;
 
+    public function getName(bool $long = false): string;
+
+    public function getType(bool $long = false): string;
+
     public function getTitle(bool $long = false): string;
 
     public function setParent(self $parent): self;
