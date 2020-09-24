@@ -46,11 +46,17 @@ Eternium - {{ event.getTitle(true) }} Leaderboards
 {% endblock %}
 
 {% block content %}
-<h1>{{ event.getTitle(true)|e }}</h1>
-<p class="lead">{{ block('description') }}.</p>
-<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
-  {%~ for e in event %}
-  {%~ include "event_card.twig" with {'event': e} %}
-  {%~ endfor %}
+<div vocab="https://schema.org/" typeof="Event">
+  <h1 property="name">{{ event.getTitle(true)|e }}</h1>
+  <p class="lead" property="description">{{ block('description') }}.</p>
+  <meta property="eventAttendanceMode" content="OnlineEventAttendanceMode"/>
+  <div property="location" typeof="VirtualLocation">
+    <link property="url" href="https://www.eterniumgame.com/"/>
+  </div>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
+    {%~ for e in event %}
+    {%~ include "event_card.twig" with {'event': e} %}
+    {%~ endfor %}
+  </div>
 </div>
 {% endblock %}
