@@ -3,14 +3,19 @@
 namespace Eternium\Event;
 
 /**
- * @implements \IteratorAggregate<string, EventInterface>
+ * @template TEvent of EventInterface
+ *
+ * @implements \IteratorAggregate<string, TEvent>
  */
 abstract class BaseEvent implements EventInterface, \ArrayAccess, \IteratorAggregate
 {
     use EventTrait;
 
+    public \DateTimeInterface $start;
+    public \DateTimeInterface $end;
+
     /**
-     * @var array<string, EventInterface>
+     * @var array<string, TEvent>
      */
     private array $events;
 
@@ -37,7 +42,7 @@ abstract class BaseEvent implements EventInterface, \ArrayAccess, \IteratorAggre
     /**
      * @param string $name
      *
-     * @return ?EventInterface
+     * @return ?TEvent
      */
     public function offsetGet($name)
     {
@@ -45,8 +50,8 @@ abstract class BaseEvent implements EventInterface, \ArrayAccess, \IteratorAggre
     }
 
     /**
-     * @param string         $name
-     * @param EventInterface $event
+     * @param string $name
+     * @param TEvent $event
      */
     public function offsetSet($name, $event)
     {
@@ -62,7 +67,7 @@ abstract class BaseEvent implements EventInterface, \ArrayAccess, \IteratorAggre
     }
 
     /**
-     * @return \Iterator<string, EventInterface>
+     * @return \Iterator<string, TEvent>
      */
     final public function getIterator(): \Iterator
     {
@@ -76,5 +81,19 @@ abstract class BaseEvent implements EventInterface, \ArrayAccess, \IteratorAggre
             $this->stats->aggregate($event->stats);
         }
         $handler->send($this);
+    }
+
+    final public function startOn(\DateTimeInterface $date): self
+    {
+        $this->start = $date;
+
+        return $this;
+    }
+
+    final public function endOn(\DateTimeInterface $date): self
+    {
+        $this->end = $date;
+
+        return $this;
     }
 }
