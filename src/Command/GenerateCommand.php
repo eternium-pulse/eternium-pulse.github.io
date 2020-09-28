@@ -47,7 +47,6 @@ class GenerateCommand extends Command
         $this->setDescription('Generates HTML content');
         $this->addOption('base-url', '', InputOption::VALUE_REQUIRED, 'Expand relative links using this URL', $this->baseUri);
         $this->addOption('page-size', '', InputOption::VALUE_REQUIRED, 'Set LB page size', $this->pageSize);
-        $this->addOption('ping-sitemap', '', InputOption::VALUE_NONE, 'Submit sitemap to search engines');
         $this->addOption('no-progress', '', InputOption::VALUE_NONE, 'Do not output load progress');
     }
 
@@ -120,9 +119,10 @@ class GenerateCommand extends Command
             $name = $event->getPath('.');
             $path = $event->getPath('/');
             $sitemap[] = $path;
+            $template = strtolower($event->type);
 
             if (!($event instanceof Leaderboard)) {
-                $render("{$path}/index.html", $event->type, compact('event'));
+                $render("{$path}/index.html", $template, compact('event'));
 
                 continue;
             }
@@ -143,9 +143,9 @@ class GenerateCommand extends Command
             $page_size = $this->pageSize;
             foreach (Utils::paginate(count($entries), $page_size) as $page) {
                 if ($page->first) {
-                    $render("{$path}/index.html", $event->type, compact('event', 'page', 'page_size', 'entries'));
+                    $render("{$path}/index.html", $template, compact('event', 'page', 'page_size', 'entries'));
                 }
-                $render("{$path}/{$page->index}.html", $event->type, compact('event', 'page', 'page_size', 'entries'));
+                $render("{$path}/{$page->index}.html", $template, compact('event', 'page', 'page_size', 'entries'));
             }
 
             $entries = array_slice($entries, 0, $page_size);
