@@ -5,16 +5,29 @@ Eternium - {{ event.parent.getTitle(true) }} - {{ event.getTitle() }}{% if not p
 {%- endblock %}
 
 {% block description -%}
-Top {{ event.getTitle()|lower|e }} of {{ parent() }} event
+Top {{ event.name|lower|e }} of {{ event.parent.getTitle(true)|e }}
 {%- endblock %}
 
 {% block content %}
 {% set page_offset = page.index0 * page_size %}
 {% set page_size = entries[page_offset:page_size]|length %}
-<h1>{{ event.getTitle(true) }}</h1>
+<h1>{{ event.getTitle(true)|e }}</h1>
 <p class="lead">{{ block('description') }}.</p>
-<table class="table table-sm table-striped my-4">
-  <caption>Rankings {{ page_offset + 1 }}-{{ page_offset + page_size }} out of {{ entries|length }}</caption>
+
+<ul class="nav nav-tabs">
+  {%~ for item in event.parent %}
+  <li class="nav-item">
+    {%~ if item == event %}
+    <a class="nav-link active" aria-current="page" href="{{ base_url|e }}/{{ item.getPath('/')|e }}/">{{ item.name|e }}</a>
+    {%~ else %}
+    <a class="nav-link" href="{{ base_url|e }}/{{ item.getPath('/')|e }}/">{{ item.name|e }}</a>
+    {%~ endif %}
+  </li>
+  {%~ endfor %}
+</ul>
+
+<table class="table table-sm table-striped">
+  <caption>Rankings {{ page_offset + 1 }}-{{ page_offset + page_size }} of {{ entries|length }}</caption>
   <thead>
     <tr>
       <th scope="col">Rank</th>
