@@ -5,10 +5,6 @@
 Eternium - {{ event.getTitle(true) }} Leaderboards
 {%- endblock %}
 
-{% block description -%}
-{{ event.getAncestors()|map(e => e.getTitle(true))|join(' ')|e }}
-{%- endblock %}
-
 {% block opengraph %}
 <link rel="canonical" href="{{ event_url|e }}/{% if page and not page.first %}{{ page.index }}.html{% endif %}"/>
 {% if page %}
@@ -29,16 +25,16 @@ Eternium - {{ event.getTitle(true) }} Leaderboards
 <nav aria-label="Breadcrumb">
   <ol class="breadcrumb" vocab="https://schema.org/" typeof="BreadcrumbList">
     <li class="breadcrumb-item"><a href="{{ base_url|e }}/">Home</a></li>
-    {%~ for e in breadcrumbs %}
+    {%~ for item in breadcrumbs %}
     <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
-      <a href="{{ base_url|e }}/{{ e.getPath('/')|e }}/" property="item" typeof="WebPage">
-        <span property="name">{{ e.getName() }}</span>
+      <a href="{{ base_url|e }}/{{ item.getPath('/')|e }}/" property="item" typeof="WebPage">
+        <span property="name">{{ item.name|e }}</span>
       </a>
       <meta property="position" content="{{ loop.index }}" />
     </li>
     {%~ endfor %}
     <li class="breadcrumb-item active" aria-current="page" property="itemListElement" typeof="ListItem">
-      <span property="name">{{ event.getName() }}</span>
+      <span property="name">{{ event.name|e }}</span>
       <meta property="position" content="{{ breadcrumbs|length + 1 }}"/>
     </li>
   </ol>
@@ -50,6 +46,10 @@ Eternium - {{ event.getTitle(true) }} Leaderboards
   <h1 property="name">{{ event.getTitle(true)|e }}</h1>
   <p class="lead" property="description">{{ block('description') }}.</p>
   <meta property="eventAttendanceMode" content="OnlineEventAttendanceMode"/>
+  {%~ if event.startDate %}
+  <meta property="startDate" content="{{ event.startDate|date(constant('DATE_ISO8601')) }}"/>
+  <meta property="endDate" content="{{ event.endDate|date(constant('DATE_ISO8601')) }}"/>
+  {%~ endif %}
   <div property="location" typeof="VirtualLocation">
     <link property="url" href="https://www.eterniumgame.com/"/>
   </div>

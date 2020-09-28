@@ -1,5 +1,5 @@
 {% extends 'event_layout.twig' %}
 
 {% block description -%}
-{{ event.getTitle(true)|e }} leaderboards of {{ path|first.getTitle()|e }} event
+{{ event.name|e }} leaderboards of {{ event.parent.name|e }}
 {%- endblock %}
