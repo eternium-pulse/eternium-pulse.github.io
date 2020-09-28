@@ -23,17 +23,17 @@ Eternium - {{ event.getTitle(true) }} Leaderboards
 {% block breadcrumb %}
 {% set breadcrumbs = event.getAncestors() %}
 <nav aria-label="Breadcrumb">
-  <ol class="breadcrumb" vocab="https://schema.org/" typeof="BreadcrumbList">
-    <li class="breadcrumb-item"><a href="{{ base_url|e }}/">Home</a></li>
+  <ol class="breadcrumb flex-nowrap" vocab="https://schema.org/" typeof="BreadcrumbList">
+    <li class="breadcrumb-item text-nowrap"><a href="{{ base_url|e }}/">Home</a></li>
     {%~ for item in breadcrumbs %}
-    <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
+    <li class="breadcrumb-item text-nowrap" property="itemListElement" typeof="ListItem">
       <a href="{{ base_url|e }}/{{ item.getPath('/')|e }}/" property="item" typeof="WebPage">
         <span property="name">{{ item.name|e }}</span>
       </a>
       <meta property="position" content="{{ loop.index }}" />
     </li>
     {%~ endfor %}
-    <li class="breadcrumb-item active" aria-current="page" property="itemListElement" typeof="ListItem">
+    <li class="breadcrumb-item active text-truncate" aria-current="page" property="itemListElement" typeof="ListItem">
       <span property="name">{{ event.name|e }}</span>
       <meta property="position" content="{{ breadcrumbs|length + 1 }}"/>
     </li>

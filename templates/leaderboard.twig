@@ -14,9 +14,9 @@ Top {{ event.name|lower|e }} of {{ event.parent.getTitle(true)|e }}
 <h1>{{ event.getTitle(true)|e }}</h1>
 <p class="lead">{{ block('description') }}.</p>
 
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs flex-nowrap">
   {%~ for item in event.parent %}
-  <li class="nav-item">
+  <li class="nav-item text-nowrap">
     {%~ if item == event %}
     <a class="nav-link active" aria-current="page" href="{{ base_url|e }}/{{ item.getPath('/')|e }}/">{{ item.name|e }}</a>
     {%~ else %}
