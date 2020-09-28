@@ -12,7 +12,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\HttpClient\HttpClient;
 use Twig\Environment as Twig;
 
 class GenerateCommand extends Command
@@ -63,10 +62,10 @@ class GenerateCommand extends Command
             throw new InvalidOptionException('The option "--page-size" requires an integer at least 100.');
         }
 
-        $this->pingSitemap = $input->getOption('ping-sitemap');
         $this->hideProgress = $input->getOption('no-progress');
 
         $this->twig->addGlobal('base_url', $this->baseUri);
+        $this->twig->addGlobal('eternium_url', 'https://www.eterniumgame.com/');
         $this->twig->addGlobal('events', $this->events);
         $this->twig->addGlobal('site_name', $this->getApplication()->getName());
     }
@@ -97,13 +96,6 @@ class GenerateCommand extends Command
         $render('404.html', 'error', ['code' => 404, 'message' => 'Not found']);
         $render('sitemap.txt', 'sitemap', ['urls' => $generator->getReturn()]);
         $render('robots.txt', 'robots');
-
-        if ($this->pingSitemap) {
-            $this->ping('sitemap.txt');
-            $output->writeln(
-                $this->getHelper('formatter')->formatSection('PING', 'sitemap.txt submitted'),
-            );
-        }
 
         return self::SUCCESS;
     }
@@ -154,18 +146,5 @@ class GenerateCommand extends Command
         }
 
         return $sitemap;
-    }
-
-    private function ping(string $sitemap): void
-    {
-        $http = HttpClient::create();
-        $options = [
-            'http_version' => '1.1',
-            'max_redirects' => 0,
-            'query' => ['sitemap' => "{$this->baseUri}/{$sitemap}"],
-        ];
-
-        $http->request('GET', 'http://www.google.com/ping', $options)->getContent();
-        $http->request('GET', 'http://www.bing.com/ping', $options)->getContent();
     }
 }

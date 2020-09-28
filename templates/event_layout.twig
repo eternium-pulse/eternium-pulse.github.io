@@ -51,7 +51,7 @@ Eternium - {{ event.getTitle(true) }} Leaderboards
   <meta property="endDate" content="{{ event.endDate|date(constant('DATE_ISO8601')) }}"/>
   {%~ endif %}
   <div property="location" typeof="VirtualLocation">
-    <link property="url" href="https://www.eterniumgame.com/"/>
+    <link property="url" href="{{ eternium_url }}"/>
   </div>
   <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
     {%~ for e in event %}
