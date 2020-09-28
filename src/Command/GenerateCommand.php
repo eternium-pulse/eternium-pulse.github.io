@@ -140,8 +140,6 @@ class GenerateCommand extends Command
                 $render("{$path}/{$page->index}.html", $template, compact('event', 'page', 'page_size', 'entries'));
             }
 
-            $entries = array_slice($entries, 0, $page_size);
-            Utils::dump(ETERNIUM_HTML_PATH.$path.'/data.json', json_encode($entries));
             unset($entries);
         }
 
