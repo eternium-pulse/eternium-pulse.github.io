@@ -2,7 +2,7 @@
 
 namespace Eternium\Command;
 
-use Eternium\Event\Event;
+use Eternium\Event\EventInterface;
 use Eternium\Event\Leaderboard;
 use Eternium\Utils;
 use Symfony\Component\Console\Command\Command;
@@ -22,7 +22,7 @@ class GenerateCommand extends Command
     private Twig $twig;
 
     /**
-     * @var array<int, Event>
+     * @var array<int, EventInterface>
      */
     private array $events;
 
@@ -34,7 +34,7 @@ class GenerateCommand extends Command
 
     private bool $hideProgress = false;
 
-    public function __construct(Twig $twig, Event ...$events)
+    public function __construct(Twig $twig, EventInterface ...$events)
     {
         $this->events = $events;
         $this->twig = $twig;

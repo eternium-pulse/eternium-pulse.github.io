@@ -4,6 +4,8 @@ namespace Eternium\Event;
 
 trait EventTrait
 {
+    public string $slug;
+
     public string $name;
 
     public string $type;
@@ -14,7 +16,7 @@ trait EventTrait
 
     public function __toString(): string
     {
-        return $this->name;
+        return $this->slug;
     }
 
     final public function setParent(EventInterface $parent): self

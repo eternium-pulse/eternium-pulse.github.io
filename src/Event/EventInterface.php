@@ -2,6 +2,11 @@
 
 namespace Eternium\Event;
 
+/**
+ * @property string $slug
+ * @property string $type
+ * @property string $name
+ */
 interface EventInterface
 {
     public function __toString(): string;

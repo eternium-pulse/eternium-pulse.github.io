@@ -7,7 +7,7 @@ namespace Eternium\Event;
  *
  * @implements \IteratorAggregate<string, TEvent>
  */
-abstract class BaseEvent implements EventInterface, \ArrayAccess, \IteratorAggregate
+abstract class BaseEvent implements EventInterface, \IteratorAggregate
 {
     use EventTrait;
 
@@ -19,51 +19,15 @@ abstract class BaseEvent implements EventInterface, \ArrayAccess, \IteratorAggre
      */
     private array $events;
 
-    protected function __construct(string $name, EventInterface ...$events)
+    protected function __construct(string $slug, EventInterface ...$events)
     {
         \assert(0 !== count($events));
 
-        $this->name = $name;
+        $this->slug = $slug;
         $this->stats = new Stats();
         foreach ($events as $event) {
-            $event->setParent($this);
-            $this->events[$event->__toString()] = $event;
+            $this->withEvent($event);
         }
-    }
-
-    /**
-     * @param string $name
-     */
-    public function offsetExists($name): bool
-    {
-        return isset($this->events[$name]);
-    }
-
-    /**
-     * @param string $name
-     *
-     * @return ?TEvent
-     */
-    public function offsetGet($name)
-    {
-        return $this->events[$name] ?? null;
-    }
-
-    /**
-     * @param string $name
-     * @param TEvent $event
-     */
-    public function offsetSet($name, $event)
-    {
-        throw new \BadMethodCallException();
-    }
-
-    /**
-     * @param string $name
-     */
-    public function offsetUnset($name)
-    {
-        throw new \BadMethodCallException();
     }
 
     /**
@@ -83,16 +47,23 @@ abstract class BaseEvent implements EventInterface, \ArrayAccess, \IteratorAggre
         $handler->send($this);
     }
 
-    final public function startOn(\DateTimeInterface $date): self
+    final public function startOn(string $date): self
     {
-        $this->start = $date;
+        $this->start = new \DateTimeImmutable($date, new \DateTimeZone('UTC'));
 
         return $this;
     }
 
-    final public function endOn(\DateTimeInterface $date): self
+    final public function endOn(string $date): self
     {
-        $this->end = $date;
+        $this->end = new \DateTimeImmutable($date, new \DateTimeZone('UTC'));
+
+        return $this;
+    }
+
+    final protected function withEvent(EventInterface $event): self
+    {
+        $this->events[$event->__toString()] = $event->setParent($this);
 
         return $this;
     }

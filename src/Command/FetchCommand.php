@@ -2,7 +2,7 @@
 
 namespace Eternium\Command;
 
-use Eternium\Event\Event;
+use Eternium\Event\EventInterface;
 use Eternium\Event\Leaderboard;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
@@ -18,7 +18,7 @@ class FetchCommand extends Command
     protected static $defaultName = 'fetch';
 
     /**
-     * @var array<int, Event>
+     * @var array<int, EventInterface>
      */
     private array $events;
 
@@ -28,7 +28,7 @@ class FetchCommand extends Command
 
     private bool $hideProgress = false;
 
-    public function __construct(Event ...$events)
+    public function __construct(EventInterface ...$events)
     {
         $this->events = $events;
 

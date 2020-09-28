@@ -16,44 +16,45 @@ final class Leaderboard implements EventInterface
 
     public string $id;
 
-    private function __construct(string $name, string $id)
+    private function __construct(string $slug, string $name, string $id)
     {
         assert(24 === strlen($id) && ctype_xdigit($id));
 
+        $this->slug = $slug;
         $this->name = $name;
-        $this->type = 'leaderboard';
+        $this->type = 'Leaderboard';
         $this->stats = new Stats();
         $this->id = $id;
     }
 
-    public static function mage(string $id): self
+    public static function createMages(string $id): self
     {
-        return new self('mage', $id);
+        return new self('mage', 'Mages', $id);
     }
 
-    public static function warrior(string $id): self
+    public static function createWarriors(string $id): self
     {
-        return new self('warrior', $id);
+        return new self('warrior', 'Warriors', $id);
     }
 
-    public static function bountyHunter(string $id): self
+    public static function createBountyHunters(string $id): self
     {
-        return new self('bounty-hunter', $id);
+        return new self('bounty-hunter', 'Bounty Hunters', $id);
     }
 
     public function getName(bool $long = false): string
     {
-        return ucwords(strtr("{$this->name}s", '-', ' '));
+        return $this->name;
     }
 
     public function getType(bool $long = false): string
     {
-        return ucfirst($this->type);
+        return 'Leaderboard';
     }
 
     public function getTitle(bool $long = false): string
     {
-        return "{$this->getName($long)} {$this->getType($long)}";
+        return "{$this->name} {$this->type}";
     }
 
     public function walk(\Generator $handler): void
