@@ -8,6 +8,7 @@ namespace Eternium\Event;
 final class Season extends BaseEvent
 {
     use LeaderboardAwareTrait;
+    use DateAwareTrait;
 
     public int $index;
 

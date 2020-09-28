@@ -11,9 +11,6 @@ abstract class BaseEvent implements EventInterface, \IteratorAggregate
 {
     use EventTrait;
 
-    public \DateTimeInterface $start;
-    public \DateTimeInterface $end;
-
     /**
      * @var array<string, TEvent>
      */
@@ -45,20 +42,6 @@ abstract class BaseEvent implements EventInterface, \IteratorAggregate
             $this->stats->aggregate($event->stats);
         }
         $handler->send($this);
-    }
-
-    final public function startOn(string $date): self
-    {
-        $this->start = new \DateTimeImmutable($date, new \DateTimeZone('UTC'));
-
-        return $this;
-    }
-
-    final public function endOn(string $date): self
-    {
-        $this->end = new \DateTimeImmutable($date, new \DateTimeZone('UTC'));
-
-        return $this;
     }
 
     final protected function withEvent(EventInterface $event): self
