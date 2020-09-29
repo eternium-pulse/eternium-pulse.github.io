@@ -14,7 +14,7 @@ final class Anb extends BaseEvent
         assert(0 < $index);
 
         $this->index = $index;
-        $this->type = 'anb';
+        $this->type = 'ANB';
 
         parent::__construct("{$this->type}-{$this->index}", ...$leagues);
     }
@@ -35,7 +35,7 @@ final class Anb extends BaseEvent
             return 'A New Beginning';
         }
 
-        return 'ANB';
+        return $this->type;
     }
 
     public function getTitle(bool $long = false): string
