@@ -101,7 +101,9 @@ return [
         League::createGold()
             ->withMages('5f25c1ea8c7cf733bc232552')
             ->withWarriors('5f25c1ec8c7cf733bc232553')
-            ->withBountyHunters('5f25c1ed8c7cf733bc232554'),
+            ->withBountyHunters('5f25c1ed8c7cf733bc232554')
+            ->startOn('2020-08-01T19:00')
+            ->endOn('2020-08-09T19:00'),
     ),
 
     Anb::create(
