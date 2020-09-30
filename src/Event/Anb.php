@@ -16,7 +16,7 @@ final class Anb extends BaseEvent
         $this->index = $index;
         $this->type = 'ANB';
 
-        parent::__construct("{$this->type}-{$this->index}", ...$leagues);
+        parent::__construct("anb-{$this->index}", ...$leagues);
     }
 
     public static function create(int $index, League ...$leagues): self
