@@ -80,7 +80,7 @@ class GenerateCommand extends Command
             Utils::dump(ETERNIUM_HTML_PATH.$file, $this->twig->render($template, $context));
 
             $output->writeln(
-                $this->getHelper('formatter')->formatSection('HTML', "{$file} generated using {$template}", 'comment'),
+                $this->getHelper('formatter')->formatSection('HTML', "<href={$this->baseUri}/{$file}>{$file}</> generated using {$template}", 'comment'),
                 OutputInterface::VERBOSITY_VERBOSE,
             );
         };
@@ -105,10 +105,9 @@ class GenerateCommand extends Command
         $sitemap = [];
         $formatter = $this->getHelper('formatter');
         $progressBar = new ProgressBar($this->hideProgress ? new NullOutput() : $output);
-        $progressBar->setFormat($formatter->formatSection('LOAD', '%current% [%bar%] %elapsed%'));
+        $progressBar->setFormat($formatter->formatSection('LOAD', '%message% %current% %elapsed%'));
 
         while (null !== ($event = yield)) {
-            $name = $event->getPath('.');
             $path = $event->getPath('/');
             $sitemap[] = $path;
             $template = strtolower($event->type);
@@ -119,18 +118,17 @@ class GenerateCommand extends Command
                 continue;
             }
 
-            $output->writeln($formatter->formatSection('LOAD', "loading {$name} entries..."));
-
-            $reader = $event->read(ETERNIUM_DATA_PATH."{$name}.csv");
+            $reader = $event->read(ETERNIUM_DATA_PATH."{$path}.csv");
 
             try {
+                $progressBar->setMessage("loading {$path}");
                 $progressBar->display();
                 $entries = iterator_to_array($progressBar->iterate($reader), false);
             } finally {
                 $progressBar->clear();
             }
 
-            $output->writeln($formatter->formatSection('LOAD', "{$reader->getReturn()} entries loaded"));
+            $output->writeln($formatter->formatSection('LOAD', "{$path} loaded ({$reader->getReturn()} entries)"));
 
             $page_size = $this->pageSize;
             foreach (Utils::paginate(count($entries), $page_size) as $page) {
