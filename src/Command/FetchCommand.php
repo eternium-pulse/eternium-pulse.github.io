@@ -22,7 +22,7 @@ class FetchCommand extends Command
      */
     private array $events;
 
-    private string $prefix = '';
+    private string $pattern = '*';
 
     private bool $update = false;
 
@@ -38,14 +38,14 @@ class FetchCommand extends Command
     protected function configure(): void
     {
         $this->setDescription('Fetches leaderboards from game server');
-        $this->addArgument('prefix', InputArgument::OPTIONAL, 'The leaderboards prefix', $this->prefix);
+        $this->addArgument('pattern', InputArgument::OPTIONAL, 'The pattern (glob) of leaderboard paths', $this->pattern);
         $this->addOption('update', 'u', InputOption::VALUE_NONE, 'Update existing data');
         $this->addOption('no-progress', '', InputOption::VALUE_NONE, 'Do not output download progress');
     }
 
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
-        $this->prefix = $input->getArgument('prefix');
+        $this->pattern = strtr($input->getArgument('pattern'), '/\\', DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR);
         $this->update = $input->getOption('update');
         $this->hideProgress = $input->getOption('no-progress');
     }
@@ -65,38 +65,38 @@ class FetchCommand extends Command
     {
         $formatter = $this->getHelper('formatter');
         $progressBar = new ProgressBar($this->hideProgress ? new NullOutput() : $output);
-        $progressBar->setFormat($formatter->formatSection('DUMP', '%current% [%bar%] %elapsed%'));
+        $progressBar->setFormat($formatter->formatSection('DUMP', '%message% %current% %elapsed%'));
 
         while (null !== ($event = yield)) {
             if (!($event instanceof Leaderboard)) {
                 continue;
             }
 
-            $name = $event->getPath('.');
-            if (!str_starts_with($name, $this->prefix)) {
+            $path = $event->getPath(DIRECTORY_SEPARATOR);
+            $file = ETERNIUM_DATA_PATH."{$path}.csv";
+            $href = 'file://'.('\\' === DIRECTORY_SEPARATOR ? '/' : '').strtr($file, DIRECTORY_SEPARATOR, '/');
+            if (!fnmatch($this->pattern, $path, FNM_NOESCAPE | FNM_PATHNAME)) {
                 $output->writeln(
-                    $formatter->formatSection('SKIP', "{$name} not matched prefix", 'comment'),
+                    $formatter->formatSection('SKIP', "{$path} not matched against pattern", 'comment'),
                     Output::VERBOSITY_VERBOSE
                 );
 
                 continue;
             }
 
-            $file = ETERNIUM_DATA_PATH."{$name}.csv";
             if (!$this->update && is_file($file)) {
                 $output->writeln(
-                    $formatter->formatSection('SKIP', "{$name} entries already dumped", 'comment'),
+                    $formatter->formatSection('SKIP', "<href={$href}>{$path}.csv</> already exists", 'comment'),
                     Output::VERBOSITY_VERBOSE
                 );
 
                 continue;
             }
-
-            $output->writeln($formatter->formatSection('DUMP', "fetching {$name} entries..."));
 
             $writer = $event->write($file);
 
             try {
+                $progressBar->setMessage("fetching {$path}");
                 $progressBar->display();
                 foreach ($progressBar->iterate($event->fetch()) as $entry) {
                     $writer->send($entry);
@@ -106,7 +106,7 @@ class FetchCommand extends Command
             }
             $writer->send(null);
 
-            $output->writeln($formatter->formatSection('DUMP', "{$writer->getReturn()} entries dumped"));
+            $output->writeln($formatter->formatSection('DUMP', "<href={$href}>{$path}.csv</> dumped ({$writer->getReturn()} entries)"));
         }
     }
 }
