@@ -38,14 +38,14 @@ class FetchCommand extends Command
     protected function configure(): void
     {
         $this->setDescription('Fetches leaderboards from game server');
-        $this->addArgument('pattern', InputArgument::OPTIONAL, 'The pattern (glob) of leaderboard paths', $this->pattern);
+        $this->addArgument('pattern', InputArgument::OPTIONAL, 'The pattern of leaderboard paths', $this->pattern);
         $this->addOption('update', 'u', InputOption::VALUE_NONE, 'Update existing data');
         $this->addOption('no-progress', '', InputOption::VALUE_NONE, 'Do not output download progress');
     }
 
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
-        $this->pattern = strtr($input->getArgument('pattern'), '/\\', DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR);
+        $this->pattern = strtr($input->getArgument('pattern'), '\\', '/');
         $this->update = $input->getOption('update');
         $this->hideProgress = $input->getOption('no-progress');
     }
@@ -72,13 +72,14 @@ class FetchCommand extends Command
                 continue;
             }
 
-            $path = $event->getPath(DIRECTORY_SEPARATOR);
-            $file = ETERNIUM_DATA_PATH."{$path}.csv";
-            $href = 'file://'.('\\' === DIRECTORY_SEPARATOR ? '/' : '').strtr($file, DIRECTORY_SEPARATOR, '/');
-            if (!fnmatch($this->pattern, $path, FNM_NOESCAPE | FNM_PATHNAME)) {
+            $path = $event->getPath('/');
+            $file = ETERNIUM_DATA_PATH.strtr($path, '/', DIRECTORY_SEPARATOR).'.csv';
+            $href = 'file:///'.ltrim(strtr($file, DIRECTORY_SEPARATOR, '/'), '/');
+
+            if (!fnmatch($this->pattern, $path, FNM_NOESCAPE)) {
                 $output->writeln(
                     $formatter->formatSection('SKIP', "{$path} not matched against pattern", 'comment'),
-                    Output::VERBOSITY_VERBOSE
+                    Output::VERBOSITY_VERY_VERBOSE
                 );
 
                 continue;
