@@ -109,11 +109,15 @@ return [
         League::createBronze()
             ->withMages('5f35a1894d28155b896d7c6a')
             ->withWarriors('5f35a18a4d28155b896d7c73')
-            ->withBountyHunters('5f35a18b8c7cf73d2d553e71'),
+            ->withBountyHunters('5f35a18b8c7cf73d2d553e71')
+            ->startOn('2020-08-15T19:00')
+            ->endOn('2020-08-23T19:00'),
         League::createSilver()
             ->withMages('5f52609f4d28152c2bacbd43')
             ->withWarriors('5f5260a14d28152c2bacbd48')
-            ->withBountyHunters('5f5260a24d28152c2bacbd4b'),
+            ->withBountyHunters('5f5260a24d28152c2bacbd4b')
+            ->startOn('2020-09-05T19:00')
+            ->endOn('2020-09-13T19:00'),
         League::createGold()
             ->withMages('5f64c6934d28153ae45a252f')
             ->withWarriors('5f64c6944d28153ae45a253c')
