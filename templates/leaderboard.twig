@@ -16,11 +16,11 @@ Top {{ event.name|lower|e }} of {{ event.parent.getTitle(true)|e }}
 
 <ul class="nav nav-tabs flex-nowrap">
   {%~ for item in event.parent %}
-  <li class="nav-item text-nowrap">
+  <li class="nav-item">
     {%~ if item == event %}
-    <a class="nav-link active" aria-current="page" href="{{ base_url|e }}/{{ item.getPath('/')|e }}/">{{ item.name|e }}</a>
+    <a class="nav-link text-truncate active" aria-current="page" href="{{ base_url|e }}/{{ item.getPath('/')|e }}/">{{ item.name|e }}</a>
     {%~ else %}
-    <a class="nav-link" href="{{ base_url|e }}/{{ item.getPath('/')|e }}/">{{ item.name|e }}</a>
+    <a class="nav-link text-truncate" href="{{ base_url|e }}/{{ item.getPath('/')|e }}/">{{ item.name|e }}</a>
     {%~ endif %}
   </li>
   {%~ endfor %}
