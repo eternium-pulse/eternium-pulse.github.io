@@ -5,14 +5,16 @@
 <head>
   <meta charset="{{ _charset|e }}"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="theme-color" content="#343a40"/>
-  <title>{% block title %}{{ site_name|e }}{% endblock %}</title>
+  <title>{% block title %}{{ site.name|e }}{% endblock %}</title>
   <meta name="description" content="{% block description %}{% endblock %}"/>
   {%~ block opengraph %}
   <meta property="og:description" content="{{ block('description') }}"/>
   <meta property="og:type" content="website"/>
-  <meta property="og:site_name" content="{{ site_name|e }}"/>
+  <meta property="og:site_name" content="{{ site.name|e }}"/>
   {%~ endblock %}
+  <link rel="manifest" href="{{ base_url }}/manifest.webmanifest"/>
+  <meta name="application-name" content="{{ site.name|e }}"/>
+  <meta name="theme-color" content="{{ site.theme|e }}"/>
   <link rel="icon" href="{{ base_url }}/favicon.ico" type="image/x-icon"/>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous"/>
 </head>
@@ -23,7 +25,7 @@
   <header class="bg-dark bg-gradient sticky-top">
     <nav class="navbar navbar-expand navbar-dark">
       <div class="container-lg">
-        <a class="navbar-brand" href="{{ base_url|e }}/">{{ site_name|e }}</a>
+        <a class="navbar-brand" href="{{ base_url|e }}/">{{ site.name|e }}</a>
       </div>
     </nav>
   </header>
@@ -31,7 +33,7 @@
     {%~ block breadcrumb %}{% endblock %}
     {%~ block content %}{% endblock %}
   </main>
-  <footer class="container-lg text-center text-light bg-dark bg-gradient py-4">© 2020 {{ site_name|e }}</footer>
+  <footer class="container-lg text-center text-light bg-dark bg-gradient py-4">© 2020 {{ site.name|e }}</footer>
 </body>
 
 </html>

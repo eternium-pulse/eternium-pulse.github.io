@@ -67,7 +67,11 @@ class GenerateCommand extends Command
         $this->twig->addGlobal('base_url', $this->baseUri);
         $this->twig->addGlobal('eternium_url', 'https://www.eterniumgame.com/');
         $this->twig->addGlobal('events', $this->events);
-        $this->twig->addGlobal('site_name', $this->getApplication()->getName());
+        $this->twig->addGlobal('site', [
+            'name' => $this->getApplication()->getName(),
+            'theme' => '#343a40',
+            'background' => '#ffffff',
+        ]);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -94,6 +98,7 @@ class GenerateCommand extends Command
         $render('index.html', 'index');
         $render('403.html', 'error', ['code' => 403, 'message' => 'Forbidden']);
         $render('404.html', 'error', ['code' => 404, 'message' => 'Not found']);
+        $render('manifest.webmanifest', 'manifest');
         $render('sitemap.txt', 'sitemap', ['urls' => $generator->getReturn()]);
         $render('robots.txt', 'robots');
 

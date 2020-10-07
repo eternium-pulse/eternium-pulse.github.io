@@ -1,7 +1,7 @@
 {% extends 'layout.twig' %}
 
 {% block title -%}
-Eternium - Leaderboards on {{ site_name }}
+Eternium - Leaderboards on {{ site.name }}
 {%- endblock %}
 
 {% block description -%}
@@ -10,7 +10,7 @@ Leaderboards of Eternium game events
 
 {% block opengraph %}
 <link rel="canonical" href="{{ base_url }}/"/>
-<meta property="og:title" content="{{ site_name }}"/>
+<meta property="og:title" content="{{ site.name }}"/>
 <meta property="og:url" content="{{ base_url }}/"/>
 {{ parent() }}
 {% endblock %}
