@@ -5,7 +5,12 @@
       <h5 class="card-title">{{ event.getName(true) }} <span class="badge bg-secondary">
         {{- event.stats.length|e -}}
       </span></h5>
-      <a class="btn btn-primary stretched-link" href="{{ base_url|e }}/{{ event.getPath('/')|e }}/">More</a>
+      <a class="btn btn-primary stretched-link" href="{{ base_url|e }}/{{ event.getPath('/')|e }}/">{{ {
+        'Season': 'Leaderboards',
+        'ANB': 'Leagues',
+        'League': 'Leaderboards',
+        'Leaderboard': 'Rankings',
+      }[event.type] }}</a>
     </div>
   </div>
 </div>
