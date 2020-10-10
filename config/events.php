@@ -127,4 +127,14 @@ return [
             ->startOn('2020-09-19T19:00')
             ->endOn('2020-09-27T19:00'),
     ),
+
+    Anb::create(
+        7,
+        League::createBronze()
+            ->withMages('5f8061074d281532ef64914b')
+            ->withWarriors('5f8061088c7cf71b88bfbc57')
+            ->withBountyHunters('5f8061094d281532ef649161')
+            ->startOn('2020-10-09T19:00')
+            ->endOn('2020-10-18T19:00'),
+    ),
 ];
