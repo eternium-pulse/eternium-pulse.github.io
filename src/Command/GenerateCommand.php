@@ -99,7 +99,7 @@ class GenerateCommand extends Command
         $render('403.html', 'error', ['code' => 403, 'message' => 'Forbidden']);
         $render('404.html', 'error', ['code' => 404, 'message' => 'Not found']);
         $render('manifest.webmanifest', 'manifest');
-        $render('sitemap.txt', 'sitemap', ['urls' => $generator->getReturn()]);
+        $render('sitemap.xml', 'sitemap', ['urls' => $generator->getReturn()]);
         $render('robots.txt', 'robots');
 
         return self::SUCCESS;

@@ -1,3 +1,16 @@
+{% apply spaceless %}
+<?xml version="1.0" encoding="{{ _charset|e }}"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {% for url in urls %}
-{{ base_url }}/{{ url }}/
+<url>
+  <loc>{{ base_url }}/{{ url|e }}/</loc>
+  {%~ if url matches '/mage|warrior|bounty-hunter/' %}
+  <changefreq>hourly</changefreq>
+  <priority>1.0</priority>
+  {%~ else %}
+  <changefreq>weekly</changefreq>
+  {%~ endif %}
+</url>
 {% endfor %}
+</urlset>
+{% endapply %}
