@@ -136,5 +136,11 @@ return [
             ->withBountyHunters('5f8061094d281532ef649161')
             ->startOn('2020-10-09T19:00')
             ->endOn('2020-10-18T19:00'),
+        League::createSilver()
+            ->withMages('5f92de1a8c7cf71b885774ae')
+            ->withWarriors('5f92de1b8c7cf71b885774bb')
+            ->withBountyHunters('5f92de1c4d28152c65135d70')
+            ->startOn('2020-10-24T19:00')
+            ->endOn('2020-11-01T19:00'),
     ),
 ];
