@@ -141,6 +141,6 @@ return [
             ->withWarriors('5f92de1b8c7cf71b885774bb')
             ->withBountyHunters('5f92de1c4d28152c65135d70')
             ->startOn('2020-10-24T19:00')
-            ->endOn('2020-11-01T19:00'),
+            ->endOn('2020-11-02T19:00'),
     ),
 ];
