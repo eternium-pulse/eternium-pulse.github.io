@@ -26,7 +26,6 @@ class GenerateCommand extends Command
      */
     private array $events;
 
-    private string $baseUri = 'http://localhost:8080';
     private string $origin = '';
     private string $basePath = '';
 
@@ -45,36 +44,17 @@ class GenerateCommand extends Command
     protected function configure(): void
     {
         $this->setDescription('Generates HTML content');
-        $this->addOption('base-url', '', InputOption::VALUE_REQUIRED, 'Expand relative links using this URL', $this->baseUri);
+        $this->addOption('base-url', '', InputOption::VALUE_REQUIRED, 'Expand relative links using this URL', 'http://localhost:8080');
         $this->addOption('page-size', '', InputOption::VALUE_REQUIRED, 'Set LB page size', $this->pageSize);
         $this->addOption('no-progress', '', InputOption::VALUE_NONE, 'Do not output load progress');
     }
 
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
+        [$this->origin, $this->basePath] = $this->parseUrl($input->getOption('base-url'));
+        $this->basePath = rtrim($this->basePath, '/');
         $this->baseUri = $input->getOption('base-url');
-        if (!($parts = @parse_url($this->baseUri)) || isset($parts['query']) || isset($parts['fragment'])) {
-            throw new InvalidOptionException('The option "--base-url" requires valid URL without query or fragment parts.');
-        }
-        $this->baseUri = rtrim($this->baseUri, '/');
-        $this->basePath = rtrim($parts['path'] ?? '', '/');
-        if (isset($parts['host'])) {
-            $this->origin = $parts['host'];
-            if (isset($parts['port'])) {
-                $this->origin .= ':'.$parts['port'];
-            }
-            if (isset($parts['user'])) {
-                $this->origin = '@'.$this->origin;
-                if (isset($parts['pass'])) {
-                    $this->origin = ':'.$parts['pass'].$this->origin;
-                }
-                $this->origin = $parts['user'].$this->origin;
-            }
-            $this->origin = '//'.$this->origin;
-        }
-        if (isset($parts['scheme'])) {
-            $this->origin = $parts['scheme'].':'.$this->origin;
-        }
+        $output->writeln("Using <info>{$this->absUrl()}</info> as base URL", OutputInterface::VERBOSITY_VERY_VERBOSE);
 
         $this->pageSize = (int) $input->getOption('page-size');
         if (100 > $this->pageSize) {
@@ -83,7 +63,6 @@ class GenerateCommand extends Command
 
         $this->hideProgress = $input->getOption('no-progress');
 
-        $this->twig->addGlobal('base_url', $this->baseUri);
         $this->twig->addGlobal('eternium_url', 'https://www.eterniumgame.com/');
         $this->twig->addGlobal('events', $this->events);
         $this->twig->addGlobal('site', [
@@ -100,6 +79,11 @@ class GenerateCommand extends Command
         $this->twig->addFunction(new TwigFunction(
             'abs_path',
             fn (string $path = ''): string => $this->absPath($path)
+        ));
+
+        $this->twig->addFunction(new TwigFunction(
+            'abs_url',
+            fn (string $path = ''): string => $this->absUrl($path)
         ));
     }
 
@@ -202,5 +186,30 @@ class GenerateCommand extends Command
     private function absUrl(string $path = ''): string
     {
         return $this->origin.$this->absPath($path);
+    }
+
+    private function parseUrl(string $url): array
+    {
+        $parts = parse_url($url) ?: [];
+        $origin = '';
+        if (isset($parts['host'])) {
+            $origin = $parts['host'];
+            if (isset($parts['port'])) {
+                $origin .= ':'.$parts['port'];
+            }
+            if (isset($parts['user'])) {
+                $origin = '@'.$origin;
+                if (isset($parts['pass'])) {
+                    $origin = ':'.$parts['pass'].$origin;
+                }
+                $origin = $parts['user'].$origin;
+            }
+            $origin = '//'.$origin;
+        }
+        if (isset($parts['scheme'])) {
+            $origin = $parts['scheme'].':'.$origin;
+        }
+
+        return [$origin, $parts['path'] ?? ''];
     }
 }

@@ -5,17 +5,17 @@ Eternium - {{ event.getTitle(true) }} Leaderboards
 {%- endblock %}
 
 {% block opengraph %}
-<link rel="canonical" href="{{ base_url|e }}/{{ event_path(event, +page.index)|e }}"/>
+<link rel="canonical" href="{{ abs_url(event_path(event, +page.index))|e }}"/>
 {% if page %}
 {% if not page.first %}
-<link rel="prev" href="{{ base_url|e }}/{{ event_path(event, page.index - 1)|e }}"/>
+<link rel="prev" href="{{ abs_path(event_path(event, page.index - 1))|e }}"/>
 {% endif %}
 {% if not page.last %}
-<link rel="next" href="{{ base_url|e }}/{{ event_path(event, page.index + 1)|e }}"/>
+<link rel="next" href="{{ abs_path(event_path(event, page.index + 1))|e }}"/>
 {% endif %}
 {% endif %}
 <meta property="og:title" content="{% if page and not page.first %}Page {{ page.index }} of {% endif %}{{ event.getTitle(true)|e }}"/>
-<meta property="og:url" content="{{ base_url|e }}/{{ event_path(event, +page.index)|e }}"/>
+<meta property="og:url" content="{{ abs_url(event_path(event, +page.index))|e }}"/>
 {{ parent() }}
 {% endblock %}
 
