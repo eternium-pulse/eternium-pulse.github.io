@@ -41,5 +41,10 @@
     },
     "scripts-descriptions": {
         "start": "Starts dev webserver."
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.x-dev"
+        }
     }
 }
