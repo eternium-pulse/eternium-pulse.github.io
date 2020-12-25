@@ -3,11 +3,10 @@ image: alpine:edge
 cache:
   paths:
     - vendor
-    - .php_cs.cache
 
 before_script:
-  - apk upgrade -U --no-progress
-  - apk add --no-progress php7 php7-json php7-phar php7-iconv php7-openssl php7-curl php7-ctype php7-mbstring
+  - apk add --no-progress php8-phar php8-iconv php8-openssl php8-curl php8-ctype php8-mbstring
+  - ln -s /usr/bin/php8 /usr/bin/php
   - wget -q -O - https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --quiet
   - composer install --no-dev --no-interaction --no-progress
 
