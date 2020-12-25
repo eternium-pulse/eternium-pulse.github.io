@@ -16,15 +16,14 @@
         "issues": "https://gitlab.com/eternium-pulse/eternium-pulse.gitlab.io/-/issues"
     },
     "require": {
-        "symfony/console": "^5.1",
-        "symfony/http-client": "^5.1",
-        "symfony/http-client-contracts": "^2.1",
-        "twig/twig": "^3.0",
-        "league/uri": "^6.3",
-        "league/uri-components": "^2.2"
+        "php": "^7.2 || ^8.0",
+        "symfony/console": "^5.2",
+        "symfony/http-client": "^5.2",
+        "symfony/http-client-contracts": "^2.3",
+        "twig/twig": "^3.1"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.16"
+        "friendsofphp/php-cs-fixer": "^2.17"
     },
     "autoload": {
         "psr-4": {
