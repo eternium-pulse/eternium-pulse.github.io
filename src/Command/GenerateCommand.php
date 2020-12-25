@@ -13,6 +13,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Twig\Environment as Twig;
+use Twig\TwigFunction;
 
 class GenerateCommand extends Command
 {
@@ -72,6 +73,11 @@ class GenerateCommand extends Command
             'theme' => '#343a40',
             'background' => '#ffffff',
         ]);
+
+        $this->twig->addFunction(new TwigFunction(
+            'event_path',
+            fn (EventInterface $event, int $page = 1): string => $this->eventPath($event, $page)
+        ));
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -112,9 +118,9 @@ class GenerateCommand extends Command
         $progressBar = new ProgressBar($this->hideProgress ? new NullOutput() : $output);
         $progressBar->setFormat($formatter->formatSection('LOAD', '%message% %current% %elapsed%'));
 
-        while (null !== ($event = yield)) {
+        while (null !== ($event = yield )) {
             $path = $event->getPath('/');
-            $sitemap[] = $path;
+            $sitemap[] = $this->eventPath($event);
             $template = strtolower($event->type);
 
             if (!($event instanceof Leaderboard)) {
@@ -147,5 +153,27 @@ class GenerateCommand extends Command
         }
 
         return $sitemap;
+    }
+
+    private function eventPath(EventInterface $event, int $page = 0): string
+    {
+        assert(0 <= $page);
+
+        $path = $event->getPath('/').'/';
+        if (1 < $page) {
+            $path .= "{$page}.html";
+        }
+
+        return $path;
+    }
+
+    private function absPath(string $path = ''): string
+    {
+        return $path;
+    }
+
+    private function absUrl(string $path = ''): string
+    {
+        return $this->absPath($path);
     }
 }

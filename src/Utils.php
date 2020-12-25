@@ -3,6 +3,7 @@
 namespace Eternium;
 
 use Eternium\Utils\Page;
+use Eternium\Utils\Range;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -59,7 +60,7 @@ abstract class Utils
         }
 
         $rows = 0;
-        while (null !== ($data = yield)) {
+        while (null !== ($data = yield )) {
             if (is_array($data)) {
                 fputcsv($memory, $data);
                 ++$rows;
@@ -107,15 +108,18 @@ abstract class Utils
     /**
      * @return \Generator<int, Page, void, int>
      */
-    public static function paginate(int $n, int $pageSize): \Generator
+    public static function paginate(int $items, int $itemsPerPage): \Generator
     {
-        $page = new Page(1, Page::getPagesCount($n, $pageSize));
-        while (!$page->last) {
+        $length = Page::getLength($items, $itemsPerPage);
+        $index0 = 0;
+        $offset0 = 0;
+        while ($index0 < $length) {
+            $page = new Page(++$index0, $length);
+            $page->range = new Range($offset0 + 1, ($items - $offset0) % ($itemsPerPage + 1));
             yield $page;
-            $page = new Page($page->index + 1, $page->length);
+            $offset0 += $itemsPerPage;
         }
-        yield $page;
 
-        return $page->length;
+        return $length;
     }
 }

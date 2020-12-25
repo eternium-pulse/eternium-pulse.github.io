@@ -83,7 +83,7 @@ final class Leaderboard implements EventInterface
     public function write(string $file): \Generator
     {
         $writer = Utils::createCsvWriter($file);
-        while (null !== ($entry = yield)) {
+        while (null !== ($entry = yield )) {
             if ($entry instanceof Entry) {
                 $writer->send($entry->toArray());
             }

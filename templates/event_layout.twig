@@ -1,22 +1,21 @@
 {% extends 'layout.twig' %}
-{% set event_url = base_url ~ '/' ~ event.getPath('/') %}
 
 {% block title -%}
 Eternium - {{ event.getTitle(true) }} Leaderboards
 {%- endblock %}
 
 {% block opengraph %}
-<link rel="canonical" href="{{ event_url|e }}/{% if page and not page.first %}{{ page.index }}.html{% endif %}"/>
+<link rel="canonical" href="{{ base_url|e }}/{{ event_path(event, +page.index)|e }}"/>
 {% if page %}
 {% if not page.first %}
-<link rel="prev" href="{{ event_url|e }}/{% if page.index > 2 %}{{ page.index - 1 }}.html{% endif %}"/>
+<link rel="prev" href="{{ base_url|e }}/{{ event_path(event, page.index - 1)|e }}"/>
 {% endif %}
 {% if not page.last %}
-<link rel="next" href="{{ event_url|e }}/{{ page.index + 1 }}.html"/>
+<link rel="next" href="{{ base_url|e }}/{{ event_path(event, page.index + 1)|e }}"/>
 {% endif %}
 {% endif %}
 <meta property="og:title" content="{% if page and not page.first %}Page {{ page.index }} of {% endif %}{{ event.getTitle(true)|e }}"/>
-<meta property="og:url" content="{{ event_url|e }}/{% if page and not page.first %}{{ page.index }}.html{% endif %}"/>
+<meta property="og:url" content="{{ base_url|e }}/{{ event_path(event, +page.index)|e }}"/>
 {{ parent() }}
 {% endblock %}
 
@@ -27,7 +26,7 @@ Eternium - {{ event.getTitle(true) }} Leaderboards
     <li class="breadcrumb-item text-nowrap"><a href="{{ base_url|e }}/">Home</a></li>
     {%~ for item in breadcrumbs %}
     <li class="breadcrumb-item text-nowrap" property="itemListElement" typeof="ListItem">
-      <a href="{{ base_url|e }}/{{ item.getPath('/')|e }}/" property="item" typeof="WebPage">
+      <a href="{{ base_url|e }}/{{ event_path(item)|e }}" property="item" typeof="WebPage">
         <span property="name">{{ item.name|e }}</span>
       </a>
       <meta property="position" content="{{ loop.index }}" />

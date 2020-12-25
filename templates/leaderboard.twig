@@ -18,9 +18,9 @@ Top {{ event.name|lower|e }} of {{ event.parent.getTitle(true)|e }}
   {%~ for item in event.parent %}
   <li class="nav-item">
     {%~ if item == event %}
-    <a class="nav-link text-truncate active" aria-current="page" href="{{ base_url|e }}/{{ item.getPath('/')|e }}/">{{ item.name|e }}</a>
+    <a class="nav-link text-truncate active" aria-current="page" href="{{ base_url|e }}/{{ event_path(item)|e }}">{{ item.name|e }}</a>
     {%~ else %}
-    <a class="nav-link text-truncate" href="{{ base_url|e }}/{{ item.getPath('/')|e }}/">{{ item.name|e }}</a>
+    <a class="nav-link text-truncate" href="{{ base_url|e }}/{{ event_path(item)|e }}">{{ item.name|e }}</a>
     {%~ endif %}
   </li>
   {%~ endfor %}
@@ -63,17 +63,17 @@ Top {{ event.name|lower|e }} of {{ event.parent.getTitle(true)|e }}
     </li>
     {%~ else %}
     <li class="page-item">
-      <a class="page-link" href="{{ base_url|e }}/{{ event.getPath('/')|e }}/{{ page.index - 1 }}.html" aria-label="Previous page">Prev</a>
+      <a class="page-link" href="{{ base_url|e }}/{{ event_path(event, page.index - 1)|e }}" aria-label="Previous page">Prev</a>
     </li>
     {%~ endif %}
     {%~ for p in range(1, min(page.length, 10)) %}
     {%~ if p == page.index %}
     <li class="page-item active {%~ if p > 3 %} d-none d-sm-block{% endif %}" aria-current="page">
-      <a class="page-link" href="{{ base_url|e }}/{{ event.getPath('/')|e }}/{{ p }}.html" aria-label="Page {{ p }}">{{ p }} <span class="visually-hidden">(current)</span></a>
+      <a class="page-link" href="{{ base_url|e }}/{{ event_path(event, p)|e }}" aria-label="Page {{ p }}">{{ p }} <span class="visually-hidden">(current)</span></a>
     </li>
     {%~ else %}
     <li class="page-item {%~ if p > 3 %} d-none d-sm-block{% endif %}">
-      <a class="page-link" href="{{ base_url|e }}/{{ event.getPath('/')|e }}/{{ p }}.html" aria-label="Page {{ p }}">{{ p }}</a>
+      <a class="page-link" href="{{ base_url|e }}/{{ event_path(event, p)|e }}" aria-label="Page {{ p }}">{{ p }}</a>
     </li>
     {%~ endif %}
     {%~ endfor %}
@@ -83,7 +83,7 @@ Top {{ event.name|lower|e }} of {{ event.parent.getTitle(true)|e }}
     </li>
     {%~ else %}
     <li class="page-item">
-      <a class="page-link" href="{{ base_url|e }}/{{ event.getPath('/')|e }}/{{ page.index + 1 }}.html" aria-label="Next page">Next</a>
+      <a class="page-link" href="{{ base_url|e }}/{{ event_path(event, page.index + 1)|e }}" aria-label="Next page">Next</a>
     </li>
     {%~ endif %}
   </ul>

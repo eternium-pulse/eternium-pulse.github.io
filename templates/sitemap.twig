@@ -3,7 +3,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {% for url in urls %}
 <url>
-  <loc>{{ base_url }}/{{ url|e }}/</loc>
+  <loc>{{ base_url }}/{{ url|e }}</loc>
   {%~ if url matches '/mage|warrior|bounty-hunter/' %}
   <changefreq>hourly</changefreq>
   <priority>1.0</priority>

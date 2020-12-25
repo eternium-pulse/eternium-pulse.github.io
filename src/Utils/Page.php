@@ -11,11 +11,12 @@ final class Page
     public bool $first;
     public bool $last;
     public int $length;
+    public Range $range;
 
     public function __construct(int $index, int $length)
     {
+        assert(0 < $index);
         assert(0 < $length);
-        assert(0 < $index && $index <= $length);
 
         $this->index = $index;
         $this->index0 = $index - 1;
@@ -26,10 +27,11 @@ final class Page
         $this->length = $length;
     }
 
-    public static function getPagesCount(int $entriesCount, int $entriesPerPage): int
+    public static function getLength(int $items, int $itemsPerPage): int
     {
-        assert(0 < $entriesPerPage);
+        assert(0 <= $items);
+        assert(0 < $itemsPerPage);
 
-        return ((int) ceil(max($entriesCount, 0) / $entriesPerPage)) ?: 1;
+        return (int) (($items - 1) / $itemsPerPage) + 1;
     }
 }

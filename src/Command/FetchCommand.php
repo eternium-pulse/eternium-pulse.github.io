@@ -67,7 +67,7 @@ class FetchCommand extends Command
         $progressBar = new ProgressBar($this->hideProgress ? new NullOutput() : $output);
         $progressBar->setFormat($formatter->formatSection('DUMP', '%message% %current% %elapsed%'));
 
-        while (null !== ($event = yield)) {
+        while (null !== ($event = yield )) {
             if (!($event instanceof Leaderboard)) {
                 continue;
             }
