@@ -32,7 +32,7 @@
         }
     },
     "bin": [
-        "bin"
+        "bin/lb.php"
     ],
     "scripts": {
         "start": [
