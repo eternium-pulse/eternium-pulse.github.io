@@ -18,8 +18,6 @@ abstract class BaseEvent implements EventInterface, \IteratorAggregate
 
     protected function __construct(string $slug, EventInterface ...$events)
     {
-        \assert(0 !== count($events));
-
         $this->slug = $slug;
         $this->stats = new Stats();
         foreach ($events as $event) {

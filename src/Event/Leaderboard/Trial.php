@@ -12,7 +12,7 @@ final class Trial
     {
         assert(0 < $level);
         assert(0 < $time);
-        assert(0 <= ${$deaths});
+        assert(0 <= $deaths);
 
         $this->level = $level;
         $this->time = $time;
