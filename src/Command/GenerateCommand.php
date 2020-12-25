@@ -27,10 +27,10 @@ class GenerateCommand extends Command
     private array $events;
 
     private string $baseUri = 'http://localhost:8080';
+    private string $origin = '';
+    private string $basePath = '';
 
     private int $pageSize = 100;
-
-    private bool $pingSitemap = false;
 
     private bool $hideProgress = false;
 
@@ -57,6 +57,24 @@ class GenerateCommand extends Command
             throw new InvalidOptionException('The option "--base-url" requires valid URL without query or fragment parts.');
         }
         $this->baseUri = rtrim($this->baseUri, '/');
+        $this->basePath = rtrim($parts['path'] ?? '', '/');
+        if (isset($parts['host'])) {
+            $this->origin = $parts['host'];
+            if (isset($parts['port'])) {
+                $this->origin .= ':'.$parts['port'];
+            }
+            if (isset($parts['user'])) {
+                $this->origin = '@'.$this->origin;
+                if (isset($parts['pass'])) {
+                    $this->origin = ':'.$parts['pass'].$this->origin;
+                }
+                $this->origin = $parts['user'].$this->origin;
+            }
+            $this->origin = '//'.$this->origin;
+        }
+        if (isset($parts['scheme'])) {
+            $this->origin = $parts['scheme'].':'.$this->origin;
+        }
 
         $this->pageSize = (int) $input->getOption('page-size');
         if (100 > $this->pageSize) {
@@ -77,6 +95,11 @@ class GenerateCommand extends Command
         $this->twig->addFunction(new TwigFunction(
             'event_path',
             fn (EventInterface $event, int $page = 1): string => $this->eventPath($event, $page)
+        ));
+
+        $this->twig->addFunction(new TwigFunction(
+            'abs_path',
+            fn (string $path = ''): string => $this->absPath($path)
         ));
     }
 
@@ -169,11 +192,15 @@ class GenerateCommand extends Command
 
     private function absPath(string $path = ''): string
     {
-        return $path;
+        if (str_starts_with($path, '/')) {
+            return $path;
+        }
+
+        return "{$this->basePath}/{$path}";
     }
 
     private function absUrl(string $path = ''): string
     {
-        return $this->absPath($path);
+        return $this->origin.$this->absPath($path);
     }
 }

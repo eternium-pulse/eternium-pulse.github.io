@@ -23,10 +23,10 @@ Eternium - {{ event.getTitle(true) }} Leaderboards
 {% set breadcrumbs = event.getAncestors() %}
 <nav aria-label="Breadcrumb">
   <ol class="breadcrumb flex-nowrap" vocab="https://schema.org/" typeof="BreadcrumbList">
-    <li class="breadcrumb-item text-nowrap"><a href="{{ base_url|e }}/">Home</a></li>
+    <li class="breadcrumb-item text-nowrap"><a href="{{ abs_path()|e }}">Home</a></li>
     {%~ for item in breadcrumbs %}
     <li class="breadcrumb-item text-nowrap" property="itemListElement" typeof="ListItem">
-      <a href="{{ base_url|e }}/{{ event_path(item)|e }}" property="item" typeof="WebPage">
+      <a href="{{ abs_path(event_path(item))|e }}" property="item" typeof="WebPage">
         <span property="name">{{ item.name|e }}</span>
       </a>
       <meta property="position" content="{{ loop.index }}" />
