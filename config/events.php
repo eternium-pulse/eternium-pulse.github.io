@@ -24,6 +24,11 @@ return [
         ->withBountyHunters('5f12cfa24d28152e930c68b3')
         ->endOn('2020-10-01T19:00'),
 
+    Season::create(5)
+        ->withMages('5fe99e7a4d2815223b77ba5c')
+        ->withWarriors('5fe99e7c8c7cf70b431a7f64')
+        ->withBountyHunters('5fe99e7d8c7cf70b431a7f68'),
+
     Anb::create(
         1,
         League::createBronze()
@@ -142,5 +147,9 @@ return [
             ->withBountyHunters('5f92de1c4d28152c65135d70')
             ->startOn('2020-10-24T19:00')
             ->endOn('2020-11-02T19:00'),
+        League::createGold()
+            ->withMages('5fe99f294d2815223b77bcdf')
+            ->withWarriors('5fe99f2a8c7cf70b431a80b1')
+            ->withBountyHunters('5fe99f2b8c7cf70b431a80b6'),
     ),
 ];
