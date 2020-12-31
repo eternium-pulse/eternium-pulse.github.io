@@ -17,14 +17,11 @@ final class Gear
     {
         $sum = $n = 0;
         foreach ($items as $item) {
-            if (!isset($item['equippedSlot'], $item['itemLevel'])) {
+            if (!isset($item['itemLevel'])) {
                 continue;
             }
-            extract($item);
-            if ('necklace' !== $equippedSlot && 'ring' !== $equippedSlot) {
-                $sum += $itemLevel;
-                ++$n;
-            }
+            $sum += $item['itemLevel'];
+            ++$n;
         }
         if (0 === $n) {
             return new self(0.0);

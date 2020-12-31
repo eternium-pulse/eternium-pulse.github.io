@@ -106,10 +106,8 @@ final class Leaderboard implements EventInterface
             'payload' => join(',', [
                 'name',
                 'champion_level',
-                'cheater',
                 'hero.selectedPlayerNameID',
                 'hero.equipped.itemLevel',
-                'hero.equipped.equippedSlot',
                 'trialStats.heroDeaths',
             ]),
         ];
