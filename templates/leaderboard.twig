@@ -5,12 +5,14 @@ Eternium - {{ event.parent.getTitle(true) }} - {{ event.getTitle() }}{% if not p
 {%- endblock %}
 
 {% block description -%}
-Top {{ event.name|lower|e }} of {{ event.parent.getTitle(true)|e }}
+{% if page.first %}
+Top {{ page.range.length }} {{ event.name|e }} of {{ event.parent.getTitle(true)|e }}
+{% else %}
+{{ event.name|e }} {{ page.range.offset }}-{{ page.range.offset0 + page.range.length }} of {{ event.parent.getTitle(true)|e }}
+{% endif %}
 {%- endblock %}
 
 {% block content %}
-{% set page_offset = page.index0 * page_size %}
-{% set page_size = entries[page_offset:page_size]|length %}
 <h1>{{ event.getTitle(true)|e }}</h1>
 <p class="lead">{{ block('description') }}.</p>
 
@@ -27,7 +29,7 @@ Top {{ event.name|lower|e }} of {{ event.parent.getTitle(true)|e }}
 </ul>
 
 <table class="table table-sm table-striped">
-  <caption>Rankings {{ page_offset + 1 }}-{{ page_offset + page_size }} of {{ entries|length }}</caption>
+  <caption>Rankings {{ page.range.offset }}-{{ page.range.offset0 + page.range.length }} out of {{ entries|length }}</caption>
   <thead>
     <tr>
       <th scope="col">Rank</th>
@@ -40,9 +42,9 @@ Top {{ event.name|lower|e }} of {{ event.parent.getTitle(true)|e }}
     </tr>
   </thead>
   <tbody>
-    {%~ for entry in entries|slice(page.index0 * page_size, page_size) %}
+    {%~ for rank, entry in page.range.slice(entries) %}
     <tr>
-      <th scope="row">{{ loop.index + page_offset }}</th>
+      <th scope="row">{{ rank }}</th>
       <td>{% if entry.hero.title %}<span class="badge bg-secondary d-none d-sm-inline-block">
         {{- entry.hero.title|e -}}
       </span> {% endif %}{{ entry.hero|e }}</td>

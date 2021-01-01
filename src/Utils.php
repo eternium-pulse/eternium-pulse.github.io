@@ -115,7 +115,7 @@ abstract class Utils
         $offset0 = 0;
         while ($index0 < $length) {
             $page = new Page(++$index0, $length);
-            $page->range = new Range($offset0 + 1, ($items - $offset0) % ($itemsPerPage + 1));
+            $page->range = new Range($offset0 + 1, min($items - $offset0, $itemsPerPage));
             yield $page;
             $offset0 += $itemsPerPage;
         }
