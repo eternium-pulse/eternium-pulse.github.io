@@ -22,14 +22,14 @@ return [
         ->withMages('5f12cfa04d28152e930c68b1')
         ->withWarriors('5f12cfa14d28152e930c68b2')
         ->withBountyHunters('5f12cfa24d28152e930c68b3')
-        ->endOn('2020-10-01T19:00'),
+        ->endsOn('2020-10-01T19:00'),
 
     Season::create(5)
         ->withMages('5fe99e7a4d2815223b77ba5c')
         ->withWarriors('5fe99e7c8c7cf70b431a7f64')
         ->withBountyHunters('5fe99e7d8c7cf70b431a7f68')
-        ->startOn('2020-12-28T19:00')
-        ->endOn('2021-03-18T19:00'),
+        ->startsOn('2020-12-28T19:00')
+        ->endsOn('2021-03-18T19:00'),
 
     Anb::create(
         1,
@@ -109,8 +109,8 @@ return [
             ->withMages('5f25c1ea8c7cf733bc232552')
             ->withWarriors('5f25c1ec8c7cf733bc232553')
             ->withBountyHunters('5f25c1ed8c7cf733bc232554')
-            ->startOn('2020-08-01T19:00')
-            ->endOn('2020-08-09T19:00'),
+            ->startsOn('2020-08-01T19:00')
+            ->endsOn('2020-08-09T19:00'),
     ),
 
     Anb::create(
@@ -119,20 +119,20 @@ return [
             ->withMages('5f35a1894d28155b896d7c6a')
             ->withWarriors('5f35a18a4d28155b896d7c73')
             ->withBountyHunters('5f35a18b8c7cf73d2d553e71')
-            ->startOn('2020-08-15T19:00')
-            ->endOn('2020-08-23T19:00'),
+            ->startsOn('2020-08-15T19:00')
+            ->endsOn('2020-08-23T19:00'),
         League::createSilver()
             ->withMages('5f52609f4d28152c2bacbd43')
             ->withWarriors('5f5260a14d28152c2bacbd48')
             ->withBountyHunters('5f5260a24d28152c2bacbd4b')
-            ->startOn('2020-09-05T19:00')
-            ->endOn('2020-09-13T19:00'),
+            ->startsOn('2020-09-05T19:00')
+            ->endsOn('2020-09-13T19:00'),
         League::createGold()
             ->withMages('5f64c6934d28153ae45a252f')
             ->withWarriors('5f64c6944d28153ae45a253c')
             ->withBountyHunters('5f64c6968c7cf76d90955324')
-            ->startOn('2020-09-19T19:00')
-            ->endOn('2020-09-27T19:00'),
+            ->startsOn('2020-09-19T19:00')
+            ->endsOn('2020-09-27T19:00'),
     ),
 
     Anb::create(
@@ -141,19 +141,19 @@ return [
             ->withMages('5f8061074d281532ef64914b')
             ->withWarriors('5f8061088c7cf71b88bfbc57')
             ->withBountyHunters('5f8061094d281532ef649161')
-            ->startOn('2020-10-09T19:00')
-            ->endOn('2020-10-18T19:00'),
+            ->startsOn('2020-10-09T19:00')
+            ->endsOn('2020-10-18T19:00'),
         League::createSilver()
             ->withMages('5f92de1a8c7cf71b885774ae')
             ->withWarriors('5f92de1b8c7cf71b885774bb')
             ->withBountyHunters('5f92de1c4d28152c65135d70')
-            ->startOn('2020-10-24T19:00')
-            ->endOn('2020-11-02T19:00'),
+            ->startsOn('2020-10-24T19:00')
+            ->endsOn('2020-11-02T19:00'),
         League::createGold()
             ->withMages('5fe99f294d2815223b77bcdf')
             ->withWarriors('5fe99f2a8c7cf70b431a80b1')
             ->withBountyHunters('5fe99f2b8c7cf70b431a80b6')
-            ->startOn('2020-12-28T19:00')
-            ->endOn('2021-01-10T19:00'),
+            ->startsOn('2020-12-28T19:00')
+            ->endsOn('2021-01-10T19:00'),
     ),
 ];
