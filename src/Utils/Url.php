@@ -34,11 +34,11 @@ final class Url implements \Stringable
         return $url;
     }
 
-    public static function parse(string $url): self
+    public static function parse(string $url): ?self
     {
         $parts = parse_url($url);
         if (false === $parts) {
-            throw new \InvalidArgumentException("Malformed URL: '{$url}'");
+            return null;
         }
 
         $authority = $parts['host'] ?? '';

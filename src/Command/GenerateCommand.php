@@ -5,6 +5,7 @@ namespace Eternium\Command;
 use Eternium\Event\EventInterface;
 use Eternium\Event\Leaderboard;
 use Eternium\Utils;
+use Eternium\Utils\Url;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\InvalidOptionException;
 use Symfony\Component\Console\Helper\ProgressBar;
@@ -26,8 +27,7 @@ class GenerateCommand extends Command
      */
     private array $events;
 
-    private string $origin = '';
-    private string $basePath = '';
+    private Url $baseUrl;
 
     private int $pageSize = 100;
 
@@ -51,10 +51,10 @@ class GenerateCommand extends Command
 
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
-        [$this->origin, $this->basePath] = $this->parseUrl($input->getOption('base-url'));
-        $this->basePath = rtrim($this->basePath, '/');
-        $this->baseUri = $input->getOption('base-url');
-        $output->writeln("Using <info>{$this->absUrl()}</info> as base URL", OutputInterface::VERBOSITY_VERY_VERBOSE);
+        $this->baseUrl = Url::parse($input->getOption('base-url')) ?? throw new InvalidOptionException(
+            'The option "--base-url" requires a valid URL.'
+        );
+        $output->writeln("Using <info>{$this->baseUrl}</info> as base URL", OutputInterface::VERBOSITY_VERY_VERBOSE);
 
         $this->pageSize = (int) $input->getOption('page-size');
         if (100 > $this->pageSize) {
@@ -78,12 +78,12 @@ class GenerateCommand extends Command
 
         $this->twig->addFunction(new TwigFunction(
             'abs_path',
-            fn (string $path = ''): string => $this->absPath($path)
+            fn (string $path = ''): string => $this->baseUrl->resolve($path)->path
         ));
 
         $this->twig->addFunction(new TwigFunction(
             'abs_url',
-            fn (string $path = ''): string => $this->absUrl($path)
+            fn (string $path = ''): string => (string) $this->baseUrl->resolve($path)
         ));
     }
 
@@ -97,7 +97,7 @@ class GenerateCommand extends Command
             Utils::dump(ETERNIUM_HTML_PATH.$file, $this->twig->render($template, $context));
 
             $output->writeln(
-                $this->getHelper('formatter')->formatSection('HTML', "<href={$this->baseUri}/{$file}>{$file}</> generated using {$template}", 'comment'),
+                $this->getHelper('formatter')->formatSection('HTML', "<href={$this->baseUrl->resolve($file)}>{$file}</> generated using {$template}", 'comment'),
                 OutputInterface::VERBOSITY_VERBOSE,
             );
         };
@@ -172,44 +172,5 @@ class GenerateCommand extends Command
         }
 
         return $path;
-    }
-
-    private function absPath(string $path = ''): string
-    {
-        if (str_starts_with($path, '/')) {
-            return $path;
-        }
-
-        return "{$this->basePath}/{$path}";
-    }
-
-    private function absUrl(string $path = ''): string
-    {
-        return $this->origin.$this->absPath($path);
-    }
-
-    private function parseUrl(string $url): array
-    {
-        $parts = parse_url($url) ?: [];
-        $origin = '';
-        if (isset($parts['host'])) {
-            $origin = $parts['host'];
-            if (isset($parts['port'])) {
-                $origin .= ':'.$parts['port'];
-            }
-            if (isset($parts['user'])) {
-                $origin = '@'.$origin;
-                if (isset($parts['pass'])) {
-                    $origin = ':'.$parts['pass'].$origin;
-                }
-                $origin = $parts['user'].$origin;
-            }
-            $origin = '//'.$origin;
-        }
-        if (isset($parts['scheme'])) {
-            $origin = $parts['scheme'].':'.$origin;
-        }
-
-        return [$origin, $parts['path'] ?? ''];
     }
 }
