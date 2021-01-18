@@ -163,7 +163,7 @@ return [
             ->withMages('600178584d281509f648259e')
             ->withWarriors('600178594d281509f64825ab')
             ->withBountyHunters('6001785a8c7cf70b43dd44d7')
-            ->startsOn('2021-01-15T19:00')
-            ->endsOn('2021-01-25T19:00'),
+            ->startsOn('2021-01-15T17:00')
+            ->endsOn('2021-01-25T17:00'),
     ),
 ];
