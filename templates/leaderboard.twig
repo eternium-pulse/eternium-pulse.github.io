@@ -14,7 +14,7 @@ Top {{ page.range.length }} {{ event.name|e }} of {{ event.parent.getTitle(true)
 
 {% block content %}
 <h1>{{ event.getTitle(true)|e }}</h1>
-<p class="lead">{{ block('description') }}.</p>
+<p class="lead">{{ block('description')|trim }}.</p>
 
 <ul class="nav nav-tabs flex-nowrap">
   {%~ for item in event.parent %}
