@@ -20,24 +20,17 @@ class GenerateCommand extends Command
 {
     protected static $defaultName = 'generate';
 
-    private Twig $twig;
-
-    /**
-     * @var array<int, EventInterface>
-     */
-    private array $events;
-
     private Url $baseUrl;
 
     private int $pageSize = 100;
 
     private bool $hideProgress = false;
 
-    public function __construct(Twig $twig, EventInterface ...$events)
-    {
-        $this->events = $events;
-        $this->twig = $twig;
-
+    public function __construct(
+        private Twig $twig,
+        // @var array<int, EventInterface>
+        private array $events,
+    ) {
         parent::__construct();
     }
 
@@ -125,7 +118,7 @@ class GenerateCommand extends Command
         $progressBar = new ProgressBar($this->hideProgress ? new NullOutput() : $output);
         $progressBar->setFormat($formatter->formatSection('LOAD', '%message% %current% %elapsed%'));
 
-        while (null !== ($event = yield )) {
+        while (null !== ($event = yield)) {
             $path = $event->getPath('/');
             $sitemap[] = $this->eventPath($event);
             $template = strtolower($event->type);

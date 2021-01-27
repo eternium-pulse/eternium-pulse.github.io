@@ -4,6 +4,7 @@ namespace Eternium\Command;
 
 use Eternium\Event\EventInterface;
 use Eternium\Event\Leaderboard;
+use EterniumPulse\Eternium;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputArgument;
@@ -17,21 +18,17 @@ class FetchCommand extends Command
 {
     protected static $defaultName = 'fetch';
 
-    /**
-     * @var array<int, EventInterface>
-     */
-    private array $events;
-
     private string $pattern = '*';
 
     private bool $update = false;
 
     private bool $hideProgress = false;
 
-    public function __construct(EventInterface ...$events)
-    {
-        $this->events = $events;
-
+    public function __construct(
+        private Eternium $eternium,
+        // @var array<int, EventInterface>
+        private array $events,
+    ) {
         parent::__construct();
     }
 
@@ -67,7 +64,7 @@ class FetchCommand extends Command
         $progressBar = new ProgressBar($this->hideProgress ? new NullOutput() : $output);
         $progressBar->setFormat($formatter->formatSection('DUMP', '%message% %current% %elapsed%'));
 
-        while (null !== ($event = yield )) {
+        while (null !== ($event = yield)) {
             if (!($event instanceof Leaderboard)) {
                 continue;
             }
@@ -99,7 +96,7 @@ class FetchCommand extends Command
             try {
                 $progressBar->setMessage("fetching {$path}");
                 $progressBar->display();
-                foreach ($progressBar->iterate($event->fetch()) as $entry) {
+                foreach ($progressBar->iterate($event->fetch($this->eternium)) as $entry) {
                     $writer->send($entry);
                 }
             } finally {

@@ -4,8 +4,6 @@ namespace Eternium;
 
 use Eternium\Utils\Page;
 use Eternium\Utils\Range;
-use Symfony\Component\HttpClient\HttpClient;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 abstract class Utils
 {
@@ -60,7 +58,7 @@ abstract class Utils
         }
 
         $rows = 0;
-        while (null !== ($data = yield )) {
+        while (null !== ($data = yield)) {
             if (is_array($data)) {
                 fputcsv($memory, $data);
                 ++$rows;
@@ -89,20 +87,6 @@ abstract class Utils
         }
 
         return $bytes;
-    }
-
-    public static function createHttpClient(string $apiKey = ETERNIUM_API_KEY): HttpClientInterface
-    {
-        assert('' !== $apiKey);
-
-        return HttpClient::createForBaseUri('https://mfp.makingfun.com/api/', [
-            'http_version' => '1.1',
-            'max_redirects' => 0,
-            'headers' => [
-                'Accept' => 'application/json',
-                'X-API-Key' => $apiKey,
-            ],
-        ]);
     }
 
     /**

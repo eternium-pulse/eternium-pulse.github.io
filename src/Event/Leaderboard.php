@@ -8,7 +8,7 @@ use Eternium\Event\Leaderboard\Gear;
 use Eternium\Event\Leaderboard\Hero;
 use Eternium\Event\Leaderboard\Trial;
 use Eternium\Utils;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
+use EterniumPulse\Eternium;
 
 final class Leaderboard implements EventInterface
 {
@@ -83,7 +83,7 @@ final class Leaderboard implements EventInterface
     public function write(string $file): \Generator
     {
         $writer = Utils::createCsvWriter($file);
-        while (null !== ($entry = yield )) {
+        while (null !== ($entry = yield)) {
             if ($entry instanceof Entry) {
                 $writer->send($entry->toArray());
             }
@@ -96,27 +96,25 @@ final class Leaderboard implements EventInterface
     /**
      * @return \Generator<int, Entry, void, int>
      */
-    public function fetch(HttpClientInterface $client = null): \Generator
+    public function fetch(Eternium $eternium): \Generator
     {
-        $client = $client ?? Utils::createHttpClient();
-        $uri = "leaderboards/{$this->id}/rankings";
-        $query = [
+        $rankings = $eternium->leaderboards->getRankings($this->id);
+        $options = [
             'page' => 1,
-            'pageSize' => 1000,
-            'payload' => join(',', [
+            'page_size' => 1000,
+            'payload' => [
                 'name',
                 'champion_level',
                 'hero.selectedPlayerNameID',
                 'hero.equipped.itemLevel',
                 'trialStats.heroDeaths',
-            ]),
+            ],
         ];
 
         $entries = 0;
         do {
             $pageEntries = 0;
-            $response = $client->request('GET', $uri, ['query' => $query]);
-            foreach ($response->toArray() as $data) {
+            foreach ($rankings->list($options) as $data) {
                 $entry = new Entry(
                     new Hero(
                         $data['payload']['name'],
@@ -131,8 +129,8 @@ final class Leaderboard implements EventInterface
                 ++$pageEntries;
                 yield $entry;
             }
-            ++$query['page'];
-        } while ($pageEntries === $query['pageSize']);
+            ++$options['page'];
+        } while ($pageEntries === $options['page_size']);
 
         return $entries;
     }
