@@ -34,7 +34,7 @@
     {%~ block breadcrumb %}{% endblock %}
     {%~ block content %}{% endblock %}
   </main>
-  <footer class="container-lg text-center text-light bg-dark bg-gradient py-4">© 2020 {{ site.name|e }}</footer>
+  <footer class="container-lg text-center text-light bg-dark bg-gradient py-4">© 2020–{{ 'now'|date('Y') }} {{ site.name|e }}</footer>
 </body>
 
 </html>
