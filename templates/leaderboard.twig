@@ -51,7 +51,7 @@ Top {{ page.range.length }} {{ event.name|e }} of {{ event.parent.getTitle(true)
       <td>{{ entry.champion.level }}</td>
       <td class="d-none d-sm-table-cell">{{ '%.1f'|format(entry.gear.averageLevel) }}</td>
       <td>{{ entry.trial.level }}</td>
-      <td><time>{{ entry.trial.time|date("i:s") }}</time></td>
+      <td><time datetime="PT{{ entry.trial.time }}S">{{ entry.trial.time|date('i:s') }}</time></td>
       <td class="d-none d-sm-table-cell">{{ entry.trial.deaths }}</td>
     </tr>
     {%~ endfor %}
