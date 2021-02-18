@@ -28,6 +28,7 @@ Top {{ page.range.length }} {{ event.name|e }} of {{ event.parent.getTitle(true)
   {%~ endfor %}
 </ul>
 
+{% if entries %}
 <table class="table table-sm table-striped">
   <caption>Rankings {{ page.range.offset }}-{{ page.range.offset0 + page.range.length }} out of {{ entries|length }}</caption>
   <thead>
@@ -90,4 +91,5 @@ Top {{ page.range.length }} {{ event.name|e }} of {{ event.parent.getTitle(true)
     {%~ endif %}
   </ul>
 </nav>
+{% endif %}
 {% endblock %}
