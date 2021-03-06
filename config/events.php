@@ -178,4 +178,14 @@ return [
             ->startsOn('2021-02-19T17:00')
             ->endsIn('P10D'),
     ),
+
+    Anb::create(
+        9,
+        League::createBronze()
+            ->withMages('604260da4d2815383b7f0a5c')
+            ->withWarriors('604260dc4d2815383b7f0a78')
+            ->withBountyHunters('604260dd8c7cf7117118c9a0')
+            ->startsOn('2021-03-05T17:00')
+            ->endsIn('P10D'),
+    ),
 ];
