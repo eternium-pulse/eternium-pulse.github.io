@@ -27,6 +27,13 @@
     <nav class="navbar navbar-expand navbar-dark">
       <div class="container-lg">
         <a class="navbar-brand" href="{{ abs_path()|e }}">{{ site.name|e }}</a>
+        <ul class="navbar-nav d-none d-sm-flex mw-auto">
+          {%~ for event in latest_events %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ abs_path(event_path(event))|e }}">{{ event.getTitle()|e }}</a>
+          </li>
+          {%~ endfor %}
+        </ul>
       </div>
     </nav>
   </header>

@@ -64,6 +64,12 @@ class GenerateCommand extends Command
             'background' => '#ffffff',
         ]);
 
+        $latest_events = [];
+        foreach ($this->events as $event) {
+            $latest_events[strtolower($event->getType())] = $event;
+        }
+        $this->twig->addGlobal('latest_events', $latest_events);
+
         $this->twig->addFunction(new TwigFunction(
             'event_path',
             fn (EventInterface $event, int $page = 1): string => $this->eventPath($event, $page)
