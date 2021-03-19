@@ -3,12 +3,12 @@
 namespace Eternium\Event;
 
 return [
-    Season::create(1)
+    Season::create(1, 'Summer 2019')
         ->withMages('5d24a1b4ec2a60555c62addb')
         ->withWarriors('5d24a1b5ec2a60555c62ade0')
         ->withBountyHunters('5d24a1b7ec2a60555c62ade3'),
 
-    Season::create(2)
+    Season::create(2, 'Winter 2019')
         ->withMages('5dc1bd9aec2a605db2e06bcc')
         ->withWarriors('5dc1bd9bec2a605db2e06bd0')
         ->withBountyHunters('5dc1bd9cec2a605db2e06bd1'),
@@ -18,20 +18,20 @@ return [
         ->withWarriors('5e6cf9acec2a6078be51c20d')
         ->withBountyHunters('5e6cf9ad76f55b6deb838e40'),
 
-    Season::create(4)
+    Season::create(4, 'Summer 2020')
         ->withMages('5f12cfa04d28152e930c68b1')
         ->withWarriors('5f12cfa14d28152e930c68b2')
         ->withBountyHunters('5f12cfa24d28152e930c68b3')
         ->endsOn('2020-10-01T19:00'),
 
-    Season::create(5)
+    Season::create(5, 'Winter 2020')
         ->withMages('5fe99e7a4d2815223b77ba5c')
         ->withWarriors('5fe99e7c8c7cf70b431a7f64')
         ->withBountyHunters('5fe99e7d8c7cf70b431a7f68')
         ->startsOn('2020-12-28T19:00')
         ->endsOn('2021-03-18T19:00'),
 
-    Season::create(6)
+    Season::create(6, 'Spring 2021')
         ->withMages('6054b7288c7cf71171671dc0')
         ->withWarriors('6054b7294d2815383bcc574f')
         ->withBountyHunters('6054b72a4d2815383bcc5755')
