@@ -31,6 +31,13 @@ return [
         ->startsOn('2020-12-28T19:00')
         ->endsOn('2021-03-18T19:00'),
 
+    Season::create(6)
+        ->withMages('6054b7288c7cf71171671dc0')
+        ->withWarriors('6054b7294d2815383bcc574f')
+        ->withBountyHunters('6054b72a4d2815383bcc5755')
+        ->startsOn('2021-03-19T19:00')
+        ->endsIn('P73D'),
+
     Anb::create(
         1,
         League::createBronze()
