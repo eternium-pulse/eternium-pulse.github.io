@@ -10,21 +10,21 @@ final class Season extends BaseEvent
     use LeaderboardAwareTrait;
     use DateAwareTrait;
 
-    public int $index;
-
-    protected function __construct(int $index, Leaderboard ...$leaderboards)
-    {
+    protected function __construct(
+        public int $index,
+        public string $description = '',
+        Leaderboard ...$leaderboards,
+    ) {
         assert(0 < $index);
 
-        $this->index = $index;
         $this->type = 'Season';
 
         parent::__construct("season-{$index}", ...$leaderboards);
     }
 
-    public static function create(int $index, Leaderboard ...$leaderboards): self
+    public static function create(int $index, string $description = '', Leaderboard ...$leaderboards): self
     {
-        return new self($index, ...$leaderboards);
+        return new self($index, $description, ...$leaderboards);
     }
 
     public function getName(bool $long = false): string
