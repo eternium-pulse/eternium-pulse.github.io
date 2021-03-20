@@ -13,7 +13,7 @@ return [
         ->withWarriors('5dc1bd9bec2a605db2e06bd0')
         ->withBountyHunters('5dc1bd9cec2a605db2e06bd1'),
 
-    Season::create(3)
+    Season::create(3, 'Spring 2020')
         ->withMages('5e6cf9abec2a6078be51c20c')
         ->withWarriors('5e6cf9acec2a6078be51c20d')
         ->withBountyHunters('5e6cf9ad76f55b6deb838e40'),
