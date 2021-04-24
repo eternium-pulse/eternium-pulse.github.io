@@ -200,5 +200,11 @@ return [
             ->withBountyHunters('60706633f3b8c5126bb13e9d')
             ->startsOn('2021-04-09T17:00')
             ->endsIn('P10D'),
+        League::createGold()
+            ->withMages('6082fb88c93f431d55875ed3')
+            ->withWarriors('6082fb89c93f431d55875ee6')
+            ->withBountyHunters('6082fb8af3b8c52fd6445aeb')
+            ->startsOn('2021-04-23T17:00')
+            ->endsIn('P10D'),
     ),
 ];
