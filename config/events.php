@@ -220,7 +220,7 @@ return [
             ->withMages('60ba28d4c93f4334ea0d826e')
             ->withWarriors('60ba28d5f3b8c52fba5611a6')
             ->withBountyHunters('60ba28d7f3b8c52fba5611ac')
-            ->startsOn('2021-06-05T17:00')
+            ->startsOn('2021-06-04T17:00')
             ->endsIn('P10D'),
     ),
 ];
