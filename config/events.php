@@ -216,5 +216,11 @@ return [
             ->withBountyHunters('60a94379c93f4331b710b111')
             ->startsOn('2021-05-23T17:00')
             ->endsIn('P10D'),
+        League::createSilver()
+            ->withMages('60ba28d4c93f4334ea0d826e')
+            ->withWarriors('60ba28d5f3b8c52fba5611a6')
+            ->withBountyHunters('60ba28d7f3b8c52fba5611ac')
+            ->startsOn('2021-06-05T17:00')
+            ->endsIn('P10D'),
     ),
 ];
