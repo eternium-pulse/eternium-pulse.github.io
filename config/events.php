@@ -21,22 +21,17 @@ return [
     Season::create(4, 'Summer 2020')
         ->withMages('5f12cfa04d28152e930c68b1')
         ->withWarriors('5f12cfa14d28152e930c68b2')
-        ->withBountyHunters('5f12cfa24d28152e930c68b3')
-        ->endsOn('2020-10-01T19:00'),
+        ->withBountyHunters('5f12cfa24d28152e930c68b3'),
 
     Season::create(5, 'Winter 2020')
         ->withMages('5fe99e7a4d2815223b77ba5c')
         ->withWarriors('5fe99e7c8c7cf70b431a7f64')
-        ->withBountyHunters('5fe99e7d8c7cf70b431a7f68')
-        ->startsOn('2020-12-28T19:00')
-        ->endsOn('2021-03-18T19:00'),
+        ->withBountyHunters('5fe99e7d8c7cf70b431a7f68'),
 
     Season::create(6, 'Spring 2021')
         ->withMages('6054b7288c7cf71171671dc0')
         ->withWarriors('6054b7294d2815383bcc574f')
-        ->withBountyHunters('6054b72a4d2815383bcc5755')
-        ->startsOn('2021-03-19T19:00')
-        ->endsIn('P73D'),
+        ->withBountyHunters('6054b72a4d2815383bcc5755'),
 
     Anb::create(
         1,
@@ -115,9 +110,7 @@ return [
         League::createGold()
             ->withMages('5f25c1ea8c7cf733bc232552')
             ->withWarriors('5f25c1ec8c7cf733bc232553')
-            ->withBountyHunters('5f25c1ed8c7cf733bc232554')
-            ->startsOn('2020-08-01T19:00')
-            ->endsOn('2020-08-09T19:00'),
+            ->withBountyHunters('5f25c1ed8c7cf733bc232554'),
     ),
 
     Anb::create(
@@ -125,21 +118,15 @@ return [
         League::createBronze()
             ->withMages('5f35a1894d28155b896d7c6a')
             ->withWarriors('5f35a18a4d28155b896d7c73')
-            ->withBountyHunters('5f35a18b8c7cf73d2d553e71')
-            ->startsOn('2020-08-15T19:00')
-            ->endsOn('2020-08-23T19:00'),
+            ->withBountyHunters('5f35a18b8c7cf73d2d553e71'),
         League::createSilver()
             ->withMages('5f52609f4d28152c2bacbd43')
             ->withWarriors('5f5260a14d28152c2bacbd48')
-            ->withBountyHunters('5f5260a24d28152c2bacbd4b')
-            ->startsOn('2020-09-05T19:00')
-            ->endsOn('2020-09-13T19:00'),
+            ->withBountyHunters('5f5260a24d28152c2bacbd4b'),
         League::createGold()
             ->withMages('5f64c6934d28153ae45a252f')
             ->withWarriors('5f64c6944d28153ae45a253c')
-            ->withBountyHunters('5f64c6968c7cf76d90955324')
-            ->startsOn('2020-09-19T19:00')
-            ->endsOn('2020-09-27T19:00'),
+            ->withBountyHunters('5f64c6968c7cf76d90955324'),
     ),
 
     Anb::create(
@@ -147,21 +134,15 @@ return [
         League::createBronze()
             ->withMages('5f8061074d281532ef64914b')
             ->withWarriors('5f8061088c7cf71b88bfbc57')
-            ->withBountyHunters('5f8061094d281532ef649161')
-            ->startsOn('2020-10-09T19:00')
-            ->endsOn('2020-10-18T19:00'),
+            ->withBountyHunters('5f8061094d281532ef649161'),
         League::createSilver()
             ->withMages('5f92de1a8c7cf71b885774ae')
             ->withWarriors('5f92de1b8c7cf71b885774bb')
-            ->withBountyHunters('5f92de1c4d28152c65135d70')
-            ->startsOn('2020-10-24T19:00')
-            ->endsOn('2020-11-02T19:00'),
+            ->withBountyHunters('5f92de1c4d28152c65135d70'),
         League::createGold()
             ->withMages('5fe99f294d2815223b77bcdf')
             ->withWarriors('5fe99f2a8c7cf70b431a80b1')
-            ->withBountyHunters('5fe99f2b8c7cf70b431a80b6')
-            ->startsOn('2020-12-28T19:00')
-            ->endsOn('2021-01-10T19:00'),
+            ->withBountyHunters('5fe99f2b8c7cf70b431a80b6'),
     ),
 
     Anb::create(
@@ -169,21 +150,15 @@ return [
         League::createBronze()
             ->withMages('600178584d281509f648259e')
             ->withWarriors('600178594d281509f64825ab')
-            ->withBountyHunters('6001785a8c7cf70b43dd44d7')
-            ->startsOn('2021-01-15T17:00')
-            ->endsOn('2021-01-25T17:00'),
+            ->withBountyHunters('6001785a8c7cf70b43dd44d7'),
         League::createSilver()
             ->withMages('60142af28c7cf72865785297')
             ->withWarriors('60142af34d2815677b898b5f')
-            ->withBountyHunters('60142af98c7cf72865785307')
-            ->startsOn('2021-01-29T17:00')
-            ->endsOn('2021-02-08T17:00'),
+            ->withBountyHunters('60142af98c7cf72865785307'),
         League::createGold()
             ->withMages('602ea6468c7cf72865fecd76')
             ->withWarriors('602ea6484d2815677b101e3d')
-            ->withBountyHunters('602ea6498c7cf72865fecdb5')
-            ->startsOn('2021-02-19T17:00')
-            ->endsIn('P10D'),
+            ->withBountyHunters('602ea6498c7cf72865fecdb5'),
     ),
 
     Anb::create(
@@ -191,21 +166,15 @@ return [
         League::createBronze()
             ->withMages('604260da4d2815383b7f0a5c')
             ->withWarriors('604260dc4d2815383b7f0a78')
-            ->withBountyHunters('604260dd8c7cf7117118c9a0')
-            ->startsOn('2021-03-05T17:00')
-            ->endsIn('P10D'),
+            ->withBountyHunters('604260dd8c7cf7117118c9a0'),
         League::createSilver()
             ->withMages('60706630f3b8c5126bb13e86')
             ->withWarriors('60706632f3b8c5126bb13e92')
-            ->withBountyHunters('60706633f3b8c5126bb13e9d')
-            ->startsOn('2021-04-09T17:00')
-            ->endsIn('P10D'),
+            ->withBountyHunters('60706633f3b8c5126bb13e9d'),
         League::createGold()
             ->withMages('6082fb88c93f431d55875ed3')
             ->withWarriors('6082fb89c93f431d55875ee6')
-            ->withBountyHunters('6082fb8af3b8c52fd6445aeb')
-            ->startsOn('2021-04-23T17:00')
-            ->endsIn('P10D'),
+            ->withBountyHunters('6082fb8af3b8c52fd6445aeb'),
     ),
 
     Anb::create(
@@ -213,14 +182,10 @@ return [
         League::createBronze()
             ->withMages('60a94376c93f4331b710b0eb')
             ->withWarriors('60a94378c93f4331b710b0f9')
-            ->withBountyHunters('60a94379c93f4331b710b111')
-            ->startsOn('2021-05-23T17:00')
-            ->endsIn('P10D'),
+            ->withBountyHunters('60a94379c93f4331b710b111'),
         League::createSilver()
             ->withMages('60ba28d4c93f4334ea0d826e')
             ->withWarriors('60ba28d5f3b8c52fba5611a6')
-            ->withBountyHunters('60ba28d7f3b8c52fba5611ac')
-            ->startsOn('2021-06-04T17:00')
-            ->endsIn('P10D'),
+            ->withBountyHunters('60ba28d7f3b8c52fba5611ac'),
     ),
 ];
