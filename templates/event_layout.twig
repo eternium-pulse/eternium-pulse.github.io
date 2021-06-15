@@ -41,21 +41,9 @@ Eternium - {{ event.getTitle(true) }} Leaderboards
 {% endblock %}
 
 {% block content %}
-<div vocab="https://schema.org/" typeof="Event">
-  <h1 property="name">{{ event.getTitle(true)|e }}</h1>
-  <p class="lead" property="description">{{ block('description') }}.</p>
-  <meta property="eventAttendanceMode" content="OnlineEventAttendanceMode"/>
-  {%~ if event.startDate %}
-  <meta property="startDate" content="{{ event.startDate|date(constant('DATE_ISO8601')) }}"/>
-  <meta property="endDate" content="{{ event.endDate|date(constant('DATE_ISO8601')) }}"/>
-  {%~ endif %}
-  <div property="location" typeof="VirtualLocation">
-    <link property="url" href="{{ eternium_url }}"/>
-  </div>
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
-    {%~ for e in event %}
-    {%~ include "event_card.twig" with {'event': e} %}
-    {%~ endfor %}
-  </div>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
+  {%~ for e in event %}
+  {%~ include "event_card.twig" with {'event': e} %}
+  {%~ endfor %}
 </div>
 {% endblock %}
