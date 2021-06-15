@@ -33,6 +33,11 @@ return [
         ->withWarriors('6054b7294d2815383bcc574f')
         ->withBountyHunters('6054b72a4d2815383bcc5755'),
 
+    Season::create(7, 'Summer 2021')
+        ->withMages('60c8f6d8c93f4334eaa8df2a')
+        ->withWarriors('60c8f6d9f3b8c52fbaf147bd')
+        ->withBountyHunters('60c8f6dac93f4334eaa8df4b'),
+
     Anb::create(
         1,
         League::createBronze()
