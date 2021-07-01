@@ -19,9 +19,5 @@ Leaderboards of Eternium game events
 <h1>Hi, Adventurer!</h1>
 <p class="lead">Here you can find Eternium leaderboards. <a rel="noreferrer" href="{{ eternium_url|e }}" target="_blank">Play Eternium</a> and watch your progress.</p>
 
-<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
-  {%~ for event in events %}
-  {%~ include "event_card.twig" with {'event': event} %}
-  {%~ endfor %}
-</div>
+{% include "event/list.twig" with {'events': events} %}
 {% endblock %}
