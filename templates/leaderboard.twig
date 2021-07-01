@@ -91,5 +91,7 @@ Top {{ page.range.length }} {{ event.name|e }} of {{ event.parent.getTitle(true)
     {%~ endif %}
   </ul>
 </nav>
+{% else %}
+<div class="alert alert-primary mt-4 text-center">No data available</div>
 {% endif %}
 {% endblock %}
