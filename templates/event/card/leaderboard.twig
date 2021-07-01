@@ -1,10 +1,7 @@
 <div class="col">
-  <div class="card">
-    <div class="card-header">Leaderboard</div>
+  <div class="card bg-light text-center">
     <div class="card-body">
-      <h5 class="card-title">{{ event.getName(true)|e }} <span class="badge bg-secondary">
-          {{- event.stats.length|e -}}
-        </span></h5>
+      <h5 class="card-title">{{ event.getName(true)|e }}</h5>
       <a class="btn btn-primary stretched-link" href="{{ abs_path(event_path(event))|e }}">Rankings</a>
     </div>
   </div>

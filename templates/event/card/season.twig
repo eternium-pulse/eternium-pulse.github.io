@@ -1,0 +1,15 @@
+<div class="col">
+  <div class="card bg-light text-center">
+    <div class="card-body">
+      <h5 class="card-title">Season #{{ event.index }}</h5>
+      <h6 class="card-subtitle text-muted">{{ event.description|e }}</h6>
+    </div>
+    <div class="list-group list-group-flush">
+      {%~ for lb in event %}
+      <a class="list-group-item list-group-item-action" href="{{ abs_url(event_path(lb))|e }}">
+        {{- lb.getName()|e -}}
+      </a>
+      {%~ endfor %}
+    </div>
+  </div>
+</div>
