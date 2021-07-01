@@ -24,6 +24,15 @@ abstract class Utils
     /**
      * @return \Generator<int, array, void, int>
      */
+    public static function createNullReader(): \Generator
+    {
+        return 0;
+        yield;
+    }
+
+    /**
+     * @return \Generator<int, array, void, int>
+     */
     public static function createCsvReader(string $file): \Generator
     {
         $stream = @fopen($file, 'r');
