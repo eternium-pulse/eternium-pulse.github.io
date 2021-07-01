@@ -24,6 +24,8 @@ class GenerateCommand extends Command
 
     private int $pageSize = 100;
 
+    private bool $ignoreData = false;
+
     private bool $hideProgress = false;
 
     public function __construct(
@@ -39,6 +41,7 @@ class GenerateCommand extends Command
         $this->setDescription('Generates HTML content');
         $this->addOption('base-url', '', InputOption::VALUE_REQUIRED, 'Expand relative links using this URL', 'http://localhost:8080');
         $this->addOption('page-size', '', InputOption::VALUE_REQUIRED, 'Set LB page size', $this->pageSize);
+        $this->addOption('no-data', '', InputOption::VALUE_NONE, 'Do not load data files');
         $this->addOption('no-progress', '', InputOption::VALUE_NONE, 'Do not output load progress');
     }
 
@@ -54,6 +57,7 @@ class GenerateCommand extends Command
             throw new InvalidOptionException('The option "--page-size" requires an integer at least 100.');
         }
 
+        $this->ignoreData = $input->getOption('no-data');
         $this->hideProgress = $input->getOption('no-progress');
 
         $this->twig->addGlobal('eternium_url', 'https://www.eterniumgame.com/');
@@ -135,7 +139,7 @@ class GenerateCommand extends Command
                 continue;
             }
 
-            $reader = $event->read(ETERNIUM_DATA_PATH."{$path}.csv");
+            $reader = $this->ignoreData ? Utils::createNullReader() : $event->read(ETERNIUM_DATA_PATH."{$path}.csv");
 
             try {
                 $progressBar->setMessage("loading {$path}");
