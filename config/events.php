@@ -192,5 +192,9 @@ return [
             ->withMages('60ba28d4c93f4334ea0d826e')
             ->withWarriors('60ba28d5f3b8c52fba5611a6')
             ->withBountyHunters('60ba28d7f3b8c52fba5611ac'),
+        League::createGold()
+            ->withMages('60df3fe7f3b8c54b8ed39020')
+            ->withWarriors('60df3fe8f3b8c54b8ed39031')
+            ->withBountyHunters('60df3fe9c93f436bde735ee1'),
     ),
 ];
