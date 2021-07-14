@@ -3,41 +3,6 @@
 namespace Eternium\Event;
 
 return [
-    Season::create(1, 'Summer 2019')
-        ->withMages('5d24a1b4ec2a60555c62addb')
-        ->withWarriors('5d24a1b5ec2a60555c62ade0')
-        ->withBountyHunters('5d24a1b7ec2a60555c62ade3'),
-
-    Season::create(2, 'Winter 2019')
-        ->withMages('5dc1bd9aec2a605db2e06bcc')
-        ->withWarriors('5dc1bd9bec2a605db2e06bd0')
-        ->withBountyHunters('5dc1bd9cec2a605db2e06bd1'),
-
-    Season::create(3, 'Spring 2020')
-        ->withMages('5e6cf9abec2a6078be51c20c')
-        ->withWarriors('5e6cf9acec2a6078be51c20d')
-        ->withBountyHunters('5e6cf9ad76f55b6deb838e40'),
-
-    Season::create(4, 'Summer 2020')
-        ->withMages('5f12cfa04d28152e930c68b1')
-        ->withWarriors('5f12cfa14d28152e930c68b2')
-        ->withBountyHunters('5f12cfa24d28152e930c68b3'),
-
-    Season::create(5, 'Winter 2020')
-        ->withMages('5fe99e7a4d2815223b77ba5c')
-        ->withWarriors('5fe99e7c8c7cf70b431a7f64')
-        ->withBountyHunters('5fe99e7d8c7cf70b431a7f68'),
-
-    Season::create(6, 'Spring 2021')
-        ->withMages('6054b7288c7cf71171671dc0')
-        ->withWarriors('6054b7294d2815383bcc574f')
-        ->withBountyHunters('6054b72a4d2815383bcc5755'),
-
-    Season::create(7, 'Summer 2021')
-        ->withMages('60c8f6d8c93f4334eaa8df2a')
-        ->withWarriors('60c8f6d9f3b8c52fbaf147bd')
-        ->withBountyHunters('60c8f6dac93f4334eaa8df4b'),
-
     Anb::create(
         1,
         League::createBronze()
@@ -70,6 +35,11 @@ return [
             ->withBountyHunters('5cfa6377ec2a60555c2a4c8e'),
     ),
 
+    Season::create(1, 'Summer 2019')
+        ->withMages('5d24a1b4ec2a60555c62addb')
+        ->withWarriors('5d24a1b5ec2a60555c62ade0')
+        ->withBountyHunters('5d24a1b7ec2a60555c62ade3'),
+
     Anb::create(
         3,
         League::createBronze()
@@ -85,6 +55,16 @@ return [
             ->withWarriors('5dcee305ec2a605db2f607a5')
             ->withBountyHunters('5dcee306ec2a605db2f607a6'),
     ),
+
+    Season::create(2, 'Winter 2019')
+        ->withMages('5dc1bd9aec2a605db2e06bcc')
+        ->withWarriors('5dc1bd9bec2a605db2e06bd0')
+        ->withBountyHunters('5dc1bd9cec2a605db2e06bd1'),
+
+    Season::create(3, 'Spring 2020')
+        ->withMages('5e6cf9abec2a6078be51c20c')
+        ->withWarriors('5e6cf9acec2a6078be51c20d')
+        ->withBountyHunters('5e6cf9ad76f55b6deb838e40'),
 
     Anb::create(
         4,
@@ -118,6 +98,11 @@ return [
             ->withBountyHunters('5f25c1ed8c7cf733bc232554'),
     ),
 
+    Season::create(4, 'Summer 2020')
+        ->withMages('5f12cfa04d28152e930c68b1')
+        ->withWarriors('5f12cfa14d28152e930c68b2')
+        ->withBountyHunters('5f12cfa24d28152e930c68b3'),
+
     Anb::create(
         6,
         League::createBronze()
@@ -149,6 +134,13 @@ return [
             ->withWarriors('5fe99f2a8c7cf70b431a80b1')
             ->withBountyHunters('5fe99f2b8c7cf70b431a80b6'),
     ),
+
+    // @todo PvP #1 goes here
+
+    Season::create(5, 'Winter 2020')
+        ->withMages('5fe99e7a4d2815223b77ba5c')
+        ->withWarriors('5fe99e7c8c7cf70b431a7f64')
+        ->withBountyHunters('5fe99e7d8c7cf70b431a7f68'),
 
     Anb::create(
         8,
@@ -182,6 +174,11 @@ return [
             ->withBountyHunters('6082fb8af3b8c52fd6445aeb'),
     ),
 
+    Season::create(6, 'Spring 2021')
+        ->withMages('6054b7288c7cf71171671dc0')
+        ->withWarriors('6054b7294d2815383bcc574f')
+        ->withBountyHunters('6054b72a4d2815383bcc5755'),
+
     Anb::create(
         10,
         League::createBronze()
@@ -197,4 +194,9 @@ return [
             ->withWarriors('60df3fe8f3b8c54b8ed39031')
             ->withBountyHunters('60df3fe9c93f436bde735ee1'),
     ),
+
+    Season::create(7, 'Summer 2021')
+        ->withMages('60c8f6d8c93f4334eaa8df2a')
+        ->withWarriors('60c8f6d9f3b8c52fbaf147bd')
+        ->withBountyHunters('60c8f6dac93f4334eaa8df4b'),
 ];
