@@ -199,4 +199,12 @@ return [
         ->withMages('60c8f6d8c93f4334eaa8df2a')
         ->withWarriors('60c8f6d9f3b8c52fbaf147bd')
         ->withBountyHunters('60c8f6dac93f4334eaa8df4b'),
+
+    Anb::create(
+        11,
+        League::createBronze()
+            ->withMages('60f18f54f3b8c54b8e0a70af')
+            ->withWarriors('60f18f55f3b8c54b8e0a70c7')
+            ->withBountyHunters('60f18f56f3b8c54b8e0a70d6'),
+    ),
 ];
