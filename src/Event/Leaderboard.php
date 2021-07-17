@@ -10,7 +10,7 @@ use Eternium\Event\Leaderboard\Trial;
 use Eternium\Utils;
 use EterniumPulse\Eternium;
 
-final class Leaderboard implements EventInterface
+final class Leaderboard extends Event implements EventInterface
 {
     use EventTrait;
 

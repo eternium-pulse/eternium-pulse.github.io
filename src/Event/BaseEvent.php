@@ -7,7 +7,7 @@ namespace Eternium\Event;
  *
  * @implements \IteratorAggregate<string, TEvent>
  */
-abstract class BaseEvent implements EventInterface, \IteratorAggregate
+abstract class BaseEvent extends Event implements EventInterface, \IteratorAggregate
 {
     use EventTrait;
 
