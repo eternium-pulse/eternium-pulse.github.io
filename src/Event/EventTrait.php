@@ -12,8 +12,6 @@ trait EventTrait
 
     public EventInterface $parent;
 
-    public Stats $stats;
-
     public function __toString(): string
     {
         return $this->slug;

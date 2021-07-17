@@ -23,7 +23,6 @@ final class Leaderboard implements EventInterface
         $this->slug = $slug;
         $this->name = $name;
         $this->type = 'Leaderboard';
-        $this->stats = new Stats();
         $this->id = $id;
     }
 
@@ -70,7 +69,6 @@ final class Leaderboard implements EventInterface
         $reader = Utils::createCsvReader($file);
         foreach ($reader as $data) {
             $entry = Entry::fromArray($data);
-            $this->stats->add(1, $entry->champion->level, $entry->trial->level);
             yield $entry;
         }
 

@@ -19,7 +19,6 @@ abstract class BaseEvent implements EventInterface, \IteratorAggregate
     protected function __construct(string $slug, EventInterface ...$events)
     {
         $this->slug = $slug;
-        $this->stats = new Stats();
         foreach ($events as $event) {
             $this->withEvent($event);
         }
@@ -37,7 +36,6 @@ abstract class BaseEvent implements EventInterface, \IteratorAggregate
     {
         foreach ($this as $event) {
             $event->walk($handler);
-            $this->stats->aggregate($event->stats);
         }
         $handler->send($this);
     }
