@@ -8,7 +8,6 @@ namespace Eternium\Event;
 final class League extends BaseEvent
 {
     use LeaderboardAwareTrait;
-    use DateAwareTrait;
 
     protected function __construct(string $slug, string $name, Leaderboard ...$leaderboards)
     {

@@ -8,7 +8,6 @@ namespace Eternium\Event;
 final class Season extends BaseEvent
 {
     use LeaderboardAwareTrait;
-    use DateAwareTrait;
 
     protected function __construct(
         public int $index,
