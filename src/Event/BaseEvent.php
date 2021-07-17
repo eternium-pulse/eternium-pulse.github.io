@@ -4,6 +4,7 @@ namespace Eternium\Event;
 
 /**
  * @template TEvent of EventInterface
+ * @deprecated
  *
  * @implements \IteratorAggregate<string, TEvent>
  */

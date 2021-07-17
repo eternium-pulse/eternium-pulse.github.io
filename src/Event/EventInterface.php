@@ -3,6 +3,7 @@
 namespace Eternium\Event;
 
 /**
+ * @deprecated
  * @property string $slug
  * @property string $type
  * @property string $name

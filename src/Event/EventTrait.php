@@ -2,6 +2,9 @@
 
 namespace Eternium\Event;
 
+/**
+ * @deprecated
+ */
 trait EventTrait
 {
     public string $name;
