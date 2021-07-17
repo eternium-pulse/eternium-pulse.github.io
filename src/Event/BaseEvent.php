@@ -3,12 +3,13 @@
 namespace Eternium\Event;
 
 /**
- * @template TEvent of EventInterface
+ * @template TEvent of Event
+ *
  * @deprecated
  *
  * @implements \IteratorAggregate<string, TEvent>
  */
-abstract class BaseEvent extends Event implements EventInterface, \IteratorAggregate
+abstract class BaseEvent extends Event implements \IteratorAggregate
 {
     use EventTrait;
 
@@ -17,7 +18,7 @@ abstract class BaseEvent extends Event implements EventInterface, \IteratorAggre
      */
     private array $events;
 
-    protected function __construct(string $slug, EventInterface ...$events)
+    protected function __construct(string $slug, Event ...$events)
     {
         $this->slug = $slug;
         foreach ($events as $event) {
@@ -41,9 +42,10 @@ abstract class BaseEvent extends Event implements EventInterface, \IteratorAggre
         $handler->send($this);
     }
 
-    final protected function withEvent(EventInterface $event): self
+    final protected function withEvent(Event $event): self
     {
-        $this->events[$event->__toString()] = $event->setParent($this);
+        $event->parent = $this;
+        $this->events[$event->__toString()] = $event;
 
         return $this;
     }

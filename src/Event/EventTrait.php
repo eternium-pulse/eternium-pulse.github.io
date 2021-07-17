@@ -9,9 +9,9 @@ trait EventTrait
 {
     public string $name;
 
-    public EventInterface $parent;
+    public Event $parent;
 
-    final public function setParent(EventInterface $parent): self
+    final public function setParent(Event $parent): self
     {
         $this->parent = $parent;
 
@@ -19,7 +19,7 @@ trait EventTrait
     }
 
     /**
-     * @return array<int, EventInterface>
+     * @return array<int, Event>
      */
     final public function getAncestors(): array
     {
@@ -31,10 +31,5 @@ trait EventTrait
         }
 
         return $parents;
-    }
-
-    final public function getPath(string $separator): string
-    {
-        return join($separator, [...$this->getAncestors(), $this]);
     }
 }

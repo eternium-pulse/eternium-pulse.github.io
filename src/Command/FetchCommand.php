@@ -2,7 +2,7 @@
 
 namespace Eternium\Command;
 
-use Eternium\Event\EventInterface;
+use Eternium\Event\Event;
 use Eternium\Event\Leaderboard;
 use EterniumPulse\Eternium;
 use Symfony\Component\Console\Command\Command;
@@ -26,7 +26,7 @@ class FetchCommand extends Command
 
     public function __construct(
         private Eternium $eternium,
-        // @var array<int, EventInterface>
+        // @var array<int, Event>
         private array $events,
     ) {
         parent::__construct();

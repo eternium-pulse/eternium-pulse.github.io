@@ -10,7 +10,7 @@ use Eternium\Event\Leaderboard\Trial;
 use Eternium\Utils;
 use EterniumPulse\Eternium;
 
-final class Leaderboard extends Event implements EventInterface
+final class Leaderboard extends Event
 {
     use EventTrait;
 
@@ -122,7 +122,6 @@ final class Leaderboard extends Event implements EventInterface
                     Gear::fromEquipment($data['payload']['hero']['equipped'] ?? []),
                     Trial::fromScore($data['score'], $data['payload']['trialStats']['heroDeaths']),
                 );
-                $this->stats->add(1, $entry->champion->level, $entry->trial->level);
                 ++$entries;
                 ++$pageEntries;
                 yield $entry;

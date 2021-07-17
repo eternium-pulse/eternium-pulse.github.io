@@ -19,5 +19,5 @@ trait LeaderboardAwareTrait
         return $this->withEvent(Leaderboard::createBountyHunters($id));
     }
 
-    abstract protected function withEvent(EventInterface $event): EventInterface;
+    abstract protected function withEvent(Event $event): Event;
 }

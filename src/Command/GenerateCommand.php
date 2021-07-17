@@ -2,7 +2,7 @@
 
 namespace Eternium\Command;
 
-use Eternium\Event\EventInterface;
+use Eternium\Event\Event;
 use Eternium\Event\Leaderboard;
 use Eternium\Utils;
 use Eternium\Utils\Url;
@@ -30,7 +30,7 @@ class GenerateCommand extends Command
 
     public function __construct(
         private Twig $twig,
-        // @var array<int, EventInterface>
+        // @var array<int, Event>
         private array $events,
     ) {
         parent::__construct();
@@ -76,7 +76,7 @@ class GenerateCommand extends Command
 
         $this->twig->addFunction(new TwigFunction(
             'event_path',
-            fn (EventInterface $event, int $page = 1): string => $this->eventPath($event, $page)
+            fn (Event $event, int $page = 1): string => $this->eventPath($event, $page)
         ));
 
         $this->twig->addFunction(new TwigFunction(
@@ -165,7 +165,7 @@ class GenerateCommand extends Command
         return $sitemap;
     }
 
-    private function eventPath(EventInterface $event, int $page = 0): string
+    private function eventPath(Event $event, int $page = 0): string
     {
         assert(0 <= $page);
 
