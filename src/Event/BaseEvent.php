@@ -29,7 +29,7 @@ abstract class BaseEvent extends Event implements \IteratorAggregate
     /**
      * @return \Iterator<string, TEvent>
      */
-    final public function getIterator(): \Iterator
+    public function getIterator(): \Iterator
     {
         yield from $this->events;
     }
