@@ -37,11 +37,6 @@ final class League extends BaseEvent
         return $this->name;
     }
 
-    public function getType(bool $long = false): string
-    {
-        return $this->type;
-    }
-
     public function getTitle(bool $long = false): string
     {
         if ($long && isset($this->parent)) {

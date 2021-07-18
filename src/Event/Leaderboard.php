@@ -46,11 +46,6 @@ final class Leaderboard extends Event
         return $this->name;
     }
 
-    public function getType(bool $long = false): string
-    {
-        return 'Leaderboard';
-    }
-
     public function getTitle(bool $long = false): string
     {
         return "{$this->name} {$this->type}";

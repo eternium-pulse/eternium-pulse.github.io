@@ -28,16 +28,11 @@ final class Season extends BaseEvent
 
     public function getName(bool $long = false): string
     {
-        return "{$this->getType()} {$this->index}";
-    }
-
-    public function getType(bool $long = false): string
-    {
-        return 'Season';
+        return "{$this->type} {$this->index}";
     }
 
     public function getTitle(bool $long = false): string
     {
-        return "{$this->getType()} {$this->index}";
+        return "{$this->type} {$this->index}";
     }
 }

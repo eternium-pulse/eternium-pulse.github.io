@@ -70,7 +70,7 @@ class GenerateCommand extends Command
 
         $latest_events = [];
         foreach ($this->events as $event) {
-            $latest_events[strtolower($event->getType())] = $event;
+            $latest_events[strtolower($event->type)] = $event;
         }
         $this->twig->addGlobal('latest_events', $latest_events);
 

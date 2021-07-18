@@ -26,20 +26,15 @@ final class Anb extends BaseEvent
 
     public function getName(bool $long = false): string
     {
-        return "{$this->getType()} {$this->index}";
-    }
-
-    public function getType(bool $long = false): string
-    {
-        if ($long) {
-            return 'A New Beginning';
-        }
-
-        return $this->type;
+        return "{$this->type} {$this->index}";
     }
 
     public function getTitle(bool $long = false): string
     {
-        return "{$this->getType($long)} {$this->index}";
+        if ($long) {
+            return "A New Beginning {$this->index}";
+        }
+
+        return "{$this->type} {$this->index}";
     }
 }
