@@ -9,27 +9,36 @@ final class League extends BaseEvent
 {
     use LeaderboardAwareTrait;
 
-    protected function __construct(string $slug, string $name, Leaderboard ...$leaderboards)
-    {
+    protected function __construct(
+        string $slug,
+        string $name,
+        string $mages = '',
+        string $warriors = '',
+        string $bounty_hunters = ''
+    ) {
         $this->name = $name;
         $this->type = 'League';
 
-        parent::__construct($slug, ...$leaderboards);
+        parent::__construct($slug);
+
+        $this->withMages($mages);
+        $this->withWarriors($warriors);
+        $this->withBountyHunters($bounty_hunters);
     }
 
-    public static function createBronze(Leaderboard ...$leaderboards): self
+    public static function createBronze(string $mages = '', string $warriors = '', string $bounty_hunters = ''): self
     {
-        return new self('bronze', 'Bronze', ...$leaderboards);
+        return new self('bronze', 'Bronze', $mages, $warriors, $bounty_hunters);
     }
 
-    public static function createSilver(Leaderboard ...$leaderboards): self
+    public static function createSilver(string $mages = '', string $warriors = '', string $bounty_hunters = ''): self
     {
-        return new self('silver', 'Silver', ...$leaderboards);
+        return new self('silver', 'Silver', $mages, $warriors, $bounty_hunters);
     }
 
-    public static function createGold(Leaderboard ...$leaderboards): self
+    public static function createGold(string $mages = '', string $warriors = '', string $bounty_hunters = ''): self
     {
-        return new self('gold', 'Gold', ...$leaderboards);
+        return new self('gold', 'Gold', $mages, $warriors, $bounty_hunters);
     }
 
     public function getName(bool $long = false): string
