@@ -7,21 +7,48 @@ namespace Eternium\Event;
  */
 final class Anb extends BaseEvent
 {
-    public int $index;
-
-    protected function __construct(int $index, League ...$leagues)
-    {
+    protected function __construct(
+        public int $index,
+        public ?League $bronze = null,
+        public ?League $silver = null,
+        public ?League $gold = null,
+    ) {
         assert(0 < $index);
 
-        $this->index = $index;
         $this->type = 'ANB';
 
-        parent::__construct("anb-{$this->index}", ...$leagues);
+        parent::__construct("anb-{$this->index}");
+
+        if ($this->bronze) {
+            $this->bronze->parent = $this;
+        }
+        if ($this->silver) {
+            $this->silver->parent = $this;
+        }
+        if ($this->gold) {
+            $this->gold->parent = $this;
+        }
     }
 
-    public static function create(int $index, League ...$leagues): self
+    public static function create(int $index, ?League $bronze = null, ?League $silver = null, ?League $gold = null): self
     {
-        return new self($index, ...$leagues);
+        return new self($index, $bronze, $silver, $gold);
+    }
+
+    /**
+     * @return \Iterator<int, League>
+     */
+    public function getIterator(): \Iterator
+    {
+        if ($this->bronze) {
+            yield $this->bronze;
+        }
+        if ($this->silver) {
+            yield $this->silver;
+        }
+        if ($this->gold) {
+            yield $this->gold;
+        }
     }
 
     public function getName(bool $long = false): string
