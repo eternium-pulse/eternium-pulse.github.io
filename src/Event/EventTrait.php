@@ -17,19 +17,4 @@ trait EventTrait
 
         return $this;
     }
-
-    /**
-     * @return array<int, Event>
-     */
-    final public function getAncestors(): array
-    {
-        $parents = [];
-        $e = $this;
-        while (isset($e->parent)) {
-            array_unshift($parents, $e->parent);
-            $e = $e->parent;
-        }
-
-        return $parents;
-    }
 }

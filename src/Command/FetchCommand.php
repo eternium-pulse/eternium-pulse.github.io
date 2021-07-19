@@ -69,7 +69,7 @@ class FetchCommand extends Command
                 continue;
             }
 
-            $path = $event->getPath('/');
+            $path = join('/', $event->getPath());
             $file = ETERNIUM_DATA_PATH.strtr($path, '/', DIRECTORY_SEPARATOR).'.csv';
             $href = 'file:///'.ltrim(strtr($file, DIRECTORY_SEPARATOR, '/'), '/');
 

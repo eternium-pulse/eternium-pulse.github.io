@@ -129,7 +129,7 @@ class GenerateCommand extends Command
         $progressBar->setFormat($formatter->formatSection('LOAD', '%message% %current% %elapsed%'));
 
         while (null !== ($event = yield)) {
-            $path = $event->getPath('/');
+            $path = join('/', $event->getPath());
             $sitemap[] = $this->eventPath($event);
             $template = strtolower($event->type);
 
@@ -169,7 +169,7 @@ class GenerateCommand extends Command
     {
         assert(0 <= $page);
 
-        $path = $event->getPath('/').'/';
+        $path = join('/', $event->getPath()).'/';
         if (1 < $page) {
             $path .= "{$page}.html";
         }

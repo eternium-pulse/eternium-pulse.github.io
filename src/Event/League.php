@@ -41,6 +41,14 @@ final class League extends BaseEvent
         return new self('gold', 'Gold', $mages, $warriors, $bounty_hunters);
     }
 
+    /**
+     * @return Event[]
+     */
+    public function getPath(): array
+    {
+        return [...$this->parent->getPath(), $this];
+    }
+
     public function getName(bool $long = false): string
     {
         return $this->name;

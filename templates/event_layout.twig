@@ -20,7 +20,7 @@ Eternium - {{ event.getTitle(true) }} Leaderboards
 {% endblock %}
 
 {% block breadcrumb %}
-{% set breadcrumbs = event.getAncestors() %}
+{% set breadcrumbs = event.getPath()[:-1] %}
 <nav aria-label="Breadcrumb">
   <ol class="breadcrumb flex-nowrap" vocab="https://schema.org/" typeof="BreadcrumbList">
     <li class="breadcrumb-item text-nowrap"><a href="{{ abs_path()|e }}">Home</a></li>

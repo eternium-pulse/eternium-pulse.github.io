@@ -41,6 +41,14 @@ final class Leaderboard extends Event
         return new self('bounty-hunter', 'Bounty Hunters', $id);
     }
 
+    /**
+     * @return Event[]
+     */
+    public function getPath(): array
+    {
+        return [...$this->parent->getPath(), $this];
+    }
+
     public function getName(bool $long = false): string
     {
         return $this->name;

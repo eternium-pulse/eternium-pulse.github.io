@@ -13,13 +13,11 @@ abstract class Event implements \Stringable
         return $this->slug;
     }
 
-    final public function getPath(string $separator): string
+    /**
+     * @return Event[]
+     */
+    public function getPath(): array
     {
-        $path = [$this];
-        for ($e = $this; isset($e->parent); $e = $e->parent) {
-            array_unshift($path, $e->parent);
-        }
-
-        return join($separator, $path);
+        return [$this];
     }
 }
