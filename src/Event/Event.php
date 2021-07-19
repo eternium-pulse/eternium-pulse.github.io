@@ -8,6 +8,13 @@ abstract class Event implements \Stringable
 
     public string $slug;
 
+    public string $name;
+
+    /**
+     * @deprecated
+     */
+    public self $parent;
+
     final public function __toString(): string
     {
         return $this->slug;

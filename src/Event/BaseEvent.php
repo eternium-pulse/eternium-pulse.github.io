@@ -3,27 +3,15 @@
 namespace Eternium\Event;
 
 /**
- * @template TEvent of Event
- *
  * @deprecated
  *
- * @implements \IteratorAggregate<string, TEvent>
+ * @implements \IteratorAggregate<string, Event>
  */
 abstract class BaseEvent extends Event implements \IteratorAggregate
 {
-    use EventTrait;
-
-    /**
-     * @var array<string, TEvent>
-     */
-    private array $events;
-
     protected function __construct(string $slug, Event ...$events)
     {
         $this->slug = $slug;
-        foreach ($events as $event) {
-            $this->withEvent($event);
-        }
     }
 
     /**
@@ -31,7 +19,7 @@ abstract class BaseEvent extends Event implements \IteratorAggregate
      */
     public function getIterator(): \Iterator
     {
-        yield from $this->events;
+        yield from [];
     }
 
     public function walk(\Generator $handler): void
@@ -40,13 +28,5 @@ abstract class BaseEvent extends Event implements \IteratorAggregate
             $event->walk($handler);
         }
         $handler->send($this);
-    }
-
-    final protected function withEvent(Event $event): self
-    {
-        $event->parent = $this;
-        $this->events[$event->__toString()] = $event;
-
-        return $this;
     }
 }

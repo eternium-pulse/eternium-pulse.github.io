@@ -12,8 +12,6 @@ use EterniumPulse\Eternium;
 
 final class Leaderboard extends Event
 {
-    use EventTrait;
-
     public string $id;
 
     private function __construct(string $slug, string $name, string $id)

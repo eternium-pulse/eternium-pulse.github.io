@@ -45,9 +45,4 @@ trait LeaderboardAwareTrait
 
         return $this;
     }
-
-    /**
-     * @deprecated
-     */
-    abstract protected function withEvent(Event $event): Event;
 }
