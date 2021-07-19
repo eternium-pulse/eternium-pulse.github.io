@@ -57,11 +57,6 @@ final class Leaderboard extends Event
         return "{$this->name} {$this->type}";
     }
 
-    public function walk(\Generator $handler): void
-    {
-        $handler->send($this);
-    }
-
     /**
      * @return \Generator<int, Entry, void, int>
      */

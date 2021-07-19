@@ -2,9 +2,6 @@
 
 namespace Eternium\Event;
 
-/**
- * @extends BaseEvent<League>
- */
 final class Anb extends BaseEvent
 {
     protected function __construct(

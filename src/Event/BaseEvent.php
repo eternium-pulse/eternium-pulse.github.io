@@ -21,12 +21,4 @@ abstract class BaseEvent extends Event implements \IteratorAggregate
     {
         yield from [];
     }
-
-    public function walk(\Generator $handler): void
-    {
-        foreach ($this as $event) {
-            $event->walk($handler);
-        }
-        $handler->send($this);
-    }
 }

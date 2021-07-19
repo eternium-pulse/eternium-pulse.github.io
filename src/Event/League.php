@@ -2,9 +2,6 @@
 
 namespace Eternium\Event;
 
-/**
- * @implements BaseEvent<Leaderboard>
- */
 final class League extends BaseEvent
 {
     use LeaderboardAwareTrait;
