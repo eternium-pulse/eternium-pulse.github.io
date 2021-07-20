@@ -9,11 +9,6 @@ namespace Eternium\Event;
  */
 abstract class BaseEvent extends Event implements \IteratorAggregate
 {
-    protected function __construct(string $slug, Event ...$events)
-    {
-        $this->slug = $slug;
-    }
-
     /**
      * @return \Iterator<string, TEvent>
      */

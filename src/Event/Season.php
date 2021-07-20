@@ -6,6 +6,8 @@ final class Season extends BaseEvent
 {
     use LeaderboardAwareTrait;
 
+    public string $type = 'Season';
+
     protected function __construct(
         public int $index,
         public string $season = '',
@@ -15,10 +17,8 @@ final class Season extends BaseEvent
     ) {
         assert(0 < $index);
 
-        $this->type = 'Season';
-
-        parent::__construct("season-{$index}");
-
+        $this->slug = "season-{$index}";
+        $this->name = "Season {$index}";
         $this->withMages($mages);
         $this->withWarriors($warriors);
         $this->withBountyHunters($bounty_hunters);
@@ -36,11 +36,11 @@ final class Season extends BaseEvent
 
     public function getName(bool $long = false): string
     {
-        return "{$this->type} {$this->index}";
+        return $this->name;
     }
 
     public function getTitle(bool $long = false): string
     {
-        return "{$this->type} {$this->index}";
+        return $this->name;
     }
 }

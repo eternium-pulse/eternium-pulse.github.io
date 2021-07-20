@@ -6,17 +6,19 @@ final class League extends BaseEvent
 {
     use LeaderboardAwareTrait;
 
+    public string $type = 'League';
+
     protected function __construct(
-        string $slug,
-        string $name,
+        public string $slug,
         string $mages = '',
         string $warriors = '',
         string $bounty_hunters = ''
     ) {
-        $this->name = $name;
-        $this->type = 'League';
-
-        parent::__construct($slug);
+        $this->name = match ($slug) {
+            'bronze' => 'Bronze',
+            'silver' => 'Silver',
+            'gold' => 'Gold',
+        };
 
         $this->withMages($mages);
         $this->withWarriors($warriors);
@@ -25,17 +27,17 @@ final class League extends BaseEvent
 
     public static function createBronze(string $mages = '', string $warriors = '', string $bounty_hunters = ''): self
     {
-        return new self('bronze', 'Bronze', $mages, $warriors, $bounty_hunters);
+        return new self('bronze', $mages, $warriors, $bounty_hunters);
     }
 
     public static function createSilver(string $mages = '', string $warriors = '', string $bounty_hunters = ''): self
     {
-        return new self('silver', 'Silver', $mages, $warriors, $bounty_hunters);
+        return new self('silver', $mages, $warriors, $bounty_hunters);
     }
 
     public static function createGold(string $mages = '', string $warriors = '', string $bounty_hunters = ''): self
     {
-        return new self('gold', 'Gold', $mages, $warriors, $bounty_hunters);
+        return new self('gold', $mages, $warriors, $bounty_hunters);
     }
 
     /**

@@ -4,6 +4,8 @@ namespace Eternium\Event;
 
 final class Anb extends BaseEvent
 {
+    public string $type = 'ANB';
+
     protected function __construct(
         public int $index,
         public ?League $bronze = null,
@@ -12,10 +14,8 @@ final class Anb extends BaseEvent
     ) {
         assert(0 < $index);
 
-        $this->type = 'ANB';
-
-        parent::__construct("anb-{$this->index}");
-
+        $this->slug = "anb-{$index}";
+        $this->name = "ANB {$index}";
         if ($this->bronze) {
             $this->bronze->parent = $this;
         }
@@ -50,15 +50,15 @@ final class Anb extends BaseEvent
 
     public function getName(bool $long = false): string
     {
-        return "{$this->type} {$this->index}";
+        return $this->name;
     }
 
     public function getTitle(bool $long = false): string
     {
         if ($long) {
-            return "A New Beginning {$this->index}";
+            return "A New Beginning #{$this->index}";
         }
 
-        return "{$this->type} {$this->index}";
+        return $this->name;
     }
 }

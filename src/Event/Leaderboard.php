@@ -12,16 +12,14 @@ use EterniumPulse\Eternium;
 
 final class Leaderboard extends Event
 {
-    public string $id;
+    public string $type = 'Leaderboard';
 
-    private function __construct(string $slug, string $name, string $id)
-    {
+    private function __construct(
+        public string $slug,
+        public string $name,
+        public string $id,
+    ) {
         assert(24 === strlen($id) && ctype_xdigit($id));
-
-        $this->slug = $slug;
-        $this->name = $name;
-        $this->type = 'Leaderboard';
-        $this->id = $id;
     }
 
     public static function createMages(string $id): self
@@ -54,7 +52,7 @@ final class Leaderboard extends Event
 
     public function getTitle(bool $long = false): string
     {
-        return "{$this->name} {$this->type}";
+        return "{$this->name} Leaderboard";
     }
 
     /**
