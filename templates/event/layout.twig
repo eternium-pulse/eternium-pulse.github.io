@@ -1,20 +1,7 @@
 {% extends 'layout.twig' %}
 
-{% block title -%}
-Eternium - {{ event.getTitle(true) }} Leaderboards
-{%- endblock %}
-
 {% block opengraph %}
-<link rel="canonical" href="{{ abs_url(event_path(event, +page.index))|e }}"/>
-{% if page %}
-{% if not page.first %}
-<link rel="prev" href="{{ abs_path(event_path(event, page.index - 1))|e }}"/>
-{% endif %}
-{% if not page.last %}
-<link rel="next" href="{{ abs_path(event_path(event, page.index + 1))|e }}"/>
-{% endif %}
-{% endif %}
-<meta property="og:title" content="{% if page and not page.first %}Page {{ page.index }} of {% endif %}{{ event.getTitle(true)|e }}"/>
+<link rel="canonical" href="{{ abs_url(event_path(event, +page.index))|e }}" />
 <meta property="og:url" content="{{ abs_url(event_path(event, +page.index))|e }}"/>
 {{ parent() }}
 {% endblock %}
@@ -41,8 +28,6 @@ Eternium - {{ event.getTitle(true) }} Leaderboards
 {% endblock %}
 
 {% block content %}
-<h1>{{ event.getTitle(true)|e }}</h1>
 <p class="lead">{{ block('description') }}.</p>
-
 {% include "event/list.twig" with {'events': event} %}
 {% endblock %}

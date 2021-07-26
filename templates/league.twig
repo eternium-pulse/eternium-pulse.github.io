@@ -1,5 +1,19 @@
 {% extends 'event/layout.twig' %}
 
-{% block description -%}
-{{ event.name|e }} leaderboards of {{ event.parent.name|e }}
+{% block title -%}
+Eternium - ANB {{ event.name|e }} #{{ +event.parent.index }} Leaderboards
 {%- endblock %}
+
+{% block description -%}
+ANB {{ event.name|e }} #{{ +event.parent.index }} leaderboards
+{%- endblock %}
+
+{% block opengraph %}
+<meta property="og:title" content="{{ event.name|e }} League"/>
+{{ parent() }}
+{% endblock %}
+
+{% block content %}
+<h1>{{ event.name|e }} League</h1>
+{{ parent() }}
+{% endblock %}

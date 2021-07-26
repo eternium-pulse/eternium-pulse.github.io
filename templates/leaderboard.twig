@@ -1,20 +1,33 @@
 {% extends 'event/layout.twig' %}
 
+{% set parent_event = include("event/leaderboard/#{event.parent.type|lower}.twig", {event: event.parent}) %}
+
 {% block title -%}
-Eternium - {{ event.parent.getTitle(true) }} - {{ event.getTitle() }}{% if not page.first %} - Page {{ page.index }}{% endif %}
+Eternium - {{ parent_event|e }} - {{ event.name|e }} Leaderboard{% if not page.first %} - Page {{ +page.index }}{% endif %}
 {%- endblock %}
 
 {% block description -%}
-{% if page.first %}
-Top {{ page.range.length }} {{ event.name|e }} of {{ event.parent.getTitle(true)|e }}
-{% else %}
-{{ event.name|e }} {{ page.range.offset }}-{{ page.range.offset0 + page.range.length }} of {{ event.parent.getTitle(true)|e }}
-{% endif %}
+{% if page.first -%}
+Top {{ +page.range.length }}
+{%- else -%}
+{{ +page.range.offset }}-{{ page.range.offset0 + page.range.length }}
+{%- endif %} {{ event.name|lower|e }} of {{ parent_event|e }}
 {%- endblock %}
+
+{% block opengraph %}
+<meta property="og:title" content="{{ event.name|e }} Leaderboard"/>
+{% if not page.first %}
+<link rel="prev" href="{{ abs_path(event_path(event, page.index - 1))|e }}"/>
+{% endif %}
+{% if not page.last %}
+<link rel="next" href="{{ abs_path(event_path(event, page.index + 1))|e }}"/>
+{% endif %}
+{{ parent() }}
+{% endblock %}
 
 {% block content %}
 <h1>{{ event.name|e }} Leaderboard</h1>
-<p class="lead">{{ block('description')|trim }}.</p>
+<p class="lead">{{ block('description') }}.</p>
 
 <ul class="nav nav-tabs flex-nowrap">
   {%~ for item in event.parent %}
