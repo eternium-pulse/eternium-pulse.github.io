@@ -10,13 +10,11 @@ use Eternium\Event\Leaderboard\Trial;
 use Eternium\Utils;
 use EterniumPulse\Eternium;
 
-final class Leaderboard extends Event
+abstract class Leaderboard extends Event
 {
     public string $type = 'Leaderboard';
 
     private function __construct(
-        public string $slug,
-        public string $name,
         public string $id,
     ) {
         assert(24 === strlen($id) && ctype_xdigit($id));
@@ -24,17 +22,17 @@ final class Leaderboard extends Event
 
     public static function createMages(string $id): self
     {
-        return new self('mage', 'Mages', $id);
+        return new Leaderboard\Mage($id);
     }
 
     public static function createWarriors(string $id): self
     {
-        return new self('warrior', 'Warriors', $id);
+        return new Leaderboard\Warrior($id);
     }
 
     public static function createBountyHunters(string $id): self
     {
-        return new self('bounty-hunter', 'Bounty Hunters', $id);
+        return new Leaderboard\BountyHunter($id);
     }
 
     /**
