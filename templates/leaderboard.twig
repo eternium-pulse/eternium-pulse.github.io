@@ -1,4 +1,4 @@
-{% extends 'event_layout.twig' %}
+{% extends 'event/layout.twig' %}
 
 {% block title -%}
 Eternium - {{ event.parent.getTitle(true) }} - {{ event.getTitle() }}{% if not page.first %} - Page {{ page.index }}{% endif %}
@@ -13,7 +13,7 @@ Top {{ page.range.length }} {{ event.name|e }} of {{ event.parent.getTitle(true)
 {%- endblock %}
 
 {% block content %}
-<h1>{{ event.getTitle(true)|e }}</h1>
+<h1>{{ event.name|e }} Leaderboard</h1>
 <p class="lead">{{ block('description')|trim }}.</p>
 
 <ul class="nav nav-tabs flex-nowrap">
