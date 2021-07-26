@@ -43,11 +43,6 @@ abstract class Leaderboard extends Event
         return [...$this->parent->getPath(), $this];
     }
 
-    public function getTitle(bool $long = false): string
-    {
-        return "{$this->name} Leaderboard";
-    }
-
     /**
      * @return \Generator<int, Entry, void, int>
      */

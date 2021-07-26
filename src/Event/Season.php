@@ -33,9 +33,4 @@ final class Season extends BaseEvent
     ): self {
         return new self($index, $season, $mages, $warriors, $bounty_hunters);
     }
-
-    public function getTitle(bool $long = false): string
-    {
-        return $this->name;
-    }
 }

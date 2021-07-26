@@ -47,13 +47,4 @@ final class Anb extends BaseEvent
             yield $this->gold;
         }
     }
-
-    public function getTitle(bool $long = false): string
-    {
-        if ($long) {
-            return "A New Beginning #{$this->index}";
-        }
-
-        return $this->name;
-    }
 }
