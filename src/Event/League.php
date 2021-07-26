@@ -2,24 +2,17 @@
 
 namespace Eternium\Event;
 
-final class League extends BaseEvent
+abstract class League extends BaseEvent
 {
     use LeaderboardAwareTrait;
 
     public string $type = 'League';
 
     protected function __construct(
-        public string $slug,
         string $mages = '',
         string $warriors = '',
         string $bounty_hunters = ''
     ) {
-        $this->name = match ($slug) {
-            'bronze' => 'Bronze',
-            'silver' => 'Silver',
-            'gold' => 'Gold',
-        };
-
         $this->withMages($mages);
         $this->withWarriors($warriors);
         $this->withBountyHunters($bounty_hunters);
@@ -27,17 +20,17 @@ final class League extends BaseEvent
 
     public static function createBronze(string $mages = '', string $warriors = '', string $bounty_hunters = ''): self
     {
-        return new self('bronze', $mages, $warriors, $bounty_hunters);
+        return new League\Bronze($mages, $warriors, $bounty_hunters);
     }
 
     public static function createSilver(string $mages = '', string $warriors = '', string $bounty_hunters = ''): self
     {
-        return new self('silver', $mages, $warriors, $bounty_hunters);
+        return new League\Silver($mages, $warriors, $bounty_hunters);
     }
 
     public static function createGold(string $mages = '', string $warriors = '', string $bounty_hunters = ''): self
     {
-        return new self('gold', $mages, $warriors, $bounty_hunters);
+        return new League\Gold($mages, $warriors, $bounty_hunters);
     }
 
     /**
