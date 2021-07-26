@@ -48,11 +48,6 @@ final class Anb extends BaseEvent
         }
     }
 
-    public function getName(bool $long = false): string
-    {
-        return $this->name;
-    }
-
     public function getTitle(bool $long = false): string
     {
         if ($long) {

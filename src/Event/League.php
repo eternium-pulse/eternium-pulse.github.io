@@ -41,15 +41,10 @@ abstract class League extends BaseEvent
         return [...$this->parent->getPath(), $this];
     }
 
-    public function getName(bool $long = false): string
-    {
-        return $this->name;
-    }
-
     public function getTitle(bool $long = false): string
     {
         if ($long && isset($this->parent)) {
-            return "{$this->parent->getName()} {$this->name} {$this->type}";
+            return "{$this->parent->name} {$this->name} {$this->type}";
         }
 
         return "{$this->name} {$this->type}";
