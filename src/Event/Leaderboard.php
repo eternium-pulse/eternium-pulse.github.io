@@ -12,7 +12,7 @@ use EterniumPulse\Eternium;
 
 abstract class Leaderboard extends Event
 {
-    public string $type = 'Leaderboard';
+    public string $type = 'leaderboard';
 
     private function __construct(
         public string $id,

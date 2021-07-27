@@ -6,7 +6,7 @@ abstract class League extends BaseEvent
 {
     use LeaderboardAwareTrait;
 
-    public string $type = 'League';
+    public string $type = 'league';
 
     protected function __construct(
         string $mages = '',

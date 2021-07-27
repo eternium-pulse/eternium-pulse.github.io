@@ -4,7 +4,7 @@ namespace Eternium\Event;
 
 final class Anb extends BaseEvent
 {
-    public string $type = 'ANB';
+    public string $type = 'anb';
 
     protected function __construct(
         public int $index,

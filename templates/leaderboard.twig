@@ -1,6 +1,6 @@
 {% extends 'event/layout.twig' %}
 
-{% set parent_event = include("event/leaderboard/#{event.parent.type|lower}.twig", {event: event.parent}) %}
+{% set parent_event = include("event/leaderboard/#{event.parent.type}.twig", {event: event.parent}) %}
 
 {% block title -%}
 Eternium - {{ parent_event|e }} - {{ event.name|e }} Leaderboard{% if not page.first %} - Page {{ +page.index }}{% endif %}

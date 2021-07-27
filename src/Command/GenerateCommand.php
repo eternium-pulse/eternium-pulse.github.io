@@ -70,7 +70,7 @@ class GenerateCommand extends Command
 
         $latest_events = [];
         foreach ($this->events as $event) {
-            $latest_events[strtolower($event->type)] = $event;
+            $latest_events[$event->type] = $event;
         }
         $this->twig->addGlobal('latest_events', $latest_events);
 
@@ -131,7 +131,7 @@ class GenerateCommand extends Command
         while (null !== ($event = yield)) {
             $path = join('/', $event->getPath());
             $sitemap[] = $this->eventPath($event);
-            $template = strtolower($event->type);
+            $template = $event->type;
 
             if (!($event instanceof Leaderboard)) {
                 $render("{$path}/index.html", $template, compact('event'));

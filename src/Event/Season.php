@@ -6,7 +6,7 @@ final class Season extends BaseEvent
 {
     use LeaderboardAwareTrait;
 
-    public string $type = 'Season';
+    public string $type = 'season';
 
     protected function __construct(
         public int $index,
