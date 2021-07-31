@@ -258,5 +258,10 @@ return [
             warriors: '60f18f55f3b8c54b8e0a70c7',
             bounty_hunters: '60f18f56f3b8c54b8e0a70d6',
         ),
+        League::createSilver(
+            mages: '6103f52af3b8c54b8eef31bf',
+            warriors: '6103f52bf3b8c54b8eef31d0',
+            bounty_hunters: '6103f52cc93f436bdea7ed2d',
+        ),
     ),
 ];
