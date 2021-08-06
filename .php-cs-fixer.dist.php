@@ -1,7 +1,6 @@
 <?php
 
 return (new \PhpCsFixer\Config())
-    ->setCacheFile('.php-cs-fixer.cache')
     ->setRules([
         '@PhpCsFixer' => true,
     ])
