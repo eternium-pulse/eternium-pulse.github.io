@@ -264,4 +264,12 @@ return [
             bounty_hunters: '6103f52cc93f436bdea7ed2d',
         ),
     ),
+
+    Season::create(
+        8,
+        'Fall 2021',
+        mages: '61324f24c93f4343d9ef127a',
+        warriors: '61324f25f3b8c5142fb8a829',
+        bounty_hunters: '61324f27f3b8c5142fb8a834',
+    ),
 ];
