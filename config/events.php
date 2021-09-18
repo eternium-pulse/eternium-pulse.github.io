@@ -263,6 +263,11 @@ return [
             warriors: '6103f52bf3b8c54b8eef31d0',
             bounty_hunters: '6103f52cc93f436bdea7ed2d',
         ),
+        League::createGold(
+            mages: '6144a357f3b8c50967c5f767',
+            warriors: '6144a358f3b8c50967c5f779',
+            bounty_hunters: '6144a359c93f435b10de54f3',
+        ),
     ),
 
     Season::create(
