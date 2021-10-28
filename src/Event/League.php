@@ -11,26 +11,31 @@ abstract class League extends BaseEvent
     protected function __construct(
         string $mages = '',
         string $warriors = '',
-        string $bounty_hunters = ''
+        string $bounty_hunters = '',
+        array ...$brackets,
     ) {
-        $this->withMages($mages);
-        $this->withWarriors($warriors);
-        $this->withBountyHunters($bounty_hunters);
+        if ($brackets) {
+            foreach ($brackets as $bracket => $ids) {
+                $this->withBracket($bracket, ...$ids);
+            }
+        } else {
+            $this->withBracket('', $mages, $warriors, $bounty_hunters);
+        }
     }
 
-    public static function createBronze(string $mages = '', string $warriors = '', string $bounty_hunters = ''): self
+    public static function createBronze(string $mages = '', string $warriors = '', string $bounty_hunters = '', array $brackets = []): self
     {
-        return new League\Bronze($mages, $warriors, $bounty_hunters);
+        return new League\Bronze($mages, $warriors, $bounty_hunters, ...$brackets);
     }
 
-    public static function createSilver(string $mages = '', string $warriors = '', string $bounty_hunters = ''): self
+    public static function createSilver(string $mages = '', string $warriors = '', string $bounty_hunters = '', array $brackets = []): self
     {
-        return new League\Silver($mages, $warriors, $bounty_hunters);
+        return new League\Silver($mages, $warriors, $bounty_hunters, ...$brackets);
     }
 
-    public static function createGold(string $mages = '', string $warriors = '', string $bounty_hunters = ''): self
+    public static function createGold(string $mages = '', string $warriors = '', string $bounty_hunters = '', array $brackets = []): self
     {
-        return new League\Gold($mages, $warriors, $bounty_hunters);
+        return new League\Gold($mages, $warriors, $bounty_hunters, ...$brackets);
     }
 
     /**

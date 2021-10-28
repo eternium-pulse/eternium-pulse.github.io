@@ -1,12 +1,8 @@
-{% if event.hasBrackets() %}
-{% for bracket in event %}
-{% include "event/card/bracket.twig" with {'event': bracket } %}
-{% endfor %}
-{% else %}
 <div class="col">
   <div class="card bg-light text-center">
     <div class="card-body">
-      <h5 class="card-title mb-0">{{ event.name|e }}</h5>
+      <h5 class="card-title">{{ event.parent.name|e }}</h5>
+      <h6 class="card-subtitle text-muted">{{ event.name|e }}</h6>
     </div>
     <div class="list-group list-group-flush">
       {%~ for e in event %}
@@ -15,4 +11,3 @@
     </div>
   </div>
 </div>
-{% endif %}
