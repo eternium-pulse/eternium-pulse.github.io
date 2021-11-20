@@ -8,6 +8,8 @@ require dirname(__DIR__).'/vendor/autoload.php';
 use Eternium\Config;
 use Symfony\Component\Console\Application;
 
+ini_set('memory_limit', '-1');
+
 $config = new Config(dirname(__DIR__).'/config');
 
 define('ETERNIUM_DATA_PATH', dirname(__DIR__).DIRECTORY_SEPARATOR.'data'.DIRECTORY_SEPARATOR);
