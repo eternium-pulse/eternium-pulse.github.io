@@ -315,4 +315,12 @@ return [
             ],
         ]),
     ),
+
+    Season::create(
+        9,
+        'Winter 2021',
+        mages: '619e6862f3b8c5561450b384',
+        warriors: '619e6864f3b8c5561450b387',
+        bounty_hunters: '619e6865f3b8c5561450b38b',
+    ),
 ];
