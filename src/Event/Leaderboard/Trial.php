@@ -23,6 +23,6 @@ final class Trial
     {
         assert(10000 <= $score);
 
-        return new self($score / 10000, 9999 - $score % 10000, $deaths);
+        return new self((int) ($score / 10000), 9999 - $score % 10000, $deaths);
     }
 }
