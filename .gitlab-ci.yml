@@ -14,7 +14,7 @@ pages:
   script:
     - php8 bin/lb.php fetch --no-progress
     - php8 bin/lb.php generate --base-url=$CI_PAGES_URL --no-progress
-    - find public -type f -regex '.*\.\(html\|xml\|js\|json\|webmanifest\|css\|txt\)$' -exec gzip -f -k {} \;
+    - find public -type f -regex '.*\.\(html\|xml\|rss\|js\|json\|webmanifest\|css\|txt\)$' -exec gzip -f -k {} \;
   artifacts:
     name: "$CI_JOB_NAME-$CI_COMMIT_SHORT_SHA"
     expire_in: 1 day
