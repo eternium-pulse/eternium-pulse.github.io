@@ -1,0 +1,12 @@
+{% apply spaceless %}
+<?xml version="1.0" encoding="{{ _charset|e }}"?>
+<rss xmlns:yandex="http://news.yandex.ru" xmlns:turbo="http://turbo.yandex.ru" version="2.0">
+  <channel>
+    <title>{{ site.name|e }}</title>
+    <link>{{ abs_url()|e }}</link>
+    <description>Offline leaderboards on {{ site.name|e }}</description>
+    <language>en</language>
+    {{ items|reverse|join()|raw }}
+  </channel>
+</rss>
+{% endapply %}

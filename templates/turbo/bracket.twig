@@ -1,0 +1,10 @@
+{% extends "turbo/item.twig" %}
+
+{% set bracket = event.parent %}
+{% set league = bracket.parent %}
+{% set anb = league.parent %}
+
+{% block header %}
+{{ parent() }}
+<h2>ANB {{ league.name|e }} #{{ +anb.index }} {{ bracket.name|e }} League</h2>
+{% endblock %}

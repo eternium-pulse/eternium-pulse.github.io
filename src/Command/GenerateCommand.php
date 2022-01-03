@@ -28,6 +28,8 @@ class GenerateCommand extends Command
 
     private bool $hideProgress = false;
 
+    private array $turboItems = [];
+
     public function __construct(
         private Twig $twig,
         // @var array<int, Event>
@@ -116,6 +118,7 @@ class GenerateCommand extends Command
         $render('404.html', 'error', ['code' => 404, 'message' => 'Not found']);
         $render('manifest.webmanifest', 'manifest');
         $render('sitemap.xml', 'sitemap', ['urls' => $generator->getReturn()]);
+        $render('turbo.rss', 'turbo', ['items' => $this->turboItems]);
         $render('robots.txt', 'robots');
 
         return self::SUCCESS;
@@ -151,15 +154,25 @@ class GenerateCommand extends Command
 
             $output->writeln($formatter->formatSection('LOAD', "{$path} loaded ({$reader->getReturn()} entries)"));
 
-            $page_size = $this->pageSize;
-            foreach (Utils::paginate(count($entries), $page_size) as $page) {
+            foreach (Utils::paginate(count($entries), $this->pageSize) as $page) {
+                $context = [
+                    'event' => $event,
+                    'page' => $page,
+                    'page_size' => $this->pageSize,
+                    'entries' => $entries,
+                ];
                 if ($page->first) {
-                    $render("{$path}/index.html", $template, compact('event', 'page', 'page_size', 'entries'));
+                    $render("{$path}/index.html", $template, $context);
                 }
-                $render("{$path}/{$page->index}.html", $template, compact('event', 'page', 'page_size', 'entries'));
+                $render("{$path}/{$page->index}.html", $template, $context);
             }
 
-            unset($entries);
+            $this->turboItems[] = $this->twig->render("turbo/{$event->parent->type}.twig", [
+                'event' => $event,
+                'entries' => array_slice($entries, 0, $this->pageSize),
+            ]);
+
+            unset($context, $entries);
         }
 
         return $sitemap;
