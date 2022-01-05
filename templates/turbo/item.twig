@@ -36,7 +36,7 @@
     {% endif %}
     </main>]]>
   </turbo:content>
-  <yandex:related type="infinity">
+  <yandex:related>
     {% block related %}
     {% for e in event.parent %}
       {% if event != e %}<link url="{{ abs_url(event_path(e))|e }}">{{ e.name|e }} Leaderboard</link>{% endif %}
