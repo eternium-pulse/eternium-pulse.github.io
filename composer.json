@@ -18,8 +18,8 @@
     "require": {
         "php": "^8.0",
         "eternium-pulse/eternium": "^0.1",
-        "symfony/console": "^5.3",
-        "symfony/http-client": "^5.3",
+        "symfony/console": "^5.4",
+        "symfony/http-client": "^5.4",
         "twig/twig": "^3.3"
     },
     "require-dev": {
