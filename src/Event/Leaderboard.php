@@ -88,6 +88,7 @@ abstract class Leaderboard extends Event
                 'hero.selectedPlayerNameID',
                 'hero.equipped.itemLevel',
                 'trialStats.heroDeaths',
+                'devInfo.platform',
             ],
         ];
 
@@ -103,6 +104,7 @@ abstract class Leaderboard extends Event
                     new Champion($data['payload']['champion_level']),
                     Gear::fromEquipment($data['payload']['hero']['equipped'] ?? []),
                     Trial::fromScore($data['score'], $data['payload']['trialStats']['heroDeaths']),
+                    strtolower($data['payload']['devInfo']['platform'] ?? ''),
                 );
                 ++$entries;
                 ++$pageEntries;
