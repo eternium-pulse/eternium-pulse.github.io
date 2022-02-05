@@ -20,14 +20,14 @@ final class Entry
 
     public static function fromArray(array $data): self
     {
-        assert(count($data) >= 7);
+        assert(count($data) >= 8);
 
         return new self(
             new Hero($data[0], $data[1]),
             new Champion($data[2]),
             new Gear($data[3]),
-            new Trial($data[4], $data[5], $data[6]),
-            $data[7] ?? '',
+            new Trial($data[4], $data[5], $data[6], $data[7]),
+            $data[8] ?? '',
         );
     }
 
@@ -40,6 +40,7 @@ final class Entry
             $this->gear->averageLevel,
             $this->trial->level,
             $this->trial->time,
+            $this->trial->bossTime,
             $this->trial->deaths,
             $this->platform,
         ];

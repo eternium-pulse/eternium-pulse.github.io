@@ -87,6 +87,7 @@ abstract class Leaderboard extends Event
                 'champion_level',
                 'hero.selectedPlayerNameID',
                 'hero.equipped.itemLevel',
+                'trialStats.boss.t0',
                 'trialStats.heroDeaths',
                 'devInfo.platform',
             ],
@@ -96,15 +97,16 @@ abstract class Leaderboard extends Event
         do {
             $pageEntries = 0;
             foreach ($rankings->list($options) as $data) {
+                extract($data['payload'], EXTR_OVERWRITE);
                 $entry = new Entry(
                     new Hero(
-                        $data['payload']['name'],
-                        ucwords(strtr($data['payload']['hero']['selectedPlayerNameID'] ?? '', '_', ' ')),
+                        $name,
+                        ucwords(strtr($hero['selectedPlayerNameID'] ?? '', '_', ' ')),
                     ),
-                    new Champion($data['payload']['champion_level']),
-                    Gear::fromEquipment($data['payload']['hero']['equipped'] ?? []),
-                    Trial::fromScore($data['score'], $data['payload']['trialStats']['heroDeaths']),
-                    strtolower($data['payload']['devInfo']['platform'] ?? ''),
+                    new Champion($champion_level),
+                    Gear::fromEquipment($hero['equipped'] ?? []),
+                    Trial::fromScore($data['score'], $trialStats['boss']['t0'], $trialStats['heroDeaths']),
+                    strtolower($devInfo['platform'] ?? ''),
                 );
                 ++$entries;
                 ++$pageEntries;
