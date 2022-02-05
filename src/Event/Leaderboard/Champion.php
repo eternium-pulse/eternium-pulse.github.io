@@ -4,12 +4,8 @@ namespace Eternium\Event\Leaderboard;
 
 final class Champion
 {
-    public int $level;
-
-    public function __construct(int $level)
+    public function __construct(public int $level)
     {
-        assert(0 <= $level);
-
-        $this->level = $level;
+        assert($level >= 0);
     }
 }
