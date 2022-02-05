@@ -18,9 +18,14 @@ class FetchCommand extends Command
 {
     protected static $defaultName = 'fetch';
 
-    private string $pattern = '*';
+    private string $pattern = '';
 
     private bool $update = false;
+
+    /**
+     * @var callable(string): bool
+     */
+    private $accept;
 
     private bool $hideProgress = false;
 
@@ -36,13 +41,27 @@ class FetchCommand extends Command
     {
         $this->setDescription('Fetches leaderboards from game server');
         $this->addArgument('pattern', InputArgument::OPTIONAL, 'The pattern of leaderboard paths', $this->pattern);
+        $this->addOption('from', '', InputOption::VALUE_NONE, 'Start fetching when pattern matched');
         $this->addOption('update', 'u', InputOption::VALUE_NONE, 'Update existing data');
         $this->addOption('no-progress', '', InputOption::VALUE_NONE, 'Do not output download progress');
     }
 
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
-        $this->pattern = strtr($input->getArgument('pattern'), '\\', '/');
+        $this->accept = [self::class, 'acceptAll'];
+        $pattern = self::normalizePattern($input->getArgument('pattern'));
+        if ($input->getOption('from')) {
+            $this->accept = function (string $path) use ($pattern): bool {
+                if ($accept = self::acceptPattern($path, $pattern)) {
+                    $this->accept = [self::class, 'acceptAll'];
+                }
+
+                return $accept;
+            };
+        } else {
+            $this->accept = static fn (string $path): bool => self::acceptPattern($path, $pattern);
+        }
+
         $this->update = $input->getOption('update');
         $this->hideProgress = $input->getOption('no-progress');
     }
@@ -56,6 +75,21 @@ class FetchCommand extends Command
         $fetcher->send(null);
 
         return self::SUCCESS;
+    }
+
+    protected static function normalizePattern(string $pattern): string
+    {
+        return strtolower(strtr($pattern, '\\', '/'));
+    }
+
+    protected static function acceptAll(): bool
+    {
+        return true;
+    }
+
+    protected static function acceptPattern(string $path, string $pattern): bool
+    {
+        return str_starts_with($path, $pattern);
     }
 
     private function createFetcher(OutputInterface $output): \Generator
@@ -73,7 +107,7 @@ class FetchCommand extends Command
             $file = ETERNIUM_DATA_PATH.strtr($path, '/', DIRECTORY_SEPARATOR).'.csv';
             $href = 'file:///'.ltrim(strtr($file, DIRECTORY_SEPARATOR, '/'), '/');
 
-            if (!fnmatch($this->pattern, $path, FNM_NOESCAPE)) {
+            if (!($this->accept)($path)) {
                 $output->writeln(
                     $formatter->formatSection('SKIP', "{$path} not matched against pattern", 'comment'),
                     Output::VERBOSITY_VERY_VERBOSE
