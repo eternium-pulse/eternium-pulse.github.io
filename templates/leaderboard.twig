@@ -57,21 +57,25 @@ Top {{ +page.range.length }}
       <th class="d-none d-sm-table-cell" scope="col"><abbr title="Average Item Level">AvgIL</abbr></th>
       <th scope="col"><abbr title="Trial Level">TL</abbr></th>
       <th scope="col">Time</th>
+      <th class="d-none d-sm-table-cell" scope="col">Kills</th>
       <th class="d-none d-sm-table-cell" scope="col">Deaths</th>
     </tr>
   </thead>
   <tbody>
     {%~ for rank, entry in page.range.slice(entries) %}
     <tr>
-      <th scope="row">{{ rank }}</th>
-      <td>{% if entry.hero.title %}<span class="badge bg-secondary d-none d-sm-inline-block">
-        {{- entry.hero.title|e -}}
-      </span> {% endif %}{{ entry.hero|e }}{% if entry.platform %} <span class="fab fa-{{ entry.platform|replace({'ios': 'apple'})|e }}" role="img" aria-label="{{ entry.platform|e }}"></span>{% endif %}</td>
-      <td>{{ entry.hero.championLevel }}</td>
+      <th scope="row">{{ +rank }}</th>
+      <td>
+        {%- if entry.hero.title %}<span class="badge bg-secondary d-none d-sm-inline-block">{{ entry.hero.title|e }}</span> {% endif %}
+        {{- entry.hero|e -}}
+        {% if entry.platform %} <span class="fab fa-{{ entry.platform|replace({'ios': 'apple'})|e }}" role="img" aria-label="{{ entry.platform|e }}"></span>{% endif -%}
+      </td>
+      <td>{{ +entry.hero.championLevel }}</td>
       <td class="d-none d-sm-table-cell">{{ '%.1f'|format(entry.hero.averageItemLevel) }}</td>
-      <td>{{ entry.trial.level }}</td>
-      <td><time datetime="PT{{ entry.trial.time }}S">{{ entry.trial.time|date('i:s') }}</time></td>
-      <td class="d-none d-sm-table-cell">{{ entry.trial.deaths }}</td>
+      <td>{{ +entry.trial.level }}</td>
+      <td><time datetime="PT{{ +entry.trial.time }}S">{{ entry.trial.formatTime()|e }}</time></td>
+      <td class="d-none d-sm-table-cell">{{ entry.trial.eliteKills + entry.trial.trashKills }}</td>
+      <td class="d-none d-sm-table-cell">{{ +entry.trial.deaths }}</td>
     </tr>
     {%~ endfor %}
   </tbody>

@@ -23,11 +23,11 @@
         </tr>
         {% for entry in entries %}
         <tr>
-          <td>{{ loop.index }}</td>
+          <td>{{ +loop.index }}</td>
           <td>{{ entry.hero|e }}</td>
-          <td>{{ entry.hero.championLevel }}</td>
-          <td>{{ entry.trial.level }}</td>
-          <td>{{ entry.trial.time|date('i:s') }}</td>
+          <td>{{ +entry.hero.championLevel }}</td>
+          <td>{{ +entry.trial.level }}</td>
+          <td><time datetime="PT{{ +entry.trial.time }}S">{{ entry.trial.formatTime()|e }}</time></td>
         </tr>
         {% endfor %}
       </table>
