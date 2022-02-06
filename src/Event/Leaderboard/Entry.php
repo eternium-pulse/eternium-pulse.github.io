@@ -35,7 +35,7 @@ final class Entry implements \Stringable
         assert(count($data) === count(self::HEADER));
 
         return new self(
-            new Hero($data[0], $data[1], $data[2], $data[3]),
+            new Hero($data[0], $data[1], $data[2], strtr($data[3], ',', '.')),
             new Trial($data[4], $data[5], $data[6], $data[7], $data[8], $data[9]),
             $data[10],
         );
@@ -47,7 +47,7 @@ final class Entry implements \Stringable
             $this->hero->name,
             $this->hero->title,
             $this->hero->championLevel,
-            $this->hero->averageItemLevel,
+            number_format($this->hero->averageItemLevel, 2, ','),
             $this->trial->level,
             $this->trial->time,
             $this->trial->bossTime,

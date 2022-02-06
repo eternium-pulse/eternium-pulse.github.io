@@ -35,10 +35,6 @@ final class Hero implements \Stringable
 
     public static function getAverageLevel(int ...$levels): float
     {
-        if (!$levels) {
-            return 0.0;
-        }
-
-        return round(array_sum($levels) / count($levels), 2);
+        return array_sum($levels) / (count($levels) ?: 1);
     }
 }
