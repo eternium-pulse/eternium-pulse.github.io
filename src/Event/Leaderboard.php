@@ -46,7 +46,8 @@ abstract class Leaderboard extends Event
      */
     public function read(string $file): \Generator
     {
-        $reader = Utils::createCsvReader($file, []);
+        $header = [];
+        $reader = Utils::createCsvReader($file, $header);
         foreach ($reader as $data) {
             $entry = Entry::fromArray($data);
             yield $entry;
