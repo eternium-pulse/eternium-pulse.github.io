@@ -2,9 +2,7 @@
 
 namespace Eternium\Event;
 
-use Eternium\Event\Leaderboard\Champion;
 use Eternium\Event\Leaderboard\Entry;
-use Eternium\Event\Leaderboard\Gear;
 use Eternium\Event\Leaderboard\Hero;
 use Eternium\Event\Leaderboard\Trial;
 use Eternium\Utils;
@@ -85,11 +83,9 @@ abstract class Leaderboard extends Event
             'payload' => [
                 'name',
                 'champion_level',
-                'hero.selectedPlayerNameID',
-                'hero.equipped.itemLevel',
-                'trialStats.boss.t0',
-                'trialStats.heroDeaths',
-                'devInfo.platform',
+                'hero',
+                'trialStats',
+                'devInfo',
             ],
         ];
 
@@ -97,16 +93,10 @@ abstract class Leaderboard extends Event
         do {
             $pageEntries = 0;
             foreach ($rankings->list($options) as $data) {
-                extract($data['payload'], EXTR_OVERWRITE);
                 $entry = new Entry(
-                    new Hero(
-                        $name,
-                        ucwords(strtr($hero['selectedPlayerNameID'] ?? '', '_', ' ')),
-                    ),
-                    new Champion($champion_level),
-                    Gear::fromEquipment($hero['equipped'] ?? []),
-                    Trial::fromScore($data['score'], $trialStats['boss']['t0'], $trialStats['heroDeaths']),
-                    strtolower($devInfo['platform'] ?? ''),
+                    Hero::fromPayload($data['payload']),
+                    Trial::fromTrialStats($data['score'], $data['payload']['trialStats']),
+                    strtolower($data['payload']['devInfo']['platform'] ?? ''),
                 );
                 ++$entries;
                 ++$pageEntries;
