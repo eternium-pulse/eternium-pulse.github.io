@@ -23,7 +23,7 @@ final class Trial
     public static function fromTrialStats(int $score, array $trialStats): self
     {
         assert($score >= 10000);
-        assert(isset($trialStats['boss']['t0']));
+        assert(isset($trialStats['trash']['t1']));
         assert(isset($trialStats['killsElite']));
         assert(isset($trialStats['killsNormal']));
         assert(isset($trialStats['heroDeaths']));
@@ -31,10 +31,27 @@ final class Trial
         return new self(
             (int) ($score / 10000),
             $time = 9999 - $score % 10000,
-            max($time - $trialStats['boss']['t0'], 0),
+            $time - $trialStats['trash']['t1'],
             $trialStats['killsElite'],
             $trialStats['killsNormal'],
             $trialStats['heroDeaths'],
         );
+    }
+
+    public static function formatTimePeriod(int $time): string
+    {
+        assert($time >= 0);
+
+        return sprintf('%d:%02d', $time / 60, $time % 60);
+    }
+
+    public function formatTime(): string
+    {
+        return self::formatTimePeriod($this->time);
+    }
+
+    public function formatBossTime(): string
+    {
+        return self::formatTimePeriod($this->bossTime);
     }
 }
