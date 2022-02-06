@@ -7,6 +7,8 @@ use Eternium\Utils\Range;
 
 abstract class Utils
 {
+    private const CSV_SEPARATOR = ';';
+
     public static function getLastError(bool $clear = true): ?\ErrorException
     {
         $error = error_get_last();
@@ -33,7 +35,7 @@ abstract class Utils
     /**
      * @return \Generator<int, array, void, int>
      */
-    public static function createCsvReader(string $file): \Generator
+    public static function createCsvReader(string $file, array|false &$header = false): \Generator
     {
         $stream = @fopen($file, 'r');
         if (false === $stream) {
@@ -43,9 +45,15 @@ abstract class Utils
             throw self::getLastError() ?? new \RuntimeException("Unable to acquire shared lock on '{$file}'");
         }
 
+        if (false !== $header) {
+            $header = fgetcsv($stream, 1024, self::CSV_SEPARATOR);
+        }
+
         $rows = 0;
-        while (is_array($data = fgetcsv($stream, 1024))) {
-            yield $data;
+        while (false !== ($data = fgetcsv($stream, 1024, self::CSV_SEPARATOR))) {
+            if ($header) {
+                yield $data;
+            }
             ++$rows;
         }
 
@@ -59,17 +67,21 @@ abstract class Utils
     /**
      * @return \Generator<void, void, ?array, int>
      */
-    public static function createCsvWriter(string $file): \Generator
+    public static function createCsvWriter(string $file, array|false $header = false): \Generator
     {
         $memory = @fopen('php://memory', 'r+');
         if (false === $memory) {
             throw self::getLastError() ?? new \RuntimeException('Unable to open in-memory stream');
         }
 
+        if (false !== $header) {
+            fputcsv($memory, $header, self::CSV_SEPARATOR);
+        }
+
         $rows = 0;
         while (null !== ($data = yield)) {
             if (is_array($data)) {
-                fputcsv($memory, $data);
+                fputcsv($memory, $data, self::CSV_SEPARATOR);
                 ++$rows;
             }
         }
