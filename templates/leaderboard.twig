@@ -47,21 +47,21 @@ Top {{ +page.range.length }}
 </ul>
 
 {% if entries %}
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped" data-leaderboard="{{ event.id|e }}">
   <caption>Rankings {{ page.range.offset }}-{{ page.range.offset0 + page.range.length }} out of {{ entries|length }}</caption>
-  <thead>
+  <thead class="border-1 border-top-0">
     <tr>
       <th scope="col">Rank</th>
       <th class="w-50" scope="col">Hero</th>
-      <th scope="col"><abbr title="Champion Level">CL</abbr></th>
-      <th class="d-none d-sm-table-cell text-nowrap" scope="col"><abbr title="Average Item Level">Avg IL</abbr></th>
-      <th scope="col"><abbr title="Trial Level">TL</abbr></th>
+      <th scope="col"><abbr class="text-decoration-none" title="Champion Level">CL</abbr></th>
+      <th class="d-none d-sm-table-cell" scope="col"><abbr class="text-decoration-none" title="Average Item Level">Avg&nbsp;IL</abbr></th>
+      <th scope="col"><abbr class="text-decoration-none" title="Trial Level">TL</abbr></th>
       <th scope="col">Time</th>
-      <th class="d-none d-sm-table-cell text-nowrap" scope="col">Boss Time</th>
+      <th class="d-none d-sm-table-cell" scope="col">Boss&nbsp;Time</th>
       <th class="d-none d-sm-table-cell" scope="col">Deaths</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="border-1">
     {%~ for rank, entry in page.range.slice(entries) %}
     <tr>
       <th scope="row">{{ +rank }}</th>
