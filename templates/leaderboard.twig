@@ -74,10 +74,15 @@ Top {{ +page.range.length }}
       <td class="d-none d-sm-table-cell">{{ '%.1f'|format(entry.hero.averageItemLevel) }}</td>
       <td>{{ +entry.trial.level }}</td>
       <td><time datetime="PT{{ +entry.trial.time }}S">{{ entry.trial.formatTime()|e }}</time></td>
+      {% if entry.trial.bossTime %}
       <td class="d-none d-sm-table-cell">
-        <time datetime="PT{{ +entry.trial.bossTime }}S">{{ entry.trial.formatBossTime()|e }}</time> (
-        {{- '%.0f'|format(entry.trial.bossTime / entry.trial.time * 100) -}}
-      %)</td>
+        <time datetime="PT{{ +entry.trial.bossTime }}S">{{ entry.trial.formatBossTime()|e }}</time>
+        {{- '&nbsp;'|raw -}}
+        <small class="text-muted">{{- '%.0f'|format(entry.trial.bossTime / entry.trial.time * 100) }}%</small>
+      </td>
+      {% else %}
+      <td class="d-none d-sm-table-cell text-muted">N/A</td>
+      {% endif %}
       <td class="d-none d-sm-table-cell">{{ +entry.trial.deaths }}</td>
     </tr>
     {%~ endfor %}
