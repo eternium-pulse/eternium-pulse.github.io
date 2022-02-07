@@ -23,15 +23,27 @@ final class Trial
     public static function fromTrialStats(int $score, array $trialStats): self
     {
         assert($score >= 10000);
-        assert(isset($trialStats['trash']['t1']));
+        assert(isset($trialStats['boss']['duration']));
+        assert(isset($trialStats['hero']['duration']));
         assert(isset($trialStats['killsElite']));
         assert(isset($trialStats['killsNormal']));
         assert(isset($trialStats['heroDeaths']));
 
+        $time = 9999 - $score % 10000;
+        $bossTime = $trialStats['boss']['duration'];
+        if ($bossTime > $time) {
+            if ($bossTime < $trialStats['hero']['duration']) {
+                $bossTime = (int) round($bossTime / $trialStats['hero']['duration'] * $time);
+            } else {
+                $bossTime = 0;
+            }
+        }
+        $bossTime = max($bossTime, 0);
+
         return new self(
             (int) ($score / 10000),
-            $time = 9999 - $score % 10000,
-            $time - $trialStats['trash']['t1'],
+            $time,
+            $bossTime,
             $trialStats['killsElite'],
             $trialStats['killsNormal'],
             $trialStats['heroDeaths'],
