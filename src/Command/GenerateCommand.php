@@ -13,6 +13,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\HttpClient\HttpClient;
 use Twig\Environment as Twig;
 use Twig\TwigFunction;
 
@@ -29,6 +30,10 @@ class GenerateCommand extends Command
     private bool $hideProgress = false;
 
     private array $turboItems = [];
+
+    private array $news = [];
+
+    private array $gameEvents = [];
 
     public function __construct(
         private Twig $twig,
@@ -94,6 +99,10 @@ class GenerateCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $client = HttpClient::createForBaseUri('https://eternium.alex-tsarkov.workers.dev/api/');
+        $this->news = $client->request('GET', 'v2/getNews')->toArray()['news'];
+        $this->gameEvents = $client->request('GET', 'v3/getGameEvents')->toArray()['events'];
+
         $render = function (string $file, string $template, array $context = []) use ($output) {
             if (!str_ends_with($template, '.twig')) {
                 $template .= '.twig';
@@ -113,7 +122,7 @@ class GenerateCommand extends Command
         }
         $generator->send(null);
 
-        $render('index.html', 'index');
+        $render('index.html', 'index', ['news' => $this->news, 'gameEvents' => $this->gameEvents]);
         $render('403.html', 'error', ['code' => 403, 'message' => 'Forbidden']);
         $render('404.html', 'error', ['code' => 404, 'message' => 'Not found']);
         $render('manifest.webmanifest', 'manifest');
