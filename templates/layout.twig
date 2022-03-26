@@ -24,9 +24,7 @@
 
 <body class="d-flex flex-column bg-light h-100">
   <script src="https://www.googletagmanager.com/gtag/js?id=G-ZYYYWVGVQ1" crossorigin="anonymous" async></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZYYYWVGVQ1')</script>
   <script src="https://cdn.jsdelivr.net/npm/yandex-metrica-watch/tag.js" crossorigin="anonymous" async></script>
-  <script>window.ym=window.ym||function(){(ym.a=ym.a||[]).push(arguments)};ym.l=Date.now();ym(67080547,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true})</script>
   <header class="bg-dark bg-gradient sticky-top">
     <nav class="navbar navbar-expand navbar-dark">
       <div class="container-lg">
@@ -49,7 +47,9 @@
     {%~ block content %}{% endblock %}
   </main>
   <footer class="container-lg text-center text-light bg-dark bg-gradient py-4">© 2020–{{ 'now'|date('Y') }} {{ site.name|e }}</footer>
-  {% block scripts %}{% endblock %}
+  {% block scripts %}
+  <script>{{ include('js/counters.min.js')|raw }}</script>
+  {% endblock %}
 </body>
 
 </html>

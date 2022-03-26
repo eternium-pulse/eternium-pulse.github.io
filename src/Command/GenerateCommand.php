@@ -105,9 +105,13 @@ class GenerateCommand extends Command
         $this->gameEvents = $client->request('GET', 'v3/getGameEvents')->toArray()['events'];
 
         $this->minify([
-            ETERNIUM_HTML_PATH.'/index.min.js' => [
-                ETERNIUM_HTML_PATH.'/eternium.js',
-                ETERNIUM_HTML_PATH.'/index.js',
+            ETERNIUM_HTML_PATH.'/js/counters.min.js' => [
+                ETERNIUM_HTML_PATH.'/js/counters.js',
+            ],
+            ETERNIUM_HTML_PATH.'/js/index.min.js' => [
+                ETERNIUM_HTML_PATH.'/js/counters.js',
+                ETERNIUM_HTML_PATH.'/js/eternium.js',
+                ETERNIUM_HTML_PATH.'/js/index.js',
             ],
         ]);
 
