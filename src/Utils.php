@@ -92,6 +92,16 @@ abstract class Utils
         return $rows;
     }
 
+    public static function read(string $file): string
+    {
+        $data = @file_get_contents($file);
+        if (false === $data) {
+            throw self::getLastError() ?? new \RuntimeException("Unable to open '{$file}' for reading");
+        }
+
+        return $data;
+    }
+
     /**
      * @param resource|string $content
      */

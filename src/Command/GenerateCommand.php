@@ -5,6 +5,7 @@ namespace Eternium\Command;
 use Eternium\Event\Event;
 use Eternium\Event\Leaderboard;
 use Eternium\Utils;
+use Eternium\Utils\Minifier;
 use Eternium\Utils\Url;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\InvalidOptionException;
@@ -103,6 +104,10 @@ class GenerateCommand extends Command
         $this->news = $client->request('GET', 'v2/getNews')->toArray()['news'];
         $this->gameEvents = $client->request('GET', 'v3/getGameEvents')->toArray()['events'];
 
+        $this->minify([
+            ETERNIUM_HTML_PATH.'/main.min.js' => [ETERNIUM_HTML_PATH.'/main.js'],
+        ]);
+
         $render = function (string $file, string $template, array $context = []) use ($output) {
             if (!str_ends_with($template, '.twig')) {
                 $template .= '.twig';
@@ -197,5 +202,19 @@ class GenerateCommand extends Command
         }
 
         return $path;
+    }
+
+    private function minify(array $assets): void
+    {
+        $minifier = new Minifier();
+
+        foreach ($assets as $dst => $src) {
+            $code = '';
+            $type = (string) pathinfo($dst, \PATHINFO_EXTENSION);
+            foreach ($src as $file) {
+                $code .= $minifier->tryMinify($type, Utils::read($file));
+            }
+            Utils::dump($dst, $code);
+        }
     }
 }
