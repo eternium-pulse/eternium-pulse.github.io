@@ -49,7 +49,7 @@
     {%~ block content %}{% endblock %}
   </main>
   <footer class="container-lg text-center text-light bg-dark bg-gradient py-4">© 2020–{{ 'now'|date('Y') }} {{ site.name|e }}</footer>
-  <script>{{ include('main.js')|replace({"\n": ''})|raw }}</script>
+  <script>{{ include('main.min.js')|raw }}</script>
 </body>
 
 </html>
