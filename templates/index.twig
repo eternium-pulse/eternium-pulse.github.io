@@ -22,3 +22,8 @@ Leaderboards of Eternium game events
 
 {% include "event/list.twig" with {'events': events|reverse} %}
 {% endblock %}
+
+{% block scripts %}
+{{ parent() }}
+<script>{{ include('index.min.js')|raw }}</script>
+{% endblock %}
