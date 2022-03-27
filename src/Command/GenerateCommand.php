@@ -105,6 +105,9 @@ class GenerateCommand extends Command
         $this->fetchGameEvents($client);
 
         $this->minify([
+            ETERNIUM_HTML_PATH . '/js/eternium.min.js' => [
+                ETERNIUM_HTML_PATH . '/js/eternium.js',
+            ],
             ETERNIUM_HTML_PATH.'/js/counters.min.js' => [
                 ETERNIUM_HTML_PATH.'/js/counters.js',
             ],
