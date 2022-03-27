@@ -15,6 +15,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Twig\Environment as Twig;
 use Twig\TwigFunction;
 
@@ -101,8 +102,7 @@ class GenerateCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $client = HttpClient::createForBaseUri('https://eternium.alex-tsarkov.workers.dev/api/');
-        $this->news = $client->request('GET', 'v2/getNews')->toArray()['news'];
-        $this->gameEvents = $client->request('GET', 'v3/getGameEvents')->toArray()['events'];
+        $this->fetchGameEvents($client);
 
         $this->minify([
             ETERNIUM_HTML_PATH.'/js/counters.min.js' => [
@@ -209,6 +209,20 @@ class GenerateCommand extends Command
         }
 
         return $path;
+    }
+
+    private function fetchGameEvents(HttpClientInterface $client): void
+    {
+        $this->gameEvents = $client->request('GET', 'v3/getGameEvents')->toArray()['events'];
+        foreach ($this->gameEvents as &$event) {
+            $event['start_date'] = \DateTimeImmutable::createFromFormat('U', $event['start_date'] / 1000, new \DateTimeZone('UTC'));
+            $event['end_date'] = \DateTimeImmutable::createFromFormat('U', $event['end_date'] / 1000, new \DateTimeZone('UTC'));
+        }
+    }
+
+    private function fetchNews(HttpClientInterface $client): void
+    {
+        $this->news = $client->request('GET', 'v2/getNews')->toArray()['news'];
     }
 
     private function minify(array $assets): void
