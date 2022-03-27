@@ -32,7 +32,7 @@ Top {{ +page.range.length }}
 
 {% block content %}
 <h1>{{ event.name|e }} Leaderboard</h1>
-<p class="lead">{{ block('description') }}.</p>
+<p class="lead">{{ block('description') }}. <small class="text-muted">Generated at <time datetime="{{ now|date(constant('DATE_W3C')) }}" pubdate>{{ now|date }}</time>.</small></p>
 
 <ul class="nav nav-tabs flex-nowrap">
   {%~ for item in event.parent %}
@@ -48,7 +48,7 @@ Top {{ +page.range.length }}
 
 {% if entries %}
 <table class="table table-sm table-striped" data-leaderboard="{{ event.id|e }}">
-  <caption>Rankings {{ page.range.offset }}-{{ page.range.offset0 + page.range.length }} out of {{ entries|length }}. ID: <a rel="external" href="https://eternium.netlify.app/leaderboards/{{ event.id|e }}" target="_blank">{{ event.id|e }}</a></caption>
+  <caption>Rankings {{ page.range.offset }}-{{ page.range.offset0 + page.range.length }} out of {{ entries|length }}. ID: <a rel="external" href="https://eternium.netlify.app/leaderboards/{{ event.id|e }}" target="_blank">{{ event.id|e }}</a>.</caption>
   <thead class="border-1 border-top-0">
     <tr>
       <th scope="col">Rank</th>
@@ -122,6 +122,6 @@ Top {{ +page.range.length }}
   </ul>
 </nav>
 {% else %}
-<div class="alert alert-primary mt-4 text-center">No data available. ID: {{ event.id|e }}</div>
+<div class="alert alert-primary mt-4 text-center">No data available. ID: {{ event.id|e }}.</div>
 {% endif %}
 {% endblock %}
