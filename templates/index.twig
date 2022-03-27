@@ -20,6 +20,30 @@ Leaderboards of Eternium game events
 <p class="lead">Here you can find Eternium leaderboards. <a rel="external" href="{{ eternium_url|e }}" target="_blank">Play Eternium</a> and watch your progress.</p>
 <div id="status" class="alert alert-secondary text-center mb-4 d-none">Loading status...</div>
 
+{% if gameEvents %}
+<h2 class="my-4 pt-2">Game Events</h2>
+<div class="row row-cols-1 row-cols-md-2 g-4 mb-4">
+  {% for event in gameEvents %}
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ event.title|e }}</h5>
+        <p class="card-text">{{ event.description|nl2br }}</p>
+      </div>
+      <div class="card-footer text-muted"><small>
+        {%- if date(event.start_date) < date(now) -%}
+        Ends at <time datetime="{{ event.end_date|date(constant('DATE_W3C')) }}">{{ event.end_date|date }}</time>
+        {%- else -%}
+        Starts at <time datetime="{{ event.start_date|date(constant('DATE_W3C')) }}">{{ event.start_date|date }}</time>
+        {%- endif -%}
+      </small></div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<h2 class="my-4 pt-2">Leaderboards</h2>
 {% include "event/list.twig" with {'events': events|reverse} %}
 {% endblock %}
 
