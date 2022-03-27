@@ -105,8 +105,8 @@ class GenerateCommand extends Command
         $this->fetchGameEvents($client);
 
         $this->minify([
-            ETERNIUM_HTML_PATH . '/js/eternium.min.js' => [
-                ETERNIUM_HTML_PATH . '/js/eternium.js',
+            ETERNIUM_HTML_PATH.'/js/eternium.min.js' => [
+                ETERNIUM_HTML_PATH.'/js/eternium.js',
             ],
             ETERNIUM_HTML_PATH.'/js/counters.min.js' => [
                 ETERNIUM_HTML_PATH.'/js/counters.js',
@@ -236,9 +236,9 @@ class GenerateCommand extends Command
             $code = '';
             $type = (string) pathinfo($dst, \PATHINFO_EXTENSION);
             foreach ($src as $file) {
-                $code .= $minifier->tryMinify($type, Utils::read($file));
+                $code .= Utils::read($file);
             }
-            Utils::dump($dst, $code);
+            Utils::dump($dst, $minifier->tryMinify($type, $code));
         }
     }
 }
