@@ -34,12 +34,18 @@
         "bin/lb.php"
     ],
     "scripts": {
+        "build": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php -f bin/lb.php -- fetch --no-progress",
+            "@php -f bin/lb.php -- generate --no-progress"
+        ],
         "start": [
             "Composer\\Config::disableProcessTimeout",
             "@php -S 0.0.0.0:8080 -t public"
         ]
     },
     "scripts-descriptions": {
+        "build": "Generates static content.",
         "start": "Starts dev webserver."
     },
     "extra": {
