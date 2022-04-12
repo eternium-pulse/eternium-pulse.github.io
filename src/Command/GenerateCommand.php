@@ -42,9 +42,8 @@ class GenerateCommand extends Command
         // @var array<int, Event>
         private array $events,
     ) {
-        parent::__construct();
-
         $this->baseUrl = Url::parse(getenv('CI_PAGES_URL') ?: 'http://localhost:8080');
+        parent::__construct();
     }
 
     protected function configure(): void
