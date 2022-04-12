@@ -43,12 +43,14 @@ class GenerateCommand extends Command
         private array $events,
     ) {
         parent::__construct();
+
+        $this->baseUrl = Url::parse(getenv('CI_PAGES_URL') ?: 'http://localhost:8080');
     }
 
     protected function configure(): void
     {
         $this->setDescription('Generates HTML content');
-        $this->addOption('base-url', '', InputOption::VALUE_REQUIRED, 'Expand relative links using this URL', 'http://localhost:8080');
+        $this->addOption('base-url', '', InputOption::VALUE_REQUIRED, 'Expand relative links using this URL', (string) $this->baseUrl);
         $this->addOption('page-size', '', InputOption::VALUE_REQUIRED, 'Set LB page size', $this->pageSize);
         $this->addOption('no-data', '', InputOption::VALUE_NONE, 'Do not load data files');
         $this->addOption('no-progress', '', InputOption::VALUE_NONE, 'Do not output load progress');
