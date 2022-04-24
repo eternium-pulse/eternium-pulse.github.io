@@ -18,7 +18,7 @@ return (static function (): Environment {
     $twig->addGlobal('now', new \DateTimeImmutable('now', new \DateTimeZone('UTC')));
     $core = $twig->getExtension(CoreExtension::class);
     $core->setTimezone('UTC');
-    $core->setDateFormat('Y-m-d H:i', '%d days');
+    $core->setDateFormat('Y-m-d H:i e', '%d days');
 
     return $twig;
 })();
