@@ -1,7 +1,6 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Kormundo;;2121;75,25;158;530;303;0;191;0;windows
 Korddossa;;2144;75,31;158;530;297;0;191;0;windows
-Kornowar;;2100;75,13;158;558;297;1;184;0;windows
 Byroad;;2083;75,25;158;561;244;0;196;2;windows
 Korbong;;2153;75,56;158;577;328;2;187;2;windows
 Guitarwolf;;2126;75,31;158;584;329;0;191;0;windows
@@ -70,7 +69,6 @@ Korbudd;;2004;73,94;143;407;247;4;169;1;windows
 Saveukrain;;2066;74,19;143;415;200;6;161;2;windows
 Rukajop;;2033;74,88;143;428;233;2;181;2;android
 Igeni;;1977;73,88;143;450;219;5;168;2;windows
-Milton;;2053;74,19;143;463;227;13;127;1;windows
 Delyan;;1738;73,69;143;511;242;7;159;2;ios
 Cilla;;1950;72,75;143;523;300;3;176;4;windows
 Dokud;;1961;73,44;143;533;307;0;188;3;android
@@ -607,7 +605,6 @@ Hubat;;821;71,56;111;587;223;18;108;11;android
 Delia;;479;71,56;111;590;300;8;152;6;windows
 Eleg;;1033;72,38;111;597;327;9;145;12;android
 Oherka;;2092;73,31;110;50;8;15;122;0;windows
-Ssfd;;2030;72,19;110;55;6;9;152;0;android
 Hylo;;1869;73,44;110;58;10;24;76;0;steam
 Wahaha;;1953;72,75;110;69;6;6;168;1;windows
 Korvalor;;2059;72,63;110;70;19;13;135;0;steam

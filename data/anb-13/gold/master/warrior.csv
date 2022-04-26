@@ -1,6 +1,5 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Chinadv;Champion;2034;75,19;160;566;274;0;200;2;windows
-Koronecue;;2078;75,13;160;584;290;0;197;0;windows
 Korzed;;2070;75,25;160;593;307;0;201;0;windows
 Chinadoll;;2031;75,19;159;575;316;0;192;1;windows
 Maybe;;2048;75,00;158;517;255;0;193;0;windows
@@ -739,7 +738,6 @@ Tedi;;1949;73,06;105;45;8;10;146;2;windows
 Vishoci;;1664;72,75;105;48;3;14;134;0;ios
 Judan;;1936;72,50;105;48;4;10;146;0;ios
 Cize;;1803;72,50;105;54;5;8;159;0;android
-Azon;;2012;72,50;105;56;1;24;80;0;android
 Chinaabc;;1431;72,88;105;85;26;24;75;0;windows
 Korapple;;1152;72,44;105;130;50;22;108;0;android
 Aleria;;733;71,06;105;164;36;11;140;1;android
@@ -960,8 +958,8 @@ Luna;;0;15,25;3;479;133;10;143;4;android
 Tokuuchu;;0;15,19;3;538;191;13;121;8;android
 Sett;;0;18,63;2;89;1;12;139;0;android
 Ezekrut;;0;17,44;2;106;11;25;75;0;windows
+Drumpig;;0;16,31;2;136;4;12;138;1;windows
 Akris;;0;13,81;2;156;23;27;63;0;android
-Drumpig;;0;15,38;2;168;4;12;142;7;android
 Kuvalda;;0;18,19;2;231;24;6;163;0;android
 Acaka;;0;8,43;2;481;97;15;119;9;android
 Herce;;0;3,63;1;116;7;22;88;0;ios

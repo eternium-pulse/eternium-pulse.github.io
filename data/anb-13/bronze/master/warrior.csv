@@ -1,7 +1,6 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Chinadoll;;2136;75,19;158;541;276;2;182;0;windows
 Korleesin;;2159;75,25;158;546;311;0;192;1;windows
-Koronecue;;2100;75,13;158;556;291;1;185;0;windows
 Happynewyr;;2139;75,25;158;571;320;0;193;1;windows
 Byroad;;2100;75,31;158;580;290;0;196;4;windows
 Korsana;;2151;75,31;158;580;343;0;192;2;windows
@@ -820,7 +819,6 @@ Hoseke;;2042;73,63;105;37;3;21;93;0;android
 Acorig;;1996;73,94;105;39;11;24;77;0;android
 Umbradei;"War Hero";2039;72,63;105;41;10;8;158;0;windows
 Chinalj;;1947;72,75;105;42;0;14;128;0;windows
-Nonnus;;2010;72,81;105;50;10;21;94;1;android
 Celia;;1792;73,50;105;68;10;20;97;0;ios
 Vujuba;;1242;71,56;105;81;19;15;122;0;ios
 Huki;;1478;72,38;105;98;28;14;126;0;android

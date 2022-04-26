@@ -1,6 +1,5 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Chinadv;;2037;75,19;159;590;295;0;193;1;windows
-Koronecue;;2090;75,19;158;537;293;5;169;0;windows
 Byroad;;2040;75,06;158;542;259;0;191;1;windows
 Korkazuya;;2080;75,13;158;550;296;1;186;0;windows
 Chinahebi;Challenger;2016;75,13;158;554;224;0;192;2;windows
@@ -571,7 +570,6 @@ Arcokret;;586;71,69;111;573;211;8;152;0;android
 Overlord;;428;70,69;111;577;220;13;126;8;android
 Erigiz;;2070;73,38;110;37;10;17;111;0;windows
 Arkurte;;1721;72,31;110;74;19;12;138;0;android
-Chinalsj;;2008;72,88;110;79;22;13;141;0;android
 Cerdara;;1342;72,50;110;102;18;19;103;5;windows
 Darowyn;;1738;72,69;110;104;33;18;104;0;ios
 Eregri;;1716;72,81;110;108;28;19;102;0;android
