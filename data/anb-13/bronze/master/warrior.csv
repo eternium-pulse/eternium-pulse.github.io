@@ -1,10 +1,8 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Chinadoll;;2136;75,19;158;541;276;2;182;0;windows
-Korleesin;;2159;75,25;158;546;311;0;192;1;windows
 Happynewyr;;2139;75,25;158;571;320;0;193;1;windows
 Byroad;;2100;75,31;158;580;290;0;196;4;windows
 Korsana;;2151;75,31;158;580;343;0;192;2;windows
-Korbong;;2170;75,38;158;581;297;0;191;0;windows
 Chinahebi;Challenger;2020;75,25;158;599;253;0;188;3;windows
 Chinadv;;2139;75,19;157;542;248;0;191;0;windows
 Chinanb;;2058;75,00;156;532;239;4;169;0;windows
@@ -698,8 +696,6 @@ Zooms;;417;71,13;111;594;231;12;129;2;ios
 Rommexmas;;2098;74,00;110;39;8;26;66;0;android
 Olova;;2094;73,50;110;41;5;14;126;0;windows
 Ojus;;1737;73,81;110;41;9;14;127;0;windows
-Zezarzi;;2095;74,00;110;44;6;11;141;0;windows
-Kene;;1754;73,50;110;55;12;18;107;1;windows
 Aeowynne;;2080;72,63;110;65;22;16;119;0;ios
 Ruantikor;;2090;72,75;110;66;11;8;158;0;windows
 Roque;;2036;72,81;110;73;14;16;118;0;android
@@ -856,8 +852,6 @@ Aced;;497;70,69;101;561;277;10;145;4;ios
 Korrrrrr;;1803;74,31;100;29;3;25;74;0;windows
 Raza;;2000;73,44;100;30;0;20;101;0;windows
 Zealot;;2061;72,81;100;31;0;12;139;0;windows
-Turte;;2035;73,13;100;31;2;15;123;0;windows
-Idol;;1968;72,19;100;36;8;18;110;0;windows
 Blackkor;;1220;72,56;100;68;13;14;127;0;android
 Korkesa;;1230;71,38;100;70;16;13;134;0;android
 Chinazhou;;980;72,13;100;88;12;14;123;0;android

@@ -1,11 +1,8 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
-Korrrrrrrr;;2137;74,50;159;523;325;7;161;0;windows
 Eheguk;;2060;75,13;158;522;306;6;170;0;windows
 Korcamping;;2076;74,75;157;533;250;8;157;2;windows
 Kormansaok;;2099;75,13;157;552;316;7;162;1;windows
-Kornnn;;2100;75,19;157;577;359;10;148;1;windows
 Shifty;;2108;74,69;156;461;242;7;162;1;windows
-Blacksmith;;2130;75,13;156;478;120;15;122;2;windows
 Korwinter;;2120;75,19;156;482;131;8;159;0;windows
 Chinafeng;;2022;75,13;156;492;133;12;136;0;windows
 Korino;;2068;75,00;156;539;261;10;150;1;android
@@ -47,7 +44,6 @@ Korssbong;;1910;73,44;141;583;278;13;131;11;android
 Jukaki;;1941;74,25;141;583;229;13;128;7;android
 Twinkle;;1953;74,75;140;499;176;15;120;3;android
 Kortngus;;1917;73,88;140;525;191;8;166;5;ios
-Joshurzi;;1786;73,69;140;550;255;8;169;0;windows
 Protein;;1855;73,00;140;553;207;16;115;9;android
 Losmeanb;;1874;74,81;140;579;304;15;144;11;android
 Rurgi;;2003;73,31;140;591;231;19;109;2;windows
@@ -113,7 +109,6 @@ Konsilver;;1887;74,19;128;562;309;12;145;7;android
 Thorson;;1318;73,63;128;586;159;14;126;1;android
 Snegurka;;1256;72,81;128;595;206;7;159;2;ios
 Allesi;;1045;72,75;127;592;263;15;117;11;android
-Barshuk;;1363;73,94;126;409;47;11;135;2;android
 Witchqueen;;1797;73,69;126;412;236;8;153;6;android
 Ansem;;1402;73,56;126;467;190;20;98;5;android
 Clint;;1932;73,56;125;169;60;13;137;0;android

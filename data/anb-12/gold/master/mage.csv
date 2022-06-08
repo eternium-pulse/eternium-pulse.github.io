@@ -1,5 +1,4 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
-Tregisibal;;2070;75,19;162;586;356;5;170;0;windows
 Korternium;;2040;74,88;157;537;342;6;167;0;windows
 Erak;;1969;74,69;157;540;282;5;171;0;windows
 Korduddnd;;2056;75,31;157;557;263;4;177;3;windows
@@ -75,9 +74,7 @@ Vasy;;1244;72,81;133;558;347;21;86;3;android
 Alamode;;1372;72,56;133;565;213;10;135;5;android
 Dellod;;1533;72,63;133;575;179;10;148;2;android
 Korcyper;;1502;73,50;133;599;270;12;131;2;android
-Ichaz;;816;72,13;132;412;204;7;166;0;windows
 Amaliaa;;1677;72,69;132;436;222;10;141;3;steam
-Runrul;;1450;73,19;132;438;222;14;122;2;windows
 Nana;;1784;74,06;132;494;151;17;107;10;android
 What;;1047;72,25;132;536;193;16;105;5;steam
 Silo;Warlord;1669;73,00;132;538;125;16;114;8;android
@@ -187,7 +184,6 @@ Hijii;;1216;72,44;118;275;120;15;127;0;android
 Ennavit;;1436;72,31;118;318;158;10;146;1;windows
 Avatar;;1246;72,75;118;359;131;8;156;2;android
 Disian;;1220;72,56;118;369;109;13;133;0;android
-Kordak;;965;73,25;118;407;106;9;145;0;android
 Polgara;;1247;73,06;118;430;150;17;114;5;android
 Aruza;;1027;72,44;118;467;301;18;109;1;android
 Ivok;;1080;72,69;118;494;262;12;133;10;android
@@ -243,7 +239,6 @@ Anrocha;;878;72,69;111;297;120;18;104;0;android
 Enraneu;;584;72,31;111;416;190;12;135;3;windows
 Moni;;917;72,31;111;458;236;13;128;0;android
 Lirzolle;;809;71,25;111;460;184;18;104;4;android
-Sasinlove;;1062;71,94;111;470;305;15;123;5;ios
 Tarca;;447;72,13;111;534;201;11;134;0;android
 Trillian;;640;73,19;111;539;244;30;54;5;ios
 Ktoney;;394;72,50;111;551;197;10;138;1;ios

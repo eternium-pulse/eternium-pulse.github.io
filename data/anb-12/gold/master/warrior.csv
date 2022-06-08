@@ -1,10 +1,8 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Chinadv;;2037;75,19;159;590;295;0;193;1;windows
 Byroad;;2040;75,06;158;542;259;0;191;1;windows
-Korkazuya;;2080;75,13;158;550;296;1;186;0;windows
 Chinahebi;Challenger;2016;75,13;158;554;224;0;192;2;windows
 Chinadoll;"War Hero";2036;75,19;158;557;289;0;192;0;windows
-Korbong;;2088;75,31;158;559;298;0;190;0;windows
 Synthshark;;2067;74,94;158;563;343;0;193;1;windows
 Korpink;;2075;75,25;158;596;322;0;191;1;windows
 Chinayang;;2039;75,00;156;527;223;0;189;6;windows
@@ -220,7 +218,6 @@ Henryk;;1686;74,25;130;224;45;7;158;0;android
 Nortik;;1469;72,63;130;239;90;9;151;0;steam
 Julliji;;1348;72,81;130;248;92;6;164;0;windows
 Vidri;;1800;73,19;130;259;55;5;166;1;android
-Ijibas;;1830;73,75;130;264;61;6;166;0;android
 Sheridal;Challenger;1142;73,00;130;279;133;13;133;1;android
 Mate;;1650;72,63;130;289;102;14;125;0;steam
 Toti;Challenger;1672;72,69;130;294;129;8;155;0;ios
@@ -568,7 +565,6 @@ Mica;;1310;73,06;111;510;256;8;153;5;android
 Hopper;;854;72,00;111;537;206;14;123;1;windows
 Arcokret;;586;71,69;111;573;211;8;152;0;android
 Overlord;;428;70,69;111;577;220;13;126;8;android
-Erigiz;;2070;73,38;110;37;10;17;111;0;windows
 Arkurte;;1721;72,31;110;74;19;12;138;0;android
 Cerdara;;1342;72,50;110;102;18;19;103;5;windows
 Darowyn;;1738;72,69;110;104;33;18;104;0;ios
@@ -651,7 +647,6 @@ Nimuz;;331;70,94;110;352;80;6;161;0;android
 Fosho;;1009;72,06;110;353;135;16;117;3;windows
 Gocos;;486;72,25;110;356;86;16;121;0;android
 Mousenari;;1174;71,69;110;357;162;12;138;0;android
-Event;;357;71,25;110;357;138;9;147;0;android
 Megas;;1105;70,94;110;371;94;5;165;0;android
 Hachol;Challenger;372;72,00;110;376;83;11;134;0;windows
 Turgeon;;1139;71,63;110;376;244;14;130;2;ios

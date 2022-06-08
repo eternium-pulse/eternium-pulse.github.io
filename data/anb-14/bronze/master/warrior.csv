@@ -1,11 +1,9 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
-Korlati;;2156;75,31;160;597;296;0;201;0;windows
 Hello;;2095;75,31;158;514;259;0;194;1;windows
 Chinadoll;"War Hero";2133;75,19;158;524;266;0;192;0;windows
 Chinahebi;Challenger;2003;75,19;158;530;244;0;191;2;windows
 Korssanda;;2175;75,50;158;536;312;0;194;1;windows
 Guitarwolf;;2161;75,38;158;566;313;0;195;2;windows
-Kortaebong;;2184;75,56;158;584;314;0;192;0;windows
 Chinahehe;;2093;75,13;154;511;275;0;192;1;windows
 Chinanb;Warlord;2058;75,19;153;556;304;2;181;1;ios
 Laaaaaaaaa;;2062;74,75;153;599;314;0;191;2;ios
@@ -176,7 +174,6 @@ Lima;;1798;73,50;135;467;123;19;95;1;android
 Rethule;;1984;73,88;135;471;182;7;158;0;android
 Jednas;;1903;73,69;135;489;212;10;144;0;android
 Isog;;1828;73,81;135;545;164;19;101;6;android
-Rune;;1981;74,19;135;546;90;13;129;3;android
 Bathes;;1952;73,50;135;590;210;10;165;1;ios
 Cyper;;1748;73,50;135;591;196;17;112;0;android
 Adelia;;2064;73,75;134;377;214;0;189;3;android
@@ -629,7 +626,6 @@ Killcup;;530;70,63;112;586;183;15;115;7;android
 Barduse;;1631;72,31;111;141;38;15;120;2;ios
 Kivi;Challenger;1087;72,50;111;294;57;19;95;0;android
 Wjdjisodos;;241;72,63;111;312;130;12;133;1;android
-Drumpig;;1200;72,38;111;340;83;9;147;0;android
 Esarzut;;1161;72,63;111;394;122;10;149;0;android
 Bobe;;478;72,38;111;438;132;22;88;0;android
 Deepshade;;639;71,44;111;467;185;11;134;1;steam
@@ -783,9 +779,7 @@ Korkjy;;867;69,44;107;430;188;7;160;22;android
 Test;;1043;72,56;107;511;158;17;119;2;android
 Haggard;;919;72,13;107;554;263;6;158;8;steam
 Zata;;860;72,25;107;557;159;14;125;12;android
-Locul;;1980;72,88;106;47;3;19;103;0;windows
 Shine;;1800;73,19;106;50;9;14;125;1;windows
-Hjjj;;2104;72,56;106;51;11;9;152;1;ios
 Beri;;2026;72,88;106;55;9;10;149;0;windows
 Jiaa;;1315;72,94;106;82;14;4;177;0;ios
 Zukahe;;1834;73,19;106;92;20;18;104;6;android
@@ -840,7 +834,6 @@ Bakka;;470;71,94;103;561;168;11;135;1;android
 Bravebo;;215;71,38;102;488;268;16;108;4;windows
 Annirduk;;445;71,00;102;490;169;17;99;0;android
 Egrebeg;;416;72,44;102;557;250;19;109;5;android
-Emedusa;;676;71,13;102;565;117;9;144;3;android
 Sekrat;;447;71,00;102;571;205;11;140;27;ios
 Sola;;1176;72,63;101;67;10;21;90;1;ios
 Seja;;1548;72,50;100;46;1;15;128;0;ios
