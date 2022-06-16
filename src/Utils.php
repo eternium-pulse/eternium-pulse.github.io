@@ -137,4 +137,19 @@ abstract class Utils
 
         return $length;
     }
+
+    public static function pack(string $binstr): string
+    {
+        return strtr(base64_encode($binstr), ['+' => '-', '/' => '_', '=' => '']);
+    }
+
+    public static function unpack(string $data): string
+    {
+        $binstr = base64_decode(strtr($data, '-_', '+/'), true);
+        if (false === $binstr) {
+            throw new \UnexpectedValueException('Malformed base64 encoding');
+        }
+
+        return $binstr;
+    }
 }
