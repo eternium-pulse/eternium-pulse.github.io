@@ -16,6 +16,7 @@ define('ETERNIUM_DATA_PATH', dirname(__DIR__).DIRECTORY_SEPARATOR.'data'.DIRECTO
 define('ETERNIUM_HTML_PATH', dirname(__DIR__).DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR);
 
 $application = new Application('Eternium Pulse');
+$application->add(new ConfigureCommand());
 $application->add(new FetchCommand($config->eternium, $config->events));
 $application->add(new GenerateCommand($config->twig, $config->events));
 
