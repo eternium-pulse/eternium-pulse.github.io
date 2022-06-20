@@ -7,7 +7,7 @@ return (new \PhpCsFixer\Config())
     ->setFinder(
         (new \PhpCsFixer\Finder())
             ->files()
-            ->in(['bin', 'config', 'src'])
+            ->in(['bin', 'config', 'src', 'tests'])
             ->append([basename(__FILE__)])
     )
 ;
