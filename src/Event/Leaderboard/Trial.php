@@ -48,6 +48,23 @@ final class Trial
         return sprintf('%d:%02d', $time / 60, $time % 60);
     }
 
+    public static function detectBossTime(int $trialTime, int $trashEndTime, int $bossStartTime): int
+    {
+        assert($trialTime > 0);
+
+        if ($bossStartTime <= 0 || $bossStartTime >= $trialTime) {
+            $bossStartTime = &$trashEndTime;
+        }
+        if ($trashEndTime <= 0 || $trashEndTime >= 600) {
+            $trashEndTime = $trialTime;
+        }
+        if ($bossStartTime > $trashEndTime) {
+            return $trialTime - (int) (($trashEndTime + $bossStartTime + 1) / 2);
+        }
+
+        return $trialTime - $bossStartTime;
+    }
+
     public function formatTime(): string
     {
         return self::formatTimePeriod($this->time);
@@ -56,20 +73,5 @@ final class Trial
     public function formatBossTime(): string
     {
         return self::formatTimePeriod($this->bossTime);
-    }
-
-    private static function detectBossTime(int $trialTime, int $trashEndTime, int $bossStartTime): int
-    {
-        if ($bossStartTime % $trialTime !== $bossStartTime) {
-            $bossStartTime = &$trashEndTime;
-        }
-        if ($trashEndTime < 0 || $trashEndTime >= 600) {
-            $trashEndTime = $trialTime;
-        }
-        if ($bossStartTime > $trashEndTime) {
-            return $trialTime - (int) (($trashEndTime + $bossStartTime + 1) / 2);
-        }
-
-        return $trialTime - $bossStartTime;
     }
 }
