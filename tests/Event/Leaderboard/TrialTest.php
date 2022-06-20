@@ -17,6 +17,7 @@ final class TrialTest extends TestCase
      *           [572, 422, 303, 269]
      *           [541, 540, 470, 71]
      *           [463, 378, 0, 85]
+     *           [293, 360, 293, 0]
      */
     public function testDetectBossTime(int $trialTime, int $trashEndTime, int $bossStartTime, int $expected): void
     {

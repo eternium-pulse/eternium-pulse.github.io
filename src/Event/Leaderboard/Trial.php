@@ -52,10 +52,10 @@ final class Trial
     {
         assert($trialTime > 0);
 
-        if ($bossStartTime <= 0 || $bossStartTime >= $trialTime) {
+        if ($bossStartTime <= 0 || $bossStartTime > $trialTime) {
             $bossStartTime = &$trashEndTime;
         }
-        if ($trashEndTime <= 0 || $trashEndTime >= 600) {
+        if ($trashEndTime <= 0 || $trashEndTime > $trialTime) {
             $trashEndTime = $trialTime;
         }
         if ($bossStartTime > $trashEndTime) {
