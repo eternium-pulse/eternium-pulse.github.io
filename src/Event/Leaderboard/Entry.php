@@ -47,7 +47,7 @@ final class Entry implements \Stringable
             $this->hero->name,
             $this->hero->title,
             $this->hero->championLevel,
-            number_format($this->hero->averageItemLevel, 2, ','),
+            number_format($this->hero->averageItemLevel, 2, '.'),
             $this->trial->level,
             $this->trial->time,
             $this->trial->bossTime,
