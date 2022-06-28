@@ -123,9 +123,13 @@ abstract class Utils
     /**
      * @return \Generator<int, Page, void, int>
      */
-    public static function paginate(int $items, int $itemsPerPage): \Generator
+    public static function paginate(int $items, int $itemsPerPage, int $pagesLimit = PHP_INT_SIZE): \Generator
     {
-        $length = Page::getLength($items, $itemsPerPage);
+        assert($items >= 0);
+        assert($itemsPerPage > 0);
+        assert($pagesLimit > 0);
+
+        $length = min(Page::getLength($items, $itemsPerPage), $pagesLimit);
         $index0 = 0;
         $offset0 = 0;
         while ($index0 < $length) {

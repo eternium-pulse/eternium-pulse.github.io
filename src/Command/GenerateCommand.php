@@ -187,7 +187,7 @@ class GenerateCommand extends Command
 
             $output->writeln($formatter->formatSection('LOAD', "{$path} loaded ({$reader->getReturn()} entries)"));
 
-            foreach (Utils::paginate(count($entries), $this->pageSize) as $page) {
+            foreach (Utils::paginate(count($entries), $this->pageSize, $this->pageLimit) as $page) {
                 $context = [
                     'event' => $event,
                     'page' => $page,
