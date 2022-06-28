@@ -27,6 +27,8 @@ class GenerateCommand extends Command
 
     private int $pageSize = 100;
 
+    private int $pageLimit = 0;
+
     private bool $ignoreData = false;
 
     private bool $hideProgress = false;
@@ -51,6 +53,7 @@ class GenerateCommand extends Command
         $this->setDescription('Generates HTML content');
         $this->addOption('base-url', '', InputOption::VALUE_REQUIRED, 'Expand relative links using this URL', (string) $this->baseUrl);
         $this->addOption('page-size', '', InputOption::VALUE_REQUIRED, 'Set LB page size', $this->pageSize);
+        $this->addOption('page-limit', '', InputOption::VALUE_REQUIRED, 'Limit number of LB pages', $this->pageLimit);
         $this->addOption('no-data', '', InputOption::VALUE_NONE, 'Do not load data files');
         $this->addOption('no-progress', '', InputOption::VALUE_NONE, 'Do not output load progress');
     }
@@ -65,6 +68,11 @@ class GenerateCommand extends Command
         $this->pageSize = (int) $input->getOption('page-size');
         if (100 > $this->pageSize) {
             throw new InvalidOptionException('The option "--page-size" requires an integer at least 100.');
+        }
+
+        $this->pageLimit = (int) $input->getOption('page-limit');
+        if (0 >= $this->pageLimit) {
+            $this->pageLimit = PHP_INT_MAX;
         }
 
         $this->ignoreData = $input->getOption('no-data');
