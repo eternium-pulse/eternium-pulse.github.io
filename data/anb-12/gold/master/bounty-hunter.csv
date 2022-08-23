@@ -1,6 +1,5 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Goat;"War Hero";1983;74.44;178;535;192;10;146;1;windows
-Korqwer;;2031;74.69;177;578;132;13;130;6;windows
 Korhs;;1990;74.63;175;542;234;16;116;43;windows
 Vega;;1870;73.31;174;563;232;8;157;29;steam
 Chinagua;;2005;74.69;174;596;226;10;140;24;ios
@@ -231,7 +230,6 @@ Arok;Challenger;1158;73.38;131;482;95;20;97;1;android
 Tringeling;;698;72.25;131;490;157;20;94;19;android
 Ehlana;;908;73.56;131;500;136;17;113;10;android
 Salih;;905;72.63;131;502;129;15;115;3;windows
-Love;;775;72.56;131;512;247;9;143;4;android
 Goldigger;;845;73.31;131;591;181;8;156;3;android
 Nuheka;;1341;73.13;130;303;128;11;144;10;steam
 Hanmeimei;;1397;73.00;130;338;170;15;129;11;android

@@ -1,6 +1,5 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Joba;;1840;73.44;119;100;28;16;118;0;android
-Ominaz;;852;73.50;114;576;145;16;108;8;ios
 Raven;;1008;72.56;103;379;227;15;131;5;steam
 Ruchey;;868;71.25;99;413;218;5;171;6;android
 Erethagon;;704;70.69;97;433;313;18;104;5;steam
@@ -132,7 +131,6 @@ Riri;;143;68.69;55;385;171;17;120;3;android
 Adraha;;182;65.75;55;417;174;15;126;0;android
 Pisya;;60;62.38;55;446;179;3;182;0;android
 Kutek;;173;65.06;55;470;85;13;130;4;android
-Gumi;;191;71.36;54;116;27;16;126;0;windows
 Bivra;;182;70.50;54;325;74;17;111;3;android
 Obres;;326;69.38;54;330;203;14;136;13;steam
 Ethunre;;191;57.19;54;489;209;13;158;2;android
@@ -207,7 +205,6 @@ Thuytien;;109;67.38;30;260;39;13;136;0;android
 Irtuhas;;51;64.00;29;124;21;18;108;0;android
 Olit;;42;65.31;29;182;48;12;137;0;android
 Haka;;86;63.19;28;341;168;18;106;6;ios
-Event;;836;74.88;27;73;1;14;130;0;android
 Agek;;24;56.81;25;179;46;13;138;0;ios
 Moka;;90;54.25;25;206;44;19;106;0;android
 Borcim;;4;59.56;24;130;23;8;161;0;android
@@ -765,7 +762,6 @@ Tanros;;0;25.50;3;366;145;16;146;2;android
 Chula;;0;27.69;3;368;117;16;112;1;android
 Migis;;0;16.93;3;373;136;21;91;1;ios
 Munrutha;;0;15.56;3;411;51;11;141;1;android
-Apolllo;;0;29.75;3;412;165;7;166;5;android
 Ovat;;0;19.50;3;423;84;8;158;0;android
 Okes;;0;26.88;3;430;132;14;135;2;android
 Areluz;;0;24.13;3;430;61;18;121;2;steam
