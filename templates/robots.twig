@@ -2,4 +2,8 @@ User-Agent: *
 Disallow: {{ abs_path('403') }}
 Disallow: {{ abs_path('404') }}
 Disallow: {{ abs_path('-') }}
+Disallow: {{ abs_path('/*.html') }}
+{% for page in 2..10 %}
+Allow: {{ abs_path("/*/#{+page}.html") }}
+{% endfor %}
 Sitemap: {{ abs_url('sitemap.xml') }}
