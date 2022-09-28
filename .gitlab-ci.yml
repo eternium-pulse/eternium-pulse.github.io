@@ -5,7 +5,7 @@ cache:
     - vendor
 
 before_script:
-  - apk add --no-progress php8-phar php8-iconv php8-openssl php8-curl php8-ctype php8-mbstring php8-dom php8-tokenizer
+  - apk add --no-progress php8-phar php8-iconv php8-openssl php8-curl php8-ctype php8-mbstring php8-dom php8-tokenizer php8-xml php8-xmlwriter
   - wget -q -O composer.phar https://getcomposer.org/composer-2.phar
   - php8 composer.phar install --no-interaction --no-progress
 
