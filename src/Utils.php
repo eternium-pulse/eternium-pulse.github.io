@@ -29,6 +29,7 @@ abstract class Utils
     public static function createNullReader(): \Generator
     {
         return 0;
+
         yield;
     }
 
@@ -135,6 +136,7 @@ abstract class Utils
         while ($index0 < $length) {
             $page = new Page(++$index0, $length);
             $page->range = new Range($offset0 + 1, min($items - $offset0, $itemsPerPage));
+
             yield $page;
             $offset0 += $itemsPerPage;
         }

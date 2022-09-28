@@ -99,7 +99,7 @@ class FetchCommand extends Command
         $progressBar->setFormat($formatter->formatSection('DUMP', '%message% %current% %elapsed%'));
 
         while (null !== ($event = yield)) {
-            if (!($event instanceof Leaderboard)) {
+            if (!$event instanceof Leaderboard) {
                 continue;
             }
 

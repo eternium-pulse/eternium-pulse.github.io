@@ -17,12 +17,14 @@ trait LeaderboardAwareTrait
         if (1 === count($this->brackets)) {
             foreach (reset($this->brackets) as $leaderboard) {
                 $leaderboard->parent = $this;
+
                 yield $leaderboard;
             }
         } else {
             foreach ($this->brackets as $name => $entry) {
                 $bracket = $entry->toBracket($name);
                 $bracket->parent = $this;
+
                 yield $bracket;
             }
         }
@@ -69,6 +71,7 @@ trait LeaderboardAwareTrait
 
 /**
  * @internal
+ *
  * @implements \IteratorAggregate<int, Leaderboard>
  */
 final class BracketEntry implements \IteratorAggregate
@@ -86,7 +89,9 @@ final class BracketEntry implements \IteratorAggregate
     public function getIterator(): \Iterator
     {
         yield Leaderboard::createMages($this->mages);
+
         yield Leaderboard::createWarriors($this->warriors);
+
         yield Leaderboard::createBountyHunters($this->bountyHunters);
     }
 

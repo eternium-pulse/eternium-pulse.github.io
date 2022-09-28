@@ -169,7 +169,7 @@ class GenerateCommand extends Command
             $sitemap[] = $this->eventPath($event);
             $template = $event->type;
 
-            if (!($event instanceof Leaderboard)) {
+            if (!$event instanceof Leaderboard) {
                 $render("{$path}/index.html", $template, compact('event'));
 
                 continue;

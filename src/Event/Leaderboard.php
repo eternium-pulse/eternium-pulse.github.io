@@ -50,6 +50,7 @@ abstract class Leaderboard extends Event
         $reader = Utils::createCsvReader($file, $header);
         foreach ($reader as $data) {
             $entry = Entry::fromArray($data);
+
             yield $entry;
         }
 
@@ -101,6 +102,7 @@ abstract class Leaderboard extends Event
                 );
                 ++$entries;
                 ++$pageEntries;
+
                 yield $entry;
             }
             ++$options['page'];

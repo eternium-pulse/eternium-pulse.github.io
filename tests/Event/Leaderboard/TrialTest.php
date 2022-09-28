@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
+ *
  * @covers \Eternium\Event\Leaderboard\Trial
  */
 final class TrialTest extends TestCase
