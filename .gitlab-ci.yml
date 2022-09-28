@@ -13,11 +13,10 @@ code_quality:
   stage: test
   allow_failure: true
   script:
-    - php8 vendor/bin/php-cs-fixer fix --dry-run --format=gitlab > gl-code-quality-report.json
+    - php8 vendor/bin/php-cs-fixer fix --dry-run --format=gitlab > php-cs-fixer-report.json
   artifacts:
     reports:
-      codequality: gl-code-quality-report.json
-    expire_in: 1 day
+      codequality: php-cs-fixer-report.json
   rules:
     - if: '$CODE_QUALITY_DISABLED || $CI_PIPELINE_SOURCE == "schedule"'
       when: never
