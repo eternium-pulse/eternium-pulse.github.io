@@ -5,27 +5,27 @@ cache:
     - vendor
 
 before_script:
-  - apk add --no-progress php8-phar php8-iconv php8-openssl php8-curl php8-ctype php8-mbstring php8-dom php8-tokenizer php8-xml php8-xmlwriter
+  - apk add --no-cache --no-progress php8-phar php8-iconv php8-openssl php8-curl php8-ctype php8-mbstring php8-dom php8-tokenizer php8-xml php8-xmlwriter
   - wget -q -O composer.phar https://getcomposer.org/composer-2.phar
   - php8 composer.phar install --no-interaction --no-progress
 
-code_quality:
+php_cs_fixer:
   stage: test
-  allow_failure: true
-  script:
-    - php8 vendor/bin/php-cs-fixer fix --dry-run --format=gitlab > php-cs-fixer-report.json
+  allow_failure:
+    exit_codes: 8
+  script: php8 vendor/bin/php-cs-fixer fix --dry-run --show-progress=none --format=gitlab > php-cs-fixer-report.json
   artifacts:
     reports:
       codequality: php-cs-fixer-report.json
-  rules:
-    - if: '$CODE_QUALITY_DISABLED || $CI_PIPELINE_SOURCE == "schedule"'
-      when: never
-    - if: '$CI_COMMIT_TAG || $CI_COMMIT_BRANCH'
 
 phpunit:
   stage: test
+  variables:
+    XDEBUG_MODE: coverage
   script:
-    - php8 vendor/bin/phpunit tests --log-junit=phpunit-report.xml
+    - apk add --no-cache --no-progress php8-pecl-xdebug
+    - php8 -d zend_extension=xdebug vendor/bin/phpunit --coverage-text --whitelist=src --log-junit=phpunit-report.xml tests
+  coverage: '/^\s*Lines:\s*\d+\.\d+%/'
   artifacts:
     reports:
       junit: phpunit-report.xml
