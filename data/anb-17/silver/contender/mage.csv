@@ -1,7 +1,5 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
-Merlin;;463;71.50;110;552;19;19;106;19;steam
 Bleedya;;362;70.44;103;342;62;19;103;3;android
-Itime;;867;72.19;102;508;258;14;122;46;ios
 Ebani;;898;70.69;101;439;253;15;137;1;android
 Tarkode;;740;70.63;97;411;146;14;125;8;steam
 Artis;;558;70.44;97;507;296;11;137;0;android
@@ -361,9 +359,7 @@ Nixz;;147;62.31;43;294;67;14;126;1;amazon
 Zulol;;133;70.75;43;386;132;16;122;2;android
 Gorca;;135;69.50;43;406;51;14;128;0;ios
 Nemesis;;86;62.75;43;424;171;7;165;4;android
-Nelliz;;170;70.81;43;450;170;12;143;0;steam
 Aleca;;38;65.50;42;140;48;16;118;0;steam
-Taiger;;71;57.63;42;210;90;9;152;0;steam
 Izun;;104;55.69;42;279;74;21;118;0;android
 Klolk;;93;62.94;42;295;37;9;152;0;android
 Taselhoff;;165;63.00;42;295;118;16;131;5;windows
@@ -408,7 +404,6 @@ Odmastak;;54;62.06;36;231;42;17;113;1;ios
 Oshonre;;126;63.19;36;236;43;10;163;2;windows
 Irzas;;66;63.56;36;340;97;15;120;2;android
 Arul;;98;57.13;36;406;127;8;182;2;android
-Rumuha;;81;59.06;36;431;176;19;105;5;android
 Grgrgre;;10;63.13;35;185;20;16;121;0;android
 Axoi;;64;60.25;35;196;11;11;143;0;android
 Ibehal;;56;63.63;35;373;54;19;96;0;android

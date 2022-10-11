@@ -1,5 +1,4 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
-Bandera;;1018;75.69;137;434;225;10;148;1;steam
 Zzzz;;1612;72.19;127;483;224;3;183;2;ios
 Viet;;1306;74.25;127;522;255;16;114;3;steam
 Scyara;;1603;72.81;125;398;121;18;109;7;android
@@ -228,7 +227,6 @@ Zoso;;299;70.75;80;553;165;11;151;3;android
 Free;;186;65.63;79;282;132;18;111;0;android
 Enek;;236;70.19;79;480;162;16;112;5;android
 Anasig;;262;69.75;79;577;223;11;133;0;ios
-Vuthit;;382;68.81;79;584;303;21;94;4;android
 Zegiz;;196;68.94;78;384;73;17;110;0;android
 Zoinki;;407;71.00;78;459;147;15;122;11;android
 Grace;;207;70.31;78;571;213;10;150;2;ios
@@ -387,7 +385,6 @@ Event;;206;69.19;46;220;55;18;107;2;android
 Ravohi;;147;70.13;45;160;13;15;123;0;android
 Koji;;105;59.63;45;198;42;25;95;9;android
 Ires;;49;64.00;42;193;59;14;130;0;ios
-Phoenix;;94;67.00;41;152;34;10;145;1;android
 Ahanna;;115;59.75;41;181;22;8;155;0;android
 Kotori;;159;55.13;41;309;90;16;112;0;android
 Bakaresh;;100;59.25;40;186;69;13;142;0;android

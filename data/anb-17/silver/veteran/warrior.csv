@@ -1,6 +1,5 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Zvezdochka;;1912;72.81;131;469;170;11;134;1;steam
-Geniusnee;;887;75.69;130;308;84;17;106;0;android
 Alucarty;;1957;73.44;130;479;141;20;97;0;steam
 Vathag;;1769;72.25;129;476;213;9;145;4;android
 Bfafdfdf;;1885;73.19;128;519;318;0;190;2;windows
@@ -30,7 +29,6 @@ Gorure;;2095;74.44;119;55;15;15;124;0;steam
 Korb;;1901;74.25;119;56;15;10;147;0;steam
 Apple;;1912;73.75;119;76;27;13;131;0;steam
 Shotoresha;;1939;74.06;119;77;12;9;149;0;steam
-Sofram;;2059;74.19;119;80;16;14;126;0;ios
 Reyochan;;1927;73.94;119;96;17;12;136;0;android
 Annuca;;1800;73.81;119;101;31;19;101;0;windows
 Sali;;1656;73.06;119;158;59;14;124;0;android
@@ -320,7 +318,6 @@ Kithe;;452;70.38;94;411;156;15;117;6;android
 Esha;;381;70.63;93;311;97;13;127;1;android
 Ishocos;;335;63.94;93;380;110;10;147;7;android
 Cuhut;;258;69.81;93;397;113;18;121;3;ios
-Oshig;;851;72.63;93;400;234;13;125;2;ios
 Zados;;297;70.56;93;426;183;16;119;5;steam
 Evas;;362;71.56;93;450;119;7;166;5;android
 Nova;;269;70.63;93;495;256;15;138;8;android
@@ -583,7 +580,6 @@ Haim;;64;57.06;11;88;1;19;105;0;android
 Garrosh;;0;45.81;11;211;63;15;128;2;steam
 Gatoula;;0;46.81;11;234;51;18;103;1;android
 Lunaseeme;;0;44.81;10;179;8;17;113;0;android
-Kokia;;14;48.13;9;51;0;22;89;0;steam
 Esunra;;0;43.06;9;147;15;15;123;0;steam
 Egred;;0;48.44;9;411;179;22;84;9;android
 Gresma;;25;63.44;8;90;7;18;112;0;ios

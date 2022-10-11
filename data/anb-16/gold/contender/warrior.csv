@@ -1,6 +1,5 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Helena;;1350;71.75;120;380;127;11;138;1;android
-Bell;;1997;73.69;119;71;32;16;121;0;ios
 Jeremysalt;;1783;73.19;119;103;47;11;138;0;android
 Aizekun;;1785;72.50;119;146;40;10;142;1;android
 Valkiria;;1287;71.81;117;421;213;12;131;3;android
@@ -1205,7 +1204,6 @@ Hozinri;;0;26.06;1;165;5;13;135;0;android
 Titoz;;0;10.00;1;165;44;21;87;0;ios
 Gibi;;0;10.38;1;171;21;24;78;1;ios
 Idont;;0;11.69;1;172;19;11;155;0;ios
-Eventheld;;0;9.14;1;172;19;9;156;0;android
 Stark;;0;7.20;1;173;24;11;142;0;steam
 Ijos;;0;12.25;1;174;11;14;128;0;android
 Itochil;;0;16.60;1;184;17;16;117;0;android
