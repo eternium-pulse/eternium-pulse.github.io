@@ -677,4 +677,12 @@ return [
             ],
         ]),
     ),
+
+    Season::create(
+        13,
+        'Fall 2022',
+        mages: '6346d7afc93f436257ebdc90',
+        warriors: '6346d7b1f3b8c5368627bde8',
+        bounty_hunters: '6346d7b2f3b8c5368627c5fc',
+    ),
 ];
