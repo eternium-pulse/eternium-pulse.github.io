@@ -25,22 +25,23 @@ Leaderboards of Eternium game events
 <div class="row row-cols-1 row-cols-md-2 g-4 mb-4">
   {% for event in gameEvents %}
   <div class="col">
-    <div class="card" itemscope itemtype="https://schema.org/Event">
+    <div class="card" vocab="https://schema.org/" typeof="Event">
       <div class="card-body">
-        <h5 class="card-title" itemprop="name">{{ event.title|e }}</h5>
-        <p class="card-text" itemprop="description"><p>{{ event.description|trim|e|replace({"\n" : '<br>'})|raw }}</p>
+        <h5 class="card-title" property="name">{{ event.title|e }}</h5>
+        <p class="card-text" property="description"><p>{{ event.description|trim|e|replace({"\n" : '<br>'})|raw }}</p>
       </div>
       <div class="card-footer text-muted">
         {% if date(event.start_date) < date(now) %}
-        <meta itemprop="startDate" content="{{ event.start_date|date(constant('DATE_W3C')) }}">
-        <small>Ends at <time datetime="{{ event.end_date|date(constant('DATE_W3C')) }}" itemprop="endDate">{{ event.end_date|date }}</time></small>
+        <meta property="startDate" content="{{ event.start_date|date(constant('DATE_W3C')) }}">
+        <small>Ends at <time datetime="{{ event.end_date|date(constant('DATE_W3C')) }}" property="endDate">{{ event.end_date|date }}</time></small>
         {% else %}
-        <small>Starts at <time datetime="{{ event.start_date|date(constant('DATE_W3C')) }}" itemprop="startDate">{{ event.start_date|date }}</time></small>
-        <meta itemprop="endDate" content="{{ event.end_date|date(constant('DATE_W3C')) }}">
+        <small>Starts at <time datetime="{{ event.start_date|date(constant('DATE_W3C')) }}" property="startDate">{{ event.start_date|date }}</time></small>
+        <meta property="endDate" content="{{ event.end_date|date(constant('DATE_W3C')) }}">
         {% endif %}
       </div>
-      <div itemprop="location" itemscope itemtype="https://schema.org/VirtualLocation">
-        <link itemprop="url" href="{{ eternium_url|e }}">
+      <div property="location" typeof="VirtualLocation">
+        <meta property="name" content="Eternium">
+        <link rel="sameAs" href="{{ eternium_url|e }}">
       </div>
     </div>
   </div>
