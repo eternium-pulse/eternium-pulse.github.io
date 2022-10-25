@@ -9,9 +9,9 @@ Leaderboards of Eternium game events
 {%- endblock %}
 
 {% block opengraph %}
-<link rel="canonical" href="{{ abs_url()|e }}/"/>
-<meta property="og:title" content="{{ site.name|e }}"/>
-<meta property="og:url" content="{{ abs_url()|e }}/"/>
+<link rel="canonical" href="{{ abs_url()|e }}/">
+<meta property="og:title" content="{{ site.name|e }}">
+<meta property="og:url" content="{{ abs_url()|e }}/">
 {{ parent() }}
 {% endblock %}
 
@@ -32,11 +32,11 @@ Leaderboards of Eternium game events
       </div>
       <div class="card-footer text-muted">
         {% if date(event.start_date) < date(now) %}
-        <meta itemprop="startDate" content="{{ event.start_date|date(constant('DATE_W3C')) }}"/>
+        <meta itemprop="startDate" content="{{ event.start_date|date(constant('DATE_W3C')) }}">
         <small>Ends at <time datetime="{{ event.end_date|date(constant('DATE_W3C')) }}" itemprop="endDate">{{ event.end_date|date }}</time></small>
         {% else %}
         <small>Starts at <time datetime="{{ event.start_date|date(constant('DATE_W3C')) }}" itemprop="startDate">{{ event.start_date|date }}</time></small>
-        <meta itemprop="endDate" content="{{ event.end_date|date(constant('DATE_W3C')) }}"/>
+        <meta itemprop="endDate" content="{{ event.end_date|date(constant('DATE_W3C')) }}">
         {% endif %}
       </div>
       <div itemprop="location" itemscope itemtype="https://schema.org/VirtualLocation">

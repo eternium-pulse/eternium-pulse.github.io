@@ -15,19 +15,19 @@ Top {{ +page.range.length }}
 {%- endblock %}
 
 {% block opengraph %}
-<meta property="og:title" content="{{ event.name|e }} Leaderboard"/>
+<meta property="og:title" content="{{ event.name|e }} Leaderboard">
 {% if not page.first %}
-<link rel="prev" href="{{ abs_path(event_path(event, page.index - 1))|e }}"/>
+<link rel="prev" href="{{ abs_path(event_path(event, page.index - 1))|e }}">
 {% endif %}
 {% if not page.last %}
-<link rel="next" href="{{ abs_path(event_path(event, page.index + 1))|e }}"/>
+<link rel="next" href="{{ abs_path(event_path(event, page.index + 1))|e }}">
 {% endif %}
 {{ parent() }}
 {% endblock %}
 
 {% block styles %}
 {{ parent() }}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/brands.min.css" integrity="sha512-rQgMaFKZKIoTKfYInSVMH1dSM68mmPYshaohG8pK17b+guRbSiMl9dDbd3Sd96voXZeGerRIFFr2ewIiusEUgg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/brands.min.css" integrity="sha512-rQgMaFKZKIoTKfYInSVMH1dSM68mmPYshaohG8pK17b+guRbSiMl9dDbd3Sd96voXZeGerRIFFr2ewIiusEUgg==" crossorigin="anonymous" referrerpolicy="no-referrer">
 {% endblock %}
 
 {% block content %}

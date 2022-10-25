@@ -1,8 +1,8 @@
 {% extends 'layout.twig' %}
 
 {% block opengraph %}
-<link rel="canonical" href="{{ abs_url(event_path(event, +page.index))|e }}"/>
-<meta property="og:url" content="{{ abs_url(event_path(event, +page.index))|e }}"/>
+<link rel="canonical" href="{{ abs_url(event_path(event, +page.index))|e }}">
+<meta property="og:url" content="{{ abs_url(event_path(event, +page.index))|e }}">
 {{ parent() }}
 {% endblock %}
 
@@ -16,12 +16,12 @@
       <a href="{{ abs_path(event_path(item))|e }}" property="item" typeof="WebPage">
         <span property="name">{{ item.name|e }}</span>
       </a>
-      <meta property="position" content="{{ loop.index }}"/>
+      <meta property="position" content="{{ loop.index }}">
     </li>
     {%~ endfor %}
     <li class="breadcrumb-item active text-truncate" aria-current="page" property="itemListElement" typeof="ListItem">
       <span property="name">{{ event.name|e }}</span>
-      <meta property="position" content="{{ breadcrumbs|length + 1 }}"/>
+      <meta property="position" content="{{ breadcrumbs|length + 1 }}">
     </li>
   </ol>
 </nav>

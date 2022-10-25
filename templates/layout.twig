@@ -3,22 +3,22 @@
 <html class="h-100" lang="en" prefix="og: https://ogp.me/ns#">
 
 <head>
-  <meta charset="{{ _charset|e }}"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="{{ _charset|e }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}{{ site.name|e }}{% endblock %}</title>
-  <meta name="description" content="{% block description %}{% endblock %}"/>
+  <meta name="description" content="{% block description %}{% endblock %}">
   {%~ block opengraph %}
-  <meta property="og:description" content="{{ block('description') }}"/>
-  <meta property="og:image" content="{{ abs_url('assets/eternium.jpg')|e }}"/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:site_name" content="{{ site.name|e }}"/>
+  <meta property="og:description" content="{{ block('description') }}">
+  <meta property="og:image" content="{{ abs_url('assets/eternium.jpg')|e }}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ site.name|e }}">
   {%~ endblock %}
-  <link rel="manifest" href="{{ abs_path('manifest.webmanifest')|e }}"/>
-  <meta name="application-name" content="{{ site.name|e }}"/>
-  <meta name="theme-color" content="{{ site.theme|e }}"/>
-  <link rel="icon" href="{{ abs_path('favicon.ico')|e }}" type="image/x-icon"/>
+  <link rel="manifest" href="{{ abs_path('manifest.webmanifest')|e }}">
+  <meta name="application-name" content="{{ site.name|e }}">
+  <meta name="theme-color" content="{{ site.theme|e }}">
+  <link rel="icon" href="{{ abs_path('favicon.ico')|e }}" type="image/x-icon">
   {%~ block styles %}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w==" crossorigin="anonymous" referrerpolicy="no-referrer">
   {%~ endblock %}
 </head>
 
