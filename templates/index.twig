@@ -39,6 +39,9 @@ Leaderboards of Eternium game events
         <meta itemprop="endDate" content="{{ event.end_date|date(constant('DATE_W3C')) }}"/>
         {% endif %}
       </div>
+      <div itemprop="location" itemscope itemtype="https://schema.org/VirtualLocation">
+        <link itemprop="url" href="{{ eternium_url|e }}">
+      </div>
     </div>
   </div>
   {% endfor %}
