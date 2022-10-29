@@ -28,7 +28,7 @@ Leaderboards of Eternium game events
     <div class="card" vocab="https://schema.org/" typeof="Event">
       <div class="card-body">
         <h5 class="card-title" property="name">{{ event.title|e }}</h5>
-        <p class="card-text" property="description"><p>{{ event.description|trim|e|replace({"\n" : '<br>'})|raw }}</p>
+        <p class="card-text" property="description">{{ event.description|trim|e|replace({"\n" : '<br>'})|raw }}</p>
       </div>
       <div class="card-footer text-muted">
         {% if date(event.start_date) < date(now) %}
