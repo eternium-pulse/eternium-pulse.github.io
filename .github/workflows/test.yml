@@ -1,0 +1,23 @@
+name: Test
+run-name: Run PHPUnit tests
+on: [push]
+jobs:
+  phpunit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+          with:
+          php-version: '8.0'
+          coverage: xdebug
+          extensions: phar, iconv, openssl, curl, ctype, mbstring, dom, tokenizer, xml, xmlwriter
+          tools: composer:v2
+      - name: Cache dependencies
+        uses: actions/cache@v2
+          with:
+            path: vendor
+            key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+            restore-keys: ${{ runner.os }}-composer-
+      - name: Install dependencies
+        run: composer install --prefer-dist
