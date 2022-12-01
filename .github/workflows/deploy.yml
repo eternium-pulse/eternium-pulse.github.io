@@ -1,7 +1,7 @@
 name: Deploy
 run-name: Deploy to GitHub Pages
 on:
-  push
+  push:
   schedule:
     - cron: '0 */6 * * *'
 jobs:
