@@ -1,6 +1,9 @@
 name: Deploy
 run-name: Deploy to GitHub Pages
-on: [push]
+on:
+  push
+  schedule:
+    - cron: '0 */6 * * *'
 jobs:
   build:
     runs-on: ubuntu-latest
