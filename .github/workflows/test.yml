@@ -13,13 +13,12 @@ jobs:
           coverage: xdebug
           extensions: phar, iconv, openssl, curl, ctype, mbstring, dom, tokenizer, xml, xmlwriter
           tools: composer:v2
-      - name: Cache dependencies
-        uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           path: vendor
           key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
-      - name: Install dependencies
+      - name: Install Dependencies
         run: composer install --prefer-dist
       - name: Run PHPUnit
         run: ./vendor/bin/phpunit --coverage-filter=src --coverage-text tests

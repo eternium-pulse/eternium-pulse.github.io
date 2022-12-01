@@ -21,7 +21,7 @@ jobs:
       - name: Install Dependencies
         run: composer install --prefer-dist
       - name: Fetch Leaderboard Data
-        run: ./bin/lb.php fetch -u
+        run: ./bin/lb.php fetch
       - name: Generate Static Files
         run: ./bin/lb.php generate --page-limit=10 --base-url=https://eternium-pulse.gitlab.io
       - uses: actions/upload-pages-artifact@v0
