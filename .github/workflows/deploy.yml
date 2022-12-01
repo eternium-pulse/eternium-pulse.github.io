@@ -1,0 +1,29 @@
+name: Deploy
+run-name: Deploy to GitHub Pages
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          coverage: none
+          extensions: phar, iconv, openssl, curl, ctype, mbstring
+          tools: composer:v2
+      - uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+      - name: Install Dependencies
+        run: composer install --prefer-dist
+      - name: Fetch Leaderboard Data
+        run: ./bin/lb.php fetch -u
+      - name: Generate Static Files
+        run: ./bin/lb.php generate --page-limit=10 --base-url=https://eternium-pulse.gitlab.io
+      - uses: actions/upload-pages-artifact@v0
+        with:
+          path: public
