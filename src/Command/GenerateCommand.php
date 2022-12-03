@@ -6,7 +6,8 @@ use Eternium\Event\Event;
 use Eternium\Event\Leaderboard;
 use Eternium\Utils;
 use Eternium\Utils\Minifier;
-use Eternium\Utils\Url;
+use League\Uri\Uri;
+use League\Uri\UriResolver;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\InvalidOptionException;
 use Symfony\Component\Console\Helper\ProgressBar;
@@ -23,7 +24,7 @@ class GenerateCommand extends Command
 {
     protected static $defaultName = 'generate';
 
-    private Url $baseUrl;
+    private Uri $baseUrl;
 
     private int $pageSize = 100;
 
@@ -44,7 +45,7 @@ class GenerateCommand extends Command
         // @var array<int, Event>
         private array $events,
     ) {
-        $this->baseUrl = Url::parse(getenv('CI_PAGES_URL') ?: 'http://localhost:8080');
+        $this->baseUrl = Uri::createFromString(getenv('CI_PAGES_URL') ?: 'http://localhost:8080');
         parent::__construct();
     }
 
@@ -60,9 +61,17 @@ class GenerateCommand extends Command
 
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
-        $this->baseUrl = Url::parse($input->getOption('base-url')) ?? throw new InvalidOptionException(
-            'The option "--base-url" requires a valid URL.'
-        );
+        try {
+            $this->baseUrl = Uri::createFromString($input->getOption('base-url'));
+            if (null === $this->baseUrl->getAuthority()) {
+                throw new \UnexpectedValueException('Unexpected authority.');
+            }
+            if (!\in_array($this->baseUrl->getScheme(), ['http', 'https'])) {
+                throw new \UnexpectedValueException('Scheme requries http or https.');
+            }
+        } catch (\Throwable $ex) {
+            throw new InvalidOptionException('The option "--base-url" requires a valid URL.', previous: $ex);
+        }
         $output->writeln("Using <info>{$this->baseUrl}</info> as base URL", OutputInterface::VERBOSITY_VERY_VERBOSE);
 
         $this->pageSize = (int) $input->getOption('page-size');
@@ -94,17 +103,23 @@ class GenerateCommand extends Command
 
         $this->twig->addFunction(new TwigFunction(
             'event_path',
-            fn (Event $event, int $page = 1): string => $this->eventPath($event, $page)
+            fn (Event $event, int $page = 1): string => $this->eventPath($event, $page),
         ));
 
         $this->twig->addFunction(new TwigFunction(
             'abs_path',
-            fn (string $path = ''): string => $this->baseUrl->resolve($path)->path
+            fn (string $path = ''): string => UriResolver::resolve(
+                Uri::createFromComponents(['path' => $path]),
+                $this->baseUrl,
+            )->getPath(),
         ));
 
         $this->twig->addFunction(new TwigFunction(
             'abs_url',
-            fn (string $path = ''): string => (string) $this->baseUrl->resolve($path)
+            fn (string $path = ''): string => (string) UriResolver::resolve(
+                Uri::createFromComponents(['path' => $path]),
+                $this->baseUrl,
+            ),
         ));
     }
 
@@ -134,8 +149,9 @@ class GenerateCommand extends Command
 
             Utils::dump(ETERNIUM_HTML_PATH.$file, $this->twig->render($template, $context));
 
+            $href = UriResolver::resolve(Uri::createFromComponents(['path' => $file]), $this->baseUrl);
             $output->writeln(
-                $this->getHelper('formatter')->formatSection('HTML', "<href={$this->baseUrl->resolve($file)}>{$file}</> generated using {$template}", 'comment'),
+                $this->getHelper('formatter')->formatSection('HTML', "<href={$href}>{$file}</> generated using {$template}", 'comment'),
                 OutputInterface::VERBOSITY_VERBOSE,
             );
         };
