@@ -10,8 +10,8 @@ final class Url implements \Stringable
         public string $scheme = '',
         public string $authority = '',
         public string $path = '',
-        public string $query = '',
-        public string $fragment = '',
+        public ?string $query = null,
+        public ?string $fragment = null,
     ) {
     }
 
@@ -19,15 +19,19 @@ final class Url implements \Stringable
     {
         $url = $this->path;
         if ('' !== $this->authority) {
+            $url = \ltrim($url, '/');
+            if ('' !== $url) {
+                $url = "/{$url}";
+            }
             $url = "//{$this->authority}{$url}";
             if ('' !== $this->scheme) {
                 $url = "{$this->scheme}:{$url}";
             }
         }
-        if ('' !== $this->query) {
+        if (null !== $this->query) {
             $url .= "?{$this->query}";
         }
-        if ('' !== $this->fragment) {
+        if (null !== $this->fragment) {
             $url .= "#{$this->fragment}";
         }
 
@@ -36,7 +40,7 @@ final class Url implements \Stringable
 
     public static function parse(string $url): ?self
     {
-        $parts = parse_url($url);
+        $parts = \parse_url($url);
         if (false === $parts) {
             return null;
         }
@@ -61,8 +65,8 @@ final class Url implements \Stringable
             scheme: $parts['scheme'] ?? '',
             authority: $authority,
             path: $parts['path'] ?? '',
-            query: $parts['query'] ?? '',
-            fragment: $parts['fragment'] ?? '',
+            query: $parts['query'] ?? null,
+            fragment: $parts['fragment'] ?? null,
         );
     }
 
@@ -71,11 +75,16 @@ final class Url implements \Stringable
         $url = new self(
             scheme: $this->scheme,
             authority: $this->authority,
-            path: $path,
         );
 
-        if (!str_starts_with($path, '/')) {
-            $url->path = rtrim($this->path, '/')."/{$path}";
+        if (\str_starts_with($path, '/')) {
+            $url->path = $path;
+        } elseif ('' === $this->path) {
+            $url->path = "/{$path}";
+        } elseif (\str_ends_with($this->path, '/')) {
+            $url->path = "{$this->path}{$path}";
+        } else {
+            $url->path = \substr($this->path, 0, \strrpos($this->path, '/') + 1).$path;
         }
 
         return $url;
