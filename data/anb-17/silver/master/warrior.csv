@@ -1,14 +1,12 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Hora;;2067;75.25;157;542;296;0;193;0;windows
 Drumpig;;2100;75.13;157;595;319;0;192;0;windows
-Korbong;;2150;75.44;156;499;283;0;194;1;windows
 Guitarwolf;;2146;74.63;156;536;288;0;190;0;windows
 Cnkirkim;;2069;75.00;156;590;270;0;192;5;ios
 Korsasin;;2119;75.31;155;499;225;4;177;1;windows
 Chinahebi;;1898;74.75;154;475;262;0;190;0;windows
 Chinaqps;;2090;74.63;153;508;277;3;178;1;ios
 Muse;;2102;74.44;153;538;301;3;172;1;windows
-Premify;;2107;74.94;153;596;300;0;188;1;android
 Asura;;2099;75.25;151;455;245;0;192;2;windows
 Chanette;;2033;74.63;151;524;290;0;189;1;steam
 Korno;;2061;74.69;151;531;298;0;191;3;android
@@ -33,7 +31,6 @@ Koroppa;;2045;74.44;147;503;238;9;145;0;android
 Chinajgpy;;2031;74.94;147;512;271;3;177;2;steam
 Namdinh;;2034;74.44;147;526;281;1;189;3;android
 Cetha;;2024;74.56;147;529;298;4;168;0;android
-Karabas;Centurion;2026;74.81;147;542;216;2;182;4;android
 Maracayba;;2000;74.31;147;591;284;2;186;3;android
 Bored;;2035;74.25;146;421;178;1;182;2;windows
 Whereisbom;;2052;74.38;146;445;183;0;189;7;windows
@@ -145,7 +142,6 @@ Delete;;1566;73.69;132;582;337;9;146;0;steam
 Sagal;;847;72.94;132;582;255;11;128;0;android
 Alex;;1754;72.25;131;393;158;17;102;2;android
 Dolores;;1623;73.56;131;449;162;11;133;1;ios
-Kisa;;1709;73.75;131;483;164;19;97;3;android
 Netol;;1247;73.19;131;487;234;9;143;2;android
 Zorro;;1976;74.25;131;495;141;9;140;0;android
 Bruteforce;;1359;74.13;131;513;207;11;133;2;android

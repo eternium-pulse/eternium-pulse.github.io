@@ -1,5 +1,4 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
-Korzirinda;;2188;75.69;156;461;258;0;194;0;windows
 Geden;;2105;75.25;156;505;281;0;192;0;windows
 Chinahebi;;1981;75.19;156;530;241;3;173;5;windows
 Korsasin;;2104;75.13;156;556;260;0;190;2;windows
@@ -9,7 +8,6 @@ Chinahonyo;;2083;74.69;155;558;268;0;198;3;ios
 Kriss;;2144;75.38;153;557;329;0;193;2;android
 Korya;;2103;74.94;153;565;304;0;189;1;windows
 Kormobile;;2088;74.56;153;592;332;0;194;5;ios
-Premify;;2138;75.25;153;594;301;0;188;1;android
 Aquar;;2023;75.06;152;561;310;0;191;0;ios
 Rufedya;;2087;74.00;152;566;300;0;193;0;windows
 Asura;;2161;75.25;151;454;283;0;192;3;windows
@@ -400,7 +398,6 @@ Nukece;;887;72.88;118;544;203;13;119;1;ios
 Joline;;993;72.25;118;585;287;14;121;2;ios
 Nukles;;1129;73.50;118;589;226;15;117;2;windows
 Kekeek;Challenger;1141;72.13;117;264;94;12;131;1;android
-Porzitiv;;924;72.75;117;336;116;14;122;2;android
 Ozuni;;787;72.06;117;353;157;6;158;0;android
 King;;637;72.63;117;416;217;8;148;3;android
 Sarek;Challenger;1901;73.75;117;421;84;15;118;2;android
@@ -700,7 +697,6 @@ Gekak;;254;68.88;90;338;71;16;113;0;android
 Emad;;227;70.50;90;359;84;16;115;0;android
 Abud;;214;69.19;90;387;87;11;144;0;android
 Lerdi;;245;70.44;90;409;126;15;125;0;ios
-Sadre;;318;69.25;90;508;144;21;103;0;ios
 Vilase;;419;69.81;85;224;30;8;158;0;android
 Donotcare;;509;72.25;85;229;24;6;165;0;android
 Sashid;;369;70.88;85;475;100;24;71;0;android

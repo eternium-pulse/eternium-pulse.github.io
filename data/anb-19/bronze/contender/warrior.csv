@@ -1,15 +1,11 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
-Veerena;;1926;75.19;130;541;213;9;151;0;windows
 Croccoli;;1802;71.69;126;534;275;20;91;8;steam
 Bfgnom;;963;71.69;122;575;346;6;160;7;steam
 Dank;;1794;72.38;121;423;141;6;186;6;steam
-Anginpuyuh;;1076;72.50;121;475;196;7;154;5;android
-Luthi;;2137;75.69;119;426;124;6;152;0;steam
 Korhoon;;1678;72.44;119;474;101;3;175;22;steam
 Argin;;943;71.63;117;482;87;14;120;10;android
 Meze;;748;70.75;116;533;316;6;157;1;windows
 Trane;;828;71.31;116;562;129;10;134;5;android
-Painkiller;;677;69.81;115;122;0;14;126;0;steam
 Dziliana;;527;71.06;113;477;213;19;100;2;steam
 Ziral;;1390;70.88;110;191;72;14;127;0;android
 Minhhoi;;1386;71.31;110;228;63;16;118;0;steam
@@ -39,7 +35,6 @@ Rivrozi;;457;70.31;102;568;276;16;115;6;android
 Hirzi;;331;70.44;101;326;129;17;116;6;android
 Bonna;;458;70.94;101;517;166;10;145;1;steam
 Noemi;;407;70.56;101;565;164;12;132;0;android
-Zugi;;2151;77.00;100;310;5;13;126;0;android
 Hisun;;949;71.13;100;316;98;17;110;0;android
 Miki;;354;70.56;100;357;10;8;148;0;android
 Chatodos;;506;69.50;100;389;104;18;112;1;android
@@ -494,7 +489,6 @@ Kirito;;4;51.50;22;466;152;20;120;1;android
 Warmonger;;78;64.81;20;99;6;24;79;0;ios
 Nayss;;6;61.13;20;132;10;14;128;0;steam
 Cudes;;0;57.19;20;136;12;20;94;0;android
-Athathe;;0;59.63;20;148;10;20;94;0;steam
 Alezuk;;16;70.69;20;158;4;10;152;0;android
 Lenocka;;0;53.81;20;167;4;9;153;0;android
 Mica;;54;60.44;20;184;9;10;147;0;android
@@ -814,7 +808,6 @@ Budneje;;0;14.80;3;525;184;11;142;6;android
 Ahok;;0;16.63;3;526;266;15;130;3;android
 Imad;;140;60.31;2;74;10;11;145;0;android
 Pepe;;51;66.00;2;74;1;18;112;0;android
-Ccccc;;0;12.69;2;101;2;12;138;0;steam
 Absenta;;0;16.19;2;115;13;27;67;0;android
 Ithoti;;0;50.94;2;120;3;15;125;0;android
 Zeke;;0;14.94;2;130;13;19;105;0;android

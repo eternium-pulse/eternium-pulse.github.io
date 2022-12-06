@@ -1,6 +1,5 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Chinadoll;;2091;75.25;158;532;290;0;191;0;windows
-Kornara;;2125;75.31;158;545;305;0;191;0;windows
 Byroad;;2064;75.25;158;547;263;0;191;0;windows
 Guitarwolf;;2117;75.06;158;554;331;0;194;0;windows
 Chinahebi;;2023;75.19;158;562;244;2;187;2;windows
@@ -46,7 +45,6 @@ Gayla;;1998;73.56;147;580;278;0;192;0;android
 Jona;;1906;74.06;147;584;258;8;145;1;ios
 Ogrin;;1918;74.19;147;585;328;3;172;3;android
 Korlegend;;2001;74.06;146;440;195;4;167;1;android
-Barabas;;2002;74.38;146;459;195;0;189;0;android
 Babushka;;1939;73.88;146;520;254;0;188;1;windows
 Rufedya;;2024;73.06;146;531;288;3;175;2;ios
 Vitira;;2040;74.63;146;531;271;9;143;3;android
@@ -401,7 +399,6 @@ Kortiger;;461;70.19;121;542;248;12;148;0;android
 Lordsoth;;1223;72.50;121;546;267;19;143;5;android
 Haza;;454;71.38;121;550;171;13;129;4;ios
 Carkid;;759;72.38;121;561;276;14;118;0;android
-Annim;;784;72.50;121;564;260;10;134;1;android
 Binhcoiii;;367;71.50;121;569;231;9;141;0;ios
 Scuky;;1054;71.56;121;586;224;0;189;5;steam
 Romime;;856;72.75;121;587;211;10;138;1;android
