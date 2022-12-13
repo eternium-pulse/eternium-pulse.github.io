@@ -739,5 +739,30 @@ return [
                 'bounty_hunters' => '6377c62df3b8c536865cc9d1',
             ],
         ]),
+        League::createGold(brackets: [
+            'contender' => [
+                'mages' => '6389edfdf3b8c53686cf5bb6',
+                'warriors' => '6389edfef3b8c53686cf5bcb',
+                'bounty_hunters' => '6389edfff3b8c53686cf5bd9',
+            ],
+            'veteran' => [
+                'mages' => '6389ee02f3b8c53686cf6483',
+                'warriors' => '6389ee04c93f4362578a13dc',
+                'bounty_hunters' => '6389ee05c93f4362578a1404',
+            ],
+            'master' => [
+                'mages' => '6389ee08c93f4362578a1477',
+                'warriors' => '6389ee09f3b8c53686cf8759',
+                'bounty_hunters' => '6389ee0bf3b8c53686cf876f',
+            ],
+        ]),
+    ),
+
+    Season::create(
+        14,
+        'Winter 2022',
+        mages: '6397360bf3b8c5368641d981',
+        warriors: '6397360cc93f436257fb6a0f',
+        bounty_hunters: '6397360ec93f436257fb6a32',
     ),
 ];
