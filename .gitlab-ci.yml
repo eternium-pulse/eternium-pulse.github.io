@@ -31,6 +31,8 @@ phpunit:
       junit: phpunit-report.xml
 
 pages:
+  variables:
+    CI_PAGES_URL: https://eternium-pulse.github.io
   stage: deploy
   script:
     - php8 bin/lb.php fetch --no-progress
