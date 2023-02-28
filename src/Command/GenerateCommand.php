@@ -36,10 +36,6 @@ class GenerateCommand extends Command
 
     private array $turboItems = [];
 
-    private array $news = [];
-
-    private array $gameEvents = [];
-
     public function __construct(
         private Twig $twig,
         // @var array<int, Event>
@@ -125,9 +121,6 @@ class GenerateCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $client = HttpClient::createForBaseUri('https://eternium.alex-tsarkov.workers.dev/api/');
-        $this->fetchGameEvents($client);
-
         $this->minify([
             ETERNIUM_HTML_PATH.'/js/eternium.min.js' => [
                 ETERNIUM_HTML_PATH.'/js/eternium.js',
@@ -162,7 +155,8 @@ class GenerateCommand extends Command
         }
         $generator->send(null);
 
-        $render('index.html', 'index', ['news' => $this->news, 'gameEvents' => $this->gameEvents]);
+        $api = HttpClient::createForBaseUri('https://eternium.pages.dev/api/v1/');
+        $render('index.html', 'index', ['status' => self::fetchStatus($api), 'gameEvents' => self::fetchGameEvents($api)]);
         $render('403.html', 'error', ['code' => 403, 'message' => 'Forbidden']);
         $render('404.html', 'error', ['code' => 404, 'message' => 'Not found']);
         $render('manifest.webmanifest', 'manifest');
@@ -239,18 +233,27 @@ class GenerateCommand extends Command
         return $path;
     }
 
-    private function fetchGameEvents(HttpClientInterface $client): void
+    private static function fetchStatus(HttpClientInterface $client): array
     {
-        $this->gameEvents = $client->request('GET', 'v3/getGameEvents')->toArray()['events'];
-        foreach ($this->gameEvents as &$event) {
-            $event['start_date'] = \DateTimeImmutable::createFromFormat('U', $event['start_date'] / 1000, new \DateTimeZone('UTC'));
-            $event['end_date'] = \DateTimeImmutable::createFromFormat('U', $event['end_date'] / 1000, new \DateTimeZone('UTC'));
-        }
+        $status = $client->request('GET', 'status')->toArray();
+
+        return \array_filter($status, static fn (array $s): bool => 'default' !== $s['platform']);
     }
 
-    private function fetchNews(HttpClientInterface $client): void
+    private static function fetchGameEvents(HttpClientInterface $client): array
     {
-        $this->news = $client->request('GET', 'v2/getNews')->toArray()['news'];
+        $utc = new \DateTimeZone('UTC');
+        $now = new \DateTimeImmutable(timezone: $utc);
+
+        $gameEvents = $client->request('GET', 'events')->toArray();
+        $gameEvents = \array_map(static function (array $e) use ($utc): array {
+            $e['start_date'] = \DateTimeImmutable::createFromFormat('U', $e['start_date'] / 1000, $utc);
+            $e['end_date'] = \DateTimeImmutable::createFromFormat('U', $e['end_date'] / 1000, $utc);
+
+            return $e;
+        }, $gameEvents);
+
+        return \array_filter($gameEvents, static fn (array $e): bool => $now < $e['end_date']);
     }
 
     private function minify(array $assets): void
