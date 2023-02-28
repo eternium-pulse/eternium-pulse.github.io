@@ -1,4 +1,5 @@
 {% extends 'layout.twig' %}
+{% import 'platform.twig' as platform %}
 
 {% block title -%}
 Eternium - Leaderboards on {{ site.name }}
@@ -15,12 +16,17 @@ Leaderboards of Eternium game events
 {{ parent() }}
 {% endblock %}
 
+{% block styles %}
+{{ parent() }}
+{{ platform.stylesheet() }}
+{% endblock %}
+
 {% block content %}
 <h1>Hi, Adventurer!</h1>
 <p class="lead">Here you can find Eternium leaderboards. <a rel="external" href="{{ eternium_url|e }}" target="_blank">Play Eternium</a> and watch your progress.</p>
 
 <div id="status" class="my-4 placeholder-glow d-none">
-  <div class="placeholder alert text-center d-block">Loading...</div>
+  <div class="placeholder alert text-center text-nowrap d-block">Loading...</div>
 </div>
 
 {% if gameEvents %}

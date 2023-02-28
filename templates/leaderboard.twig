@@ -1,4 +1,5 @@
 {% extends 'event/layout.twig' %}
+{% import 'platform.twig' as platform %}
 
 {% set parent_event = include("event/leaderboard/#{event.parent.type}.twig", {event: event.parent}) %}
 
@@ -27,7 +28,7 @@ Top {{ +page.range.length }}
 
 {% block styles %}
 {{ parent() }}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/brands.min.css" integrity="sha512-rQgMaFKZKIoTKfYInSVMH1dSM68mmPYshaohG8pK17b+guRbSiMl9dDbd3Sd96voXZeGerRIFFr2ewIiusEUgg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+{{ platform.stylesheet() }}
 {% endblock %}
 
 {% block content %}
@@ -66,9 +67,9 @@ Top {{ +page.range.length }}
     <tr>
       <th scope="row">{{ +rank }}</th>
       <td class="text-start">
-        {%- if entry.hero.title %}<span class="badge bg-secondary d-none d-sm-inline-block">{{ entry.hero.title|e }}</span> {% endif %}
+        {%- if entry.hero.title %}<span class="badge bg-primary fw-normal d-none d-sm-inline-block">{{ entry.hero.title|e }}</span> {% endif %}
         {{- entry.hero|e -}}
-        {% if entry.platform %} <span class="fab fa-{{ entry.platform|replace({'ios': 'apple'})|e }}" role="img" aria-label="{{ entry.platform|e }}"></span>{% endif -%}
+        {% if entry.platform %} {{ platform.icon(entry.platform, 'fa-fw') }}{% endif -%}
       </td>
       <td>{{ +entry.hero.championLevel }}</td>
       <td class="d-none d-sm-table-cell">{{ '%.1f'|format(entry.hero.averageItemLevel) }}</td>
