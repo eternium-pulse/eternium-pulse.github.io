@@ -6,9 +6,9 @@ final class Hero implements \Stringable
 {
     public function __construct(
         public string $name,
-        public string $title,
-        public int $championLevel,
-        public float $averageItemLevel,
+        public string $title = '',
+        public int $championLevel = 0,
+        public float $averageItemLevel = 0.0,
     ) {
         assert('' !== $name);
         assert($championLevel >= 0);
@@ -20,8 +20,12 @@ final class Hero implements \Stringable
         return $this->name;
     }
 
-    public static function fromPayload(array $payload): self
+    public static function fromPayload(?array $payload): self
     {
+        if (null === $payload) {
+            return new self('-');
+        }
+
         assert(isset($payload['name']));
         assert(isset($payload['champion_level']));
 

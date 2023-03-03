@@ -96,9 +96,9 @@ abstract class Leaderboard extends Event
             $pageEntries = 0;
             foreach ($rankings->list($options) as $data) {
                 $entry = new Entry(
-                    Hero::fromPayload($data['payload']),
-                    Trial::fromTrialStats($data['score'], $data['payload']['trialStats']),
-                    strtolower($data['payload']['devInfo']['platform'] ?? ''),
+                    Hero::fromPayload($data['payload'] ?? null),
+                    Trial::fromTrialStats($data['score'], $data['payload']['trialStats'] ?? null),
+                    \strtolower($data['payload']['devInfo']['platform'] ?? ''),
                 );
                 ++$entries;
                 ++$pageEntries;

@@ -7,10 +7,10 @@ final class Trial
     public function __construct(
         public int $level,
         public int $time,
-        public int $bossTime,
-        public int $eliteKills,
-        public int $trashKills,
-        public int $deaths,
+        public int $bossTime = 0,
+        public int $eliteKills = 0,
+        public int $trashKills = 0,
+        public int $deaths = 0,
     ) {
         assert($level > 0);
         assert($time > 0);
@@ -20,19 +20,25 @@ final class Trial
         assert($deaths >= 0);
     }
 
-    public static function fromTrialStats(int $score, array $trialStats): self
+    public static function fromTrialStats(int $score, ?array $trialStats): self
     {
         assert($score >= 10000);
+
+        $time = 9999 - $score % 10000;
+        $level = (int) ($score / 10000);
+
+        if (null === $trialStats) {
+            return new self($level, $time);
+        }
+
         assert(isset($trialStats['boss']['t0']));
         assert(isset($trialStats['trash']['t1']));
         assert(isset($trialStats['killsElite']));
         assert(isset($trialStats['killsNormal']));
         assert(isset($trialStats['heroDeaths']));
 
-        $time = 9999 - $score % 10000;
-
         return new self(
-            (int) ($score / 10000),
+            $level,
             $time,
             self::detectBossTime($time, $trialStats['trash']['t1'], $trialStats['boss']['t0']),
             $trialStats['killsElite'],
