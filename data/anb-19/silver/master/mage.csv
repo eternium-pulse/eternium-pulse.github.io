@@ -1,7 +1,6 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Korddol;;2105;75.00;159;561;340;8;159;1;windows
 Korwinter;;2153;74.69;156;533;329;10;149;0;windows
-Chinahjj;;2103;75.25;154;433;243;7;161;0;windows
 Kormansaok;;2034;74.31;154;591;444;3;179;8;ios
 Leehyori;;2021;74.63;153;525;338;3;181;1;windows
 Easyanba;;2015;74.06;152;389;216;10;144;0;windows
@@ -24,7 +23,6 @@ Anya;;1856;74.06;143;525;210;5;166;3;android
 Monty;;1914;73.56;142;466;260;4;176;2;windows
 Seven;;1872;73.13;142;498;206;11;143;0;steam
 Johanna;;1889;74.13;142;501;263;16;115;2;steam
-Luvi;;1953;74.69;142;523;233;12;133;1;windows
 Plush;;1791;73.31;142;582;211;14;123;6;ios
 Beshe;;1729;72.88;141;545;299;14;120;3;android
 Catmage;;1931;74.00;141;589;249;7;157;13;android
@@ -36,7 +34,6 @@ Itchyhands;;1765;73.13;139;598;221;8;150;0;android
 Girece;;1280;73.19;138;572;236;15;117;2;android
 Rartalla;;1807;73.13;137;572;243;6;171;0;steam
 Kocon;;2029;73.81;136;326;168;9;152;1;windows
-Rivenbis;;1608;74.13;136;459;259;20;108;5;android
 Frank;;1910;72.88;135;295;121;12;144;1;android
 Izone;;1371;74.81;134;588;247;13;134;5;ios
 Zugrerta;;1780;73.75;134;599;298;11;137;4;ios
@@ -63,7 +60,6 @@ Mageissium;;1408;73.63;130;363;70;11;140;0;android
 Gabraz;;1203;73.50;130;534;213;18;114;10;ios
 Zokrata;;1561;72.25;129;462;205;18;104;1;android
 Qweming;;1520;72.94;129;542;265;6;159;22;steam
-Zapper;;1264;73.81;129;548;244;11;138;5;android
 Balii;;1570;72.94;128;420;144;11;135;4;android
 Denisia;;1776;73.06;128;473;189;13;126;2;android
 Erimipali;Centurion;1643;73.63;128;504;88;13;136;10;windows
@@ -116,7 +112,6 @@ Akrata;;1089;72.19;118;492;213;14;124;0;android
 Rithe;Challenger;1282;72.38;118;505;258;9;168;3;android
 Ahuz;;895;72.31;118;560;362;8;152;3;steam
 Ajashos;;999;72.69;118;566;125;12;133;6;android
-Nezi;;1663;72.63;118;595;307;26;92;6;android
 Mazakeen;;931;72.31;118;598;291;11;143;1;android
 Freedom;;632;71.81;117;379;218;10;153;0;steam
 Azofren;;1054;73.19;117;394;159;20;89;0;android

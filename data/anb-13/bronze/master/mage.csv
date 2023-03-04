@@ -2,7 +2,6 @@ Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;De
 Wildfire;;2160;75.38;162;547;274;7;160;0;windows
 Korternium;;2100;75.13;158;556;386;4;177;0;windows
 Anba;;2101;74.81;158;596;311;15;124;0;windows
-Kornewyear;;2108;75.13;157;565;324;7;161;0;windows
 Korwinter;;2147;75.31;157;587;364;7;162;1;windows
 Lithut;;1979;74.56;156;527;303;4;177;0;windows
 Korzz;;2101;74.94;154;590;345;19;106;1;android
@@ -212,7 +211,6 @@ Ishezi;Challenger;722;72.06;118;549;255;12;134;3;android
 Anathema;;1635;72.69;118;557;346;24;74;0;windows
 Validname;;1132;73.25;118;568;331;11;135;3;android
 Lelova;;1450;71.25;118;591;161;20;92;19;android
-Cena;;874;73.56;117;297;77;13;130;1;android
 Zula;;654;73.50;117;442;208;18;107;1;ios
 Nexet;;438;71.56;117;508;258;15;116;8;android
 Amby;;1458;72.06;117;526;70;15;107;4;android
@@ -308,7 +306,6 @@ Talmanes;;823;72.50;110;473;126;15;118;4;android
 Maci;;866;71.25;110;496;199;7;167;12;ios
 Azhea;;838;73.69;110;522;195;8;159;18;android
 Lislis;;483;72.38;110;540;261;12;146;5;android
-Cersi;;1073;73.00;110;548;247;9;160;3;android
 Cerus;;490;72.75;110;549;178;8;160;3;ios
 Hebrube;;1140;72.19;109;377;109;17;116;10;windows
 Ezon;;559;72.75;108;389;186;12;140;2;android

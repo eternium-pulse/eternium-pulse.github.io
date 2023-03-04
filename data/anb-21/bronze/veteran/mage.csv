@@ -1,5 +1,4 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
-Montana;;1366;72.00;122;535;349;11;144;8;steam
 Alara;;1131;71.63;121;474;202;12;132;0;android
 Wolfen;;1064;72.38;121;548;265;16;113;2;android
 Lothi;;1179;72.63;120;474;231;17;118;8;steam
@@ -73,9 +72,9 @@ Azas;;1288;72.75;109;474;235;8;150;0;android
 Jembutbabi;;1155;73.06;109;504;254;16;118;2;android
 Nata;;541;71.63;109;566;188;14;114;1;android
 Cote;;1295;72.88;108;384;192;9;144;0;android
+Nefrit;;647;71.19;108;514;254;18;108;1;android
 Duoastra;;830;71.69;108;566;323;21;91;2;android
 Hargimage;;1296;72.38;108;577;123;17;107;12;android
-Nefrit;;645;71.19;107;379;151;16;141;0;android
 Tefra;;389;70.50;107;480;149;11;137;10;windows
 Brutus;;640;70.69;107;535;184;13;130;4;ios
 Merkel;;1334;72.50;107;545;335;7;160;5;android

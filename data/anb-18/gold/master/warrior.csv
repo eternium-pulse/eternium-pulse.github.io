@@ -2,12 +2,10 @@ Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;De
 Korwindsor;;2066;75.25;162;578;50;30;46;11;ios
 Korj;;2030;74.75;159;528;120;32;39;12;ios
 Guitarwolf;;2074;75.13;159;529;138;27;79;10;android
-Ebak;;2072;75.19;159;593;59;29;50;17;android
 Maserati;;2034;74.63;158;413;50;36;14;5;ios
 Romme;"War Hero";2001;74.44;158;597;42;19;99;5;android
 Silent;;2024;74.63;156;550;49;30;47;13;android
 Sneaky;"War Hero";2042;74.00;156;583;37;30;49;9;android
-Daisy;;1935;74.38;156;596;45;26;66;16;ios
 Korsasin;;2058;75.06;152;411;29;29;45;4;windows
 Ozuhe;;1877;73.63;152;521;72;27;59;12;steam
 Norma;;2049;74.75;151;487;68;28;51;8;android
@@ -404,7 +402,6 @@ Zore;;647;71.25;111;580;220;10;140;7;ios
 Nanook;;440;72.25;111;581;202;4;174;5;android
 Kingslayer;;942;71.19;111;586;336;10;149;20;ios
 Zese;;1427;72.81;110;68;16;20;98;2;steam
-Dori;;1989;73.13;110;80;23;16;129;1;android
 Seven;;1315;73.31;110;84;22;17;113;2;ios
 Drsgme;;1940;74.31;110;85;19;14;124;0;android
 Eternium;;1167;72.19;110;114;18;19;106;0;windows

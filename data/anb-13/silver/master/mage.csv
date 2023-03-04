@@ -1,6 +1,5 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Eheguk;;2060;75.13;158;522;311;6;170;0;windows
-Korcamping;;2076;74.75;157;533;272;8;157;2;windows
 Kormansaok;;2099;75.13;157;552;325;7;162;1;windows
 Shifty;;2108;74.69;156;461;269;7;162;1;windows
 Korwinter;;2120;75.19;156;482;219;8;159;0;windows
@@ -45,7 +44,6 @@ Protein;;1855;73.00;140;553;208;16;115;9;android
 Losmeanb;;1874;74.81;140;579;305;15;144;11;android
 Rurgi;;2003;73.31;140;591;231;19;109;2;windows
 Caramelo;;1563;73.88;139;460;240;13;129;2;steam
-Rivenbis;;1808;74.31;139;474;168;21;89;4;android
 Heriel;;1731;73.13;138;509;227;13;132;0;android
 Oshat;;1882;73.69;138;555;155;13;131;7;steam
 Ivra;;1615;73.56;138;559;252;9;147;1;android
@@ -223,7 +221,6 @@ Obus;;1109;72.63;113;493;255;17;108;0;android
 Martin;;1278;72.63;113;557;248;18;110;0;android
 Lento;;1137;72.50;113;567;312;15;119;1;ios
 Zotkor;;669;72.13;112;328;196;15;119;4;android
-Aton;;742;72.63;112;359;139;12;136;3;ios
 Queen;;1167;72.31;112;383;194;13;132;4;android
 Vibi;;393;71.25;112;402;115;9;153;7;amazon
 Medara;;775;72.19;112;407;244;21;91;1;android
