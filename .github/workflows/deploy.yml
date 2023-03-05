@@ -12,7 +12,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.0'
+          php-version: '8.1'
           coverage: none
           extensions: phar, iconv, openssl, curl, ctype, mbstring
           tools: composer:v2
@@ -21,12 +21,12 @@ jobs:
           path: vendor
           key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
-      - name: Install Dependencies
+      - name: Install dependencies
         run: composer install --prefer-dist
-      - name: Fetch Leaderboard Data
+      - name: Fetch untracked leaderboards
         run: ./bin/lb.php fetch --no-progress
-      - name: Generate Static Files
-        run: ./bin/lb.php generate --page-limit=10 --base-url=https://eternium-pulse.gitlab.io --no-progress
+      - name: Generate static site
+        run: ./bin/lb.php generate --page-limit=10 --base-url=https://${GITHUB_REPOSITORY_OWNER}.github.io --no-progress
       - uses: actions/upload-pages-artifact@v0
         with:
           path: public
