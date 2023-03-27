@@ -48,47 +48,49 @@ Top {{ +page.range.length }}
 </ul>
 
 {% if entries %}
-<table class="table table-sm table-striped text-center" data-leaderboard="{{ event.id|e }}">
-  <caption>Rankings {{ page.range.offset }}-{{ page.range.offset0 + page.range.length }} out of {{ entries|length }}. ID: <a rel="external" href="https://eternium.netlify.app/leaderboards/{{ event.id|e }}" target="_blank">{{ event.id|e }}</a>.</caption>
-  <thead class="border-1 border-top-0">
-    <tr>
-      <th scope="col">Rank</th>
-      <th class="w-50 text-start" scope="col">Hero</th>
-      <th scope="col"><abbr class="text-decoration-none" title="Champion Level">CL</abbr></th>
-      <th class="d-none d-sm-table-cell" scope="col"><abbr class="text-decoration-none" title="Average Item Level">Avg&nbsp;IL</abbr></th>
-      <th scope="col"><abbr class="text-decoration-none" title="Trial Level">TL</abbr></th>
-      <th scope="col">Time</th>
-      <th class="d-none d-sm-table-cell" scope="col">Boss&nbsp;Time</th>
-      <th class="d-none d-sm-table-cell" scope="col">Deaths</th>
-    </tr>
-  </thead>
-  <tbody class="border-1">
-    {%~ for rank, entry in page.range.slice(entries) %}
-    <tr>
-      <th scope="row">{{ +rank }}</th>
-      <td class="text-start">
-        {%- if entry.hero.title %}<span class="badge bg-primary fw-normal d-none d-sm-inline-block">{{ entry.hero.title|e }}</span> {% endif %}
-        {{- entry.hero|e -}}
-        {% if entry.platform %} {{ platform.icon(entry.platform, 'fa-fw') }}{% endif -%}
-      </td>
-      <td>{{ +entry.hero.championLevel }}</td>
-      <td class="d-none d-sm-table-cell">{{ '%.1f'|format(entry.hero.averageItemLevel) }}</td>
-      <td>{{ +entry.trial.level }}</td>
-      <td><time datetime="PT{{ +entry.trial.time }}S">{{ entry.trial.formatTime()|e }}</time></td>
-      {% if entry.trial.bossTime %}
-      <td class="d-none d-sm-table-cell">
-        <time datetime="PT{{ +entry.trial.bossTime }}S">{{ entry.trial.formatBossTime()|e }}</time>
-        {{- '&nbsp;'|raw -}}
-        <small class="text-muted">{{- '%.0f'|format(entry.trial.bossTime / entry.trial.time * 100) }}%</small>
-      </td>
-      {% else %}
-      <td class="d-none d-sm-table-cell text-muted">N/A</td>
-      {% endif %}
-      <td class="d-none d-sm-table-cell">{{ +entry.trial.deaths }}</td>
-    </tr>
-    {%~ endfor %}
-  </tbody>
-</table>
+<div class="table-responsive">
+  <table class="table table-sm table-striped text-center text-nowrap" data-leaderboard="{{ event.id|e }}">
+    <caption>Rankings {{ page.range.offset }}-{{ page.range.offset0 + page.range.length }} out of {{ entries|length }}. ID: <a rel="external" href="https://eternium.netlify.app/leaderboards/{{ event.id|e }}" target="_blank">{{ event.id|e }}</a>.</caption>
+    <thead class="border-1 border-top-0">
+      <tr>
+        <th scope="col">Rank</th>
+        <th class="w-50 text-start" scope="col">Hero</th>
+        <th scope="col"><abbr class="text-decoration-none" title="Champion Level">CL</abbr></th>
+        <th scope="col"><abbr class="text-decoration-none" title="Average Item Level">Avg IL</abbr></th>
+        <th scope="col"><abbr class="text-decoration-none" title="Trial Level">TL</abbr></th>
+        <th scope="col">Time</th>
+        <th scope="col">Boss&nbsp;Time</th>
+        <th scope="col">Deaths</th>
+      </tr>
+    </thead>
+    <tbody class="border-1">
+      {%~ for rank, entry in page.range.slice(entries) %}
+      <tr>
+        <th scope="row">{{ +rank }}</th>
+        <td class="text-start">
+          {%- if entry.hero.title %}<span class="badge bg-primary fw-normal d-none d-sm-inline-block">{{ entry.hero.title|e }}</span> {% endif %}
+          {{- entry.hero|e -}}
+          {% if entry.platform %} {{ platform.icon(entry.platform, 'fa-fw') }}{% endif -%}
+        </td>
+        <td>{{ +entry.hero.championLevel }}</td>
+        <td>{{ '%.1f'|format(entry.hero.averageItemLevel) }}</td>
+        <td>{{ +entry.trial.level }}</td>
+        <td><time datetime="PT{{ +entry.trial.time }}S">{{ entry.trial.formatTime()|e }}</time></td>
+        {% if entry.trial.bossTime %}
+        <td>
+          <time datetime="PT{{ +entry.trial.bossTime }}S">{{ entry.trial.formatBossTime()|e }}</time>
+          {{- '&nbsp;'|raw -}}
+          <small class="text-muted">{{- '%.0f'|format(entry.trial.bossTime / entry.trial.time * 100) }}%</small>
+        </td>
+        {% else %}
+        <td>N/A</td>
+        {% endif %}
+        <td>{{ +entry.trial.deaths }}</td>
+      </tr>
+      {%~ endfor %}
+    </tbody>
+  </table>
+</div>
 <nav aria-label="Pagination">
   <ul class="pagination justify-content-center">
     {%~ if page.first %}
