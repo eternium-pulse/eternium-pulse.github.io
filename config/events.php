@@ -891,4 +891,12 @@ return [
         warriors: '63feb6c8f3b8c54faf7bdd85',
         bounty_hunters: '63feb6c9c93f43723165e04e',
     ),
+
+    Season::create(
+        17,
+        'April 2023',
+        mages: '6426f634c93f4372313a9ef7',
+        warriors: '6426f636c93f4372313a9efe',
+        bounty_hunters: '6426f637c93f4372313aaa1f',
+    ),
 ];
