@@ -12,7 +12,7 @@ final class Trial
         public int $trashKills = 0,
         public int $deaths = 0,
     ) {
-        assert($level > 0);
+        assert($level >= 0);
         assert($time > 0);
         assert($bossTime >= 0);
         assert($eliteKills >= 0);
@@ -22,7 +22,7 @@ final class Trial
 
     public static function fromTrialStats(int $score, ?array $trialStats): self
     {
-        assert($score >= 10000);
+        assert($score > 0);
 
         $time = 9999 - $score % 10000;
         $level = (int) ($score / 10000);
