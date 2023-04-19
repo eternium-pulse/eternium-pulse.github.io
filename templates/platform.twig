@@ -2,8 +2,8 @@
 {% if not class is iterable %}
 {% set class = [class] %}
 {% endif %}
-{% set class = ['fa-brands', 'fa-' ~ brand|replace({'ios': 'apple'})]|merge(class) %}
-<span class="{{ class|join(' ')|e }}" role="img" aria-label="{{ brand|e }}"></span>
+{% set class = ['fa-brands', 'fa-' ~ brand|replace({'ios': 'apple', '_simulator': ''})]|merge(class) %}
+<span class="{{ class|join(' ')|e }}" role="img" aria-label="{{ brand|replace({'_' : ' '})|e }}"></span>
 {% endmacro icon %}
 
 {% macro stylesheet() %}
