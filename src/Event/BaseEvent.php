@@ -14,6 +14,6 @@ abstract class BaseEvent extends Event implements \IteratorAggregate
      */
     public function getIterator(): \Iterator
     {
-        yield from [];
+        return new \EmptyIterator();
     }
 }
