@@ -24,6 +24,11 @@ class GenerateCommand extends Command
 {
     protected static $defaultName = 'generate';
 
+    /**
+     * @var Leaderboard[]
+     */
+    private array $leaderboards = [];
+
     private Uri $baseUrl;
 
     private int $pageSize = 100;
@@ -38,7 +43,7 @@ class GenerateCommand extends Command
 
     public function __construct(
         private Twig $twig,
-        // @var array<int, Event>
+        // @var Event[]
         private array $events,
     ) {
         $this->baseUrl = Uri::createFromString(getenv('CI_PAGES_URL') ?: 'http://localhost:8080');
@@ -156,7 +161,11 @@ class GenerateCommand extends Command
         $generator->send(null);
 
         $api = HttpClient::createForBaseUri('https://eternium.pages.dev/api/v1/');
-        $render('index.html', 'index', ['status' => self::fetchStatus($api), 'gameEvents' => self::fetchGameEvents($api)]);
+        $render('index.html', 'index', [
+            'status' => self::fetchStatus($api),
+            'gameEvents' => self::fetchGameEvents($api),
+            'leaderboards' => $this->leaderboards,
+        ]);
         $render('403.html', 'error', ['code' => 403, 'message' => 'Forbidden']);
         $render('404.html', 'error', ['code' => 404, 'message' => 'Not found']);
         $render('manifest.webmanifest', 'manifest');
@@ -185,6 +194,7 @@ class GenerateCommand extends Command
                 continue;
             }
 
+            $this->leaderboards[$event->id] = $event;
             $reader = $this->ignoreData ? Utils::createNullReader() : $event->read(ETERNIUM_DATA_PATH."{$path}.csv");
 
             try {
