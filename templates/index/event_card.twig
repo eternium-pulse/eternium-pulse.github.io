@@ -24,5 +24,9 @@
       <meta property="endDate" content="{{ event.end_date|date(constant('DATE_W3C')) }}">
     {% endif %}
   </div>
-  <link rel="location" href="{{ eternium_url|e }}">
+  <meta property="eventStatus" content="EventMovedOnline">
+  <meta property="eventAttendanceMode" content="OnlineEventAttendanceMode">
+  <div property="location" typeof="VirtualLocation">
+    <link rel="url" href="{{ eternium_url|e }}">
+  </div>
 </div>
