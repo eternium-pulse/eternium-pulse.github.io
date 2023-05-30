@@ -1,6 +1,5 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Andy;;1724;73.06;133;533;206;14;123;5;steam
-Vikres;;1549;73.81;133;549;223;12;129;7;ios
 Etoshak;;973;73.44;130;482;52;11;143;8;ios
 Linkin;;1047;72.56;126;487;64;11;140;13;android
 Mommy;;1856;73.50;126;492;129;15;117;21;steam
@@ -152,7 +151,6 @@ Ceshog;;367;70.50;107;474;199;6;161;0;android
 Skillissue;;591;71.56;107;496;228;13;132;0;steam
 Sirraptor;;995;66.81;107;543;194;11;131;17;steam
 Hara;;1216;72.38;107;555;181;15;119;5;android
-Tathi;;672;70.44;107;574;217;7;160;6;steam
 Sabrele;;407;71.19;107;578;146;21;80;7;android
 Ruti;;480;70.75;107;583;268;12;133;1;android
 Traxanh;;1884;70.56;107;589;167;15;111;3;android
@@ -382,7 +380,6 @@ Sunapssy;;542;70.19;85;492;128;23;85;8;android
 Romun;;544;71.06;85;573;53;6;165;2;amazon
 Tiza;;367;70.63;84;381;111;15;118;1;android
 Echog;;224;66.50;84;533;215;15;124;2;android
-Jane;;193;69.13;83;258;94;20;93;3;android
 Ovroz;;195;68.81;83;379;97;16;116;2;android
 Kurdad;;258;69.50;83;491;229;10;138;7;android
 Asug;;222;67.50;83;506;210;11;137;6;android

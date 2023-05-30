@@ -1,7 +1,6 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Arin;;2472;75.69;172;559;59;36;19;10;android
 Sera;;2302;75.69;169;572;63;38;9;8;android
-Kordy;;2472;75.69;169;598;78;35;20;7;ios
 Teoden;"War Hero";2355;75.63;168;523;47;39;5;10;ios
 Koreajia;;2361;75.69;168;580;17;34;21;7;ios
 Neprob;Warlord;2351;75.69;168;581;65;34;23;6;android
@@ -82,7 +81,6 @@ Vekasi;;2265;75.38;153;574;60;19;99;7;android
 Potato;;2185;75.06;153;575;19;26;62;11;android
 Narwgold;;2335;75.56;153;586;289;0;188;0;steam
 Lara;Challenger;2154;74.38;152;474;66;30;46;4;steam
-Korwar;Centurion;2282;75.63;152;481;23;26;67;1;steam
 Cadel;Centurion;2213;75.06;152;497;58;15;117;2;android
 Moni;;2280;75.69;152;533;324;1;190;1;android
 Larcen;;2294;74.69;152;552;17;15;113;4;android
@@ -1075,7 +1073,6 @@ Mrfartface;;2109;73.31;117;521;165;16;120;8;android
 Bearcat;;922;72.63;117;525;62;21;90;0;android
 Ahit;;2006;72.31;117;532;258;12;132;10;android
 Zacuse;;2103;73.56;117;537;213;3;170;0;android
-Esak;;1613;71.50;117;540;250;15;106;5;android
 Kissara;;1467;70.56;117;547;279;14;120;1;android
 Biloche;;762;72.44;117;551;181;4;173;0;ios
 Flow;;1276;72.06;117;571;282;17;132;0;android
@@ -1746,7 +1743,6 @@ Kornobody;;2316;75.69;105;28;4;21;98;0;steam
 Chinawyl;;2333;75.38;105;28;2;23;81;0;android
 Bongji;;2358;75.69;105;29;2;25;73;0;android
 Korooooo;;2310;75.69;105;29;7;22;90;0;steam
-Korfight;Centurion;2275;75.69;105;30;3;19;109;0;steam
 Wanaba;Champion;2350;75.50;105;30;4;15;123;0;android
 Minari;;2371;75.69;105;30;1;20;99;0;ios
 Korsasin;;2386;75.69;105;31;9;17;115;0;android
@@ -5199,7 +5195,6 @@ Aaaa;;127;52.44;55;160;55;12;137;5;ios
 Ogag;;243;66.00;55;165;27;13;125;0;android
 Melissande;;1324;72.06;55;173;10;14;126;0;windows
 Exori;;173;54.06;55;178;4;6;164;0;android
-Seren;;227;68.19;55;182;26;24;77;0;android
 Jucha;;1632;68.50;55;182;10;14;118;0;steam
 Legion;;518;66.38;55;201;28;14;128;0;steam
 Raze;;243;70.56;55;206;28;17;112;0;android
@@ -5748,7 +5743,6 @@ Casi;;845;70.88;50;126;3;13;140;0;android
 Juna;;382;66.56;50;134;23;9;154;0;steam
 Ilsilra;;373;66.38;50;136;30;9;149;0;android
 Ozenrol;;134;55.06;50;140;18;19;101;0;steam
-Canus;;169;68.44;50;142;8;19;101;0;ios
 Zorum;;309;62.06;50;148;23;7;159;0;android
 Lihanlidam;;184;69.44;50;148;32;18;102;0;ios
 Andreluiz;;713;71.31;50;149;52;20;95;0;steam
@@ -6625,7 +6619,6 @@ Dylan;;591;68.88;41;94;13;6;168;0;android
 Likurag;;1221;61.88;41;115;7;19;103;0;steam
 Sinrok;;508;62.00;41;118;6;12;138;0;android
 Bloodyk;;149;62.44;41;133;12;15;124;0;steam
-Serena;;272;69.31;41;133;16;11;143;0;android
 Savior;;477;70.13;41;145;12;20;96;0;android
 Lothar;;390;51.88;41;145;20;12;136;0;steam
 Nirkugri;;344;67.44;41;150;3;13;134;0;android
@@ -13712,7 +13705,6 @@ Kovi;;768;71.38;1;69;0;15;125;0;android
 Klasian;;151;67.75;1;81;0;14;130;0;android
 Cazuzi;;916;42.08;1;82;2;14;128;0;ios
 Nerosparda;;175;64.06;1;82;0;15;124;0;android
-Warrior;;2005;4.75;1;83;3;19;108;0;steam
 Tisay;;0;56.50;1;84;1;12;140;0;android
 Suprema;;0;44.19;1;89;1;17;115;0;android
 Kanek;;1157;71.69;1;93;10;16;117;0;amazon

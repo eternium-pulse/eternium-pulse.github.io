@@ -1,7 +1,6 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Korea;;1812;73.81;119;94;15;11;146;0;ios
 Korb;;1965;74.38;119;100;18;15;123;0;steam
-Xyza;Challenger;1803;74.31;119;104;15;5;171;0;android
 Nenava;;1953;74.00;119;112;27;14;128;0;android
 Datopet;;1678;71.69;119;123;49;18;112;0;android
 Melli;;1877;72.81;119;139;60;24;81;0;ios
@@ -392,7 +391,6 @@ Skekmok;;6;51.63;10;77;7;17;114;0;steam
 Googvin;;132;66.00;10;108;12;18;110;0;android
 Sune;;13;38.31;10;144;4;10;146;0;amazon
 Invoker;;4;46.44;9;153;16;16;122;0;android
-Kahigra;;0;48.06;7;149;30;20;100;7;ios
 Biza;;0;32.06;7;171;42;19;106;1;steam
 Cheese;;0;47.31;7;182;32;18;107;0;android
 Nerka;;0;48.75;7;192;49;17;112;1;android

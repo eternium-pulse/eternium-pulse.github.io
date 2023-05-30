@@ -1,7 +1,6 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Abinclass;;2335;75.69;195;475;71;14;129;19;steam
 Faraday;Champion;2255;75.69;195;545;169;17;118;4;steam
-Slayer;;2434;75.69;193;595;240;15;116;3;steam
 Giji;;2363;75.69;187;524;139;15;126;8;windows
 Romme;"War Hero";2344;75.69;186;551;25;7;162;11;android
 Oshule;;2249;75.69;186;599;195;16;126;0;android
@@ -3710,7 +3709,6 @@ Kesa;;1190;70.44;96;585;173;18;103;1;android
 Dasenne;;1002;71.81;96;590;251;10;139;9;android
 Happym;;545;70.00;96;591;170;16;114;6;android
 Efreet;;413;69.81;96;594;181;17;110;14;steam
-Mosa;Challenger;2206;73.94;95;54;5;17;124;0;steam
 Terri;;1843;71.69;95;77;1;23;85;0;windows
 Xoxo;;2127;73.25;95;95;7;21;94;1;android
 Thalia;;1797;72.69;95;96;10;19;104;6;android
@@ -7480,7 +7478,6 @@ Bige;;1996;71.94;70;88;3;17;115;1;android
 Karakill;;1975;70.56;70;88;8;20;98;0;windows
 Yeahtoast;;709;70.44;70;89;9;23;83;0;android
 Leto;;1467;70.44;70;90;9;9;149;0;ios
-Pathfinder;;2007;71.69;70;93;5;24;77;0;android
 Senandung;;1931;71.56;70;93;16;17;113;0;android
 Jichi;Challenger;1986;73.88;70;93;2;16;118;0;android
 Hermacik;;1732;73.00;70;95;14;19;104;0;android
@@ -14816,7 +14813,6 @@ Afrurde;;24;60.19;41;159;23;16;116;1;windows
 Krzysio;;57;61.44;41;162;32;10;145;1;android
 Taleeq;;641;70.25;41;165;6;17;113;0;android
 Siriana;;162;67.25;41;166;5;8;163;0;android
-Erus;;194;63.75;41;168;20;12;138;0;ios
 Erahan;;337;71.25;41;169;15;14;127;0;android
 Tiza;;179;66.63;41;172;55;23;83;1;steam
 Ranek;;126;68.00;41;174;54;17;109;1;android
@@ -14915,7 +14911,6 @@ Meta;;1960;73.25;40;23;3;18;110;0;android
 Gamegold;;2216;74.88;40;23;0;24;80;0;android
 Jawali;;2066;73.38;40;29;2;23;89;0;windows
 Idda;Centurion;2171;75.13;40;34;1;22;90;0;steam
-Koryu;Challenger;2206;75.50;40;39;2;22;90;0;steam
 Grace;;806;70.69;40;42;8;21;101;0;android
 Pichacka;;2144;74.38;40;55;10;8;162;0;android
 Lunesi;;1396;71.31;40;59;5;17;119;0;android

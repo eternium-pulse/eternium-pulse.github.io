@@ -1,5 +1,4 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
-Evazero;;1903;74.19;115;150;42;7;164;0;steam
 Gandalfina;;767;71.44;110;307;75;8;157;14;steam
 Osheve;;455;71.88;110;361;81;13;135;7;steam
 Ircahe;;984;71.63;110;523;291;8;167;15;ios
@@ -56,7 +55,6 @@ Oshinna;;264;72.25;80;410;156;5;179;6;android
 Janjan;;226;66.06;80;487;183;18;124;17;android
 Ejulat;;275;69.19;80;499;138;4;189;3;android
 Gavata;;328;69.13;80;561;160;12;130;0;android
-Evaq;;721;71.75;79;116;14;13;132;0;steam
 Rocko;;802;71.44;79;151;54;23;77;0;ios
 Tetra;;308;62.31;79;212;34;13;129;1;steam
 Hell;;387;69.06;79;337;244;20;112;0;ios
@@ -395,7 +393,6 @@ Adeal;;74;55.69;38;309;29;13;129;0;steam
 Joker;;96;62.69;38;321;64;9;147;1;android
 Lebol;;142;60.06;38;380;95;30;56;2;android
 Zunnugra;;84;68.94;38;413;170;8;155;3;android
-Fizzplop;;145;69.00;38;450;239;17;125;2;android
 Haha;;116;66.94;38;458;203;13;135;1;android
 Riky;;148;55.81;38;478;216;21;102;3;android
 Janra;;72;59.19;38;491;138;14;119;0;windows
