@@ -38,7 +38,7 @@ Leaderboards of Eternium game events
 <h2 class="my-4 pt-2">Game Events</h2>
 <div class="row row-cols-1 row-cols-md-2 g-4 mb-4">
   {% for event in gameEvents %}
-  {% include 'index/event_card.twig' with {'event': event, 'leaderboards': leaderboards} %}
+  {% include 'index/event/card.twig' with {'event': event, 'leaderboards': leaderboards} %}
   {% endfor %}
 </div>
 {% endif %}
