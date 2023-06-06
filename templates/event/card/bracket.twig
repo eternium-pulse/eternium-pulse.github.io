@@ -1,13 +1,11 @@
-<div class="col">
-  <div class="card bg-light text-center">
-    <div class="card-body">
-      <h5 class="card-title">{{ event.parent.name|e }}</h5>
-      <h6 class="card-subtitle text-muted">{{ event.name|e }}</h6>
-    </div>
-    <div class="list-group list-group-flush">
-      {%~ for e in event %}
-      <a class="list-group-item list-group-item-action" href="{{ abs_path(event_path(e))|e }}">{{ e.name|e }}</a>
-      {%~ endfor %}
-    </div>
+<div class="card h-100 bg-light text-center">
+  <div class="card-body">
+    <h5 class="card-title">{{ event.parent.name|e }}</h5>
+    <h6 class="card-subtitle text-muted">{{ event.name|e }}</h6>
+  </div>
+  <div class="list-group list-group-flush">
+    {%~ for e in event %}
+    <a class="list-group-item list-group-item-action" href="{{ abs_path(event_path(e))|e }}">{{ e.name|e }}</a>
+    {%~ endfor %}
   </div>
 </div>

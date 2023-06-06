@@ -3,16 +3,14 @@
 {% include "event/card/bracket.twig" with {'event': bracket } %}
 {% endfor %}
 {% else %}
-<div class="col">
-  <div class="card bg-light text-center">
-    <div class="card-body">
-      <h5 class="card-title mb-0">{{ event.name|e }}</h5>
-    </div>
-    <div class="list-group list-group-flush">
-      {%~ for e in event %}
-      <a class="list-group-item list-group-item-action" href="{{ abs_path(event_path(e))|e }}">{{ e.name|e }}</a>
-      {%~ endfor %}
-    </div>
+<div class="card h-100 bg-light text-center">
+  <div class="card-body">
+    <h5 class="card-title mb-0">{{ event.name|e }}</h5>
+  </div>
+  <div class="list-group list-group-flush">
+    {%~ for e in event %}
+    <a class="list-group-item list-group-item-action" href="{{ abs_path(event_path(e))|e }}">{{ e.name|e }}</a>
+    {%~ endfor %}
   </div>
 </div>
 {% endif %}

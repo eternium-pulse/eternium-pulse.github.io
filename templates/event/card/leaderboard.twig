@@ -1,8 +1,6 @@
-<div class="col">
-  <div class="card bg-light text-center">
-    <div class="card-body">
-      <h5 class="card-title">{{ event.name|e }}</h5>
-      <a class="btn btn-primary stretched-link" href="{{ abs_path(event_path(event))|e }}">Rankings</a>
-    </div>
+<div class="card h-100 bg-light text-center">
+  <div class="card-body">
+    <h5 class="card-title">{{ event.name|e }}</h5>
+    <a class="btn btn-primary stretched-link" href="{{ abs_path(event_path(event))|e }}">Rankings</a>
   </div>
 </div>
