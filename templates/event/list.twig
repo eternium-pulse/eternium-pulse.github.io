@@ -1,7 +1,5 @@
 <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
   {%~ for e in events %}
-  <div class="col">
-    {%~ include "event/card/#{e.type}.twig" with {'event': e } %}
-  </div>
+  {%~ include "event/card/#{e.type}.twig" with {'event': e } %}
   {%~ endfor %}
 </div>
