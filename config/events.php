@@ -1017,4 +1017,12 @@ return [
             ],
         ]),
     ),
+
+    Season::create(
+        19,
+        'Summer 2023',
+        mages: '6499ff2bf3b8c53e51d4970f',
+        warriors: '6499ff2df3b8c53e51d49721',
+        bounty_hunters: '6499ff2eca7bd830ae5e204c',
+    ),
 ];
