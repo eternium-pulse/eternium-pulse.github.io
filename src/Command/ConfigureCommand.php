@@ -53,7 +53,7 @@ class ConfigureCommand extends Command
             'Season::create(',
             ...$this->indent(
                 sprintf('%d,', 0),
-                sprintf("'%s',", ucfirst($event['id'])),
+                sprintf("'%s',", ucwords(strtr($event['id'], '_#', '  '))),
                 sprintf("mages: '%s',", $event['leaderboards']['trial_mage']),
                 sprintf("warriors: '%s',", $event['leaderboards']['trial_warrior']),
                 sprintf("bounty_hunters: '%s',", $event['leaderboards']['trial_bountyhunter']),
