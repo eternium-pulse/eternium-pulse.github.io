@@ -1,4 +1,5 @@
 {% extends 'event/layout.twig' %}
+{% import 'flag.twig' as flag %}
 {% import 'platform.twig' as platform %}
 
 {% set parent_event = include("event/leaderboard/#{event.parent.type}.twig", {event: event.parent}) %}
@@ -28,6 +29,7 @@ Top {{ +page.range.length }}
 
 {% block styles %}
 {{ parent() }}
+{{ flag.stylesheet() }}
 {{ platform.stylesheet() }}
 {% endblock %}
 
@@ -70,7 +72,9 @@ Top {{ +page.range.length }}
         <td class="text-start">
           {%- if entry.hero.title %}<span class="badge bg-primary fw-normal d-none d-sm-inline-block">{{ entry.hero.title|e }}</span> {% endif %}
           {{- entry.hero|e -}}
-          {% if entry.platform %} {{ platform.icon(entry.platform, 'fa-fw') }}{% endif -%}
+          {%- if entry.platform %}&nbsp;{{ platform.icon(entry.platform, 'fa-fw') }}{% endif -%}
+          {%- set country = detect_country(entry.hero) -%}
+          {%- if country %}&nbsp;{{ flag.icon(country, ['border', 'border-light']) }}{% endif -%}
         </td>
         <td>{{ +entry.hero.championLevel }}</td>
         <td>{{ '%.1f'|format(entry.hero.averageItemLevel) }}</td>
