@@ -5,6 +5,7 @@ use Twig\Environment;
 use Twig\Extension\CoreExtension;
 use Twig\Loader\FilesystemLoader;
 use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 return (static function (): Environment {
     $twig = new Environment(
@@ -14,6 +15,20 @@ return (static function (): Environment {
     $twig->addFilter(new TwigFilter('minify_*', new Minifier(), [
         'is_safe_callback' => static fn (string $type): ?array => [$type],
     ]));
+
+    $twig->addFunction(new TwigFunction('detect_country', function (string $name): ?string {
+        if (\str_starts_with($name, 'Kor')) {
+            return 'KR';
+        }
+        if (\str_starts_with($name, 'China')) {
+            return 'CN';
+        }
+        if (\str_starts_with($name, 'Ru')) {
+            return 'RU';
+        }
+
+        return null;
+    }));
 
     $twig->addGlobal('now', new \DateTimeImmutable('now', new \DateTimeZone('UTC')));
     $core = $twig->getExtension(CoreExtension::class);
