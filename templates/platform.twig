@@ -1,10 +1,10 @@
-{% macro icon(brand, class = []) %}
+{% macro icon(brand, class = []) -%}
 {% if not class is iterable %}
 {% set class = [class] %}
 {% endif %}
 {% set class = ['fa-brands', 'fa-' ~ brand|replace({'ios': 'apple', '_simulator': ''})]|merge(class) %}
 <span class="{{ class|join(' ')|e }}" role="img" aria-label="{{ brand|replace({'_' : ' '})|e }}"></span>
-{% endmacro icon %}
+{%- endmacro icon %}
 
 {% macro stylesheet() %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/fontawesome.min.css" integrity="sha512-cHxvm20nkjOUySu7jdwiUxgGy11vuVPE9YeK89geLMLMMEOcKFyS2i+8wo0FOwyQO/bL8Bvq1KMsqK4bbOsPnA==" crossorigin="anonymous" referrerpolicy="no-referrer">

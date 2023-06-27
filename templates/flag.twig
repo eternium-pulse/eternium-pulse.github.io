@@ -1,10 +1,10 @@
-{% macro icon(country, class = []) %}
+{% macro icon(country, class = []) -%}
 {% if not class is iterable %}
 {% set class = [class] %}
 {% endif %}
 {% set class = ['flag', 'flag-country-' ~ country|lower]|merge(class) %}
 <span class="{{ class|join(' ')|e }}" role="img" aria-label="{{ country|e }}"></span>
-{% endmacro icon %}
+{%- endmacro icon %}
 
 {% macro stylesheet() %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/css/tabler-flags.min.css" crossorigin="anonymous">
