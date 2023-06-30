@@ -52,11 +52,11 @@ class ConfigureCommand extends Command
         return [
             'Season::create(',
             ...$this->indent(
-                sprintf('%d,', 0),
-                sprintf("'%s',", ucwords(strtr($event['id'], '_#', '  '))),
-                sprintf("mages: '%s',", $event['leaderboards']['trial_mage']),
-                sprintf("warriors: '%s',", $event['leaderboards']['trial_warrior']),
-                sprintf("bounty_hunters: '%s',", $event['leaderboards']['trial_bountyhunter']),
+                \sprintf('%d,', 0),
+                \sprintf("'%s',", \ucwords(strtr($event['id'], '_#', '  '))),
+                \sprintf("mages: '%s',", $event['leaderboards']['trial_mage']),
+                \sprintf("warriors: '%s',", $event['leaderboards']['trial_warrior']),
+                \sprintf("bounty_hunters: '%s',", $event['leaderboards']['trial_bountyhunter']),
             ),
             '),',
         ];
@@ -64,13 +64,13 @@ class ConfigureCommand extends Command
 
     private function formatAnb(array $event): array
     {
-        [, $league, $index] = explode('_', $event['id']);
+        [, $league, $index] = \explode('_', $event['id']);
 
         return [
             'Anb::create(',
             ...$this->indent(...[
-                sprintf('%d,', $index),
-                sprintf('League::create%s(brackets: [', ucfirst($league)),
+                \sprintf('%d,', $index),
+                \sprintf('League::create%s(brackets: [', \ucfirst($league)),
                 ...$this->indent(...[
                     ...$this->formatBracket($event['leaderboards'], 'contender'),
                     ...$this->formatBracket($event['leaderboards'], 'veteran'),
@@ -85,11 +85,11 @@ class ConfigureCommand extends Command
     private function formatBracket(array $leaderboards, string $name): array
     {
         return [
-            sprintf("'%s' => [", $name),
+            \sprintf("'%s' => [", $name),
             ...$this->indent(
-                sprintf("'mages' => '%s',", $leaderboards[$name]['trial_mage']),
-                sprintf("'warriors' => '%s',", $leaderboards[$name]['trial_warrior']),
-                sprintf("'bounty_hunters' => '%s',", $leaderboards[$name]['trial_bountyhunter']),
+                \sprintf("'mages' => '%s',", $leaderboards[$name]['trial_mage']),
+                \sprintf("'warriors' => '%s',", $leaderboards[$name]['trial_warrior']),
+                \sprintf("'bounty_hunters' => '%s',", $leaderboards[$name]['trial_bountyhunter']),
             ),
             '],',
         ];
