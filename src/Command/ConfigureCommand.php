@@ -40,7 +40,7 @@ class ConfigureCommand extends Command
         if (!empty($event['isSeason'])) {
             return $this->formatSeason($event);
         }
-        if (str_starts_with($event['id'], 'anb_')) {
+        if (\str_contains($event['id'], 'anb_')) {
             return $this->formatAnb($event);
         }
 
