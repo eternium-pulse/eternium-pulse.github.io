@@ -61,9 +61,7 @@ abstract class Utils
             ++$rows;
         }
 
-        if (!$stream->flock(\LOCK_UN)) {
-            throw self::getLastError() ?? new \RuntimeException("Unable to release lock on '{$file}'");
-        }
+        $stream->flock(\LOCK_UN);
 
         return $rows;
     }
@@ -73,25 +71,32 @@ abstract class Utils
      */
     public static function createCsvWriter(string $file, array|false $header = false): \Generator
     {
-        $memory = @fopen('php://memory', 'r+');
-        if (false === $memory) {
-            throw self::getLastError() ?? new \RuntimeException('Unable to open in-memory stream');
+        $info = new \SplFileInfo($file);
+        if (!\is_dir($info->getPath()) && !@\mkdir($info->getPath(), recursive: true)) {
+            throw self::getLastError() ?? new \RuntimeException("Unable to make directory '{$info->getPath()}'");
         }
 
+        $stream = $info->openFile('c');
+        if (!$stream->flock(\LOCK_EX | \LOCK_NB)) {
+            throw self::getLastError() ?? new \RuntimeException("Unable to acquire exclusive lock on '{$file}'");
+        }
+
+        $stream->setCsvControl(...self::CSV_CONTROL);
+        $stream->setMaxLineLen(self::CSV_MAX_LINE_LENGTH);
+
+        $stream->ftruncate(0);
         if (false !== $header) {
-            fputcsv($memory, $header, ...self::CSV_CONTROL);
+            $stream->fputcsv($header);
         }
 
         $rows = 0;
-        while (null !== ($data = yield)) {
-            if (is_array($data)) {
-                fputcsv($memory, $data, ...self::CSV_CONTROL);
-                ++$rows;
-            }
+        while (\is_array($data = yield)) {
+            $stream->fputcsv($data);
+            ++$rows;
         }
 
-        rewind($memory);
-        self::dump($file, $memory);
+        $stream->fflush();
+        $stream->flock(\LOCK_UN);
 
         return $rows;
     }
@@ -112,7 +117,7 @@ abstract class Utils
     public static function dump(string $file, $content): int
     {
         $path = dirname($file);
-        if (!is_dir($path) && false === @mkdir($path, 0777, true)) {
+        if (!is_dir($path) && false === @mkdir($path, recursive: true)) {
             throw self::getLastError() ?? new \RuntimeException("Unable to make directory '{$path}'");
         }
 
