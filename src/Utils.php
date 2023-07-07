@@ -7,7 +7,10 @@ use Eternium\Utils\Range;
 
 abstract class Utils
 {
-    private const CSV_SEPARATOR = ';';
+    private const CSV_MAX_LINE_LENGTH = 1024;
+    private const CSV_CONTROL = [
+        'separator' => ';',
+    ];
 
     public static function getLastError(bool $clear = true): ?\ErrorException
     {
@@ -38,27 +41,27 @@ abstract class Utils
      */
     public static function createCsvReader(string $file, array|false &$header = false): \Generator
     {
-        $stream = @fopen($file, 'r');
-        if (false === $stream) {
-            throw self::getLastError() ?? new \RuntimeException("Unable to open '{$file}' for reading");
-        }
-        if (!flock($stream, LOCK_SH)) {
+        $stream = new \SplFileObject($file);
+        if (!$stream->flock(\LOCK_SH | \LOCK_NB)) {
             throw self::getLastError() ?? new \RuntimeException("Unable to acquire shared lock on '{$file}'");
         }
 
-        if (false !== $header) {
-            $header = fgetcsv($stream, 1024, self::CSV_SEPARATOR);
-        }
+        $stream->setFlags(\SplFileObject::SKIP_EMPTY | \SplFileObject::DROP_NEW_LINE);
+        $stream->setCsvControl(...self::CSV_CONTROL);
+        $stream->setMaxLineLen(self::CSV_MAX_LINE_LENGTH);
+
+        $header = $stream->fgetcsv();
 
         $rows = 0;
-        while (false !== ($data = fgetcsv($stream, 1024, self::CSV_SEPARATOR))) {
-            if ($header) {
+        while (!$stream->eof()) {
+            $data = $stream->fgetcsv();
+            if (false !== $data) {
                 yield $data;
             }
             ++$rows;
         }
 
-        if (!flock($stream, LOCK_UN)) {
+        if (!$stream->flock(\LOCK_UN)) {
             throw self::getLastError() ?? new \RuntimeException("Unable to release lock on '{$file}'");
         }
 
@@ -76,13 +79,13 @@ abstract class Utils
         }
 
         if (false !== $header) {
-            fputcsv($memory, $header, self::CSV_SEPARATOR);
+            fputcsv($memory, $header, ...self::CSV_CONTROL);
         }
 
         $rows = 0;
         while (null !== ($data = yield)) {
             if (is_array($data)) {
-                fputcsv($memory, $data, self::CSV_SEPARATOR);
+                fputcsv($memory, $data, ...self::CSV_CONTROL);
                 ++$rows;
             }
         }
