@@ -24,7 +24,7 @@ phpunit:
     XDEBUG_MODE: coverage
   script:
     - apk add --no-cache --no-progress php81-pecl-xdebug
-    - php81 -d zend_extension=xdebug vendor/bin/phpunit --coverage-text --whitelist=src --log-junit=phpunit-report.xml tests
+    - php81 -d zend_extension=xdebug vendor/bin/phpunit --coverage-text --coverage-filter=src --log-junit=phpunit-report.xml tests
   coverage: '/^\s*Lines:\s*\d+\.\d+%/'
   artifacts:
     reports:
