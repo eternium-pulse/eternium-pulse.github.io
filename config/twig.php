@@ -30,6 +30,15 @@ return (static function (): Environment {
         return null;
     }));
 
+    $twig->addFunction(new TwigFunction('env', function (string $var, string $default = ''): string {
+        $value = \getenv($var);
+        if (false === $value) {
+            $value = $default;
+        }
+
+        return $value;
+    }));
+
     $twig->addGlobal('now', new \DateTimeImmutable('now', new \DateTimeZone('UTC')));
     $core = $twig->getExtension(CoreExtension::class);
     $core->setTimezone('UTC');
