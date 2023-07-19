@@ -6,6 +6,7 @@ use Eternium\Event\Event;
 use Eternium\Event\Leaderboard;
 use Eternium\Utils;
 use Eternium\Utils\Minifier;
+use League\Uri\Contracts\UriInterface;
 use League\Uri\Uri;
 use League\Uri\UriResolver;
 use Symfony\Component\Console\Command\Command;
@@ -109,18 +110,12 @@ class GenerateCommand extends Command
 
         $this->twig->addFunction(new TwigFunction(
             'abs_path',
-            fn (string $path = ''): string => UriResolver::resolve(
-                Uri::createFromComponents(['path' => $path]),
-                $this->baseUrl,
-            )->getPath(),
+            fn (string $path = ''): string => $this->absUrl($path)->getPath(),
         ));
 
         $this->twig->addFunction(new TwigFunction(
             'abs_url',
-            fn (string $path = ''): string => (string) UriResolver::resolve(
-                Uri::createFromComponents(['path' => $path]),
-                $this->baseUrl,
-            ),
+            fn (string $path = ''): UriInterface => $this->absUrl($path),
         ));
     }
 
@@ -278,5 +273,13 @@ class GenerateCommand extends Command
             }
             Utils::dump($dst, $minifier->tryMinify($type, $code));
         }
+    }
+
+    private function absUrl(string $path = ''): UriInterface
+    {
+        return UriResolver::resolve(
+            Uri::createFromComponents(['path' => $path]),
+            $this->baseUrl,
+        );
     }
 }
