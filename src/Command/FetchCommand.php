@@ -104,7 +104,7 @@ class FetchCommand extends Command
             }
 
             $path = join('/', $event->getPath());
-            $file = ETERNIUM_DATA_PATH.strtr($path, '/', DIRECTORY_SEPARATOR).'.csv';
+            $file = new \SplFileInfo(ETERNIUM_DATA_PATH.strtr($path, '/', DIRECTORY_SEPARATOR).'.csv');
             $href = 'file:///'.ltrim(strtr($file, DIRECTORY_SEPARATOR, '/'), '/');
 
             if (!($this->accept)($path)) {
@@ -116,7 +116,7 @@ class FetchCommand extends Command
                 continue;
             }
 
-            if (!$this->update && is_file($file)) {
+            if (!$this->update && $file->isFile()) {
                 $output->writeln(
                     $formatter->formatSection('SKIP', "<href={$href}>{$path}.csv</> already exists", 'comment'),
                     Output::VERBOSITY_VERBOSE

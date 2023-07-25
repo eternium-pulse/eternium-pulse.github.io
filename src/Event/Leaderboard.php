@@ -44,7 +44,7 @@ abstract class Leaderboard extends Event
     /**
      * @return \Generator<int, Entry, void, int>
      */
-    public function read(string $file): \Generator
+    public function read(\SplFileInfo $file): \Generator
     {
         $header = [];
         $reader = Utils::createCsvReader($file, $header);
@@ -60,7 +60,7 @@ abstract class Leaderboard extends Event
     /**
      * @return \Generator<void, void, ?Entry, int>
      */
-    public function write(string $file): \Generator
+    public function write(\SplFileInfo $file): \Generator
     {
         $writer = Utils::createCsvWriter($file, Entry::HEADER);
         while (null !== ($entry = yield)) {

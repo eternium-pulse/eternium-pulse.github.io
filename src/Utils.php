@@ -39,9 +39,9 @@ abstract class Utils
     /**
      * @return \Generator<int, array, void, int>
      */
-    public static function createCsvReader(string $file, array|false &$header = false): \Generator
+    public static function createCsvReader(\SplFileInfo $file, array|false &$header = false): \Generator
     {
-        $stream = new \SplFileObject($file);
+        $stream = $file->openFile();
         if (!$stream->flock(\LOCK_SH | \LOCK_NB)) {
             throw self::getLastError() ?? new \RuntimeException("Unable to acquire shared lock on '{$file}'");
         }
@@ -69,14 +69,14 @@ abstract class Utils
     /**
      * @return \Generator<void, void, ?array, int>
      */
-    public static function createCsvWriter(string $file, array|false $header = false): \Generator
+    public static function createCsvWriter(\SplFileInfo $file, array|false $header = false): \Generator
     {
-        $info = new \SplFileInfo($file);
-        if (!\is_dir($info->getPath()) && !@\mkdir($info->getPath(), recursive: true)) {
-            throw self::getLastError() ?? new \RuntimeException("Unable to make directory '{$info->getPath()}'");
+        $path = $file->getPathInfo();
+        if (!$path->isDir() && !@\mkdir($path, recursive: true)) {
+            throw self::getLastError() ?? new \RuntimeException("Unable to make directory '{$path}'");
         }
 
-        $stream = $info->openFile('c');
+        $stream = $file->openFile('c');
         if (!$stream->flock(\LOCK_EX | \LOCK_NB)) {
             throw self::getLastError() ?? new \RuntimeException("Unable to acquire exclusive lock on '{$file}'");
         }

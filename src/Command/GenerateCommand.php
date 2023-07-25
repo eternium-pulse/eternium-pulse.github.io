@@ -189,8 +189,10 @@ class GenerateCommand extends Command
                 continue;
             }
 
+            $file = new \SplFileInfo(ETERNIUM_DATA_PATH."{$path}.csv");
+
             $this->leaderboards[$event->id] = $event;
-            $reader = $this->ignoreData ? Utils::createNullReader() : $event->read(ETERNIUM_DATA_PATH."{$path}.csv");
+            $reader = $this->ignoreData ? Utils::createNullReader() : $event->read($file);
 
             try {
                 $progressBar->setMessage("loading {$path}");
