@@ -190,6 +190,10 @@ class GenerateCommand extends Command
             }
 
             $file = new \SplFileInfo(ETERNIUM_DATA_PATH."{$path}.csv");
+            $mtime = \DateTimeImmutable::createFromFormat(
+                'U',
+                ((int) `git log -1 --format=%at -- "{$file}"`) ?: $file->getMTime(),
+            );
 
             $this->leaderboards[$event->id] = $event;
             $reader = $this->ignoreData ? Utils::createNullReader() : $event->read($file);
@@ -210,6 +214,7 @@ class GenerateCommand extends Command
                     'page' => $page,
                     'page_size' => $this->pageSize,
                     'entries' => $entries,
+                    'modified' => $mtime,
                 ];
                 if ($page->first) {
                     $render("{$path}/index.html", $template, $context);
