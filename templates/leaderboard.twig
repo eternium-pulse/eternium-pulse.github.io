@@ -35,7 +35,7 @@ Top {{ +page.range.length }}
 
 {% block content %}
 <h1>{{ event.name|e }} Leaderboard</h1>
-<p class="lead">{{ block('description') }}. <small class="text-muted">Generated at <time datetime="{{ modified|date(constant('DATE_W3C')) }}" pubdate>{{ modified|date }}</time>.</small></p>
+<p class="lead">{{ block('description') }}. <small class="text-muted">Generated at <time class="date" datetime="{{ modified|date(constant('DATE_W3C')) }}" pubdate>{{ modified|date }}</time>.</small></p>
 
 <ul class="nav nav-tabs flex-nowrap">
   {%~ for item in event.parent %}

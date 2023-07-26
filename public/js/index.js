@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('time').forEach(time => {
+    document.querySelectorAll('time.date').forEach(time => {
         time.textContent = new Date(time.dateTime).toLocaleString();
     })
 });
