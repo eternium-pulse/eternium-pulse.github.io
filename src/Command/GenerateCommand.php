@@ -130,7 +130,6 @@ class GenerateCommand extends Command
             ],
             ETERNIUM_HTML_PATH.'/js/index.min.js' => [
                 ETERNIUM_HTML_PATH.'/js/counters.js',
-                ETERNIUM_HTML_PATH.'/js/eternium.js',
                 ETERNIUM_HTML_PATH.'/js/index.js',
             ],
         ]);
