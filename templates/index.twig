@@ -50,7 +50,3 @@ Leaderboards of Eternium game events
 <h2 class="my-4 pt-2">Leaderboards</h2>
 {% include "event/list.twig" with {'events': events|reverse} %}
 {% endblock %}
-
-{% block scripts %}
-<script type="module">{{ include('js/index.min.js')|raw }}</script>
-{% endblock %}
