@@ -15,11 +15,11 @@
     {% endif %}
     <div class="card-footer text-muted">
       {% if date(event.start_date) < date(now) %} <meta property="startDate" content="{{ event.start_date|date(constant('DATE_W3C')) }}">
-        <small>Ends at <time class="date" datetime="{{ event.end_date|date(constant('DATE_W3C')) }}" property="endDate">
+        <small>Ends at <time datetime="{{ event.end_date|date(constant('DATE_W3C')) }}" property="endDate">
           {{- event.end_date|date -}}
         </time></small>
       {% else %}
-        <small>Starts at <time class="date" datetime="{{ event.start_date|date(constant('DATE_W3C')) }}" property="startDate">
+        <small>Starts at <time datetime="{{ event.start_date|date(constant('DATE_W3C')) }}" property="startDate">
           {{- event.start_date|date -}}
         </time></small>
         <meta property="endDate" content="{{ event.end_date|date(constant('DATE_W3C')) }}">
