@@ -4,6 +4,7 @@ namespace Eternium\Command;
 
 use Eternium\Event\Event;
 use Eternium\Event\Leaderboard;
+use Eternium\Sitemap\Url as SitemapUrl;
 use Eternium\Utils;
 use Eternium\Utils\Minifier;
 use League\Uri\Contracts\UriInterface;
@@ -163,7 +164,7 @@ class GenerateCommand extends Command
         $render('403.html', 'error', ['code' => 403, 'message' => 'Forbidden']);
         $render('404.html', 'error', ['code' => 404, 'message' => 'Not found']);
         $render('manifest.webmanifest', 'manifest');
-        $render('sitemap.xml', 'sitemap', ['urls' => $generator->getReturn()]);
+        $render('sitemap.xml', 'sitemap', ['urlset' => $generator->getReturn()]);
         $render('turbo.rss', 'turbo', ['items' => $this->turboItems]);
         $render('robots.txt', 'robots');
 
@@ -179,7 +180,6 @@ class GenerateCommand extends Command
 
         while (null !== ($event = yield)) {
             $path = join('/', $event->getPath());
-            $sitemap[] = $this->eventPath($event);
             $template = $event->type;
 
             if (!$event instanceof Leaderboard) {
@@ -192,6 +192,10 @@ class GenerateCommand extends Command
             $mtime = \DateTimeImmutable::createFromFormat(
                 'U',
                 ((int) `git log -1 --format=%at -- "{$file}"`) ?: $file->getMTime(),
+            );
+            $sitemap[] = new SitemapUrl(
+                $this->absUrl($this->eventPath($event)),
+                lastmod: $mtime,
             );
 
             $this->leaderboards[$event->id] = $event;

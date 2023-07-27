@@ -1,14 +1,14 @@
 {% apply spaceless %}
 <?xml version="1.0" encoding="{{ _charset|e }}"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-{% for path in urls %}
+{% for url in urlset %}
 <url>
-  <loc>{{ abs_url(path)|e }}</loc>
-  {%~ if path matches '/mage|warrior|bounty-hunter/' %}
-  <changefreq>hourly</changefreq>
-  <priority>1.0</priority>
-  {%~ else %}
-  <changefreq>weekly</changefreq>
+  <loc>{{ url|e }}</loc>
+  {%~ if url.lastmod %}
+  <lastmod>{{ url.lastmod|date(constant('DATE_W3C')) }}</lastmod>
+  {%~ endif %}
+  {%~ if url.changefreq %}
+  <changefreq>{{ url.changefreq|e }}</changefreq>
   {%~ endif %}
 </url>
 {% endfor %}
