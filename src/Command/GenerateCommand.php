@@ -4,7 +4,7 @@ namespace Eternium\Command;
 
 use Eternium\Event\Event;
 use Eternium\Event\Leaderboard;
-use Eternium\Sitemap\Url as SitemapUrl;
+use Eternium\Sitemap\Sitemap;
 use Eternium\Utils;
 use Eternium\Utils\Minifier;
 use League\Uri\Contracts\UriInterface;
@@ -173,7 +173,7 @@ class GenerateCommand extends Command
 
     private function createGenerator(callable $render, OutputInterface $output): \Generator
     {
-        $sitemap = [];
+        $sitemap = new Sitemap();
         $formatter = $this->getHelper('formatter');
         $progressBar = new ProgressBar($this->hideProgress ? new NullOutput() : $output);
         $progressBar->setFormat($formatter->formatSection('LOAD', '%message% %current% %elapsed%'));
@@ -193,10 +193,7 @@ class GenerateCommand extends Command
                 'U',
                 ((int) `git log -1 --format=%at -- "{$file}"`) ?: $file->getMTime(),
             );
-            $sitemap[] = new SitemapUrl(
-                $this->absUrl($this->eventPath($event)),
-                lastmod: $mtime,
-            );
+            $sitemap->add($this->absUrl($this->eventPath($event)), lastmod: $mtime);
 
             $this->leaderboards[$event->id] = $event;
             $reader = $this->ignoreData ? Utils::createNullReader() : $event->read($file);
