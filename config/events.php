@@ -1062,5 +1062,22 @@ return [
                 'bounty_hunters' => '64b058d1f3b8c502c690f048',
             ],
         ]),
+        League::createGold(brackets: [
+            'contender' => [
+                'mages' => '64c2be70f3b8c502c612d26e',
+                'warriors' => '64c2be72f3b8c502c612df9d',
+                'bounty_hunters' => '64c2be74f3b8c502c612ec48',
+            ],
+            'veteran' => [
+                'mages' => '64c2be79f3b8c502c613122f',
+                'warriors' => '64c2be7df3b8c502c6131f26',
+                'bounty_hunters' => '64c2be81f3b8c502c6133631',
+            ],
+            'master' => [
+                'mages' => '64c2be88f3b8c502c6135138',
+                'warriors' => '64c2be8bf3b8c502c6135eaa',
+                'bounty_hunters' => '64c2be8ff3b8c502c6136bdd',
+            ],
+        ]),
     ),
 ];
