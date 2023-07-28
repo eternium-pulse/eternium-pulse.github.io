@@ -1,9 +1,0 @@
-{% extends "turbo/item.twig" %}
-
-{% set league = event.parent %}
-{% set anb = league.parent %}
-
-{% block header %}
-{{ parent() }}
-<h2>ANB {{ league.name|e }} #{{ +anb.index }}</h2>
-{% endblock %}

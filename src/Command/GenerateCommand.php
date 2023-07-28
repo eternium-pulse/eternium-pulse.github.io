@@ -41,8 +41,6 @@ class GenerateCommand extends Command
 
     private bool $hideProgress = false;
 
-    private array $turboItems = [];
-
     public function __construct(
         private Twig $twig,
         // @var Event[]
@@ -165,7 +163,6 @@ class GenerateCommand extends Command
         $render('404.html', 'error', ['code' => 404, 'message' => 'Not found']);
         $render('manifest.webmanifest', 'manifest');
         $render('sitemap.xml', 'sitemap', ['urlset' => $generator->getReturn()]);
-        $render('turbo.rss', 'turbo', ['items' => $this->turboItems]);
         $render('robots.txt', 'robots');
 
         return self::SUCCESS;
@@ -221,11 +218,6 @@ class GenerateCommand extends Command
                 }
                 $render("{$path}/{$page->index}.html", $template, $context);
             }
-
-            $this->turboItems[] = $this->twig->render("turbo/{$event->parent->type}.twig", [
-                'event' => $event,
-                'entries' => array_slice($entries, 0, $this->pageSize),
-            ]);
 
             unset($context, $entries);
         }

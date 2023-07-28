@@ -1,8 +1,0 @@
-{% extends "turbo/item.twig" %}
-
-{% set season = event.parent %}
-
-{% block header %}
-{{ parent() }}
-<h2>Season #{{ +season.index }}</h2>
-{% endblock %}
