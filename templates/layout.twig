@@ -1,3 +1,4 @@
+{% import 'platform.twig' as platform %}
 {% apply spaceless %}
 <!DOCTYPE html>
 <html class="h-100" lang="en" prefix="og: https://ogp.me/ns#">
@@ -18,7 +19,7 @@
   <meta name="theme-color" content="{{ site.theme|e }}">
   <link rel="icon" href="{{ abs_path('favicon.ico')|e }}" type="image/x-icon">
   {%~ block styles %}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/css/bootstrap.min.css" integrity="sha512-Z/def5z5u2aR89OuzYcxmDJ0Bnd5V1cKqBEbvLOiUNWdg9PQeXVvXLI90SE4QOHGlfLqUnDNVAYyZi8UwUTmWQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
   {%~ endblock %}
 </head>
 
@@ -46,7 +47,14 @@
     {%~ block breadcrumb %}{% endblock %}
     {%~ block content %}{% endblock %}
   </main>
-  <footer class="container-lg text-center text-light bg-dark bg-gradient py-4">© 2020–{{ 'now'|date('Y') }} {{ site.name|e }}</footer>
+  <footer class="container-lg text-center text-light bg-dark bg-gradient py-4">
+    <ul class="nav small justify-content-center secondary">
+      <li class="nav-item"><a class="nav-link link-secondary icon-link" rel="external" href="https://github.com/eternium-pulse/eternium-pulse.github.io" target="_blank">{{ platform.icon('git-alt') }} Source code</a></li>
+      <li class="nav-item"><a class="nav-link link-secondary" rel="external" href="https://www.postman.com/eternium-pulse/workspace/eternium-live" target="_blank">API</a></li>
+      <li class="nav-item"><a class="nav-link link-secondary" rel="external" href="http://pythia.42web.io" target="_blank">Pythia</a></li>
+    </ul>
+    <p class="my-0">© 2020–{{ 'now'|date('Y') }} {{ site.name|e }}</p>
+  </footer>
   {% block scripts %}
   <script type="module">{{ include('js/index.min.js')|raw }}</script>
   {% endblock %}
