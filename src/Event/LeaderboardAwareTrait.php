@@ -80,8 +80,7 @@ final class BracketEntry implements \IteratorAggregate
         public string $mages,
         public string $warriors,
         public string $bountyHunters,
-    ) {
-    }
+    ) {}
 
     /**
      * @return \Iterator<int, Leaderboard>

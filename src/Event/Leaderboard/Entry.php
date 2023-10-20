@@ -22,8 +22,7 @@ final class Entry implements \Stringable
         public Hero $hero,
         public Trial $trial,
         public string $platform = '',
-    ) {
-    }
+    ) {}
 
     public function __toString(): string
     {
