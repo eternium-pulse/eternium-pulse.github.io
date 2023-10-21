@@ -11,6 +11,7 @@ final class Anb extends BaseEvent
         public ?League $bronze = null,
         public ?League $silver = null,
         public ?League $gold = null,
+        public ?League $platinum = null,
     ) {
         assert(0 < $index);
 
@@ -27,9 +28,14 @@ final class Anb extends BaseEvent
         }
     }
 
-    public static function create(int $index, ?League $bronze = null, ?League $silver = null, ?League $gold = null): self
-    {
-        return new self($index, $bronze, $silver, $gold);
+    public static function create(
+        int $index,
+        ?League $bronze = null,
+        ?League $silver = null,
+        ?League $gold = null,
+        ?League $platinum = null,
+    ): self {
+        return new self($index, $bronze, $silver, $gold, $platinum);
     }
 
     /**
@@ -45,6 +51,9 @@ final class Anb extends BaseEvent
         }
         if ($this->gold) {
             yield $this->gold;
+        }
+        if ($this->platinum) {
+            yield $this->platinum;
         }
     }
 }
