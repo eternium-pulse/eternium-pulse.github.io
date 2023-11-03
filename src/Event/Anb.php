@@ -26,6 +26,9 @@ final class Anb extends BaseEvent
         if ($this->gold) {
             $this->gold->parent = $this;
         }
+        if ($this->platinum) {
+            $this->platinum->parent = $this;
+        }
     }
 
     public static function create(
