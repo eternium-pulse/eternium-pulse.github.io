@@ -1244,4 +1244,12 @@ return [
             ],
         ]),
     ),
+
+    Season::create(
+        22,
+        'Late Fall 2023',
+        mages: '655f85a0ca7bd8da595465b6',
+        warriors: '655f85a2f3b8c53f180c6e79',
+        bounty_hunters: '655f85a4ca7bd8da595475b3',
+    ),
 ];
