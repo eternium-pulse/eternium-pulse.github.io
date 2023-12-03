@@ -1243,6 +1243,23 @@ return [
                 'bounty_hunters' => '65579508ca7bd8da5969c382',
             ],
         ]),
+        League::createSilver(brackets: [
+            'contender' => [
+                'mages' => '6569dcdaca7bd8e4b1564c39',
+                'warriors' => '6569dcdcf3b8c5557b12091e',
+                'bounty_hunters' => '6569dcdeca7bd8e4b1565c81',
+            ],
+            'veteran' => [
+                'mages' => '6569dce2ca7bd8e4b1567c25',
+                'warriors' => '6569dce4ca7bd8e4b1568c06',
+                'bounty_hunters' => '6569dce6ca7bd8e4b1569c0a',
+            ],
+            'master' => [
+                'mages' => '6569dceaf3b8c5557b121a3a',
+                'warriors' => '6569dcecca7bd8e4b156bbfc',
+                'bounty_hunters' => '6569dceef3b8c5557b122a4c',
+            ],
+        ]),
     ),
 
     Season::create(
