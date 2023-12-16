@@ -3,13 +3,17 @@ run-name: Run PHPUnit tests
 on: [push]
 jobs:
   phpunit:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: ['ubuntu-latest']
+        php-version: ['8.1', '8.2', '8.3']
     steps:
       - uses: actions/checkout@v4
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: ${{ matrix.php-version }}
           coverage: xdebug
           extensions: phar, iconv, openssl, curl, ctype, mbstring, dom, tokenizer, xml, xmlwriter
           tools: composer:v2
