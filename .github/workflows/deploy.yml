@@ -32,9 +32,15 @@ jobs:
         run: ./bin/lb.php fetch --no-progress
       - name: Generate static site
         run: ./bin/lb.php generate --page-limit=10 --base-url=https://${GITHUB_REPOSITORY_OWNER}.github.io --no-progress
-      - uses: actions/upload-pages-artifact@v0
-        with:
-          path: public
+      - name: Fix permissions
+          run: |
+            chmod -c -R +rX "_site/" | while read line; do
+              echo "::warning title=Invalid file permissions automatically fixed::$line"
+            done
+        - name: Upload Pages artifact
+          uses: actions/upload-pages-artifact@v2
+          with:
+            path: public/
   deploy:
     needs: build
     permissions:
@@ -47,4 +53,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v3
