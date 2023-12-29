@@ -2,21 +2,17 @@
 
 namespace Eternium\Command;
 
+use Eternium\Config;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\HttpClient\HttpClient;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class ConfigureCommand extends Command
 {
     protected static $defaultName = 'configure';
 
-    private HttpClientInterface $httpClient;
-
-    public function __construct(?HttpClientInterface $httpClient = null)
+    public function __construct(private Config $config)
     {
-        $this->httpClient = $httpClient ?? HttpClient::createForBaseUri('https://eternium.pages.dev/api/v1/');
         parent::__construct();
     }
 
@@ -27,12 +23,8 @@ class ConfigureCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $events = $this->httpClient->request('GET', 'events')->toArray();
-        $now = $_SERVER['REQUEST_TIME'] * 1000;
-        foreach ($events as $event) {
-            if ($event['end_date'] > $now) {
-                $output->writeln($this->formatEvent($event));
-            }
+        foreach ($this->config->gameEvents as $event) {
+            $output->writeln($this->formatEvent($event));
         }
 
         return self::SUCCESS;
