@@ -16,7 +16,7 @@ class ConfigureCommand extends Command
 
     public function __construct(?HttpClientInterface $httpClient = null)
     {
-        $this->httpClient = $httpClient ?? HttpClient::createForBaseUri('https://eternium.alex-tsarkov.workers.dev/api/');
+        $this->httpClient = $httpClient ?? HttpClient::createForBaseUri('https://eternium.pages.dev/api/v1/');
         parent::__construct();
     }
 
@@ -27,9 +27,12 @@ class ConfigureCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        ['events' => $events] = $this->httpClient->request('GET', 'v3/getGameEvents')->toArray();
+        $events = $this->httpClient->request('GET', 'events')->toArray();
+        $now = $_SERVER['REQUEST_TIME'] * 1000;
         foreach ($events as $event) {
-            $output->writeln($this->formatEvent($event));
+            if ($event['end_date'] > $now) {
+                $output->writeln($this->formatEvent($event));
+            }
         }
 
         return self::SUCCESS;
