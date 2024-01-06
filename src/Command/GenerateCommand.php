@@ -2,6 +2,7 @@
 
 namespace Eternium\Command;
 
+use Eternium\Config;
 use Eternium\Event\Event;
 use Eternium\Event\Leaderboard;
 use Eternium\Sitemap\Sitemap;
@@ -17,9 +18,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\HttpClient\HttpClient;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
-use Twig\Environment as Twig;
 use Twig\TwigFunction;
 
 class GenerateCommand extends Command
@@ -41,11 +39,8 @@ class GenerateCommand extends Command
 
     private bool $hideProgress = false;
 
-    public function __construct(
-        private Twig $twig,
-        // @var Event[]
-        private array $events,
-    ) {
+    public function __construct(private Config $config)
+    {
         $this->baseUrl = Uri::createFromString(getenv('CI_PAGES_URL') ?: 'http://localhost:8080');
         parent::__construct();
     }
@@ -88,31 +83,29 @@ class GenerateCommand extends Command
         $this->ignoreData = $input->getOption('no-data');
         $this->hideProgress = $input->getOption('no-progress');
 
-        $this->twig->addGlobal('eternium_url', 'https://www.eterniumgame.com/');
-        $this->twig->addGlobal('events', $this->events);
-        $this->twig->addGlobal('site', [
+        $this->config->twig->addGlobal('site', [
             'name' => $this->getApplication()->getName(),
             'theme' => '#343a40',
             'background' => '#ffffff',
         ]);
 
         $latest_events = [];
-        foreach ($this->events as $event) {
+        foreach ($this->config->events as $event) {
             $latest_events[$event->type] = $event;
         }
-        $this->twig->addGlobal('latest_events', $latest_events);
+        $this->config->twig->addGlobal('latest_events', $latest_events);
 
-        $this->twig->addFunction(new TwigFunction(
+        $this->config->twig->addFunction(new TwigFunction(
             'event_path',
             fn (Event $event, int $page = 1): string => $this->eventPath($event, $page),
         ));
 
-        $this->twig->addFunction(new TwigFunction(
+        $this->config->twig->addFunction(new TwigFunction(
             'abs_path',
             fn (string $path = ''): string => $this->absUrl($path)->getPath(),
         ));
 
-        $this->twig->addFunction(new TwigFunction(
+        $this->config->twig->addFunction(new TwigFunction(
             'abs_url',
             fn (string $path = ''): UriInterface => $this->absUrl($path),
         ));
@@ -121,15 +114,15 @@ class GenerateCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->minify([
-            ETERNIUM_HTML_PATH.'/js/eternium.min.js' => [
-                ETERNIUM_HTML_PATH.'/js/eternium.js',
+            "{$this->config->htmlPath}/js/eternium.min.js" => [
+                "{$this->config->htmlPath}/js/eternium.js",
             ],
-            ETERNIUM_HTML_PATH.'/js/counters.min.js' => [
-                ETERNIUM_HTML_PATH.'/js/counters.js',
+            "{$this->config->htmlPath}/js/counters.min.js" => [
+                "{$this->config->htmlPath}/js/counters.js",
             ],
-            ETERNIUM_HTML_PATH.'/js/index.min.js' => [
-                ETERNIUM_HTML_PATH.'/js/counters.js',
-                ETERNIUM_HTML_PATH.'/js/index.js',
+            "{$this->config->htmlPath}/js/index.min.js" => [
+                "{$this->config->htmlPath}/js/counters.js",
+                "{$this->config->htmlPath}/js/index.js",
             ],
         ]);
 
@@ -138,7 +131,7 @@ class GenerateCommand extends Command
                 $template .= '.twig';
             }
 
-            Utils::dump(ETERNIUM_HTML_PATH.$file, $this->twig->render($template, $context));
+            Utils::dump("{$this->config->htmlPath}/{$file}", $this->config->twig->render($template, $context));
 
             $href = UriResolver::resolve(Uri::createFromComponents(['path' => $file]), $this->baseUrl);
             $output->writeln(
@@ -148,15 +141,14 @@ class GenerateCommand extends Command
         };
 
         $generator = $this->createGenerator($render, $output);
-        foreach ($this->events as $event) {
+        foreach ($this->config->events as $event) {
             $event->walk($generator);
         }
         $generator->send(null);
 
-        $api = HttpClient::createForBaseUri('https://eternium.pages.dev/api/v1/');
         $render('index.html', 'index', [
-            'status' => self::fetchStatus($api),
-            'gameEvents' => self::fetchGameEvents($api),
+            'status' => $this->config->gameStatus,
+            'gameEvents' => $this->config->gameEvents,
             'leaderboards' => $this->leaderboards,
         ]);
         $render('403.html', 'error', ['code' => 403, 'message' => 'Forbidden']);
@@ -185,10 +177,10 @@ class GenerateCommand extends Command
                 continue;
             }
 
-            $file = new \SplFileInfo(ETERNIUM_DATA_PATH."{$path}.csv");
+            $file = new \SplFileInfo("{$this->config->dataPath}/{$path}.csv");
             $mtime = \DateTimeImmutable::createFromFormat(
                 'U',
-                ((int) `git log -1 --format=%at -- "{$file}"`) ?: $file->getMTime(),
+                ((int) `git log -1 --format=%at -- "{$file->getRealPath()}"`) ?: $file->getMTime(),
             );
             $sitemap->add($this->absUrl($this->eventPath($event)), lastmod: $mtime);
 
@@ -235,29 +227,6 @@ class GenerateCommand extends Command
         }
 
         return $path;
-    }
-
-    private static function fetchStatus(HttpClientInterface $client): array
-    {
-        $status = $client->request('GET', 'status')->toArray();
-
-        return \array_filter($status, static fn (array $s): bool => 'default' !== $s['platform']);
-    }
-
-    private static function fetchGameEvents(HttpClientInterface $client): array
-    {
-        $utc = new \DateTimeZone('UTC');
-        $now = new \DateTimeImmutable(timezone: $utc);
-
-        $gameEvents = $client->request('GET', 'events')->toArray();
-        $gameEvents = \array_map(static function (array $e) use ($utc): array {
-            $e['start_date'] = \DateTimeImmutable::createFromFormat('U', $e['start_date'] / 1000, $utc);
-            $e['end_date'] = \DateTimeImmutable::createFromFormat('U', $e['end_date'] / 1000, $utc);
-
-            return $e;
-        }, $gameEvents);
-
-        return \array_filter($gameEvents, static fn (array $e): bool => $now < $e['end_date']);
     }
 
     private function minify(array $assets): void

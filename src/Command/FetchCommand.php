@@ -2,9 +2,8 @@
 
 namespace Eternium\Command;
 
-use Eternium\Event\Event;
+use Eternium\Config;
 use Eternium\Event\Leaderboard;
-use EterniumPulse\Eternium;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputArgument;
@@ -29,11 +28,8 @@ class FetchCommand extends Command
 
     private bool $hideProgress = false;
 
-    public function __construct(
-        private Eternium $eternium,
-        // @var array<int, Event>
-        private array $events,
-    ) {
+    public function __construct(private Config $config)
+    {
         parent::__construct();
     }
 
@@ -69,7 +65,7 @@ class FetchCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $fetcher = $this->createFetcher($output);
-        foreach ($this->events as $event) {
+        foreach ($this->config->events as $event) {
             $event->walk($fetcher);
         }
         $fetcher->send(null);
@@ -104,7 +100,8 @@ class FetchCommand extends Command
             }
 
             $path = join('/', $event->getPath());
-            $file = new \SplFileInfo(ETERNIUM_DATA_PATH.strtr($path, '/', DIRECTORY_SEPARATOR).'.csv');
+            $file = new \SplFileInfo("{$this->config->dataPath}/{$path}.csv");
+
             $href = 'file:///'.ltrim(strtr($file, DIRECTORY_SEPARATOR, '/'), '/');
 
             if (!($this->accept)($path)) {
@@ -130,7 +127,7 @@ class FetchCommand extends Command
             try {
                 $progressBar->setMessage("fetching {$path}");
                 $progressBar->display();
-                foreach ($progressBar->iterate($event->fetch($this->eternium)) as $entry) {
+                foreach ($progressBar->iterate($event->fetch($this->config->eternium)) as $entry) {
                     $writer->send($entry);
                 }
             } finally {
