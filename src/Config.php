@@ -2,6 +2,7 @@
 
 namespace Eternium;
 
+#[\AllowDynamicProperties]
 class Config
 {
     public function __construct(private string $path)
