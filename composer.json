@@ -23,7 +23,9 @@
         "symfony/http-client": "^5.4.25",
         "twig/twig": "^3.6.1",
         "wikimedia/minify": "^2.3",
-        "league/uri": "^6.8.0"
+        "league/uri": "^6.8.0",
+        "symfony/polyfill-php82": "^1.28",
+        "symfony/polyfill-php83": "^1.28"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.22",
