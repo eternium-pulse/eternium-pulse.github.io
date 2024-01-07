@@ -38,7 +38,7 @@ $twig->addFunction(new TwigFunction('env', static function (string $var, string 
     return $value;
 }));
 
-$twig->addGlobal('now', new \DateTimeImmutable('now', new \DateTimeZone('UTC')));
+$twig->addGlobal('now', new DateTimeImmutable('now', new DateTimeZone('UTC')));
 $twig->addGlobal('eternium_url', 'https://www.eterniumgame.com/');
 $twig->addGlobal('pythia_url', 'http://pythia.42web.io/');
 $twig->addGlobal('events', $this->events);
