@@ -1303,4 +1303,12 @@ return [
         warriors: '655f85a2f3b8c53f180c6e79',
         bounty_hunters: '655f85a4ca7bd8da595475b3',
     ),
+
+    Season::create(
+        23,
+        'Winter 2024',
+        mages: '65a0446af3b8c5557b35c5cc',
+        warriors: '65a0446df3b8c5557b35c5f9',
+        bounty_hunters: '65a0446ff3b8c5557b35c634',
+    ),
 ];
