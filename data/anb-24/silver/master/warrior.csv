@@ -1,5 +1,4 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
-Korpapa;;2073;75.19;159;534;71;36;14;7;android
 Chinawyl;;2078;74.75;159;572;71;26;67;13;ios
 Trust;;2051;74.31;159;578;50;34;27;10;android
 Korwangzot;;2038;74.75;158;488;80;38;8;10;android
@@ -9,7 +8,6 @@ Kork;;2013;74.44;158;552;52;35;27;16;android
 Zakal;;1991;74.75;158;565;65;33;31;14;android
 Nerslynda;;2016;74.69;158;574;47;26;64;3;steam
 Korsasin;;2111;75.25;158;593;79;31;44;24;android
-Korkor;;2050;74.63;156;543;55;37;14;14;android
 Romme;;1979;73.88;155;486;74;33;37;14;android
 Korxrn;;2064;74.63;155;517;71;31;46;6;steam
 Stormshado;;2040;74.19;155;572;75;23;78;8;android
@@ -287,7 +285,6 @@ Hopper;;700;72.81;117;574;215;6;157;2;windows
 Dazi;;1528;72.63;116;175;78;13;126;1;android
 Eventaria;;725;71.69;116;313;92;20;93;2;android
 Gogl;;1247;72.63;116;324;177;17;133;6;steam
-Roberty;;1314;72.63;116;464;180;15;118;6;android
 Eventis;Challenger;1020;72.56;116;527;219;3;180;1;android
 Alisa;;392;71.44;116;578;175;10;141;2;android
 Sele;;1982;73.56;115;54;5;25;70;0;android
@@ -433,13 +430,9 @@ Azan;;420;71.13;106;434;126;19;95;1;steam
 Mabeshe;;896;70.44;106;528;258;17;115;4;ios
 Woin;;1005;72.19;106;574;246;16;119;3;android
 Ilok;;526;70.50;106;579;203;21;83;4;android
-Eternium;;2002;73.81;105;23;1;21;94;0;windows
-Champion;Champion;2028;74.56;105;23;3;25;75;0;windows
 Korpotato;;2011;73.38;105;31;3;21;93;0;android
 Proboji;;1999;72.50;105;31;3;23;84;0;android
 Donex;;1972;73.88;105;32;3;19;102;0;android
-Adel;;1989;73.13;105;32;2;28;60;0;android
-Osoz;;2044;73.44;105;33;5;16;118;0;ios
 Koratoz;;1660;72.94;105;34;4;16;118;0;android
 Cfcvcd;;1902;73.38;105;36;2;20;99;0;windows
 Minami;;1972;73.69;105;38;3;14;127;0;steam
@@ -498,7 +491,7 @@ Lahad;;317;71.25;99;549;186;19;100;0;android
 Ozasa;;688;71.44;98;554;158;18;95;1;windows
 Avan;;458;66.50;97;239;82;9;148;2;ios
 Talla;;599;58.88;97;357;156;6;158;4;ios
-Mastvoin;;428;71.63;96;77;6;12;138;0;steam
+-;;0;0.00;96;77;0;0;0;0;
 Xavi;;315;70.19;96;399;65;10;142;1;android
 Aviga;Challenger;242;71.25;96;450;68;17;100;1;android
 Canre;;576;71.13;95;150;23;12;135;0;android

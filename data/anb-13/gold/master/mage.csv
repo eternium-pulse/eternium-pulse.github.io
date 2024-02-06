@@ -1,10 +1,8 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Kortwice;;2032;75.00;159;539;340;5;172;1;windows
 Chinalstab;;1981;74.88;158;581;283;8;158;1;windows
-Korwinter;;2063;75.25;157;513;269;2;187;0;windows
 Korsss;;2045;74.94;157;539;330;3;181;1;windows
 Powderday;;2035;74.31;157;554;291;9;149;1;windows
-Korel;;1992;74.63;156;542;249;4;176;0;android
 Kinnu;;1955;74.56;155;554;425;5;179;2;windows
 Hegemony;;1954;74.50;154;539;373;11;141;2;android
 Kormansaok;;1955;74.50;149;558;407;9;150;5;ios
@@ -241,7 +239,6 @@ Vell;;961;71.63;110;354;86;9;151;0;steam
 Erkathol;;435;72.81;110;370;169;9;157;1;android
 Mushul;;520;73.06;110;375;105;12;139;2;android
 Azid;;744;72.50;110;399;154;10;156;0;android
-Koredne;;830;72.50;110;408;273;4;186;7;windows
 Carkun;;1028;72.13;110;416;160;19;103;0;android
 Oneten;;808;71.25;110;432;78;25;75;13;android
 Cuzz;;1040;71.94;110;433;212;9;159;1;ios
@@ -379,7 +376,6 @@ Ricardo;;317;69.44;74;356;110;4;171;1;ios
 Ahame;;269;57.56;72;277;131;9;153;1;ios
 Idnus;;254;61.56;70;75;16;13;136;0;android
 Jacubeee;;334;70.19;70;135;36;14;137;0;android
-Yuriko;;267;71.38;66;473;166;10;143;1;android
 Marmotinha;;205;65.31;63;459;305;15;136;0;steam
 Vota;;150;64.75;62;340;86;10;148;0;android
 Ochethe;;124;65.25;61;349;152;10;152;2;android

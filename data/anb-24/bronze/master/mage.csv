@@ -1,7 +1,4 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
-Korteng;;2100;75.06;157;599;357;6;167;2;android
-Korwinter;;2166;74.69;156;513;212;8;158;0;windows
-Korbeam;;2167;75.31;155;333;182;11;149;0;windows
 Kormansaok;;2055;74.56;154;571;373;11;138;12;ios
 Storybook;;2008;73.75;154;572;331;8;159;0;windows
 Korxxxxx;;1906;73.94;152;414;237;9;154;0;windows
@@ -115,7 +112,7 @@ Ovid;;1663;72.69;120;316;68;6;164;2;android
 Galdor;;1664;72.50;120;470;98;6;162;3;ios
 Cirilla;;1381;72.44;120;530;365;14;142;13;steam
 Pajetio;;1145;72.38;120;572;192;9;158;0;android
-Aevmag;;1267;74.31;119;353;131;12;133;16;steam
+-;;0;0.00;119;353;0;0;0;0;
 Melion;;1442;73.44;119;425;159;10;144;7;android
 Kiga;;553;73.81;119;512;244;20;94;2;android
 Edoka;;1411;72.88;119;550;323;14;121;4;android

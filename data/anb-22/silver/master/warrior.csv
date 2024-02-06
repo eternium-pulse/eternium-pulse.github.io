@@ -2,12 +2,10 @@ Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;De
 Arin;;2062;74.81;161;598;18;30;46;11;android
 Kornobosuk;;2091;75.13;159;507;34;34;23;9;android
 Rumax;;2062;75.00;158;553;55;30;44;14;android
-Koryeolmoo;;2042;75.13;158;557;74;33;30;10;android
 Hethos;;2087;75.06;156;595;35;19;97;2;android
 Rorzachi;;2010;74.44;155;479;24;31;41;9;android
 Daisy;;2062;74.81;155;483;30;31;43;12;ios
 Korsin;;2113;75.25;155;513;51;29;54;9;android
-Korkz;;2088;74.88;155;592;156;36;19;16;android
 Koroo;;2058;74.50;155;592;73;28;57;13;steam
 Sleeper;;2011;74.00;154;575;83;25;71;8;windows
 Orgoz;;1915;73.56;153;495;19;28;52;11;android
@@ -482,12 +480,9 @@ Tina;;852;67.38;106;320;119;13;127;0;windows
 Arumiz;;323;72.50;106;329;112;3;179;2;android
 Nisheri;;453;72.50;106;420;141;17;107;0;android
 Katrina;;1050;72.38;106;506;176;10;144;2;android
-Eternium;;2114;73.94;105;23;4;28;60;0;windows
 Anba;;2077;73.50;105;26;4;19;103;0;windows
-Sunadni;;1987;73.06;105;31;3;19;102;1;ios
 Clim;;2000;73.13;105;31;5;19;107;0;steam
 Sinummsori;;1811;72.81;105;34;3;18;108;0;android
-Nogrohe;;2042;73.06;105;39;7;17;112;0;ios
 Emilybloom;;1974;72.44;105;40;6;9;152;0;android
 Hanmeimei;;1931;73.31;105;44;8;31;41;0;android
 Gargos;;1895;72.00;105;47;5;17;114;0;android
@@ -630,7 +625,7 @@ Athava;;146;69.75;65;303;53;16;111;0;android
 Eros;;76;65.44;61;182;3;13;132;0;android
 Esushid;;282;70.88;60;134;6;16;121;0;ios
 Ardon;;233;64.69;60;576;146;18;97;0;android
-Ruaevmast;;213;54.56;56;77;6;12;140;0;steam
+-;;0;0.00;56;77;0;0;0;0;
 Mega;;106;64.07;51;354;76;14;120;1;android
 Princess;;106;62.19;48;372;175;9;151;2;android
 Spark;;123;63.81;45;138;8;18;106;0;android

@@ -1,5 +1,4 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
-Devilla;;878;75.31;131;481;224;21;91;23;steam
 Lovobre;;1670;70.63;123;444;219;9;150;5;steam
 Zothas;;1569;70.94;120;500;214;16;116;5;steam
 King;;768;72.19;115;271;52;13;131;3;ios
@@ -181,7 +180,6 @@ Ovelom;;161;70.13;55;396;221;16;115;0;ios
 Bobo;;162;62.38;55;447;151;6;160;0;android
 Kuvu;;135;70.75;55;533;110;10;147;0;android
 Adnukig;;107;67.25;54;384;139;14;135;0;steam
-Aven;;91;64.81;54;391;77;10;142;0;android
 Link;;172;69.88;54;460;90;13;117;1;android
 Etug;;222;66.50;54;554;239;18;149;2;android
 Ircad;;313;64.63;54;566;245;15;109;3;android
@@ -581,7 +579,6 @@ Alkopony;;0;13.00;2;176;19;6;167;0;android
 Comoz;;0;18.94;2;177;20;11;145;0;android
 Nukra;;0;20.53;2;185;26;12;139;0;android
 Deginre;;0;11.00;2;187;20;16;118;0;windows
-Moti;;0;7.67;2;189;15;12;151;0;android
 Ehaton;;0;14.75;2;191;12;10;148;0;android
 Feiao;;0;18.81;2;198;5;8;158;0;android
 Gegri;;0;16.31;2;212;2;15;125;0;amazon

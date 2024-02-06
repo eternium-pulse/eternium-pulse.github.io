@@ -1,12 +1,9 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
-Kornuclear;;2090;75.31;160;550;285;3;185;0;windows
 Chinahebi;Challenger;2018;75.06;158;535;226;0;192;1;windows
 Guitarwolf;;2085;75.25;158;536;303;0;192;0;windows
 Korel;;2061;75.19;158;582;326;0;192;3;windows
 Korsasin;;2065;75.06;156;532;258;0;191;1;windows
 Chinawww;;2034;75.00;156;543;233;0;194;3;windows
-Korj;;2068;74.50;156;583;318;2;184;1;windows
-Feelsogood;;2075;75.00;156;594;297;0;188;2;windows
 Biesan;;2019;74.63;155;580;319;0;203;4;ios
 Topdog;;2058;75.00;155;588;306;0;201;0;windows
 Whynot;;2030;74.63;153;485;287;0;192;0;ios
@@ -66,7 +63,6 @@ Suki;;1844;72.75;140;572;238;7;162;6;windows
 Korkor;;1926;74.19;139;450;272;3;175;0;steam
 Boji;;1556;73.06;139;470;131;6;159;0;android
 Premium;;1779;73.63;138;351;153;0;189;2;ios
-Pippip;;1922;73.88;138;406;212;0;191;3;ios
 Chinalll;;1864;74.00;138;458;211;9;156;3;steam
 Zobad;;1754;73.13;138;462;214;7;155;2;android
 Belaneth;Challenger;1919;72.75;138;462;241;6;160;3;ios
@@ -526,14 +522,11 @@ Asonnus;;577;71.75;108;541;310;18;102;2;ios
 Zahra;;383;71.69;107;388;105;10;143;0;android
 Bishop;;535;71.56;107;432;141;10;143;0;android
 Ijim;;347;70.94;107;470;144;9;140;1;android
-Vintron;;612;71.38;107;475;237;6;161;2;android
 Milkiss;;2051;73.13;106;45;7;27;66;0;windows
-Ooooooooo;;823;73.69;106;74;18;16;120;0;windows
 Kerdivra;;300;71.44;106;490;134;14;120;2;android
 Krach;;297;72.50;106;552;194;9;138;1;android
 Zooms;;763;70.56;106;595;168;12;122;0;ios
 Topgun;;2037;73.06;105;28;2;10;152;0;windows
-Ssex;;1868;73.75;105;29;2;17;112;0;windows
 Jotbbara;;1893;72.63;105;31;8;25;75;0;android
 Zera;;1949;72.56;105;33;1;12;138;0;steam
 Zxcv;;1960;73.81;105;39;5;17;113;0;steam
@@ -583,7 +576,6 @@ Tanchik;;758;71.19;101;547;200;13;124;2;android
 Snake;;282;69.44;101;553;270;18;100;9;android
 Mibik;;2016;73.75;100;23;5;29;58;0;windows
 Korea;;2025;74.00;100;26;4;16;120;0;windows
-Kecha;;2030;73.31;100;28;1;25;77;0;android
 Okag;;1725;73.50;100;30;6;23;82;0;ios
 Rafers;;1823;72.56;100;35;3;20;97;0;android
 Madalena;;1436;72.44;100;44;3;20;98;0;android

@@ -1,9 +1,6 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Kormage;;2067;75.06;160;584;359;3;200;0;windows
 Korxxxxx;;2100;75.00;158;504;321;7;160;1;windows
-Korkalbaba;;2027;74.13;158;583;408;6;170;0;windows
-Korwinter;;2168;74.88;157;485;264;6;165;0;windows
-Kordoldol;;2104;75.00;157;571;307;8;157;2;windows
 Anba;;1723;73.44;154;545;320;12;132;1;windows
 Noodlesoup;;2009;74.25;153;569;339;9;151;0;windows
 Kormansaok;;2101;74.75;153;587;441;13;128;6;ios
@@ -24,7 +21,6 @@ Walnut;;1876;73.38;142;553;257;0;192;4;android
 Achartuk;;2010;73.94;142;593;287;9;148;6;steam
 Seven;;1855;73.00;141;538;239;4;172;1;steam
 Beret;;1942;74.31;141;587;215;13;125;4;android
-Adel;;1727;74.00;139;469;206;12;133;1;android
 Asukun;;1453;73.56;139;545;205;6;162;2;android
 Itchyhands;;1939;73.81;139;564;253;12;134;0;android
 Anakyu;;2000;73.63;139;594;204;17;112;5;android
@@ -54,7 +50,6 @@ Itejug;;1996;73.81;131;456;159;9;151;3;android
 Alis;;1432;73.38;131;474;172;16;115;2;android
 Taryn;;1885;73.94;131;544;216;11;134;7;ios
 Simbul;;1301;73.75;131;563;180;21;90;16;ios
-Chinacc;;1976;74.63;130;415;149;18;111;10;ios
 Alhana;;1145;72.88;130;448;216;12;149;3;steam
 Ilukrod;;1926;73.25;129;522;293;3;179;1;android
 Korkorkor;;1593;74.25;128;179;84;11;143;0;steam

@@ -1,10 +1,5 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Timeless;;1825;73.94;161;494;235;4;171;0;windows
-Korddol;;2054;74.50;159;562;360;2;185;0;windows
-Chinaf;;1992;74.50;159;569;345;6;167;2;windows
-Korteng;;2100;74.81;158;581;356;9;150;0;android
-Korwinter;;2140;74.94;158;591;371;5;171;0;windows
-Korpomassi;;2056;74.69;157;476;273;10;145;1;windows
 Efich;;2025;74.19;157;574;454;11;139;3;steam
 Kork;;2049;74.38;156;550;276;7;161;2;windows
 Unemployed;;2050;74.13;154;525;319;12;136;1;windows
@@ -78,7 +73,6 @@ Rincewind;;943;72.38;126;505;264;24;84;0;android
 Amocha;;1133;73.69;126;514;170;16;111;4;android
 Anrorgel;;1440;73.31;126;540;127;13;128;12;android
 Triste;;1850;73.06;126;577;239;6;164;9;android
-Ivevrel;;610;73.19;126;589;265;9;156;11;android
 Gorti;;1316;72.75;125;267;31;18;105;3;android
 Halfblue;;818;73.63;125;496;161;17;123;14;android
 Rubin;;1932;74.44;125;596;412;10;157;20;windows
@@ -95,7 +89,6 @@ Neocount;;1299;73.06;122;597;271;14;130;0;windows
 Dodo;;1094;72.38;121;290;130;25;70;1;ios
 Hare;;1562;73.50;121;297;137;22;131;3;ios
 Gunzu;;1772;73.25;121;347;88;15;121;0;android
-Iris;;1828;72.69;121;535;169;19;101;14;steam
 Milamber;;1416;72.81;121;545;134;13;127;8;android
 Ellim;;1128;73.06;121;549;96;15;117;0;android
 Volstruis;;934;72.31;121;582;91;10;143;4;android
@@ -125,7 +118,6 @@ Ellanna;;696;72.63;116;585;97;18;103;2;windows
 Mopup;;1331;72.06;115;293;73;12;138;1;windows
 Ddinnaryoo;;1659;72.50;115;334;126;16;120;0;android
 Hefre;;456;72.44;115;422;32;15;119;22;android
-Nade;;1800;72.19;115;450;218;14;129;4;steam
 Herbst;;938;72.31;114;393;139;6;162;0;android
 Good;;964;72.31;114;452;266;11;143;11;android
 Kise;;527;72.19;114;563;235;19;113;5;android
@@ -312,7 +304,6 @@ Dabrinna;;0;25.50;5;74;15;17;119;0;windows
 Zirzem;;0;47.63;5;117;4;14;132;0;amazon
 Scorch;;0;15.94;4;177;21;18;108;3;ios
 Evruza;;0;17.75;4;320;78;18;125;1;ios
-Oleander;;0;37.44;4;327;77;15;122;0;android
 Igan;;0;20.94;3;141;23;9;149;0;android
 Cirzodi;;0;19.44;3;207;46;9;149;0;android
 Didrifra;;0;13.75;2;103;12;18;113;0;ios

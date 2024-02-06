@@ -1,8 +1,4 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
-Korwinter;;2145;74.88;160;542;332;5;185;0;windows
-Korddol;;2097;74.94;159;562;337;5;170;0;windows
-Gosoyoung;;2076;75.13;156;478;293;9;153;0;windows
-Korteng;;2057;74.75;154;548;338;4;177;0;android
 Korxxxxx;;1524;73.56;152;510;251;9;151;1;windows
 Alistin;Warlord;1907;74.50;152;595;297;6;164;2;windows
 Babyjewel;;2003;74.25;151;509;253;5;172;1;windows
@@ -79,7 +75,7 @@ Morning;;1583;73.25;123;509;223;13;132;2;ios
 Franz;;1159;72.13;123;568;271;10;139;0;android
 Aelin;;1416;73.00;123;581;222;16;111;0;android
 Okirzi;;1407;73.81;123;595;196;18;107;10;windows
-Aevmag;;1209;72.75;122;348;69;17;109;2;steam
+-;;0;0.00;122;348;0;0;0;0;
 Bordeaux;;1806;72.75;121;300;116;21;96;3;android
 Serenitys;Challenger;1439;73.19;121;320;152;11;139;1;windows
 Burgan;;1076;73.75;121;355;157;10;143;8;android

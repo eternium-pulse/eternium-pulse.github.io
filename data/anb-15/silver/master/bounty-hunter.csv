@@ -1,5 +1,4 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
-Korss;;2101;74.31;181;557;160;15;127;3;windows
 Levri;;2084;74.31;176;485;102;16;129;9;windows
 Blank;;1911;74.19;176;506;36;17;134;4;steam
 Korncsoft;;2005;74.44;176;525;236;20;103;5;android
@@ -153,7 +152,6 @@ Adora;;1729;72.94;137;526;142;16;113;7;android
 Jihezi;;533;72.56;137;565;225;21;85;4;android
 Losi;;573;72.50;137;584;273;14;119;14;android
 Sliver;;1350;73.44;137;594;194;21;100;6;android
-Stopupgrad;;1942;74.88;136;147;37;11;140;1;windows
 Korsibural;;1788;73.06;136;278;53;8;163;6;android
 Neomaster;Challenger;1203;72.69;136;373;163;13;127;4;android
 Fakr;;1554;72.38;136;381;128;18;103;3;steam
@@ -609,7 +607,6 @@ Eventi;;692;71.31;110;363;122;18;107;6;android
 Noke;;760;72.63;110;372;96;10;151;4;android
 Lottanukes;;749;71.50;110;373;101;17;115;12;android
 Dosiz;;805;72.75;110;373;129;9;153;3;android
-Sirdard;;857;72.88;110;375;81;6;164;2;android
 Duche;;1039;71.88;110;378;128;10;164;9;windows
 Kathen;;1151;72.88;110;386;132;23;82;15;android
 Diva;;1040;72.00;110;405;153;19;103;23;android

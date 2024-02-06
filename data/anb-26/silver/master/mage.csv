@@ -1,7 +1,5 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
-Korteng;;2076;74.69;158;532;333;4;178;0;android
 Kork;;2095;74.69;158;565;343;6;167;0;windows
-Korwinter;;2133;75.00;157;535;328;4;173;1;windows
 Efich;;2046;74.44;153;568;423;11;136;4;steam
 Chinadhk;;2077;74.81;151;512;192;8;157;0;steam
 Neverfirst;;2005;73.50;150;395;218;7;168;1;windows
@@ -103,7 +101,6 @@ Hokrigi;;1447;73.00;120;380;127;14;132;2;ios
 Roja;;1445;73.19;120;407;211;15;128;5;android
 Teze;;1056;71.94;120;457;214;15;125;3;windows
 Cosi;;809;72.31;120;506;225;18;114;0;android
-Mina;;678;72.31;120;514;157;19;105;11;android
 Atarax;;1164;72.31;120;562;281;8;163;4;android
 Galdor;;1744;72.75;120;592;155;20;101;12;ios
 Bingdi;;1147;72.19;119;425;274;9;151;7;steam
@@ -287,7 +284,7 @@ Neshus;;0;54.69;7;116;12;18;107;0;android
 Rasputin;;0;46.00;7;408;118;7;162;5;android
 Smackw;;0;22.50;5;83;19;22;134;0;android
 Daarrk;;0;33.81;5;130;28;17;113;0;android
-Gave;;0;25.38;5;393;91;15;113;9;android
+Gave;;0;28.00;5;151;35;18;111;0;android
 Gannon;;0;29.50;4;178;17;9;153;0;ios
 Grizmo;;0;29.63;4;187;7;12;140;0;android
 Ozivra;;0;20.94;3;216;91;13;133;0;android

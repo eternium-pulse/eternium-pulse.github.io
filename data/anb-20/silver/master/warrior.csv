@@ -1,9 +1,7 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
-Korflash;;2110;75.25;161;505;20;31;41;10;ios
 Guitarwolf;;2092;74.88;161;563;38;32;37;14;android
 Eaiou;;2095;75.19;160;529;40;31;37;5;android
 Sera;;2091;74.94;159;500;51;32;36;9;android
-Koryeolmoo;;2113;75.25;159;561;65;20;85;4;android
 Gameplay;;2086;74.81;156;475;36;33;34;15;ios
 Wengler;;2072;74.88;156;575;53;25;71;15;android
 Daisy;;2062;74.88;156;583;43;30;44;20;ios
@@ -404,7 +402,6 @@ Alil;;964;72.94;110;219;50;16;121;3;android
 Acem;;618;72.63;110;219;90;10;143;0;android
 Korbjgod;;853;71.31;110;224;69;8;155;6;android
 Isas;;768;68.75;110;228;72;4;176;1;windows
-Bluebook;;648;69.94;110;242;97;4;179;0;windows
 Uler;;1317;72.50;110;242;101;8;157;0;amazon
 Morte;;1002;72.06;110;244;48;12;135;3;steam
 Sixkimtete;;633;71.88;110;244;56;3;173;0;windows
@@ -482,12 +479,8 @@ Frostie;;402;72.75;106;420;171;13;134;5;ios
 Oragal;;991;72.00;106;524;179;3;166;2;android
 Rerte;;545;71.56;106;544;191;9;139;0;android
 Ogrek;;713;72.63;106;588;154;14;116;0;android
-Eternium;;2070;74.25;105;22;1;22;90;0;windows
-Ganobi;;2056;73.81;105;27;4;28;58;0;windows
-Rinad;;2041;73.94;105;28;3;17;113;0;ios
 Ochiva;;1705;72.50;105;31;6;27;70;0;android
 Gelki;;1974;72.81;105;34;4;16;119;0;windows
-Ardergit;;2034;74.00;105;34;3;17;113;0;steam
 Midnosha;;2025;73.56;105;38;10;19;103;0;android
 Hanmeimei;;1844;73.38;105;49;13;15;125;0;android
 Mirci;;1905;73.25;105;51;14;8;162;0;windows

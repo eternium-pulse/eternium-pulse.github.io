@@ -1,7 +1,5 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Korxxxxx;;2075;74.94;161;552;310;9;152;2;windows
-Korattack;;2044;74.81;159;473;284;2;187;0;android
-Korwinter;;2085;74.94;159;537;378;3;182;4;windows
 Anba;;2039;74.50;157;506;292;7;161;0;windows
 Kormansaok;;2021;74.56;154;587;423;8;153;10;ios
 Nase;;1985;74.50;153;512;252;6;169;1;android
@@ -14,7 +12,6 @@ Lirgigri;;1925;73.31;146;544;390;9;148;0;android
 Nurze;;1770;73.81;146;549;251;13;127;1;android
 Kornibel;;1954;73.25;146;574;248;10;145;4;windows
 Michyg;;1601;73.69;146;592;376;6;166;6;android
-Kornailsun;;2001;72.81;145;325;209;13;140;1;windows
 Chinal;;1693;74.00;145;542;341;14;137;5;windows
 Titas;;1864;74.50;144;484;178;11;136;1;android
 Ezod;;1809;73.81;144;490;228;11;143;6;windows
@@ -25,7 +22,6 @@ Freddy;;1899;73.25;144;578;295;7;163;3;android
 Cheery;;1606;73.88;143;548;204;9;154;0;steam
 Delman;;1905;73.19;142;468;216;10;146;1;steam
 Skade;;1619;73.88;142;571;395;18;104;11;android
-Adelbart;;1528;73.63;141;457;192;4;175;0;android
 Goldfinger;;1505;73.31;141;505;200;16;116;1;ios
 Oshat;;1844;73.31;141;511;186;10;146;2;steam
 Yoink;;1630;72.94;140;495;180;8;158;1;android

@@ -1,11 +1,9 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Cannibal;;2053;74.88;164;426;37;35;28;5;steam
-Korjecheon;;2064;75.06;162;554;20;37;14;11;android
 Bizud;;2005;74.69;161;431;17;34;27;3;android
 Tiven;;2036;74.13;160;581;23;25;70;11;android
 Arin;;2048;74.44;160;585;29;36;19;27;windows
 Techno;;2027;74.56;159;441;37;31;41;9;android
-Kormn;;2048;75.13;159;524;33;32;38;11;android
 Vinamilk;;2019;74.88;159;543;72;31;40;6;ios
 Korseeva;;2088;75.25;159;549;8;25;70;6;android
 Aysman;;2017;74.63;159;580;16;31;44;20;ios
@@ -344,9 +342,7 @@ Lenutha;;523;71.13;111;584;170;10;143;5;android
 Diana;;470;71.44;111;587;264;14;109;2;android
 Farmich;;2041;73.44;110;41;8;17;117;0;steam
 Ahgimuchi;;2021;72.56;110;50;10;10;145;0;android
-Toda;;2050;73.44;110;51;10;13;132;0;android
 Agera;Challenger;1905;72.88;110;52;5;12;138;0;steam
-Killberos;;1040;73.00;110;55;16;20;97;0;android
 Kinnu;;2011;72.31;110;69;14;19;106;1;android
 Roje;;935;74.25;110;84;20;13;133;4;android
 Zubrilla;;1759;72.56;110;91;28;10;146;0;steam
@@ -405,7 +401,6 @@ Archa;;513;70.94;108;576;87;12;123;0;windows
 Dsndnrganb;;715;71.31;107;430;172;15;111;3;android
 Junori;;437;70.50;107;492;247;12;142;0;android
 Hunuz;;873;71.31;106;332;164;13;144;4;ios
-Eternium;;2065;73.94;105;23;3;22;89;0;windows
 Iwillfarm;;1941;73.63;105;25;1;17;114;0;windows
 Emin;;2033;73.31;105;29;3;28;58;0;windows
 Spintowin;;1966;73.19;105;34;6;13;131;0;windows
@@ -445,7 +440,6 @@ Zucushi;;432;71.75;101;520;221;7;156;2;android
 Ivroshun;;965;71.56;101;521;243;19;128;3;android
 Jadi;;948;71.88;101;573;202;19;89;0;android
 Venrigi;;1733;73.00;100;26;4;19;104;0;windows
-Alodos;;1993;73.75;100;28;4;12;138;0;ios
 Tushasi;;1940;73.25;100;29;1;20;97;0;ios
 Varzechi;;1963;72.69;100;39;8;23;84;0;android
 Binnam;;1985;73.31;100;43;8;15;127;0;android
@@ -533,12 +527,10 @@ Sedanri;;0;34.94;7;316;36;14;127;3;android
 Rehab;;0;27.63;7;542;187;10;146;21;android
 Dudnik;;0;42.44;7;572;139;15;122;18;android
 Onulem;;0;30.81;6;192;22;18;115;1;android
-Hushorte;;0;35.69;6;209;31;13;134;18;android
 Kerpy;;0;27.07;5;135;8;22;87;1;android
 Polydron;;0;34.75;5;145;14;16;117;1;android
 Nigoma;;0;21.44;5;216;34;18;116;2;android
 Blood;;0;25.81;4;154;35;18;121;0;android
-Magnolia;;0;42.19;4;165;33;16;117;0;android
 Vari;;0;32.56;4;184;44;13;134;0;windows
 Othed;;0;24.81;4;185;31;20;101;0;android
 Vega;;0;19.86;4;219;20;19;104;5;android
@@ -546,6 +538,7 @@ Ethonrol;;0;19.50;4;343;82;12;136;4;android
 Hinugi;;0;9.38;2;128;12;19;104;0;android
 Pemula;;0;12.36;2;136;24;12;139;0;android
 Jukad;;0;11.14;2;289;48;15;129;0;ios
+Kontol;;0;7.75;1;109;11;15;125;0;android
 Jaha;;0;8.33;1;115;10;11;143;0;android
 Fishy;;0;10.57;1;156;9;10;143;0;ios
 Igod;;0;8.50;1;163;9;12;137;0;ios

@@ -1,11 +1,9 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Korpeace;;2100;75.31;159;463;280;4;176;0;windows
-Korwinter;;2126;75.25;159;541;281;5;171;1;windows
 Kornowar;;2080;75.13;159;576;331;8;157;1;windows
 Anba;;2078;74.75;158;588;343;3;180;0;windows
 Limai;;2028;74.94;158;594;372;3;181;1;windows
 Korii;;2066;75.00;157;596;369;8;158;1;android
-Kormansako;;2089;75.13;154;575;308;7;160;3;windows
 Kormansaok;;2083;74.69;151;575;435;10;141;9;ios
 Sssss;;2026;73.63;151;591;274;9;151;0;windows
 Korsoondae;;2040;74.88;149;444;201;16;116;1;windows
@@ -246,7 +244,6 @@ Irenica;;1122;72.56;110;272;66;7;159;1;android
 Eidamir;;1131;72.13;110;283;119;7;160;1;steam
 Antithesis;;1275;72.63;110;284;135;15;124;0;windows
 Disaster;;1330;73.38;110;308;96;5;170;1;windows
-Ukrmslover;;908;72.81;110;316;238;15;127;5;windows
 Tenone;;880;71.38;110;322;81;9;150;6;android
 Onetwelve;;708;70.81;110;353;113;12;136;4;android
 Arteze;;318;63.06;110;379;144;11;147;1;android

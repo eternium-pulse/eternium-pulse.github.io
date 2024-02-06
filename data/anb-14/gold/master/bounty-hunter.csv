@@ -2,13 +2,11 @@ Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;De
 Elnino;;1934;74.50;180;575;225;12;144;12;steam
 Chinagua;;1991;74.56;177;528;180;4;173;11;ios
 Bithin;;2052;74.31;176;501;157;8;161;0;windows
-Korq;;2054;74.63;176;540;239;12;141;3;windows
 Korliar;;1983;74.44;176;572;210;15;132;11;android
 Romme;"War Hero";1905;74.38;174;596;262;20;97;41;android
 Kormagneto;;1992;74.69;173;483;205;12;136;3;ios
 Korssonda;;1946;74.50;172;537;219;2;183;9;android
 Umbradei;"War Hero";1916;73.94;172;598;236;14;125;24;windows
-Doveabin;;1978;75.00;171;389;152;12;139;7;windows
 China;;1925;74.38;171;538;130;18;105;6;android
 Kornahun;;1906;74.38;168;565;225;15;115;6;android
 Inspired;;1853;74.63;168;589;288;11;136;11;steam
@@ -819,7 +817,6 @@ Sheu;;0;51.25;7;272;116;18;109;3;android
 Izumak;;0;34.56;7;497;229;13;126;7;android
 Hagoba;;0;16.69;5;173;31;5;169;3;android
 Dundrift;;0;26.81;5;200;50;18;111;0;amazon
-Yuriko;;0;27.69;5;218;44;12;138;3;android
 Amardilos;;0;22.81;4;110;21;14;131;0;android
 Mons;;0;26.92;4;141;27;19;103;0;android
 Etin;;0;13.13;4;210;52;12;137;3;android

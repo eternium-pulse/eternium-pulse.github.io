@@ -1,7 +1,6 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Zaburca;;1047;71.31;125;488;174;15;124;3;steam
 Adnos;;1142;71.38;120;411;121;6;165;5;android
-Kethore;;833;71.50;120;448;140;11;137;1;android
 Sephyroa;;1066;70.38;117;446;174;18;132;5;android
 Event;;1588;70.69;117;526;164;17;104;3;android
 Chung;;1519;70.75;115;297;124;9;152;0;ios
@@ -121,7 +120,6 @@ Etarzum;;303;67.19;78;554;184;9;157;3;android
 Marti;;210;69.56;77;343;97;13;123;1;android
 Otod;;226;68.69;77;482;160;5;169;4;android
 Haim;;302;69.88;77;500;122;22;77;0;android
-Krang;;229;66.13;76;316;59;17;111;2;ios
 Volpinka;;229;70.50;76;525;272;24;75;10;android
 Buffy;;316;68.31;75;254;44;12;135;0;android
 Nujusha;;194;69.63;75;430;90;15;129;0;amazon
@@ -862,7 +860,6 @@ Simidadada;;0;8.45;1;198;15;15;124;1;android
 Pato;;0;8.36;1;203;26;18;109;1;android
 Alexander;;0;17.13;1;205;9;21;90;0;android
 Averca;;0;9.73;1;205;7;12;138;0;android
-Kali;;0;9.00;1;206;34;14;123;0;android
 Alok;;0;10.67;1;206;24;15;123;0;steam
 Enam;;0;9.13;1;206;12;14;124;0;android
 Zunne;;0;8.92;1;207;9;18;109;0;android

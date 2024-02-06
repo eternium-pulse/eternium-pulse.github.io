@@ -1,5 +1,4 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
-Alocom;;2014;74.69;145;327;146;1;195;2;ios
 Kungfu;;2023;74.25;143;562;215;12;124;6;ios
 Obon;;1989;73.94;140;461;217;14;141;4;steam
 Kelsey;;1900;73.88;138;401;179;9;148;2;steam
@@ -286,7 +285,6 @@ Celliga;;414;69.88;102;534;152;14;139;2;android
 Poofd;;399;71.19;102;537;244;18;120;14;amazon
 Ekruda;;474;70.69;101;448;111;7;147;1;ios
 Ojenra;;241;71.06;101;454;132;16;111;5;android
-Nvphu;;380;69.75;101;462;139;13;123;9;android
 Dirke;;640;72.31;101;462;205;13;138;3;amazon
 Lagartha;;298;69.81;101;506;175;13;123;2;android
 Shiyuuni;;1294;71.31;101;559;187;13;127;7;android
@@ -355,7 +353,6 @@ Tempchars;;424;70.75;98;558;131;13;124;1;ios
 Magqq;;411;71.06;98;559;155;9;149;12;android
 Pame;;307;68.25;98;561;176;14;126;4;android
 Kingdavid;;530;70.81;98;565;307;13;143;7;amazon
-Snow;;909;67.88;97;335;124;17;105;6;ios
 Mudrobe;;326;70.88;97;442;112;17;117;0;android
 Test;;364;71.31;97;447;272;9;158;0;ios
 Lale;;434;70.75;97;471;192;10;147;9;android

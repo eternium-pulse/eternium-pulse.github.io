@@ -1,10 +1,7 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Cannibal;;2070;74.81;164;574;44;33;32;8;steam
-Kormn;;2042;74.69;164;594;101;38;8;15;android
-Kormn;;2035;74.44;163;574;41;40;0;13;android
 Techno;;2022;74.63;161;573;90;37;14;14;android
 Lovemansa;;2092;74.63;160;547;26;30;48;10;android
-Gyeongju;;2059;75.06;160;553;36;21;90;6;android
 Arin;;2035;74.50;160;569;31;40;0;25;windows
 Sleeper;;2004;74.56;160;592;37;29;51;8;windows
 Rebuz;;1987;74.63;159;569;26;28;58;9;android
@@ -386,16 +383,11 @@ Knuckles;;579;69.38;106;454;176;14;121;1;android
 Lofri;;531;71.50;106;477;148;11;140;4;android
 Eveba;;1086;72.50;106;588;214;5;163;1;android
 Siva;;2054;73.25;105;23;1;23;85;0;android
-Eternium;;2094;73.94;105;24;2;9;155;0;windows
-Bronze;;1909;73.94;105;25;1;20;99;0;windows
-Lina;;1859;73.00;105;28;2;17;111;0;android
 Deepthroat;;2005;72.38;105;30;4;10;146;0;android
-Irdit;;2018;73.56;105;31;3;16;115;0;ios
 Bozunre;;1897;73.75;105;33;3;18;108;0;android
 Milkiss;;1981;73.13;105;33;1;14;126;0;windows
 Spintowin;;1856;72.88;105;33;2;21;91;0;windows
 Mashpotato;;1825;72.69;105;38;5;13;133;0;android
-Shockwave;;1809;73.00;105;39;5;16;118;1;ios
 Sexyasduck;;2028;72.88;105;40;4;14;132;0;ios
 Zunami;;1800;72.75;105;49;7;16;118;0;windows
 Lima;;1498;72.25;105;49;2;25;71;0;android

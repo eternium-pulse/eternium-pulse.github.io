@@ -1,7 +1,5 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Karina;;960;72.81;113;460;231;7;167;0;android
-Love;;1010;73.56;107;509;349;11;145;7;android
-Morgisi;;466;75.69;87;318;129;22;85;1;android
 Ekren;;340;70.38;85;410;231;15;135;12;android
 Jatt;;506;70.44;84;376;126;11;141;9;steam
 Meepus;;275;71.31;80;357;144;16;126;18;android
@@ -179,7 +177,6 @@ Corga;;0;37.06;6;344;72;20;96;2;ios
 Syndra;;0;40.50;6;350;102;8;153;0;android
 Sanches;;0;31.75;6;353;88;13;132;13;android
 Rudvelt;;0;41.00;6;356;126;16;121;2;android
-Reed;;0;37.31;6;388;80;18;105;6;android
 Athedus;;0;49.69;6;393;148;13;132;11;ios
 Editen;;0;34.50;6;449;218;12;139;11;android
 Venus;;0;39.31;6;486;32;17;117;0;windows

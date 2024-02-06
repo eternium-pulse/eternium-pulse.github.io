@@ -1,6 +1,4 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
-Korgeons;;2100;74.88;161;597;223;3;180;0;windows
-Korwinter;;2154;75.06;159;549;311;16;117;0;windows
 Korxxxxx;;2001;74.50;157;398;212;6;167;0;windows
 Pooranba;;1807;73.94;154;477;312;10;152;0;windows
 Kormansaok;;2128;75.00;154;569;429;19;97;7;ios
@@ -39,7 +37,6 @@ Hahoha;;1920;74.06;137;398;252;9;151;0;android
 Ojol;;1831;72.94;137;502;189;11;136;2;steam
 Nethekk;;1863;74.44;137;521;326;8;156;13;steam
 Ivila;;1639;73.25;137;562;215;6;162;7;steam
-Artod;;1804;73.06;136;392;176;17;107;1;android
 Note;;1557;72.25;136;397;233;13;131;0;steam
 Xiaoan;;2029;74.25;136;402;177;8;157;1;ios
 Skade;Challenger;1775;73.06;136;596;340;9;149;8;android
@@ -211,7 +208,6 @@ Gesa;;764;72.56;108;552;345;21;108;1;android
 Rena;Challenger;454;72.50;107;497;311;10;141;0;android
 Burn;;1177;72.63;107;506;247;10;141;4;android
 Lorelai;;504;72.19;107;533;281;14;123;7;ios
-Nugsmage;;492;72.44;107;551;111;15;124;5;ios
 Orola;;867;72.69;106;428;96;10;138;8;android
 Jhazz;;1431;72.00;105;90;31;15;125;1;android
 Akele;;1036;72.69;105;90;18;18;111;0;android
@@ -301,7 +297,6 @@ Ranigast;;1;62.50;24;124;16;23;85;0;windows
 Cnyeah;;1923;47.00;17;60;10;16;118;0;ios
 Icubez;;0;53.44;15;278;66;24;81;0;android
 Roxanb;;0;43.13;13;330;114;14;127;2;android
-Osathal;;2144;46.08;12;37;7;6;170;0;android
 Noiosa;;30;56.88;10;44;5;7;167;0;windows
 Avud;;0;47.69;10;109;33;4;186;0;android
 Sveta;;0;55.00;10;141;15;9;155;0;ios

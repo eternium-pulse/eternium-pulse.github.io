@@ -1,14 +1,10 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Anba;;2053;74.75;162;555;317;7;161;3;windows
-Korteng;;2051;74.50;161;599;321;7;162;1;android
-Korwinter;;2105;74.75;159;571;280;9;149;1;windows
-Korddol;;2041;74.69;157;582;376;13;132;1;windows
 Korxxxxx;;2055;74.25;156;366;242;5;173;0;windows
 Kork;;2042;74.25;156;540;307;8;156;2;windows
 Kinnu;;2012;74.94;156;581;453;11;142;5;windows
 Kormansaok;;1936;73.88;154;526;392;2;181;6;ios
 Threepich;;2042;74.31;154;579;434;12;134;6;steam
-Korpoma;;1986;74.31;153;536;312;5;172;0;ios
 Korulma;;1954;74.06;153;557;343;8;156;2;android
 Supacasual;;2018;73.75;153;565;337;9;153;0;windows
 Michys;;1886;74.25;152;570;407;6;163;5;android
@@ -165,7 +161,6 @@ Duzog;;978;72.38;110;362;93;10;143;3;android
 Nivanre;;1488;72.25;110;379;209;19;104;4;ios
 Lebida;;722;72.19;110;428;146;9;155;2;android
 Tisa;;1021;72.94;110;444;118;10;149;1;android
-Idida;;757;72.31;110;473;217;9;157;1;android
 Pajelium;;963;72.50;110;480;194;24;81;1;android
 Asirka;;643;71.88;110;481;233;14;134;1;android
 Erecto;;1057;72.44;110;488;165;23;97;11;android
@@ -295,7 +290,6 @@ Nirki;;245;70.94;72;407;92;18;112;0;android
 Zitad;;161;67.75;68;413;147;10;159;3;android
 Maleficent;Challenger;293;65.38;67;178;26;17;113;0;ios
 Nicci;;228;70.69;65;367;108;25;102;2;ios
-Volla;;250;68.19;65;397;131;21;98;7;steam
 Cothod;;295;70.94;64;238;12;10;142;0;ios
 Zalupa;;153;72.44;63;250;53;18;107;0;android
 Anbanana;;191;59.31;61;225;93;15;123;1;windows

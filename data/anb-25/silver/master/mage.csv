@@ -1,13 +1,8 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Kormage;;2045;74.50;159;541;307;4;174;1;windows
-Korddol;;2064;74.75;157;509;290;1;192;1;windows
-Korspeed;;2100;74.88;156;411;256;11;144;0;windows
 Womeik;;2064;74.69;156;520;278;7;157;1;windows
-Korteng;;2101;74.81;156;578;302;9;152;0;android
 Kork;;2035;74.75;156;598;349;3;183;2;windows
-Fortune;Challenger;2066;74.56;154;462;296;4;176;0;windows
 Efich;;1995;74.69;154;562;450;8;157;4;steam
-Korwinter;;2134;74.50;153;496;229;17;109;0;windows
 Meganrain;;1988;73.69;152;525;276;4;179;0;windows
 Chinadhk;;2073;74.69;151;511;291;3;178;4;steam
 Garminator;Champion;1529;73.00;149;450;248;9;149;1;windows
@@ -62,7 +57,6 @@ Iluhud;;1911;73.38;131;409;124;6;163;5;android
 Figura;;1949;74.50;131;492;175;21;91;11;steam
 Adnishum;;1356;72.63;131;517;302;11;147;5;steam
 Niyuu;;1667;72.63;131;560;176;13;126;0;android
-Tekrithe;;1821;75.19;131;579;441;13;139;2;android
 Nymph;;1519;72.75;130;293;160;21;102;2;android
 Michal;;1516;72.81;130;352;120;10;149;0;android
 Orkiitfiv;;1265;72.13;130;381;145;16;119;2;android
@@ -104,7 +98,6 @@ Agrozot;;842;72.13;122;401;195;11;143;4;android
 Afrigram;;1039;72.75;122;424;231;11;139;2;ios
 Nannyogg;;1363;72.88;122;443;142;12;140;2;ios
 Anna;;815;72.25;122;458;214;18;109;0;ios
-Ibobra;;747;74.81;122;466;243;15;127;6;android
 Gandolf;;658;72.31;122;475;198;11;141;2;android
 Roka;;1106;72.75;122;503;226;20;96;8;ios
 Jkischk;;669;72.81;122;541;152;23;71;1;ios

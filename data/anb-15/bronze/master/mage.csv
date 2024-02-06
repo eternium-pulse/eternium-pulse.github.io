@@ -1,8 +1,5 @@
 Name;Title;ChampLv;AvgItemLv;TrialLv;TrialTime;BossTime;EliteKills;TrashKills;Deaths;Platform
 Korean;;2130;75.19;162;571;350;4;176;0;windows
-Kormollang;;2120;75.00;159;576;328;7;161;4;windows
-Korallang;;2159;75.25;159;581;324;1;192;2;windows
-Kordong;;2129;75.25;159;599;315;4;173;3;android
 Korxxxxx;;2100;75.25;158;472;297;7;163;0;windows
 Kinnu;;2014;74.81;157;584;455;11;138;6;windows
 Rino;;2108;75.13;154;425;220;6;166;0;android
@@ -78,7 +75,6 @@ Nimueh;;2013;74.44;133;550;203;13;127;3;android
 Hozuki;;1596;72.94;133;551;240;14;122;4;steam
 Idune;;1183;73.44;133;569;229;9;147;1;ios
 Ofrillal;;1115;71.75;133;592;254;15;117;0;windows
-Samos;;1920;74.81;132;154;33;20;96;4;windows
 Masterchef;;1705;72.50;132;469;185;6;160;1;android
 Hotstuff;;609;72.56;132;517;225;12;126;1;android
 Luna;;1698;73.31;132;531;303;10;143;7;ios
