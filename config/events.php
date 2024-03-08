@@ -1383,4 +1383,12 @@ return [
             ],
         ]),
     ),
+
+    Season::create(
+        24,
+        'Late Winter 2024',
+        mages: '65e9f5dfca7bd847df844401',
+        warriors: '65e9f5e1f3b8c52e336e9b79',
+        bounty_hunters: '65e9f5e2f3b8c52e336e9b94',
+    ),
 ];
