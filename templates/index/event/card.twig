@@ -2,7 +2,11 @@
   <div class="card h-100" vocab="https://schema.org/" typeof="Event">
     <div class="card-body">
       <h5 class="card-title" property="name">{{ event.title|e }}</h5>
-      <p class="card-text" property="description">{{ event.description|trim|e|replace({"\n" : '<br>'})|raw }}</p>
+      <div class="card-text" property="description">
+        {% for line in event.description|split("\n") %}
+          <p class="{{ loop.last ? 'mb-0' : 'mb-2' }}">{{ line|e }}</p>
+        {% endfor %}
+      </div>
     </div>
     {% if event.isSeason %}
       <div class="list-group list-group-flush">
