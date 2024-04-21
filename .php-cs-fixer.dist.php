@@ -12,6 +12,6 @@ return (new Config())
         (new Finder())
             ->files()
             ->in(['bin', 'config', 'src', 'tests'])
-            ->append([basename(__FILE__)])
+            ->append([basename(__FILE__), 'rector.php'])
     )
 ;
