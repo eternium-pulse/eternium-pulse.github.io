@@ -1,4 +1,4 @@
 /vendor/
 /data/
 /public/
-/.php-cs-fixer.*
+/.*
