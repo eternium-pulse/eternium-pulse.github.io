@@ -19,9 +19,7 @@ class Config
         $this->{$name} = null;
         $file = "{$this->path}/{$name}.php";
         if (\is_file($file)) {
-            $this->{$name} = (function () {
-                return require \func_get_arg(0);
-            })($file);
+            $this->{$name} = (fn (): mixed => require \func_get_arg(0))($file);
         }
 
         return $this->{$name};

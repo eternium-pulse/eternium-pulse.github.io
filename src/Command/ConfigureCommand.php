@@ -11,7 +11,7 @@ class ConfigureCommand extends Command
 {
     protected static $defaultName = 'configure';
 
-    public function __construct(private Config $config)
+    public function __construct(private readonly Config $config)
     {
         parent::__construct();
     }
@@ -35,7 +35,7 @@ class ConfigureCommand extends Command
         if (!empty($event['isSeason'])) {
             return $this->formatSeason($event);
         }
-        if (\str_contains($event['id'], 'anb_')) {
+        if (\str_contains((string) $event['id'], 'anb_')) {
             return $this->formatAnb($event);
         }
 
@@ -48,7 +48,7 @@ class ConfigureCommand extends Command
             'Season::create(',
             ...$this->indent(
                 \sprintf('%d,', 0),
-                \sprintf("'%s',", \ucwords(strtr($event['id'], '_#', '  '))),
+                \sprintf("'%s',", \ucwords(\strtr($event['id'], '_#', '  '))),
                 \sprintf("mages: '%s',", $event['leaderboards']['trial_mage']),
                 \sprintf("warriors: '%s',", $event['leaderboards']['trial_warrior']),
                 \sprintf("bounty_hunters: '%s',", $event['leaderboards']['trial_bountyhunter']),
@@ -59,7 +59,7 @@ class ConfigureCommand extends Command
 
     private function formatAnb(array $event): array
     {
-        [, $league, $index] = \explode('_', $event['id']);
+        [, $league, $index] = \explode('_', (string) $event['id']);
 
         return [
             'Anb::create(',

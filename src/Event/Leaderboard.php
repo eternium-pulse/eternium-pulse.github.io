@@ -2,9 +2,12 @@
 
 namespace Eternium\Event;
 
+use Eternium\Event\Leaderboard\BountyHunter;
 use Eternium\Event\Leaderboard\Entry;
 use Eternium\Event\Leaderboard\Hero;
+use Eternium\Event\Leaderboard\Mage;
 use Eternium\Event\Leaderboard\Trial;
+use Eternium\Event\Leaderboard\Warrior;
 use Eternium\Utils;
 use EterniumPulse\Eternium;
 
@@ -20,17 +23,17 @@ abstract class Leaderboard extends Event
 
     public static function createMages(string $id): self
     {
-        return new Leaderboard\Mage($id);
+        return new Mage($id);
     }
 
     public static function createWarriors(string $id): self
     {
-        return new Leaderboard\Warrior($id);
+        return new Warrior($id);
     }
 
     public static function createBountyHunters(string $id): self
     {
-        return new Leaderboard\BountyHunter($id);
+        return new BountyHunter($id);
     }
 
     /**

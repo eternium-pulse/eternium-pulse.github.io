@@ -39,9 +39,9 @@ class GenerateCommand extends Command
 
     private bool $hideProgress = false;
 
-    public function __construct(private Config $config)
+    public function __construct(private readonly Config $config)
     {
-        $this->baseUrl = Uri::createFromString(getenv('CI_PAGES_URL') ?: 'http://localhost:8080');
+        $this->baseUrl = Uri::createFromString(\getenv('CI_PAGES_URL') ?: 'http://localhost:8080');
         parent::__construct();
     }
 
@@ -127,7 +127,7 @@ class GenerateCommand extends Command
         ]);
 
         $render = function (string $file, string $template, array $context = []) use ($output) {
-            if (!str_ends_with($template, '.twig')) {
+            if (!\str_ends_with($template, '.twig')) {
                 $template .= '.twig';
             }
 
@@ -168,11 +168,11 @@ class GenerateCommand extends Command
         $progressBar->setFormat($formatter->formatSection('LOAD', '%message% %current% %elapsed%'));
 
         while (null !== ($event = yield)) {
-            $path = join('/', $event->getPath());
+            $path = \join('/', $event->getPath());
             $template = $event->type;
 
             if (!$event instanceof Leaderboard) {
-                $render("{$path}/index.html", $template, compact('event'));
+                $render("{$path}/index.html", $template, \compact('event'));
 
                 continue;
             }
@@ -190,7 +190,7 @@ class GenerateCommand extends Command
             try {
                 $progressBar->setMessage("loading {$path}");
                 $progressBar->display();
-                $entries = iterator_to_array($progressBar->iterate($reader), false);
+                $entries = \iterator_to_array($progressBar->iterate($reader), false);
             } finally {
                 $progressBar->clear();
             }
@@ -219,9 +219,9 @@ class GenerateCommand extends Command
 
     private function eventPath(Event $event, int $page = 0): string
     {
-        assert(0 <= $page);
+        \assert(0 <= $page);
 
-        $path = join('/', $event->getPath()).'/';
+        $path = \join('/', $event->getPath()).'/';
         if (1 < $page) {
             $path .= "{$page}.html";
         }
@@ -235,7 +235,7 @@ class GenerateCommand extends Command
 
         foreach ($assets as $dst => $src) {
             $code = '';
-            $type = (string) pathinfo($dst, \PATHINFO_EXTENSION);
+            $type = (string) \pathinfo($dst, \PATHINFO_EXTENSION);
             foreach ($src as $file) {
                 $code .= Utils::read($file);
             }

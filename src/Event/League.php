@@ -2,6 +2,11 @@
 
 namespace Eternium\Event;
 
+use Eternium\Event\League\Bronze;
+use Eternium\Event\League\Gold;
+use Eternium\Event\League\Platinum;
+use Eternium\Event\League\Silver;
+
 abstract class League extends BaseEvent
 {
     use LeaderboardAwareTrait;
@@ -29,7 +34,7 @@ abstract class League extends BaseEvent
         string $bounty_hunters = '',
         array $brackets = [],
     ): self {
-        return new League\Bronze($mages, $warriors, $bounty_hunters, ...$brackets);
+        return new Bronze($mages, $warriors, $bounty_hunters, ...$brackets);
     }
 
     public static function createSilver(
@@ -38,7 +43,7 @@ abstract class League extends BaseEvent
         string $bounty_hunters = '',
         array $brackets = [],
     ): self {
-        return new League\Silver($mages, $warriors, $bounty_hunters, ...$brackets);
+        return new Silver($mages, $warriors, $bounty_hunters, ...$brackets);
     }
 
     public static function createGold(
@@ -47,7 +52,7 @@ abstract class League extends BaseEvent
         string $bounty_hunters = '',
         array $brackets = [],
     ): self {
-        return new League\Gold($mages, $warriors, $bounty_hunters, ...$brackets);
+        return new Gold($mages, $warriors, $bounty_hunters, ...$brackets);
     }
 
     public static function createPlatinum(
@@ -56,7 +61,7 @@ abstract class League extends BaseEvent
         string $bounty_hunters = '',
         array $brackets = [],
     ): self {
-        return new League\Platinum($mages, $warriors, $bounty_hunters, ...$brackets);
+        return new Platinum($mages, $warriors, $bounty_hunters, ...$brackets);
     }
 
     /**

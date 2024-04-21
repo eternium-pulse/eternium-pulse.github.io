@@ -28,7 +28,7 @@ class FetchCommand extends Command
 
     private bool $hideProgress = false;
 
-    public function __construct(private Config $config)
+    public function __construct(private readonly Config $config)
     {
         parent::__construct();
     }
@@ -75,7 +75,7 @@ class FetchCommand extends Command
 
     protected static function normalizePattern(string $pattern): string
     {
-        return strtolower(strtr($pattern, '\\', '/'));
+        return \strtolower(\strtr($pattern, '\\', '/'));
     }
 
     protected static function acceptAll(): bool
@@ -85,7 +85,7 @@ class FetchCommand extends Command
 
     protected static function acceptPattern(string $path, string $pattern): bool
     {
-        return str_starts_with($path, $pattern);
+        return \str_starts_with($path, $pattern);
     }
 
     private function createFetcher(OutputInterface $output): \Generator
@@ -99,10 +99,10 @@ class FetchCommand extends Command
                 continue;
             }
 
-            $path = join('/', $event->getPath());
+            $path = \join('/', $event->getPath());
             $file = new \SplFileInfo("{$this->config->dataPath}/{$path}.csv");
 
-            $href = 'file:///'.ltrim(strtr($file, DIRECTORY_SEPARATOR, '/'), '/');
+            $href = 'file:///'.\ltrim(\strtr($file, DIRECTORY_SEPARATOR, '/'), '/');
 
             if (!($this->accept)($path)) {
                 $output->writeln(

@@ -2,6 +2,10 @@
 
 namespace Eternium\Event;
 
+use Eternium\Event\Bracket\Contender;
+use Eternium\Event\Bracket\Master;
+use Eternium\Event\Bracket\Veteran;
+
 abstract class Bracket extends BaseEvent
 {
     use LeaderboardAwareTrait;
@@ -20,17 +24,17 @@ abstract class Bracket extends BaseEvent
 
     public static function createContender(string $mages = '', string $warriors = '', string $bounty_hunters = ''): self
     {
-        return new Bracket\Contender($mages, $warriors, $bounty_hunters);
+        return new Contender($mages, $warriors, $bounty_hunters);
     }
 
     public static function createVeteran(string $mages = '', string $warriors = '', string $bounty_hunters = ''): self
     {
-        return new Bracket\Veteran($mages, $warriors, $bounty_hunters);
+        return new Veteran($mages, $warriors, $bounty_hunters);
     }
 
     public static function createMaster(string $mages = '', string $warriors = '', string $bounty_hunters = ''): self
     {
-        return new Bracket\Master($mages, $warriors, $bounty_hunters);
+        return new Master($mages, $warriors, $bounty_hunters);
     }
 
     /**
