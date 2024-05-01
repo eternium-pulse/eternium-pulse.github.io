@@ -30,4 +30,5 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist
       - name: Run PHPUnit
-        run: ./vendor/bin/phpunit --coverage-filter=src --coverage-text tests
+        run: |
+          ./vendor/bin/phpunit --coverage-filter=src --coverage-text tests

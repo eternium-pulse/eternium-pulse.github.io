@@ -31,9 +31,11 @@ jobs:
       - name: Fetch untracked leaderboards
         env:
           ETERNIUM_API_KEY: ${{ secrets.ETERNIUM_API_KEY }}
-        run: ./bin/lb.php fetch --no-progress
+        run: |
+          ./bin/lb.php fetch --no-progress
       - name: Generate static site
-        run: ./bin/lb.php generate --page-limit=10 --base-url=https://${GITHUB_REPOSITORY_OWNER}.github.io --no-progress
+        run: |
+          ./bin/lb.php generate --page-limit=10 --base-url=https://${GITHUB_REPOSITORY_OWNER}.github.io --no-progress
       - name: Fix permissions
         run: |
           chmod -c -R +rX "public/" | while read line; do
