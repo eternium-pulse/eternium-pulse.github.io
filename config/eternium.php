@@ -11,9 +11,8 @@ return new Eternium(
         HttpClient::createForBaseUri(
             Eternium::BASE_URI,
             Eternium::getDefaultOptions(
-                $_ENV['ETERNIUM_API_KEY']
-                    ?? $_SERVER['ETERNIUM_API_KEY']
-                    ?? throw new LogicException('Eternium API key not set'),
+                getenv('ETERNIUM_API_KEY')
+                    ?: throw new LogicException('Eternium API key not set'),
             ),
         ),
     ),
