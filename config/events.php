@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Eternium\Event;
 
 return [
@@ -1489,6 +1491,23 @@ return [
                 'mages' => '66341586d364f437cf12ba9c',
                 'warriors' => '66341589fc3b44539a73e9ea',
                 'bounty_hunters' => '6634158bd364f437cf12bad6',
+            ],
+        ]),
+        League::createSilver(brackets: [
+            'contender' => [
+                'mages' => '66462abe484f2123397cb3c6',
+                'warriors' => '66462ac010d69927fa06e120',
+                'bounty_hunters' => '66462ac2484f2123397ccf9c',
+            ],
+            'veteran' => [
+                'mages' => '66462ac610d69927fa0718c0',
+                'warriors' => '66462ac8484f2123397ceba2',
+                'bounty_hunters' => '66462aca10d69927fa0734c7',
+            ],
+            'master' => [
+                'mages' => '66462acf484f2123397d23a9',
+                'warriors' => '66462ad1484f2123397d23c1',
+                'bounty_hunters' => '66462ad3484f2123397d23e3',
             ],
         ]),
     ),
