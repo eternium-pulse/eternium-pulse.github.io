@@ -1,0 +1,19 @@
+{% extends 'event/layout.twig' %}
+
+{% block title -%}
+Eternium - StL #{{ +event.index }} Leaderboards
+{%- endblock %}
+
+{% block description -%}
+Survive the Land #{{ +event.index }} leaderboards
+{%- endblock %}
+
+{% block opengraph %}
+<meta property="og:title" content="StL #{{ +event.index }}">
+{{ parent() }}
+{% endblock %}
+
+{% block content %}
+<h1>StL #{{ +event.index }}</h1>
+{{ parent() }}
+{% endblock %}
