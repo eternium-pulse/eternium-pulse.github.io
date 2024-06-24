@@ -63,6 +63,21 @@ trait LeaderboardAwareTrait
         return $this;
     }
 
+    public function withContenderBracket(string $mages = '', string $warriors = '', string $bounty_hunters = ''): self
+    {
+        return $this->withBracket('contender', $mages, $warriors, $bounty_hunters);
+    }
+
+    public function withVeteranBracket(string $mages = '', string $warriors = '', string $bounty_hunters = ''): self
+    {
+        return $this->withBracket('veteran', $mages, $warriors, $bounty_hunters);
+    }
+
+    public function withMasterBracket(string $mages = '', string $warriors = '', string $bounty_hunters = ''): self
+    {
+        return $this->withBracket('master', $mages, $warriors, $bounty_hunters);
+    }
+
     private function createBracketEntry(string $name): BracketEntry
     {
         return $this->brackets[$name] ??= new BracketEntry('', '', '');
