@@ -1545,4 +1545,9 @@ return [
             warriors: '666b31720cf8633643fed76c',
             bounty_hunters: '666b31740323697770220d66',
         ),
+
+    Season::create(26, 'Summer 2024')
+        ->withMages('6679c41f20083147c40f491b')
+        ->withWarriors('6679c42103236977705a2158')
+        ->withBountyHunters('6679c42220083147c40f65fb'),
 ];
