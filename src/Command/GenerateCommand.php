@@ -11,6 +11,7 @@ use Eternium\Utils\Minifier;
 use League\Uri\Contracts\UriInterface;
 use League\Uri\Uri;
 use League\Uri\UriResolver;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\InvalidOptionException;
 use Symfony\Component\Console\Helper\ProgressBar;
@@ -20,10 +21,9 @@ use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Twig\TwigFunction;
 
+#[AsCommand('generate')]
 class GenerateCommand extends Command
 {
-    protected static $defaultName = 'generate';
-
     /**
      * @var Leaderboard[]
      */

@@ -4,6 +4,7 @@ namespace Eternium\Command;
 
 use Eternium\Config;
 use Eternium\Event\Leaderboard;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputArgument;
@@ -13,10 +14,9 @@ use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\Output;
 use Symfony\Component\Console\Output\OutputInterface;
 
+#[AsCommand('fetch')]
 class FetchCommand extends Command
 {
-    protected static $defaultName = 'fetch';
-
     private string $pattern = '';
 
     private bool $update = false;
