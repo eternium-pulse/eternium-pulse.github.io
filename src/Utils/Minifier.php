@@ -18,7 +18,7 @@ final class Minifier
     public function minify(string $type, string $code): string
     {
         return match ($type) {
-            'css' => CssMin::minify($code),
+            'css' => CSSMin::minify($code),
             'js' => JavaScriptMinifier::minify($code),
             default => throw new \DomainException('Unsupported minification type'),
         };

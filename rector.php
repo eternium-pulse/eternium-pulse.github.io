@@ -12,6 +12,6 @@ return RectorConfig::configure()
         __DIR__.'/tests',
     ])
     ->withRootFiles()
-    ->withPhpSets(php81: true)
+    ->withPhpSets(php82: true)
     ->withImportNames(importShortClasses: false)
 ;
