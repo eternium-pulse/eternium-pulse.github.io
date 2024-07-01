@@ -14,7 +14,7 @@ use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\Output;
 use Symfony\Component\Console\Output\OutputInterface;
 
-#[AsCommand('fetch')]
+#[AsCommand('fetch', 'Fetch leaderboards from game server')]
 class FetchCommand extends Command
 {
     private string $pattern = '';
@@ -35,7 +35,6 @@ class FetchCommand extends Command
 
     protected function configure(): void
     {
-        $this->setDescription('Fetches leaderboards from game server');
         $this->addArgument('pattern', InputArgument::OPTIONAL, 'The pattern of leaderboard paths', $this->pattern);
         $this->addOption('from', '', InputOption::VALUE_NONE, 'Start fetching when pattern matched');
         $this->addOption('update', 'u', InputOption::VALUE_NONE, 'Update existing data');

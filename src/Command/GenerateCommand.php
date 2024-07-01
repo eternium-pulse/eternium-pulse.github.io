@@ -21,7 +21,7 @@ use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Twig\TwigFunction;
 
-#[AsCommand('generate')]
+#[AsCommand('generate', 'Generate HTML content')]
 class GenerateCommand extends Command
 {
     /**
@@ -47,7 +47,6 @@ class GenerateCommand extends Command
 
     protected function configure(): void
     {
-        $this->setDescription('Generates HTML content');
         $this->addOption('base-url', '', InputOption::VALUE_REQUIRED, 'Expand relative links using this URL', (string) $this->baseUrl);
         $this->addOption('page-size', '', InputOption::VALUE_REQUIRED, 'Set LB page size', $this->pageSize);
         $this->addOption('page-limit', '', InputOption::VALUE_REQUIRED, 'Limit number of LB pages', $this->pageLimit);
