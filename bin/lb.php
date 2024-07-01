@@ -3,7 +3,7 @@
 
 namespace Eternium\Command;
 
-require dirname(__DIR__).'/vendor/autoload.php';
+require $_composer_autoload_path ?? dirname(__DIR__).'/vendor/autoload.php';
 
 use Eternium\Config;
 use Symfony\Component\Console\Application;
