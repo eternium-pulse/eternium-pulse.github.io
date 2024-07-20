@@ -3,6 +3,9 @@
 {% block opengraph %}
 <link rel="canonical" href="{{ abs_url(event_path(event, +page.index))|e }}">
 <meta property="og:url" content="{{ abs_url(event_path(event, +page.index))|e }}">
+{% if env('GITLAB_CI') %}
+<meta http-equiv="refresh" content="0;url={{ abs_url(event_path(event, +page.index)).withQuery('from=gitlab')|e }}">
+{% endif %}
 {{ parent() }}
 {% endblock %}
 
