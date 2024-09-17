@@ -22,7 +22,7 @@
         "eternium-pulse/eternium": "^0.2",
         "symfony/console": "^5.4",
         "symfony/http-client": "^5.4",
-        "twig/twig": "^3.8",
+        "twig/twig": "^3.14",
         "wikimedia/minify": "^2.3",
         "league/uri": "^7.4",
         "symfony/polyfill-php83": "^1.28"
