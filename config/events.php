@@ -1704,4 +1704,25 @@ return [
         ->withMages('670e7d711c25ed582e29e17d')
         ->withWarriors('670e7d731c25ed582e29e1ba')
         ->withBountyHunters('670e7d751c25ed582e29ffcc'),
+
+    Anb::create(
+        33,
+        League::createBronze(brackets: [
+            'contender' => [
+                'mages' => '671258a25491812d7369a350',
+                'warriors' => '671258a41c25ed582e278110',
+                'bounty_hunters' => '671258a65491812d7369c200',
+            ],
+            'veteran' => [
+                'mages' => '671258a91c25ed582e279ff7',
+                'warriors' => '671258ab1c25ed582e27a026',
+                'bounty_hunters' => '671258ad5491812d7369fe7c',
+            ],
+            'master' => [
+                'mages' => '671258b05491812d736a1cdc',
+                'warriors' => '671258b21c25ed582e27dcbe',
+                'bounty_hunters' => '671258b41c25ed582e27fb09',
+            ],
+        ]),
+    ),
 ];
