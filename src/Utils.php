@@ -10,6 +10,7 @@ abstract class Utils
     private const CSV_MAX_LINE_LENGTH = 1024;
     private const CSV_CONTROL = [
         'separator' => ';',
+        'escape' => '\\',
     ];
 
     public static function getLastError(bool $clear = true): ?\ErrorException
