@@ -5,6 +5,7 @@ namespace Eternium\Event\Leaderboard;
 final class Trial
 {
     public function __construct(
+        public int $season,
         public int $level,
         public int $time,
         public int $bossTime = 0,
@@ -24,11 +25,12 @@ final class Trial
     {
         assert($score > 0);
 
-        $time = 9999 - $score % 10000;
-        $level = (int) ($score / 10000);
+        $time = 9999 - $score % 1_0000;
+        $level = (int) ($score % 1_0000_0000 / 1_0000);
+        $season = (int) ($score / 1_0000_0000);
 
         if (null === $trialStats) {
-            return new self($level, $time);
+            return new self($season, $level, $time);
         }
 
         assert(isset($trialStats['boss']['t0']));
@@ -38,6 +40,7 @@ final class Trial
         assert(isset($trialStats['heroDeaths']));
 
         return new self(
+            $season,
             $level,
             $time,
             self::detectBossTime($time, $trialStats['trash']['t1'], $trialStats['boss']['t0']),
