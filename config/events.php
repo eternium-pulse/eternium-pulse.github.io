@@ -1853,4 +1853,9 @@ return [
             warriors: '678135e229ab7a0d8a953ab8',
             bounty_hunters: '678135e4bdedd03a5831cc76',
         ),
+
+    Season::create(30, 'Winter 2025')
+        ->withMages('67a0ec6907336f05156c90d2')
+        ->withWarriors('67a0ec6a1320f800e52e30ec')
+        ->withBountyHunters('67a0ec6b07336f05156c9106'),
 ];
