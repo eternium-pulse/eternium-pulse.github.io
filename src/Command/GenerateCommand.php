@@ -8,9 +8,8 @@ use Eternium\Event\Leaderboard;
 use Eternium\Sitemap\Sitemap;
 use Eternium\Utils;
 use Eternium\Utils\Minifier;
+use League\Uri\BaseUri;
 use League\Uri\Contracts\UriInterface;
-use League\Uri\Uri;
-use League\Uri\UriResolver;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\InvalidOptionException;
@@ -29,7 +28,7 @@ class GenerateCommand extends Command
      */
     private array $leaderboards = [];
 
-    private Uri $baseUrl;
+    private BaseUri $baseUrl;
 
     private int $pageSize = 100;
 
@@ -41,7 +40,7 @@ class GenerateCommand extends Command
 
     public function __construct(private readonly Config $config)
     {
-        $this->baseUrl = Uri::createFromString(\getenv('CI_PAGES_URL') ?: 'http://localhost:8080');
+        $this->baseUrl = BaseUri::from(\getenv('CI_PAGES_URL') ?: 'http://localhost:8080');
         parent::__construct();
     }
 
@@ -57,11 +56,11 @@ class GenerateCommand extends Command
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
         try {
-            $this->baseUrl = Uri::createFromString($input->getOption('base-url'));
-            if (null === $this->baseUrl->getAuthority()) {
+            $this->baseUrl = $this->baseUrl->resolve($input->getOption('base-url'));
+            if (null === $this->baseUrl->getUri()->getAuthority()) {
                 throw new \UnexpectedValueException('Unexpected authority.');
             }
-            if (!\in_array($this->baseUrl->getScheme(), ['http', 'https'])) {
+            if (!\in_array($this->baseUrl->getUri()->getScheme(), ['http', 'https'])) {
                 throw new \UnexpectedValueException('Scheme requries http or https.');
             }
         } catch (\Throwable $ex) {
@@ -132,7 +131,7 @@ class GenerateCommand extends Command
 
             Utils::dump("{$this->config->htmlPath}/{$file}", $this->config->twig->render($template, $context));
 
-            $href = UriResolver::resolve(Uri::createFromComponents(['path' => $file]), $this->baseUrl);
+            $href = $this->baseUrl->resolve($file)->getUriString();
             $output->writeln(
                 $this->getHelper('formatter')->formatSection('HTML', "<href={$href}>{$file}</> generated using {$template}", 'comment'),
                 OutputInterface::VERBOSITY_VERBOSE,
@@ -244,9 +243,6 @@ class GenerateCommand extends Command
 
     private function absUrl(string $path = ''): UriInterface
     {
-        return UriResolver::resolve(
-            Uri::createFromComponents(['path' => $path]),
-            $this->baseUrl,
-        );
+        return $this->baseUrl->resolve($path)->getUri();
     }
 }
