@@ -1896,4 +1896,21 @@ return [
             ],
         ]),
     ),
+
+    SurviveTheLand::create(35)
+        ->withContenderBracket(
+            mages: '67caf36bb6f7e456adc0b366',
+            warriors: '67caf36ce061d00966996846',
+            bounty_hunters: '67caf36de061d00966996875',
+        )
+        ->withVeteranBracket(
+            mages: '67caf36ee061d009669968b6',
+            warriors: '67caf36fb6f7e456adc0b42b',
+            bounty_hunters: '67caf371b6f7e456adc0b431',
+        )
+        ->withMasterBracket(
+            mages: '67caf372b6f7e456adc0b449',
+            warriors: '67caf373b6f7e456adc0b481',
+            bounty_hunters: '67caf374e061d00966996964',
+        ),
 ];
