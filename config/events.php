@@ -1930,4 +1930,9 @@ return [
             warriors: '67caf373b6f7e456adc0b481',
             bounty_hunters: '67caf374e061d00966996964',
         ),
+
+    Season::create(31, 'Season of Evoked Fury')
+        ->withMages('67ebf43cb6f7e456ada77fe6')
+        ->withWarriors('67ebf43de061d009666b0f65')
+        ->withBountyHunters('67ebf43eb6f7e456ada7802e'),
 ];
