@@ -48,14 +48,14 @@ abstract class Utils
         }
 
         $stream->setFlags(\SplFileObject::SKIP_EMPTY | \SplFileObject::DROP_NEW_LINE);
-        $stream->setCsvControl(...self::CSV_CONTROL);
+        $stream->setCsvControl(...self::CSV_CONTROL, escape: '\\');
         $stream->setMaxLineLen(self::CSV_MAX_LINE_LENGTH);
 
-        $header = $stream->fgetcsv();
+        $header = $stream->fgetcsv(escape: '\\');
 
         $rows = 0;
         while (!$stream->eof()) {
-            $data = $stream->fgetcsv();
+            $data = $stream->fgetcsv(escape: '\\');
             if (false !== $data) {
                 yield $data;
             }
@@ -82,17 +82,17 @@ abstract class Utils
             throw self::getLastError() ?? new \RuntimeException("Unable to acquire exclusive lock on '{$file}'");
         }
 
-        $stream->setCsvControl(...self::CSV_CONTROL);
+        $stream->setCsvControl(...self::CSV_CONTROL, escape: '\\');
         $stream->setMaxLineLen(self::CSV_MAX_LINE_LENGTH);
 
         $stream->ftruncate(0);
         if (false !== $header) {
-            $stream->fputcsv($header);
+            $stream->fputcsv($header, escape: '\\');
         }
 
         $rows = 0;
         while (\is_array($data = yield)) {
-            $stream->fputcsv($data);
+            $stream->fputcsv($data, escape: '\\');
             ++$rows;
         }
 

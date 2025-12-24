@@ -28,9 +28,7 @@ abstract class Event implements \Stringable
         return [$this];
     }
 
-    /**
-     * @deprecated
-     */
+    #[\Deprecated]
     final public function walk(\Generator $handler): void
     {
         if (is_iterable($this)) {
