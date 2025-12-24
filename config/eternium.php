@@ -10,10 +10,7 @@ return new Eternium(
     new RetryableHttpClient(
         HttpClient::createForBaseUri(
             Eternium::BASE_URI,
-            Eternium::getDefaultOptions(
-                $_SERVER['ETERNIUM_API_KEY']
-                    ?? throw new LogicException('Eternium API key not set'),
-            ),
+            Eternium::getDefaultOptions(),
         ),
     ),
 );

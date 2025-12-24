@@ -67,6 +67,7 @@ abstract class League extends BaseEvent
     /**
      * @return Event[]
      */
+    #[\Override]
     public function getPath(): array
     {
         return [...$this->parent->getPath(), $this];

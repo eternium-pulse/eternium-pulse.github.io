@@ -44,6 +44,7 @@ final class Anb extends BaseEvent
     /**
      * @return \Iterator<int, League>
      */
+    #[\Override]
     public function getIterator(): \Iterator
     {
         if ($this->bronze) {

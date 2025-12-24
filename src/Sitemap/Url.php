@@ -8,7 +8,7 @@ use League\Uri\Contracts\UriInterface;
 
 final readonly class Url implements \Stringable
 {
-    public const DEFAULT_PRIORITY = 0.5;
+    public const float DEFAULT_PRIORITY = 0.5;
 
     public function __construct(
         public UriInterface $loc,

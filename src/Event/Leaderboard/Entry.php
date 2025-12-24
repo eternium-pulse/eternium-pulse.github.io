@@ -4,7 +4,7 @@ namespace Eternium\Event\Leaderboard;
 
 final class Entry implements \Stringable
 {
-    public const HEADER = [
+    public const array HEADER = [
         'Name',
         'Title',
         'ChampLv',

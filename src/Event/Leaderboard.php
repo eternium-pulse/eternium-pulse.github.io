@@ -39,6 +39,7 @@ abstract class Leaderboard extends Event
     /**
      * @return Event[]
      */
+    #[\Override]
     public function getPath(): array
     {
         return [...$this->parent->getPath(), $this];

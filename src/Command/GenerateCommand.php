@@ -233,7 +233,7 @@ class GenerateCommand extends Command
 
         foreach ($assets as $dst => $src) {
             $code = '';
-            $type = (string) \pathinfo($dst, \PATHINFO_EXTENSION);
+            $type = (string) \pathinfo((string) $dst, \PATHINFO_EXTENSION);
             foreach ($src as $file) {
                 $code .= Utils::read($file);
             }
