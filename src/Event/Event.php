@@ -4,16 +4,16 @@ namespace Eternium\Event;
 
 abstract class Event implements \Stringable
 {
-    public string $type;
+    public protected(set) string $type;
 
-    public string $slug;
+    public protected(set) string $slug;
 
-    public string $name;
+    public protected(set) string $name;
 
     /**
      * @deprecated
      */
-    public self $parent;
+    public protected(set) self $parent;
 
     final public function __toString(): string
     {
@@ -28,10 +28,9 @@ abstract class Event implements \Stringable
         return [$this];
     }
 
-    #[\Deprecated]
     final public function walk(\Generator $handler): void
     {
-        if (is_iterable($this)) {
+        if (\is_iterable($this)) {
             foreach ($this as $event) {
                 $event->walk($handler);
             }

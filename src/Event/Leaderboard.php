@@ -80,25 +80,16 @@ abstract class Leaderboard extends Event
     /**
      * @return \Generator<int, Entry, void, int>
      */
-    public function fetch(Eternium $eternium): \Generator
+    public function fetch(Eternium $eternium, int $pageSize = 1000): \Generator
     {
-        $rankings = $eternium->leaderboards->getRankings($this->id);
-        $options = [
-            'page' => 1,
-            'page_size' => 1000,
-            'payload' => [
-                'name',
-                'champion_level',
-                'hero',
-                'trialStats',
-                'devInfo',
-            ],
-        ];
+        \assert($pageSize > 0);
 
+        $rankings = $eternium->leaderboards->rankings($this->id);
+        $page = 1;
         $entries = 0;
         do {
             $pageEntries = 0;
-            foreach ($rankings->list($options) as $data) {
+            foreach ($rankings->list($page, $pageSize) as $data) {
                 $entry = new Entry(
                     Hero::fromPayload($data['payload'] ?? null),
                     Trial::fromTrialStats($data['score'], $data['payload']['trialStats'] ?? null),
@@ -109,8 +100,8 @@ abstract class Leaderboard extends Event
 
                 yield $entry;
             }
-            ++$options['page'];
-        } while ($pageEntries === $options['page_size']);
+            ++$page;
+        } while ($pageEntries === $pageSize);
 
         return $entries;
     }
