@@ -10,7 +10,7 @@ return new Eternium(
     new RetryableHttpClient(
         HttpClient::createForBaseUri(
             Eternium::BASE_URI,
-            Eternium::getDefaultOptions(),
+            Eternium::DEFAULT_HTTP_OPTIONS,
         ),
     ),
 );
