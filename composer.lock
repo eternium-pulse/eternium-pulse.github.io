@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "89829728dcc5df2d58784bda5444f12c",
+    "content-hash": "08dc6ae33942420828aee8f2ea84e26f",
     "packages": [
         {
             "name": "eternium-pulse/eternium",
@@ -5396,7 +5396,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.3",
+        "php": "^8.4",
         "ext-spl": "*",
         "composer-runtime-api": "^2.2"
     },

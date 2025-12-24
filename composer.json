@@ -16,7 +16,7 @@
         "issues": "https://gitlab.com/eternium-pulse/eternium-pulse.gitlab.io/-/issues"
     },
     "require": {
-        "php": "^8.3",
+        "php": "^8.4",
         "ext-spl": "*",
         "composer-runtime-api": "^2.2",
         "eternium-pulse/eternium": "^0.3",
@@ -25,7 +25,6 @@
         "twig/twig": "^3.22",
         "wikimedia/minify": "^2.3",
         "league/uri": "^7.7",
-        "symfony/polyfill-php84": "*",
         "symfony/polyfill-php85": "*"
     },
     "require-dev": {
