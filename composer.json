@@ -16,22 +16,22 @@
         "issues": "https://gitlab.com/eternium-pulse/eternium-pulse.gitlab.io/-/issues"
     },
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
         "ext-spl": "*",
         "composer-runtime-api": "^2.2",
         "eternium-pulse/eternium": "^0.3",
         "symfony/console": "^6.4",
         "symfony/http-client": "^6.4",
-        "twig/twig": "^3.20",
+        "twig/twig": "^3.22",
         "wikimedia/minify": "^2.3",
-        "league/uri": "^7.5",
-        "symfony/polyfill-php83": "*",
-        "symfony/polyfill-php84": "*"
+        "league/uri": "^7.7",
+        "symfony/polyfill-php84": "*",
+        "symfony/polyfill-php85": "*"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.75",
         "phpunit/phpunit": "^11.5",
-        "rector/rector": "^2.0"
+        "rector/rector": "^2.2"
     },
     "autoload": {
         "psr-4": {
