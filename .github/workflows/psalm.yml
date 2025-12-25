@@ -14,9 +14,25 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
+          coverage: none
+          tools: composer, psalm
+
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist
 
       - name: Psalm Security Scan
-        uses: docker://ghcr.io/psalm/psalm-security-scan
+        run: psalm --output-format=github
 
       - name: Import Security Analysis results into GitHub Security Code Scanning
         uses: github/codeql-action/upload-sarif@v3
