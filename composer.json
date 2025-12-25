@@ -6,14 +6,14 @@
     "authors": [
         {
             "name": "Alex Tsarkov",
-            "homepage": "https://gitlab.com/alex-tsarkov",
+            "homepage": "https://github.com/alexey-tsarkov",
             "email": "alex.tsarkov@gmail.com"
         }
     ],
-    "homepage": "https://eternium-pulse.gitlab.io",
+    "homepage": "https://eternium-pulse.github.io",
     "support": {
-        "source": "https://gitlab.com/eternium-pulse/eternium-pulse.gitlab.io",
-        "issues": "https://gitlab.com/eternium-pulse/eternium-pulse.gitlab.io/-/issues"
+        "source": "https://github.com/eternium-pulse/eternium-pulse.github.io",
+        "issues": "https://github.com/eternium-pulse/eternium-pulse.github.io/issues"
     },
     "require": {
         "php": "^8.4",
